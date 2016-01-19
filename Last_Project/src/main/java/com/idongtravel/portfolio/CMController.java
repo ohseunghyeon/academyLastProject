@@ -18,6 +18,7 @@ public class CMController {
 	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request) {
+		System.out.println("login()");
 		return "login/login";
 	}
 	@RequestMapping("/findidForm")
