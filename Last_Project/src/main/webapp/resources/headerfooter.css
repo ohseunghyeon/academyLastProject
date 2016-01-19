@@ -62,7 +62,7 @@ header h1 {
 }
 #nav li a {
 	display: block; /*영역을 만듦*/
-	font-family: "굴림"; /*글꼴*/
+	font-family: "SeoulNamsanFont"; /*글꼴*/
 	font-weight: 600;/*진하게*/
 	font-size: 1em;	/*글자크기*/
 	padding:10px 20px; /*안여백*/
@@ -94,7 +94,7 @@ header h1 {
 	list-style:none;/*목록의 불릿 없앰*/
 	position:absolute; /*고정 위치에 표시*/
 	left:0; /*부모 요소와 left 좌푯값은 같게*/
-	top:45px; /*부모 요소로부터 아래 방향으로 45px 밑에 표시 */
+	top:40px; /*부모 요소로부터 아래 방향으로 45px 밑에 표시 */
 	width:150px; /*서브 메뉴 너비*/
 	background:#ddd; /*서브 메뉴 배경색*/
 	border:1px solid #b4b4b4; /*서브 메뉴 테두리를 그림*/
