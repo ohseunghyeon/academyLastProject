@@ -13,11 +13,11 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home(HttpServletRequest request) {
-		return "home";
+		return "index";
 	}
 	@RequestMapping("/companyIntro")
 	public String companyIntro(HttpServletRequest request) {
-		return "companyIntro";
+		return "companyIntro/companyIntro";
 	}
 
 }

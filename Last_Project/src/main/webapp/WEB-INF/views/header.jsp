@@ -17,7 +17,7 @@
 	</header>
 	<nav>
 		<ul id="nav">
-			<li><a href="./companyIntro">회사소개</a></li>
+			<li><a href="companyIntro">회사소개</a></li>
 			<li><a href="">여행 패키지</a>
 				<ul>
 					<li><a href="">이용 안내</a></li>
