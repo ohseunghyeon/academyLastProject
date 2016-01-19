@@ -15,6 +15,13 @@
 <fieldset>
 	<legend>여행문의</legend>
 	<table>
+		<colgroup>
+			<col width="5%"/>
+			<col width="*"/>
+			<col width="10%"/>
+			<col width="10%"/>
+			<col width="7%"/>
+		</colgroup>
 		<tr>
 			<th colspan="2">제목</th>
 			<th>작성자</th>
