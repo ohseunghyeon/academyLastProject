@@ -13,8 +13,8 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home(HttpServletRequest request) {
-		System.out.println("지나가긴 하니");
 		return "home";
 	}
 	
+
 }
