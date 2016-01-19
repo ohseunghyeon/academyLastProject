@@ -15,4 +15,9 @@ public class EomController {
 	public String gangwondocatlog(HttpServletRequest request) {
 		return "travelpackage/Gangwondo/gangwondocatlog";
 	}
+	
+	@RequestMapping("/jejucatalog")
+	public String jejucatalog(HttpServletRequest request) {
+		return "travelpackage/Jeju/jejucatalog";
+	}
 }
