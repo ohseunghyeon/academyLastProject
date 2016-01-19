@@ -33,7 +33,7 @@
 					<li><a href="">날씨정보</a></li>
 				</ul>
 			</li>
-			<li><a href="">공지사항</a>
+			<li><a href="noticeBoard">공지사항</a>
 				<ul>
 					<li><a href="noticeBoard">공지사항</a></li>
 					<li><a href="questionBoard">여행문의</a></li>
