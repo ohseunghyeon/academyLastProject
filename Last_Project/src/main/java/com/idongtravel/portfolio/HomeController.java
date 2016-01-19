@@ -42,4 +42,12 @@ public class HomeController {
 	public String gwanganbridge(HttpServletRequest request) {
 		return "travelpackage/Busan/busandata/gwanganbridge";
 	}
+	@RequestMapping("/seoulcatalog")
+	public String seoulcatelog(HttpServletRequest request) {
+		return "travelpackage/Seoul/seoulcatalog";
+	}
+	@RequestMapping("/royalpalace")
+	public String royalpalace(HttpServletRequest request) {
+		return "travelpackage/Seoul/seouldata/royalpalace";
+	}
 }
