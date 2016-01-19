@@ -22,9 +22,9 @@
 				<ul>
 					<li><a href="">이용 안내</a></li>
 					<li><a href="seoulcatalog">서울</a></li>
-					<li><a href="">강원도</a></li>
+					<li><a href="gangwondocatlog">강원도</a></li>
 					<li><a href="busancatelog">부산</a></li>
-					<li><a href="">제주도</a></li>
+					<li><a href="jejucatalog">제주도</a></li>
 				</ul>
 			</li>
 			<li><a href="">여행정보</a>

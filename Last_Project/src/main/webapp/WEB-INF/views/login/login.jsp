@@ -30,8 +30,8 @@
 			<tr>
 				<th colspan="2">
 				<br><input class="inputButton" type="submit" value="로그인"><br><br>
-				<input class="inputButton" type="button" value="아이디/비번찾기" onclick="window.location='findIdForm.jsp'"> 
-				<input class="inputButton" type="button" value="회원가입" onclick="window.location='inputForm.jsp'"></th>
+				<input class="inputButton" type="button" value="아이디/비번찾기" onclick="window.location='findidForm'"> 
+				<input class="inputButton" type="button" value="회원가입" onclick="window.location='inputForm'"></th>
 			</tr>
 		</table>
 	</form>

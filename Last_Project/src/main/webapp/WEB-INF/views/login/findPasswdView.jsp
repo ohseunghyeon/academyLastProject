@@ -1,14 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet"
+	href="./resources/headerfooter.css">
 </head>
 <body>
-00님의 password는 00입니다.<br><br>
+	<jsp:include page="../headerFooter/header.jsp" flush="false" />
+	00님의 password는 00입니다.
+	<br>
+	<br>
 
-<input class = "inputbutton" type="button" value="로그인 하러 가기" onclick="window.location='logIn.jsp'">
+	<input class="inputbutton" type="button" value="로그인 하러 가기"
+		onclick="window.location='login'">
+
+	<jsp:include page="../headerFooter/footer.jsp" flush="false" />
 </body>
 </html>

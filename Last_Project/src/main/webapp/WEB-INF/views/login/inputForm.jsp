@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
-
-<script src="script.js"></script>
-<link type="text/css" rel="stylesheet" >
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="./resources/headerfooter.css">
+</head>
+<body onload="inputfocus()">
+<jsp:include page="../headerFooter/header.jsp" flush="false" />
 
 <h2> 회원가입 </h2>
-
-<body onload="inputfocus()">
 	<form method="post" name="inputform" onsubmit="return inputcheck()">
 		<input type="hidden" name="confirmid" value="0">
 		<table>
@@ -77,13 +79,14 @@
 			</tr>
 			<tr>
 				<th colspan="2">
-					<input class="inputbutton" type="button" value="회원가입" onclick="window.location='logIn.jsp'">
+					<input class="inputbutton" type="button" value="회원가입" onclick="window.location='login'">
 					<input class="inputbutton" type="reset" value="취소">
-					<input class="inputbutton" type="button" value="가입취소" onclick="window.location='logIn.jsp'">
+					<input class="inputbutton" type="button" value="가입취소" onclick="window.location='login'">
 				</th>
 			</tr>
 
 		</table>
 	</form>
+<jsp:include page="../headerFooter/footer.jsp" flush="false" />
 </body>
 </html>

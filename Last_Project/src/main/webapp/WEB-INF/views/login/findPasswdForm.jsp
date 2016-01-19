@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
-<script src="script.js"></script>
-<link type="text/css" rel="stylesheet" href="">
-
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="./resources/headerfooter.css">
+</head>
 
 <body>
+<jsp:include page="../headerFooter/header.jsp" flush="false" />
 	<form method="post" name="findForm">
 
 		<table>
@@ -35,13 +37,10 @@
 			<tr>
 				<th colspan="2"><br> 
 				<input class="inputbutton" type="button" value="비밀번호 찾기"
-					onclick="window.location='findPasswdView.jsp'">
+					onclick="window.location='findPasswdView'">
 			</tr>
 		</table>
 	</form>
+<jsp:include page="../headerFooter/footer.jsp" flush="false" />
 </body>
-
-
-
-
 </html>
