@@ -20,4 +20,12 @@ public class HomeController {
 		return "companyIntro/companyIntro";
 	}
 
+	@RequestMapping("/noticeBoard")
+	public String noticeBoard(HttpServletRequest request) {
+		return "board/noticeBoard";
+	}
+	@RequestMapping("/questionBoard")
+	public String questionBoard(HttpServletRequest request) {
+		return "board/questionBoard";
+	}
 }

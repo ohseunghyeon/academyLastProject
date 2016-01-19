@@ -13,7 +13,7 @@
 
 <div class="questionBoard">
 <fieldset>
-	<legend>여행문의</legend>
+	<legend>공지사항</legend>
 	<table>
 		<tr>
 			<th colspan="2">제목</th>
@@ -22,7 +22,7 @@
 			<th>조회</th>
 		</tr>
 		<tr>
-			<td>2</td>
+			<td>1</td>
 			<td>데헿</td>
 			<td>나</td>
 			<td>2016.1.19</td>

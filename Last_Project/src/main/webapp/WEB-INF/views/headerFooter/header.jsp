@@ -29,15 +29,16 @@
 			</li>
 			<li><a href="">여행정보</a>
 				<ul>
-					<li><a href="">어딘가 정보</a></li>
-					<li><a href="">날씨 정보</a></li>
+					<li><a href="">여행정보</a></li>
+					<li><a href="">날씨정보</a></li>
 				</ul>
 			</li>
-			<li><a href="">게시판</a>
+			<li><a href="">공지사항</a>
 				<ul>
-					<li><a href="">공지사항</a></li>
-					<li><a href="">여행문의</a></li>
+					<li><a href="noticeBoard">공지사항</a></li>
+					<li><a href="questionBoard">여행문의</a></li>
 				</ul>
 			</li>
 		</ul>
 	</nav>
+	<div class="clear"></div>

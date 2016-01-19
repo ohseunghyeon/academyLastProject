@@ -8,7 +8,7 @@
 <link type="text/css" rel="stylesheet" href="resources/headerfooter.css">
 </head>
 <body>
-	<jsp:include page="../header.jsp" flush="false" />
+	<jsp:include page="../headerFooter/header.jsp" flush="false" />
  <!-- 내용부 -->
       <div class="content"></div>
         <div class="tit"><img src="http://img.justgo.kr/img/justgo/html/test/images/01/company_overview.gif" /></div>
@@ -87,7 +87,7 @@
           </table>
         </div>
         <!-- //내용부 -->
-        <jsp:include page="../footer.jsp" flush="false" />
+        <jsp:include page="../headerFooter/footer.jsp" flush="false" />
 </body>
 </html>
 

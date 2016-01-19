@@ -8,12 +8,23 @@
 <link type="text/css" rel="stylesheet" href="./resources/headerfooter.css">
 </head>
 <body>
-<jsp:include page="header.jsp" flush="false" />
+<jsp:include page="headerFooter/header.jsp" flush="false" />
 <div class="home">
-여기가 본문인데<br/>
-이거 왜 일로 가?<br/>
-ㅎㅎㅎ
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
+본문<br/>
 </div>
-<jsp:include page="footer.jsp" flush="false" />
+<jsp:include page="headerFooter/footer.jsp" flush="false" />
 </body>
 </html>
