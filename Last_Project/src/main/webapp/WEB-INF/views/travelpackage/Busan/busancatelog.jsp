@@ -39,7 +39,7 @@
 		</tr>		
 		<tr>
 				<td><input class="input" type="checkbox"></td>
-				<td><a href=" ">광안대교</a></td>
+				<td><a href="gwanganbridge">광안대교</a></td>
 				<td>지역주소</td>
 				<td>가격(협의가능)</td>
 		</tr>		

@@ -38,4 +38,8 @@ public class HomeController {
 	public String busancatelog(HttpServletRequest request) {
 		return "travelpackage/Busan/busancatelog";
 	}
+	@RequestMapping("/gwanganbridge")
+	public String gwanganbridge(HttpServletRequest request) {
+		return "travelpackage/Busan/busandata/gwanganbridge";
+	}
 }
