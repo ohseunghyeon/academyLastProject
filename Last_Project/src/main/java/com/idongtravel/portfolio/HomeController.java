@@ -33,4 +33,9 @@ public class HomeController {
 	public String login(HttpServletRequest request) {
 		return "login/login";
 	}
+	
+	@RequestMapping("/busancatelog")
+	public String busancatelog(HttpServletRequest request) {
+		return "travelpackage/Busan/busancatelog";
+	}
 }
