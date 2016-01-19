@@ -28,4 +28,9 @@ public class HomeController {
 	public String questionBoard(HttpServletRequest request) {
 		return "board/questionBoard";
 	}
+	
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request) {
+		return "login/login";
+	}
 }

@@ -6,7 +6,7 @@
 		</h1>
 		<ul class="header_side">
 		<c:if test="${sessionScope.LoginId == null}">
-			<li><a href="">로그인</a></li>
+			<li><a href="login">로그인</a></li>
 			<li><a href="">회원가입</a></li>
 		</c:if>
 		<c:if test="${sessionScope.LoginId != null}">
