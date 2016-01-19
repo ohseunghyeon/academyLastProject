@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회사 소개</title>
+<link type="text/css" rel="stylesheet" href="./resources/style.css">
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="false" />
  <!-- 내용부 -->
       <div class="content"></div>
         <div class="tit"><img src="http://img.justgo.kr/img/justgo/html/test/images/01/company_overview.gif" /></div>
@@ -85,6 +87,7 @@
           </table>
         </div>
         <!-- //내용부 -->
+        <jsp:include page="footer.jsp" flush="false" />
 </body>
 </html>
 

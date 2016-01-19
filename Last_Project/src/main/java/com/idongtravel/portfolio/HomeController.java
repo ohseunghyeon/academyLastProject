@@ -15,6 +15,9 @@ public class HomeController {
 	public String home(HttpServletRequest request) {
 		return "home";
 	}
-	
+	@RequestMapping("/companyIntro")
+	public String companyIntro(HttpServletRequest request) {
+		return "companyIntro";
+	}
 
 }
