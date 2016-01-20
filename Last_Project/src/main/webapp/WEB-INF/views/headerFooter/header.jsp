@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<header>
 		<h1>
-			<a href="./">OO여행사</a>
+			<a href="./"><img src="/portfolio/resources/images/logo.png" width="332" height="163" alt=""/></a>
 		</h1>
 		<ul class="header_side">
 		<c:if test="${sessionScope.LoginId == null}">
@@ -42,3 +42,4 @@
 		</ul>
 	</nav>
 	<div class="clear"></div>
+	<div class="wrapper_content">

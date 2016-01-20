@@ -17,14 +17,14 @@ body {
 	margin: 0px;
 	font-style: normal;
 	font-weight: 200;
-	width: 1024px;
 	margin-right: auto;
 	margin-left: auto;
 }
 /*헤더부터 네비게이션까지*/
 header {
-	background-color: #7c6f91;
-	height: 55px;
+	background-color: #FFFFFF;
+	height: 179px;
+	position: relative;
 }
 header h1 {
 	padding-top: 10px;
@@ -39,11 +39,11 @@ header h1 {
 }
 .header_side li {
 	display: inline;
-	border-right-width: 2px;
-	border-right-color: #ccc;
+	border-right: 2px solid #ccc;
 	padding-right: 5px;
 	padding-left: 5px;
-	color: #fff;
+	color: #000000;
+	font-weight: bold;
 }
 #nav {
 	clear:both;
@@ -131,7 +131,8 @@ header h1 {
 /*헤더부터 네비게이션까지 끗*/
 /*푸터*/
 footer {
-	background-color: #7c6f91;
+	background-color: #FFFFFF;
+	text-align: center;
 }
 /*푸터 끗*/
 a:link, a:visited {
@@ -148,4 +149,9 @@ header, footer {
 /*본문*/
 .clear {
 	clear:both;
+}
+.wrapper_content {
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
 }
