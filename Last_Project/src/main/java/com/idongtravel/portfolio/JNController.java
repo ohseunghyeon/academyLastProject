@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class JNController {
 
+	
 	@RequestMapping("/koreaInfo")
 	public String koreaInfo(HttpServletRequest request) {
 		return "/travelInfo/koreaInfo";
