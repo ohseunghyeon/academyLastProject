@@ -22,40 +22,44 @@
 			<col width="10%"/>
 			<col width="7%"/>
 		</colgroup>
-		<tr>
-			<th colspan="2">제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회</th>
-		</tr>
-		<tr>
-			<td>4</td>
-			<td>모르게따</td>
-			<td>나</td>
-			<td>2016.1.19</td>
-			<td>2</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td>아 어쩌지</td>
-			<td>나</td>
-			<td>2016.1.19</td>
-			<td>1</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>여행사</td>
-			<td>나</td>
-			<td>2016.1.19</td>
-			<td>2</td>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>프로젝트</td>
-			<td>나</td>
-			<td>2016.1.19</td>
-			<td>2</td>
-		</tr>
+		<thead>
+			<tr>
+				<th colspan="2">제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>조회</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>4</td>
+				<td>모르게따</td>
+				<td>나</td>
+				<td>2016.1.19</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>아 어쩌지</td>
+				<td>나</td>
+				<td>2016.1.19</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>여행사</td>
+				<td>나</td>
+				<td>2016.1.19</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>프로젝트</td>
+				<td>나</td>
+				<td>2016.1.19</td>
+				<td>2</td>
+			</tr>
+		</tbody>
 	</table>
 </fieldset>
 </div>
