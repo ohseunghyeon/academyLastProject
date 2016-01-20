@@ -27,10 +27,10 @@
 					<li><a href="jejucatalog">제주도</a></li>
 				</ul>
 			</li>
-			<li><a href="">여행정보</a>
+			<li><a href="koreaInfo">여행정보</a>
 				<ul>
-					<li><a href="">여행정보</a></li>
-					<li><a href="">날씨정보</a></li>
+					<li><a href="koreaInfo">여행정보</a></li>
+					<li><a href="weather">날씨정보</a></li>
 				</ul>
 			</li>
 			<li><a href="noticeBoard">공지사항</a>
