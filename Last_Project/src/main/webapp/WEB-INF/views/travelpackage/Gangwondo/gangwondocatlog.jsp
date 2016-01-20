@@ -22,7 +22,7 @@
 <body>
 <jsp:include page="../../headerFooter/header.jsp" flush="false" />
 <table border = "3">
-	<caption><font color ="blue"> <h4>부산 여행 맞춤 패키지 목록</h4> </caption>
+	<caption><font color ="blue"> <h4>강원도 여행 맞춤 패키지 목록</h4> </caption>
 	<thead>
 		<tr>
 				<th>선택</th>
