@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType = "text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<header>
 		<h1>
@@ -28,10 +27,10 @@
 					<li><a href="jejucatalog">제주도</a></li>
 				</ul>
 			</li>
-			<li><a href="koreaInfo">여행정보</a>
+			<li><a href="">여행정보</a>
 				<ul>
-					<li><a href="koreaInfo">여행정보</a></li>
-					<li><a href="weather">날씨정보</a></li>
+					<li><a href="">여행정보</a></li>
+					<li><a href="">날씨정보</a></li>
 				</ul>
 			</li>
 			<li><a href="noticeBoard">공지사항</a>
