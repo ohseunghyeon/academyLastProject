@@ -153,7 +153,7 @@
 		</tr>		
 		<tr>
 		<th colspan="4">
-			<input class="inputbutton" type="submit" value="예약">
+			<input class="inputbutton" type="submit" value="예약"onclick="window.location='busanpackagecheck'">
 			<input class="inputbutton" type="button" value="취소" onclick="window.location='''">
 		</th>
 		</tr>

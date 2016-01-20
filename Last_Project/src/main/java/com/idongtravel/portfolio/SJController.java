@@ -26,9 +26,13 @@ public class SJController {
 	public String namsan(HttpServletRequest request) {
 		return "travelpackage/Seoul/seouldata/namsan";
 	}
-	@RequestMapping
+	@RequestMapping("/packagecheck")
 	public String packagecheck(HttpServletRequest request) {
 		return "travelpackage/Seoul/seoulcheck/packagecheck";
+	}
+	@RequestMapping("/busanpackagecheck")
+	public String busanpackagecheck(HttpServletRequest request) {
+		return "travelpackage/Busan/busancheck/busanpackagecheck";
 	}
 
 }
