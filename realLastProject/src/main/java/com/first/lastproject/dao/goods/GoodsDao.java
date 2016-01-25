@@ -1,8 +1,11 @@
 package com.first.lastproject.dao.goods;
 
-public interface GoodsDao {
+public class GoodsDao implements InterfaceGoodsDao {
 
-//goods 음식
-	public int addGoods();
+	@Override
+	public int addGoods() {
+		// TODO 자동 생성된 메소드 스텁
+		return 0;
+	}
 
 }

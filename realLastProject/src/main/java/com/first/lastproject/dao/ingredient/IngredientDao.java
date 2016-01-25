@@ -1,8 +1,11 @@
 package com.first.lastproject.dao.ingredient;
 
-public interface IngredientDao {
+public class IngredientDao implements InterfaceIngredientDao {
 
-//ingredient 재료
-	public int addIngredient();
+	@Override
+	public int addIngredient() {
+		// TODO 자동 생성된 메소드 스텁
+		return 0;
+	}
 
 }

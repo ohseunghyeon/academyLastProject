@@ -1,7 +1,11 @@
 package com.first.lastproject.dao.member;
 
-public interface MemberDao {
-//member 회원
-	public int addMemeber();
+public class MemberDao implements InterfaceMemberDao {
+
+	@Override
+	public int addMemeber() {
+		// TODO 자동 생성된 메소드 스텁
+		return 0;
+	}
 
 }

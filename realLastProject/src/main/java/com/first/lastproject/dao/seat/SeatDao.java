@@ -2,8 +2,12 @@ package com.first.lastproject.dao.seat;
 
 import com.first.lastproject.dto.SeatDto;
 
-public interface SeatDao {
+public class SeatDao implements InterfaceSeatDao {
 
-//seat 좌석
-	public SeatDto getSeats(); 
+	@Override
+	public SeatDto getSeats() {
+		// TODO 자동 생성된 메소드 스텁
+		return null;
+	}
+
 }
