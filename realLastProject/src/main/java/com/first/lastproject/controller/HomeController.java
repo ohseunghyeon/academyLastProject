@@ -1,4 +1,4 @@
-package com.first.lastproject;
+package com.first.lastproject.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
