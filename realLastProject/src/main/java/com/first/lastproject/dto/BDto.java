@@ -2,7 +2,7 @@ package com.first.lastproject.dto;
 
 import java.sql.Timestamp;
 
-public class BoardDto {
+public class BDto {
 	private int num; // 글번호
 	private String writer; // 작성자
 	private String passwd; // 비밀번호
@@ -111,4 +111,5 @@ public class BoardDto {
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
+
 }
