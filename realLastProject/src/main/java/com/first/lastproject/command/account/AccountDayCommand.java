@@ -1,4 +1,4 @@
-package com.fisrt.lastproject.command.account;
+package com.first.lastproject.command.account;
 
 import org.springframework.ui.Model;
 

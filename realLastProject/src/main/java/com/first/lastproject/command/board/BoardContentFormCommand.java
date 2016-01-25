@@ -10,7 +10,7 @@ import spring.mvc.board.dao.BDao;
 import spring.mvc.board.dao.IDao;
 import spring.mvc.board.dto.BDto;
 
-public class BContentFormCommand implements BCommand {
+public class BoardContentFormCommand implements BoardCommand {
 
 	@Override
 	public String execute(Model model) {

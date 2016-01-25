@@ -1,8 +1,8 @@
-package com.first.lastproject.command.member;
+package com.first.lastproject.command.account;
 
 import org.springframework.ui.Model;
 
-public class MemeberModifyFormCommand implements MemberCommand {
+public class AccountMonthCommand implements AccountCommand {
 
 	@Override
 	public String execute(Model model) {

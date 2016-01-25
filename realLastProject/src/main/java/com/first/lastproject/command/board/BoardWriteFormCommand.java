@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-public class BoardWriteFormCommand implements BCommand {
+public class BoardWriteFormCommand implements BoardCommand {
 
 	@Override
 	public String execute(Model model) {
