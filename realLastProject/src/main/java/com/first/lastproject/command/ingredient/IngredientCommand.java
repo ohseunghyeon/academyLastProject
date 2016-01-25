@@ -1,5 +1,7 @@
 package com.first.lastproject.command.ingredient;
 
-public interface IngredientCommand {
+import org.springframework.ui.Model;
 
+public interface IngredientCommand {
+	public String execute(Model model);	
 }

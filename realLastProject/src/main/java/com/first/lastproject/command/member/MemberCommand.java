@@ -1,5 +1,7 @@
 package com.first.lastproject.command.member;
 
-public interface MemberCommand {
+import org.springframework.ui.Model;
 
+public interface MemberCommand {
+	public String execute(Model model);	
 }

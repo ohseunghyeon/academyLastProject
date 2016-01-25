@@ -11,7 +11,7 @@ import spring.mvc.board.dao.BDao;
 import spring.mvc.board.dao.IDao;
 import spring.mvc.board.dto.BDto;
 
-public class BWriteProCommand implements BCommand {
+public class BoardWriteProCommand implements BCommand {
 
 	@Override
 	public String execute(Model model) {

@@ -1,5 +1,7 @@
 package com.first.lastproject.command.goods;
 
-public interface GoodsCommand {
+import org.springframework.ui.Model;
 
+public interface GoodsCommand {
+	public String execute(Model model);	
 }
