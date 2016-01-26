@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.board.BoardDao;
 import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dto.BoardDto;
 
 public class BoardListCommand implements BoardCommand {
 	@Override
@@ -51,7 +52,7 @@ public class BoardListCommand implements BoardCommand {
 		
 		number = count - (currentPage - 1) * pageSize;
 		if (count > 0) {
-			ArrayList<BDto> dtos = dao.getArticles(start, end);
+			ArrayList<BoardDto> dtos = dao.getArticles(start, end);
 			model.addAttribute("list", dtos);
 		}
 		

@@ -10,4 +10,16 @@ public class SeatDao implements InterfaceSeatDao {
 		return null;
 	}
 
+	@Override
+	public int selectSeats() {
+		// TODO 자동 생성된 메소드 스텁
+		return 0;
+	}
+
+	@Override
+	public int timeFinishedSeats() {
+		// TODO 자동 생성된 메소드 스텁
+		return 0;
+	}
+
 }

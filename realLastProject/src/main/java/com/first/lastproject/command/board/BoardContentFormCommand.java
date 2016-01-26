@@ -6,9 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import spring.mvc.board.dao.BDao;
-import spring.mvc.board.dao.IDao;
-import spring.mvc.board.dto.BDto;
+import com.first.lastproject.dao.board.BoardDao;
+import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dto.BoardDto;
+
 
 public class BoardContentFormCommand implements BoardCommand {
 
@@ -22,8 +23,8 @@ public class BoardContentFormCommand implements BoardCommand {
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		int number = Integer.parseInt(request.getParameter("number"));
 		
-		IDao dao = BDao.getInstance();
-		BDto dto = dao.getArticle(num);
+		InterfaceBoardDao dao = BoardDao.getInstance();
+		BoardDto dto = dao.getArticle(num);
 		
 		// 내가 쓴 글이 아닌 것만 조회수 증가
 		if (!request.getRemoteAddr().equals(dto.getIp())) {

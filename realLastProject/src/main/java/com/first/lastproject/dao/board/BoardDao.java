@@ -9,8 +9,6 @@ import javax.sql.DataSource;
 
 import com.first.lastproject.dto.BoardDto;
 
-import spring.mvc.board.dto.BDto;
-
 public class BoardDao implements InterfaceBoardDao {
 	DataSource dataSource;
 	
@@ -18,12 +16,12 @@ public class BoardDao implements InterfaceBoardDao {
 	
 	public static BoardDao getInstance() {
 		if (instance == null) {
-			instance = new BDao();
+			instance = new BoardDao();
 		}
 		return instance;
 	}
 	
-	private BDao() {
+	private BoardDao() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
 			Context context = new InitialContext();
@@ -63,8 +61,8 @@ public class BoardDao implements InterfaceBoardDao {
 	}
 
 	@Override
-	public ArrayList<BDto> getArticles(int start, int end) {
-		ArrayList<BDto> dtos = null;
+	public ArrayList<BoardDto> getArticles(int start, int end) {
+		ArrayList<BoardDto> dtos = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -90,10 +88,10 @@ public class BoardDao implements InterfaceBoardDao {
 			
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				dtos = new ArrayList<BDto> (end - start + 1);
+				dtos = new ArrayList<BoardDto> (end - start + 1);
 				
 				do {
-					BDto dto = new BDto();
+					BoardDto dto = new BoardDto();
 					dto.setNum(rs.getInt("num"));
 					dto.setWriter(rs.getString("writer"));
 					dto.setEmail(rs.getString("email"));
@@ -198,11 +196,11 @@ public class BoardDao implements InterfaceBoardDao {
 	}
 
 	@Override
-	public BDto getArticle(int num) {
+	public BoardDto getArticle(int num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		BDto dto = null;
+		BoardDto dto = null;
 		try {
 			con = dataSource.getConnection();
 			String sql = "select * from mvc_board where num = ?";
@@ -210,7 +208,7 @@ public class BoardDao implements InterfaceBoardDao {
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				dto = new BDto();
+				dto = new BoardDto();
 				dto.setNum(rs.getInt("num"));
 				dto.setWriter(rs.getString("writer"));
 				dto.setPasswd(rs.getString("passwd"));

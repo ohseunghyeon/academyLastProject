@@ -8,4 +8,10 @@ public class MemberDao implements InterfaceMemberDao {
 		return 0;
 	}
 
+	@Override
+	public int modifyMember() {
+		// TODO 자동 생성된 메소드 스텁
+		return 0;
+	}
+
 }

@@ -1,20 +1,19 @@
 package com.first.lastproject.dto;
 
-public class GoodsDto {
+public class RecipeDto {
 	private String food_name;
-	private int price;
-	
+	private String ingredient;
 	public String getFood_name() {
 		return food_name;
 	}
 	public void setFood_name(String food_name) {
 		this.food_name = food_name;
 	}
-	public int getPrice() {
-		return price;
+	public String getIngredient() {
+		return ingredient;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setIngredient(String ingredient) {
+		this.ingredient = ingredient;
 	}
 	
 }

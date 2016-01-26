@@ -5,5 +5,7 @@ import com.first.lastproject.dto.SeatDto;
 public interface InterfaceSeatDao {
 
 //seat 좌석
-	public SeatDto getSeats(); 
+	public SeatDto getSeats();
+	public int selectSeats();
+	public int timeFinishedSeats();
 }

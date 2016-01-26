@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import spring.mvc.board.dao.BDao;
-import spring.mvc.board.dao.IDao;
-import spring.mvc.board.dto.BDto;
+import com.first.lastproject.dao.board.BoardDao;
+import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dto.BoardDto;
 
 public class BoardWriteProCommand implements BoardCommand {
 
@@ -19,7 +19,7 @@ public class BoardWriteProCommand implements BoardCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		BDto dto = new BDto();
+		BoardDto dto = new BoardDto();
 		dto.setWriter(request.getParameter("writer"));
 		dto.setEmail(request.getParameter("email"));
 		dto.setSubject(request.getParameter("subject"));
@@ -32,8 +32,8 @@ public class BoardWriteProCommand implements BoardCommand {
 		dto.setReg_date(new Timestamp(System.currentTimeMillis()));
 		dto.setIp(request.getRemoteAddr());
 		
-		IDao dao = BDao.getInstance();
-		int result = dao.insertArticle(dto);
+		InterfaceBoardDao dao = BoardDao.getInstance();
+		int result = dao.writeArticle(dto);
 		
 		
 		model.addAttribute("result", result);
