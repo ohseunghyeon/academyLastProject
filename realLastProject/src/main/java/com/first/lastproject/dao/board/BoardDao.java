@@ -259,6 +259,97 @@ public class BoardDao implements InterfaceBoardDao {
 		}
 		return result;
 	}
+	public int check(int num , String passwd) {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql ="select *from mvc_board where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) { // 글번호가 일치를 하면, 
+				if(passwd.equals(rs.getString("passwd"))) { // 비밀번호가 일치하면, 화면에서 입력받은 passwd와(passwd.equals) 
+																	// db에서 읽어온 passwd가 일치한지 ... "passwd"가 db패스워드.
+					count = 1;
+				} else {
+					count =0; //비밀번호가 일치하지 않으면,
+				}
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+		
+	}
+	public int deleteArticle(int num) {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql ="select *from mvc_board where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int ref = rs.getInt("ref");
+				int re_step = rs.getInt("re_step");
+				int re_level = rs.getInt("re_level");
+				
+				sql = "select * from mvc_board where ref=? and re_step=?+1 and re_level>?";
+				pstmt.close(); // 위에 썻으니깐
+				pstmt= con.prepareStatement(sql);
+				pstmt.setInt(1, ref);
+				pstmt.setInt(2, re_step);
+				pstmt.setInt(3, re_level);
+				rs.close();
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					//답글이 있는 경우
+					count = -1;
+				} else {
+					//답글이 없는 경우 
+					
+					sql = "delete from mvc_board where num=?";
+					pstmt.close(); // 위에 썻으니깐
+					pstmt= con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					count = pstmt.executeUpdate();
+					
+				}
+				
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return count;
+		
+	}
 
 	
 }

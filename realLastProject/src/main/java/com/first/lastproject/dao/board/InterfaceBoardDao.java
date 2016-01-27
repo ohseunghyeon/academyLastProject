@@ -11,4 +11,6 @@ public interface InterfaceBoardDao {
 	public ArrayList<BoardDto> getArticles(int start, int end);
 	public BoardDto getArticle(int num);
 	public int addCount(int num);
+	public int check(int num , String passwd);
+	public int deleteArticle(int num);
 }

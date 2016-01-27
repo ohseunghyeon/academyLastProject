@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.first.lastproject.command.board.BoardCommand;
 import com.first.lastproject.command.board.BoardContentFormCommand;
+import com.first.lastproject.command.board.BoardDeleteFormCommand;
+import com.first.lastproject.command.board.BoardDeleteProCommand;
 import com.first.lastproject.command.board.BoardListCommand;
 import com.first.lastproject.command.board.BoardWriteFormCommand;
 import com.first.lastproject.command.board.BoardWriteProCommand;
@@ -101,6 +103,28 @@ public class SJController {
 		
 		model.addAttribute("request", request);
 		BoardCommand command = new BoardContentFormCommand();    
+	    String viewname = command.execute(model);
+	      
+	     return viewname;
+		
+	}
+	@RequestMapping("/deleteForm")
+	public String deleteForm(HttpServletRequest request, Model model) {
+		System.out.println("deleteForm()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardDeleteFormCommand();    
+	    String viewname = command.execute(model);
+	      
+	     return viewname;
+		
+	}
+	@RequestMapping("/deletePro")
+	public String deletePro(HttpServletRequest request, Model model) {
+		System.out.println("deletePro()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardDeleteProCommand();    
 	    String viewname = command.execute(model);
 	      
 	     return viewname;
