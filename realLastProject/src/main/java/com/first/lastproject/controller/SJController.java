@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.first.lastproject.command.stock.StockCommand;
+import com.first.lastproject.command.stock.StockFoodModifyProCommand;
 import com.first.lastproject.command.stock.StockListCommand;
+import com.first.lastproject.command.stock.StockModifyProCommand;
 
 
 /**
@@ -26,6 +28,39 @@ public class SJController {
 	      
 	    return viewname;
 	}
+	
+	@RequestMapping("/modifyForm")
+	public String modifyForm(Model model) {
+		return "/p_ingredient/modifyForm";
+	}
+	
+	@RequestMapping("/modifyPro")
+	public String modifyPro(HttpServletRequest request, Model model) {
+		System.out.println("modifyPro()");
+		
+		model.addAttribute("request", request);
+		StockCommand command = new StockModifyProCommand();    
+	    String viewname = command.execute(model);
+	      
+	    return viewname;
+	}
+	@RequestMapping("/foodmodifyForm")
+	public String foodmodifyForm(Model model) {
+		return "/p_ingredient/foodmodifyForm";
+	}
+	
+	@RequestMapping("/foodmodifyPro")
+	public String foodmodifyPro(HttpServletRequest request, Model model) {
+		System.out.println("foodmodifyPro()");
+		
+		model.addAttribute("request", request);
+		StockCommand command = new StockFoodModifyProCommand();    
+	    String viewname = command.execute(model);
+	      
+	    return viewname;
+	}
+	
+
 
 
 }

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-<title> 음료 재고 수량 수정 페이지</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<title> 디저트 재고 수량 수정 페이지</title>
 </head>
 
-	<h2>음료 재고 수량 수정 페이지 </h2>
+	<h2>디저트 재고 수량 수정 페이지 </h2>
 <body>
-	<form action="modifyPro" method="post">
+	<form action="foodmodifyPro" method="post">
 	<table>
 		<tr>
 			<th colspan="2">
@@ -16,8 +16,8 @@
 				<tr>
 					<th>재고수량</th>
 					<td>
-						<input type="hidden" name="ingredient_code" value="${param.ingredient_code}">
-						<input class ="input" type="number" name="ingre_num" maxlength="20" value="${param.ingre_num}">
+						<input type="hidden" name="food_code" value="${param.food_code}">
+						<input class ="input" type="number" name="food_num" maxlength="20" value="${param.food_num}">
 					</td>
 				</tr>	
 		<tr>

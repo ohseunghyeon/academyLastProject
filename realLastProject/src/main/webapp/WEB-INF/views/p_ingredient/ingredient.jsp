@@ -16,12 +16,11 @@
 					<th>재고 수량</th>
 	
 			</tr>		
-			<c:forEach var="dto" items="${ingredientList}">
+			<c:forEach var="ingredient" items="${ingredientList}">
 				<tr>
 				<td>
-				<a href="modifyForm?ingredient1=${dto.ingredient}">${dto.ingredient}</a></td>
-	            <td>${dto.ingre_num}</td>
-	
+				<a href="modifyForm?ingredient_code=${ingredient.ingredient_code}&ingre_num=${ingredient.ingre_num}">${ingredient.ingredient}</a></td>
+	            <td>${ingredient.ingre_num}</td>
 	         </tr>
 			</c:forEach>
 			<tr>
@@ -37,11 +36,11 @@
 					<th>재고 수량</th>
 	
 			</tr>		
-			<c:forEach var="dtof" items="${goodslist}">
+			<c:forEach var="food" items="${goodslist}">
 				<tr>
 				<td>
-				<a href="modifyForm?food_name1=${dtof.food_name}">${dtof.food_name}</a></td>
-	            <td>${dtof.food_num}</td>
+				<a href="foodmodifyForm?food_code=${food.food_code}">${food.food_name}</a></td>
+	            <td>${food.food_num}</td>
 	
 	         </tr>
 			</c:forEach>

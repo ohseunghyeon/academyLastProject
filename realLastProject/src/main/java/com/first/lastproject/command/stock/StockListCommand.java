@@ -1,9 +1,7 @@
 package com.first.lastproject.command.stock;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
@@ -21,9 +19,9 @@ public class StockListCommand implements StockCommand {
 		
 		
 		IngredientDao dao = IngredientDao.getInstance();
-		FoodDao daofood = FoodDao.getInstance();
-		List<IngredientDto>ingredientList = dao.listingredient();
-		List<GoodsDto>goodslist=daofood.goods();
+		FoodDao foodDao = FoodDao.getInstance();
+		List<IngredientDto>ingredientList = dao.listIngredient();
+		List<GoodsDto>goodslist=foodDao.getDessert();
 		
 		model.addAttribute("ingredientList",ingredientList);
 		model.addAttribute("goodslist",goodslist);
