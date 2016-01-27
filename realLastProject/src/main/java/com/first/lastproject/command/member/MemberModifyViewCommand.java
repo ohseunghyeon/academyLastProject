@@ -8,27 +8,25 @@ import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.member.InterfaceMemberDao;
 import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dto.MemberDto;
 
-public class MemberLoginProCommand implements MemberCommand {
+
+public class MemberModifyViewCommand implements MemberCommand {
 
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		String id = request.getParameter("id");
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		String id = (String)request.getSession().getAttribute("memId");
 		String passwd = request.getParameter("passwd");
 		InterfaceMemberDao dao = MemberDao.getInstance();
+		MemberDto dto = new MemberDto();
 		int result = dao.checkmember(id, passwd);
 		if(result == 1) {
-			request.getSession().setAttribute("result", result);
-			return "/member/memberMain";
-		} else if(result == -1) {
-			model.addAttribute("result", result);
-			return "/member/memberLoginForm";
-		} else {
-			model.addAttribute("result", result);
-			return "/member/memberLoginForm";
+			dto = dao.getMember(id);
+			model.addAttribute("dto", dto);
 		}
-		
+		return "/member/memberModifyView";
 	}
+
 }

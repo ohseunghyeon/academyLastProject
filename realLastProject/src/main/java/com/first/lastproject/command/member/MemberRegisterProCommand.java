@@ -1,13 +1,30 @@
 package com.first.lastproject.command.member;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 
-public class MemberRegisterCommand implements MemberCommand {
+import com.first.lastproject.dao.member.InterfaceMemberDao;
+import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dto.MemberDto;
+
+public class MemberRegisterProCommand implements MemberCommand {
 
 	@Override
 	public String execute(Model model) {
-		// TODO 자동 생성된 메소드 스텁
-		return null;
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		MemberDto dto = new MemberDto();
+		dto.setId(request.getParameter("id"));
+		dto.setPasswd(request.getParameter("passwd"));
+		dto.setPhone_number(request.getParameter("phone_number"));
+		dto.setEmail(request.getParameter("email"));
+		InterfaceMemberDao dao = MemberDao.getInstance();
+		int result = dao.addMember(dto);
+		model.addAttribute("result", result);
+		return "/member/memberRegisterPro";
 	}
 
 }

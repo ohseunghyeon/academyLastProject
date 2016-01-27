@@ -6,15 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-public class MemberLoginFormCommand implements MemberCommand {
+public class MemberLogoutCommand implements MemberCommand {
 
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		int result = Integer.parseInt(request.getParameter("result"));
-		request.setAttribute("result", result); 
-		return "/member/memberLoginForm";
+		request.getSession().setAttribute("id", null);
+		return "/member/index";
 	}
 
 }
