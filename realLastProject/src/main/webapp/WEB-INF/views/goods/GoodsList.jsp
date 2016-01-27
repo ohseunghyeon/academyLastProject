@@ -181,7 +181,17 @@ body {
 									<td>${goodslist.food_name}</td>
 									<td>${goodslist.price}</td>
 								</tr>
+
 							</c:forEach>
+							<tr>
+								<td>장바구니</td>
+							</tr>
+							<c:forEach var="goods" items="${shoppingBag}">
+								<tr>
+									<td>${goods}</td>
+								</tr>
+							</c:forEach>
+
 							<tr>
 								<td><input type="submit" value="전송"></td>
 							</tr>
@@ -190,8 +200,10 @@ body {
 				</form>
 			</div>
 			<div>
-				<h5></h5>
-				<p></p>
+				장바구니
+				<table>
+
+				</table>
 			</div>
 			<div id="footer"></div>
 		</div>
