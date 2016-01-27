@@ -35,7 +35,7 @@
 		<tr>
 			<th colspan="4">
 				<input class="inputbutton" type="button" value="글수정" 
-						onclick="window.location='modifyForm?num=${dto.num}&pageNum=${pageNum}'">
+						onclick="window.location='boardModifyForm?num=${dto.num}&pageNum=${pageNum}'">
 				<input class ="inputbutton" type="button" value="글삭제"
 						onclick="window.location='deleteForm?num=${dto.num}&pageNum=${pageNum}'">
 				<input class ="inputbutton" type="button" value="답글쓰기"

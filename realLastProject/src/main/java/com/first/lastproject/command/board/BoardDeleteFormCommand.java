@@ -20,7 +20,7 @@ public class BoardDeleteFormCommand implements BoardCommand {
 		model.addAttribute("num", num);
 		model.addAttribute("pageNum",pageNum);
 		
-		return "/deleteForm" ;
+		return "board/deleteForm" ;
 	}
 
 }

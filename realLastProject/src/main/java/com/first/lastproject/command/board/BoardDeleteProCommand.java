@@ -32,7 +32,7 @@ public class BoardDeleteProCommand implements BoardCommand {
 		model.addAttribute("resultPasswd",resultPasswd);
 		model.addAttribute("pageNum",pageNum);
 		
-		return "/deletePro";
+		return "board/deletePro";
 	}
 
 }
