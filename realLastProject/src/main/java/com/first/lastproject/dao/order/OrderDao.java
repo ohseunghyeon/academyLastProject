@@ -25,7 +25,6 @@ public class OrderDao implements InterfaceOrderDao {
 			e.printStackTrace();
 		}
 	}
-	
-	public 
+
 	
 }

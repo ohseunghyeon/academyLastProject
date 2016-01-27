@@ -1,6 +1,5 @@
 package com.first.lastproject.command.goods;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,11 +18,18 @@ public class GoodsListCommand implements GoodsCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		InterfaceFoodDao dao = FoodDao.getInstance();
-		List<GoodsDto> goodslist = new ArrayList<GoodsDto>();
-		goodslist = dao.goods();
+		if (request.getSession().getAttribute("shoppingBag") != null) {
+			String[] shoppingBag = (String[]) request.getSession().getAttribute("shoppingBag");
+			for (String str : shoppingBag) {
+				System.out.println(str);
+			}
+			model.addAttribute("shoppingBag", shoppingBag);
+		}
 		
-		request.setAttribute("goodslist", goodslist);
+		InterfaceFoodDao foodDao = FoodDao.getInstance();
+		List<GoodsDto> goodslist = foodDao.goods();
+		
+		model.addAttribute("goodslist", goodslist);
 		
 		return "/goods/GoodsList";
 	}
