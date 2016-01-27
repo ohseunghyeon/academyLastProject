@@ -1,4 +1,4 @@
-package com.first.lastproject.dao.goods;
+package com.first.lastproject.dao.food;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -6,19 +6,19 @@ import javax.sql.DataSource;
 
 import com.first.lastproject.dto.GoodsDto;
 
-public class GoodsDao implements InterfaceGoodsDao {
+public class FoodDao implements InterfaceFoodDao {
 	DataSource dataSource;
 	
-	private static GoodsDao instance;
+	private static FoodDao instance;
 	
-	public static GoodsDao getInstance() {
+	public static FoodDao getInstance() {
 		if (instance == null) {
-			instance = new GoodsDao();
+			instance = new FoodDao();
 		}
 		return instance;
 	}
 	
-	private GoodsDao() {
+	private FoodDao() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
 			Context context = new InitialContext();

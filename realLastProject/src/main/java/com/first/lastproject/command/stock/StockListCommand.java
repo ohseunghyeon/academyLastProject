@@ -1,8 +1,8 @@
-package com.first.lastproject.command.ingredient;
+package com.first.lastproject.command.stock;
 
 import org.springframework.ui.Model;
 
-public class IngredientAddProCommand implements IngredientCommand {
+public class StockListCommand implements StockCommand {
 
 	@Override
 	public String execute(Model model) {

@@ -1,8 +1,8 @@
-package com.first.lastproject.dao.goods;
+package com.first.lastproject.dao.food;
 
 import com.first.lastproject.dto.GoodsDto;
 
-public interface InterfaceGoodsDao {
+public interface InterfaceFoodDao {
 
 //goods 음식
 	public GoodsDto getGoods();
