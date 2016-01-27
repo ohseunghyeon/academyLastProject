@@ -13,4 +13,5 @@ public interface InterfaceBoardDao {
 	public int addCount(int num);
 	public int check(int num , String passwd);
 	public int deleteArticle(int num);
+	public int updateArticle(BoardDto dto);
 }

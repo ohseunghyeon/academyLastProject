@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 import com.first.lastproject.dto.BoardDto;
 
+
 public class BoardDao implements InterfaceBoardDao {
 	DataSource dataSource;
 	
@@ -348,8 +349,35 @@ public class BoardDao implements InterfaceBoardDao {
 		}
 		
 		return count;
-		
 	}
-
-	
+	public int updateArticle(BoardDto dto){
+			int count =0;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				con = dataSource.getConnection();
+				String sql = "update mvc_board set email=?, subject=?, content=?, passwd=? where num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getEmail());
+				pstmt.setString(2, dto.getSubject());
+				pstmt.setString(3, dto.getContent());
+				pstmt.setString(4, dto.getPasswd());
+				pstmt.setInt(5, dto.getNum());
+				
+				count = pstmt.executeUpdate();
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(pstmt != null) pstmt.close();
+					if(con != null) con.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return count;
+			
+		}
 }

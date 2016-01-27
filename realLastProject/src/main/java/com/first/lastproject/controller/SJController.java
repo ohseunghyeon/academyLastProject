@@ -11,6 +11,9 @@ import com.first.lastproject.command.board.BoardContentFormCommand;
 import com.first.lastproject.command.board.BoardDeleteFormCommand;
 import com.first.lastproject.command.board.BoardDeleteProCommand;
 import com.first.lastproject.command.board.BoardListCommand;
+import com.first.lastproject.command.board.BoardModifyFormCommand;
+import com.first.lastproject.command.board.BoardModifyProCommand;
+import com.first.lastproject.command.board.BoardModifyViewCommand;
 import com.first.lastproject.command.board.BoardWriteFormCommand;
 import com.first.lastproject.command.board.BoardWriteProCommand;
 import com.first.lastproject.command.stock.StockCommand;
@@ -125,6 +128,39 @@ public class SJController {
 		
 		model.addAttribute("request", request);
 		BoardCommand command = new BoardDeleteProCommand();    
+	    String viewname = command.execute(model);
+	      
+	     return viewname;
+		
+	}
+	@RequestMapping("/boardModifyForm")
+	public String boardModifyForm(HttpServletRequest request, Model model) {
+		System.out.println("boardModifyForm()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardModifyFormCommand();    
+	    String viewname = command.execute(model);
+	      
+	     return viewname;
+		
+	}
+	@RequestMapping("/boardModifyView")
+	public String boardModifyView(HttpServletRequest request, Model model) {
+		System.out.println("modifyView()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardModifyViewCommand();    
+	    String viewname = command.execute(model);
+	      
+	     return viewname;
+		
+	}
+	@RequestMapping("/boardModifyPro")
+	public String boardModifyPro(HttpServletRequest request, Model model) {
+		System.out.println("modifyPro()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardModifyProCommand();    
 	    String viewname = command.execute(model);
 	      
 	     return viewname;
