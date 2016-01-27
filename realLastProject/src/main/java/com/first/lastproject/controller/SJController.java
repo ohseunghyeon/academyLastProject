@@ -6,11 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.first.lastproject.command.board.BoardCommand;
+import com.first.lastproject.command.board.BoardListCommand;
 import com.first.lastproject.command.stock.StockCommand;
 import com.first.lastproject.command.stock.StockFoodModifyProCommand;
 import com.first.lastproject.command.stock.StockListCommand;
 import com.first.lastproject.command.stock.StockModifyProCommand;
+
+
 
 
 /**
@@ -58,6 +61,16 @@ public class SJController {
 	    String viewname = command.execute(model);
 	      
 	    return viewname;
+	}
+	@RequestMapping("/list")
+	public String list(HttpServletRequest request, Model model) {
+		System.out.println("list()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardListCommand();    
+	    String viewname = command.execute(model);
+	      
+	      return viewname;
 	}
 	
 
