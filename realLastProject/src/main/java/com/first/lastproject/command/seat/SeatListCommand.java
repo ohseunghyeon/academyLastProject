@@ -23,10 +23,10 @@ public class SeatListCommand implements SeatCommand {
 		ArrayList<SeatDto> seats = seatDao.getSeats();
 		request.setAttribute("seats", seats);
 		
-		for(SeatDto seat : seats) {
-			System.out.println("어라");
+		/*for(SeatDto seat : seats) {
+			System.out.println(seat.getOccupied());
 			System.out.println(seat.getSeat_num());
-		}
+		}*/
 		return "/seat/seatList";
 	}
 
