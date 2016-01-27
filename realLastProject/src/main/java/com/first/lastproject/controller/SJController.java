@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.first.lastproject.command.board.BoardCommand;
+import com.first.lastproject.command.board.BoardContentFormCommand;
 import com.first.lastproject.command.board.BoardListCommand;
+import com.first.lastproject.command.board.BoardWriteFormCommand;
+import com.first.lastproject.command.board.BoardWriteProCommand;
 import com.first.lastproject.command.stock.StockCommand;
 import com.first.lastproject.command.stock.StockFoodModifyProCommand;
 import com.first.lastproject.command.stock.StockListCommand;
@@ -72,6 +75,38 @@ public class SJController {
 	      
 	      return viewname;
 	}
+	@RequestMapping("/writeForm")
+	public String writeForm(HttpServletRequest request, Model model) {
+		System.out.println("writeForm()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardWriteFormCommand();    
+	    String viewname = command.execute(model);
+	      
+	      return viewname;
+	}
+	@RequestMapping("/writePro")
+	public String writePro(HttpServletRequest request, Model model) {
+		System.out.println("writePro()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardWriteProCommand();    
+	    String viewname = command.execute(model);
+	      
+	     return viewname;
+	}
+	@RequestMapping("/contentForm")
+	public String contentForm(HttpServletRequest request, Model model) {
+		System.out.println("contentForm()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardContentFormCommand();    
+	    String viewname = command.execute(model);
+	      
+	     return viewname;
+		
+	}
+	
 	
 
 
