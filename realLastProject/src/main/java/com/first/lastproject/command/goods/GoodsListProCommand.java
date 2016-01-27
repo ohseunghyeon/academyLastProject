@@ -1,13 +1,25 @@
 package com.first.lastproject.command.goods;
 
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 public class GoodsListProCommand implements GoodsCommand {
 
 	@Override
 	public String execute(Model model) {
-		// TODO 자동 생성된 메소드 스텁
-		return null;
+
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		String[] shoppingBag = request.getParameterValues("food_code");
+
+		for (String str : shoppingBag) {
+			System.out.println(str);
+		}
+		request.getSession().setAttribute("shoppingBag", shoppingBag);
+		model.addAttribute("shoppingBag", request.getSession().getAttribute("shoppingBag"));
+		return "goods/GoodsListPro";
 	}
 
 }
