@@ -14,6 +14,8 @@ public class BoardWriteFormCommand implements BoardCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
+		String id = (String) request.getSession().getAttribute("id");
+		
 		// 제목글
 		int num = 0;		//
 		int ref = 1;		//그룹화 아이디
@@ -28,6 +30,7 @@ public class BoardWriteFormCommand implements BoardCommand {
 			 re_level = Integer.parseInt(request.getParameter("re_level"));
 		}
 		
+		model.addAttribute("id",id);
 		model.addAttribute("num", num);
 		model.addAttribute("ref", ref);
 		model.addAttribute("re_step", re_step);
