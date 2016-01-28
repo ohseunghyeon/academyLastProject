@@ -9,7 +9,10 @@ import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.board.BoardDao;
 import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dao.member.InterfaceMemberDao;
+import com.first.lastproject.dao.member.MemberDao;
 import com.first.lastproject.dto.BoardDto;
+import com.first.lastproject.dto.MemberDto;
 
 public class BoardWriteProCommand implements BoardCommand {
 
@@ -33,9 +36,16 @@ public class BoardWriteProCommand implements BoardCommand {
 		dto.setIp(request.getRemoteAddr());
 		
 		InterfaceBoardDao dao = BoardDao.getInstance();
+		InterfaceMemberDao memberDao = MemberDao.getInstance();
 		int result = dao.writeArticle(dto);
 		
+		String id = (String) request.getSession().getAttribute("id");
+		MemberDto memberDto = memberDao.getMember(id);
 		
+		if(memberDto.getGet_coupon()==0){
+			int couponCount = memberDao.makeCoupon(id);
+			model.addAttribute("couponCount", couponCount);
+		}
 		model.addAttribute("result", result);
 		
 		return "board/writePro";

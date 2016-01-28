@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.first.lastproject.dto.IngredientDto;
 import com.first.lastproject.dto.MemberDto;
 
 public class MemberDao implements InterfaceMemberDao {
@@ -162,6 +163,62 @@ DataSource dataSource;
 		}
 		
 		return result;
+	}
+	public int makeCoupon(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = "INSERT INTO p_coupon VALUES (seq_coupon_num.nextval,?,sysdate+180)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
+	public int getCoupon(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int coupon_code = 0;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql ="select coupon_code from p_coupon where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {  
+				coupon_code=rs.getInt("coupon_code");
+				
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		return coupon_code;
+		
 	}
 
 }

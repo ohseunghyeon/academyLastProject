@@ -1,13 +1,23 @@
 package com.first.lastproject.command.seat;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 
 public class SeatSelectConfirmProCommand implements SeatCommand {
 
 	@Override
 	public String execute(Model model) {
-		// TODO 자동 생성된 메소드 스텁
-		return null;
+
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int seat_num = Integer.parseInt(request.getParameter("seat_num"));
+		request.getSession().setAttribute("seat_num", seat_num);
+
+		return "redirect:/goodsList";
 	}
 
 }

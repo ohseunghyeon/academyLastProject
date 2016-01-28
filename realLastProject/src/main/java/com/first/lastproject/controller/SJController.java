@@ -16,6 +16,8 @@ import com.first.lastproject.command.board.BoardModifyProCommand;
 import com.first.lastproject.command.board.BoardModifyViewCommand;
 import com.first.lastproject.command.board.BoardWriteFormCommand;
 import com.first.lastproject.command.board.BoardWriteProCommand;
+import com.first.lastproject.command.member.MemberCommand;
+import com.first.lastproject.command.member.MemberCouponFormCommand;
 import com.first.lastproject.command.stock.StockCommand;
 import com.first.lastproject.command.stock.StockFoodModifyProCommand;
 import com.first.lastproject.command.stock.StockListCommand;
@@ -173,6 +175,18 @@ public class SJController {
 
 		model.addAttribute("request", request);
 		BoardCommand command = new BoardModifyProCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
+
+	}
+	
+	@RequestMapping("/coupon")
+	public String coupon(HttpServletRequest request, Model model) {
+		System.out.println("coupon()");
+
+		model.addAttribute("request", request);
+		MemberCommand command = new MemberCouponFormCommand();
 		String viewname = command.execute(model);
 
 		return viewname;

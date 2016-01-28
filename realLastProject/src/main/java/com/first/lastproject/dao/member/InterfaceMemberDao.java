@@ -8,5 +8,7 @@ public interface InterfaceMemberDao {
 	public int modifyMember(MemberDto dto);
 	public int checkmember(String id, String passwd);
 	public MemberDto getMember(String id);
+	public int makeCoupon(String id);
+	public int getCoupon(String id);
 	
 }

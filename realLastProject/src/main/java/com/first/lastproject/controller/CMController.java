@@ -35,7 +35,7 @@ public class CMController {
 		
 	}
 	@RequestMapping("/seatSelectConfirmPro")
-	public String SeatSelectConfirmPro(HttpServletRequest request, Model model){
+	public String seatSelectConfirmPro(HttpServletRequest request, Model model){
 		System.out.println("selectSeats()");
 		model.addAttribute("request", request);
 		SeatCommand command = new SeatSelectConfirmProCommand();

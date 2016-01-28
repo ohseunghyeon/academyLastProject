@@ -17,7 +17,7 @@ public class MemberModifyViewCommand implements MemberCommand {
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		String id = (String)request.getSession().getAttribute("memId");
+		String id = (String)request.getSession().getAttribute("id");
 		String passwd = request.getParameter("passwd");
 		InterfaceMemberDao dao = MemberDao.getInstance();
 		MemberDto dto = new MemberDto();
