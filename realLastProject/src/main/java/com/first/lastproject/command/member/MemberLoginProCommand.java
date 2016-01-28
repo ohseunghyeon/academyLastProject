@@ -22,7 +22,7 @@ public class MemberLoginProCommand implements MemberCommand {
 		if(result == 1) {
 			request.getSession().setAttribute("id", id);
 			model.addAttribute("result", result);
-			return "/member/memberMain";
+			return "member/memberMain";
 
 		} else if(result == -1) {
 			model.addAttribute("result", result);
