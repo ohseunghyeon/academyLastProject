@@ -11,10 +11,6 @@ import com.first.lastproject.command.seat.SeatListCommand;
 import com.first.lastproject.command.seat.SeatSelectConfirmFormCommand;
 import com.first.lastproject.command.seat.SeatSelectConfirmProCommand;
 
-
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class CMController {
 	
@@ -29,7 +25,7 @@ public class CMController {
 		
 	}
 	@RequestMapping("/seatConfirm")
-	public String seatConfirm(HttpServletRequest request, Model model){
+	public String seatSelectConfirmForm(HttpServletRequest request, Model model){
 		System.out.println("seatConfirm()");
 		model.addAttribute("request", request);
 		SeatCommand command = new SeatSelectConfirmFormCommand(); 

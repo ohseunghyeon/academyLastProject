@@ -19,156 +19,164 @@ import com.first.lastproject.command.board.BoardWriteProCommand;
 import com.first.lastproject.command.stock.StockCommand;
 import com.first.lastproject.command.stock.StockFoodModifyProCommand;
 import com.first.lastproject.command.stock.StockListCommand;
-import com.first.lastproject.command.stock.StockModifyProCommand;
-
-
-
+import com.first.lastproject.command.stock.StockIngredientModifyProCommand;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class SJController {
+
 	@RequestMapping("/ingredient")
 	public String ingredient(HttpServletRequest request, Model model) {
 		System.out.println("ingredient()");
-		
+
 		model.addAttribute("request", request);
-		StockCommand command = new StockListCommand();    
-	    String viewname = command.execute(model);
-	      
-	    return viewname;
+		StockCommand command = new StockListCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
 	}
-	
-	@RequestMapping("/modifyForm")
+
+	@RequestMapping("/ingredientModifyForm")
 	public String modifyForm(Model model) {
-		return "/p_ingredient/modifyForm";
+		System.out.println("ingredientModifyForm()");
+		return "host/stock/modifyForm";
 	}
-	
-	@RequestMapping("/modifyPro")
-	public String modifyPro(HttpServletRequest request, Model model) {
-		System.out.println("modifyPro()");
-		
+
+	@RequestMapping("/ingredientModifyPro")
+	public String stockIngredientModifyPro(HttpServletRequest request, Model model) {
+		System.out.println("ingredientModifyPro()");
+
 		model.addAttribute("request", request);
-		StockCommand command = new StockModifyProCommand();    
-	    String viewname = command.execute(model);
-	      
-	    return viewname;
+		StockCommand command = new StockIngredientModifyProCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
 	}
-	@RequestMapping("/foodmodifyForm")
-	public String foodmodifyForm(Model model) {
-		return "/p_ingredient/foodmodifyForm";
+
+	@RequestMapping("/foodModifyForm")
+	public String foodModifyForm(Model model) {
+		System.out.println("foodmodifyForm()");
+		return "host/stock/foodmodifyForm";
 	}
-	
-	@RequestMapping("/foodmodifyPro")
-	public String foodmodifyPro(HttpServletRequest request, Model model) {
+
+	@RequestMapping("/foodModifyPro")
+	public String foodModifyPro(HttpServletRequest request, Model model) {
 		System.out.println("foodmodifyPro()");
-		
+
 		model.addAttribute("request", request);
-		StockCommand command = new StockFoodModifyProCommand();    
-	    String viewname = command.execute(model);
-	      
-	    return viewname;
+		StockCommand command = new StockFoodModifyProCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
 	}
-	@RequestMapping("/list")
+
+	//여기부터 게시판 
+	
+	@RequestMapping("/boardList")
 	public String list(HttpServletRequest request, Model model) {
-		System.out.println("list()");
-		
+		System.out.println("boardList()");
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardListCommand();    
-	    String viewname = command.execute(model);
-	      
-	      return viewname;
+		BoardCommand command = new BoardListCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
 	}
+
 	@RequestMapping("/writeForm")
 	public String writeForm(HttpServletRequest request, Model model) {
 		System.out.println("writeForm()");
-		
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardWriteFormCommand();    
-	    String viewname = command.execute(model);
-	      
-	      return viewname;
+		BoardCommand command = new BoardWriteFormCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
 	}
+
 	@RequestMapping("/writePro")
 	public String writePro(HttpServletRequest request, Model model) {
 		System.out.println("writePro()");
-		
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardWriteProCommand();    
-	    String viewname = command.execute(model);
-	      
-	     return viewname;
+		BoardCommand command = new BoardWriteProCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
 	}
+
 	@RequestMapping("/contentForm")
 	public String contentForm(HttpServletRequest request, Model model) {
 		System.out.println("contentForm()");
-		
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardContentFormCommand();    
-	    String viewname = command.execute(model);
-	      
-	     return viewname;
-		
+		BoardCommand command = new BoardContentFormCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
+
 	}
+
 	@RequestMapping("/deleteForm")
 	public String deleteForm(HttpServletRequest request, Model model) {
 		System.out.println("deleteForm()");
-		
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardDeleteFormCommand();    
-	    String viewname = command.execute(model);
-	      
-	     return viewname;
-		
+		BoardCommand command = new BoardDeleteFormCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
+
 	}
+
 	@RequestMapping("/deletePro")
 	public String deletePro(HttpServletRequest request, Model model) {
 		System.out.println("deletePro()");
-		
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardDeleteProCommand();    
-	    String viewname = command.execute(model);
-	      
-	     return viewname;
-		
+		BoardCommand command = new BoardDeleteProCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
+
 	}
+
 	@RequestMapping("/boardModifyForm")
 	public String boardModifyForm(HttpServletRequest request, Model model) {
 		System.out.println("boardModifyForm()");
-		
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardModifyFormCommand();    
-	    String viewname = command.execute(model);
-	      
-	     return viewname;
-		
+		BoardCommand command = new BoardModifyFormCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
+
 	}
+
 	@RequestMapping("/boardModifyView")
 	public String boardModifyView(HttpServletRequest request, Model model) {
 		System.out.println("modifyView()");
-		
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardModifyViewCommand();    
-	    String viewname = command.execute(model);
-	      
-	     return viewname;
-		
+		BoardCommand command = new BoardModifyViewCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
+
 	}
+
 	@RequestMapping("/boardModifyPro")
 	public String boardModifyPro(HttpServletRequest request, Model model) {
 		System.out.println("modifyPro()");
-		
+
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardModifyProCommand();    
-	    String viewname = command.execute(model);
-	      
-	     return viewname;
-		
+		BoardCommand command = new BoardModifyProCommand();
+		String viewname = command.execute(model);
+
+		return viewname;
+
 	}
-	
-	
-
-
 
 }

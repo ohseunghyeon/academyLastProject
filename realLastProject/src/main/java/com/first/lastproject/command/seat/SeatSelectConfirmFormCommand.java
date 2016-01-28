@@ -18,7 +18,7 @@ public class SeatSelectConfirmFormCommand implements SeatCommand {
 		model.addAttribute("seat_num", seat_num);
 
 		System.out.println(seat_num);
-		return "/seat/seatConfirm";
+		return "guest/seat/seatConfirm";
 
 	}
 }

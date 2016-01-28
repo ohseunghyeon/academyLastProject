@@ -12,20 +12,19 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.first.lastproject.dto.GoodsDto;
-import com.first.lastproject.dto.IngredientDto;
 
 public class FoodDao implements InterfaceFoodDao {
 	DataSource dataSource;
-	
+
 	private static FoodDao instance;
-	
+
 	public static FoodDao getInstance() {
 		if (instance == null) {
 			instance = new FoodDao();
 		}
 		return instance;
 	}
-	
+
 	private FoodDao() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
@@ -37,114 +36,119 @@ public class FoodDao implements InterfaceFoodDao {
 	}
 
 	@Override
-	public List<GoodsDto> goods() {
+	public List<GoodsDto> listGoods() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<GoodsDto> goodslist = null;
-		
+		ArrayList<GoodsDto> goodsList = null;
+
 		try {
-			con = dataSource.getConnection(); //컨넥션풀에서 connection객체 가져온다.
-			String sql = "select * from p_food";
+			con = dataSource.getConnection(); // 컨넥션풀에서 connection객체 가져온다.
+			String sql = "SELECT * FROM p_food";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				if(goodslist == null) {
-					goodslist = new ArrayList<GoodsDto>();
+			while (rs.next()) {
+				if (goodsList == null) {
+					goodsList = new ArrayList<GoodsDto>();
 				}
-				GoodsDto goods = new GoodsDto(); 
-			goods.setFood_code(rs.getInt(1));
-			goods.setFood_name(rs.getString(2));
-			goods.setPrice(rs.getInt(3));
-			goods.setFood_num(rs.getInt(4));
-			goodslist.add(goods);
+				GoodsDto goods = new GoodsDto();
+				goods.setFood_code(rs.getInt(1));
+				goods.setFood_name(rs.getString(2));
+				goods.setPrice(rs.getInt(3));
+				goods.setFood_num(rs.getInt(4));
+				goodsList.add(goods);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs!=null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException e2) {
 				e2.printStackTrace();
 			}
 		}
-		return goodslist;
-	}
-	
-	@Override
-	public List<GoodsDto> getDessert() {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<GoodsDto> goodslist = null;
-		
-		try {
-			con = dataSource.getConnection(); //컨넥션풀에서 connection객체 가져온다.
-			String sql = "select * from p_food where food_num >= 0";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				if(goodslist == null) {
-					goodslist = new ArrayList<GoodsDto>();
-				}
-				GoodsDto goods = new GoodsDto(); 
-			goods.setFood_code(rs.getInt(1));
-			goods.setFood_name(rs.getString(2));
-			goods.setPrice(rs.getInt(3));
-			goods.setFood_num(rs.getInt(4));
-			goodslist.add(goods);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs!=null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			} catch (SQLException e2) {
-				e2.printStackTrace();
-			}
-		}
-		return goodslist;
-	}
-	
-	
-	
-	
-	
-	
-	
-	public int modifyFood(GoodsDto dto,int food_code) {
-		int result=0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "update p_food set food_num=? where food_code=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, dto.getFood_num());
-			pstmt.setInt(2, dto.getFood_code());
-	
-			result =pstmt.executeUpdate();
-		
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			} catch(SQLException ex) {
-				ex.printStackTrace(); }
-		}
-		System.out.println(result);
-		return result;
-		
+		return goodsList;
 	}
 
-		
+	@Override
+	public List<GoodsDto> getStockDessert() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<GoodsDto> goodsList = null;
+
+		try {
+
+			con = dataSource.getConnection(); // 컨넥션풀에서 connection객체 가져온다.
+			String sql = "SELECT * FROM p_food WHERE food_num >= 0";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				if (goodsList == null) {
+					goodsList = new ArrayList<GoodsDto>();
+				}
+
+				GoodsDto goods = new GoodsDto();
+				goods.setFood_code(rs.getInt(1));
+				goods.setFood_name(rs.getString(2));
+				goods.setPrice(rs.getInt(3));
+				goods.setFood_num(rs.getInt(4));
+				goodsList.add(goods);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return goodsList;
+	}
+
+	public int modifyStockFood(int food_code, int food_num) {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE p_food SET food_num=? WHERE food_code=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, food_num);
+			pstmt.setInt(2, food_code);
+
+			count = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return count;
+
+	}
 
 }

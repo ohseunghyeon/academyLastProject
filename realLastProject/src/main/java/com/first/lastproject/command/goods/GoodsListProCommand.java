@@ -15,11 +15,12 @@ public class GoodsListProCommand implements GoodsCommand {
 		String[] shoppingBag = request.getParameterValues("food_code");
 
 		for (String str : shoppingBag) {
-			System.out.println(str);
+			System.out.println("선택된 물건 " + str);
 		}
 		request.getSession().setAttribute("shoppingBag", shoppingBag);
 		model.addAttribute("shoppingBag", request.getSession().getAttribute("shoppingBag"));
-		return "goods/GoodsListPro";
+		
+		return "guest/goods/goodsListPro";
 	}
 
 }

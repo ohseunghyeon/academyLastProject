@@ -14,7 +14,7 @@ public class MemberLoginFormCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		int result = Integer.parseInt(request.getParameter("result"));
 		request.setAttribute("result", result); 
-		return "/member/memberLoginForm";
+		return "member/memberLoginForm";
 	}
 
 }

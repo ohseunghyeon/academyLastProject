@@ -7,8 +7,8 @@ import com.first.lastproject.dto.GoodsDto;
 
 public interface InterfaceFoodDao {
 
-//goods 음식
-	public List<GoodsDto> goods();
-	public int modifyFood(GoodsDto dto,int food_code);
-	public List<GoodsDto> getDessert();
+	//goods 음식
+	public List<GoodsDto> listGoods();
+	public List<GoodsDto> getStockDessert();
+	public int modifyStockFood(int food_code, int food_num);
 }

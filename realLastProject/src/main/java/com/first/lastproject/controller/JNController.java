@@ -19,12 +19,12 @@ public class JNController {
 	
 	@RequestMapping("/index")
 	public String index(Model model) {
-		return "/member/index";
+		return "index";
 	}
 
 	@RequestMapping("/memberRegister")
 	public String memberRegister(Model model) {
-		return "/member/memberRegister";
+		return "member/memberRegister";
 	}	
 		
 	@RequestMapping("/memberRegisterPro")	
@@ -61,12 +61,12 @@ public class JNController {
 	
 	@RequestMapping("/memberMain")
 	public String memberMain(Model model) {
-		return "/member/memberMain";
+		return "member/memberMain";
 	}
 	
 	@RequestMapping("/memberModifyForm")
 	public String memberModifyForm(Model model) {
-		return "/member/memberModifyForm";
+		return "member/memberModifyForm";
 	}
 	
 	@RequestMapping("/memberModifyView")

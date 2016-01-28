@@ -13,7 +13,7 @@ public class MemberLogoutCommand implements MemberCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		request.getSession().setAttribute("id", null);
-		return "/member/index";
+		return "member/index";
 	}
 
 }

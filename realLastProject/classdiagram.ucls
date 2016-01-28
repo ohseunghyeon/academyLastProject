@@ -149,18 +149,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="com.first.lastproject.command.stock.StockModifyFormCommand" 
-    project="realLastProject" 
-    file="/realLastProject/src/main/java/com/first/lastproject/command/stock/StockModifyFormCommand.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="189" y="762"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="16" language="java" name="com.first.lastproject.command.stock.StockCommand" project="realLastProject" 
+  <interface id="15" language="java" name="com.first.lastproject.command.stock.StockCommand" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/stock/StockCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="478" y="869"/>    
@@ -170,7 +159,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="17" language="java" name="com.first.lastproject.command.stock.StockAddProCommand" project="realLastProject" 
+  <class id="16" language="java" name="com.first.lastproject.command.stock.StockAddProCommand" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/stock/StockAddProCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="390" y="762"/>    
@@ -180,7 +169,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="com.first.lastproject.command.stock.StockListCommand" project="realLastProject" 
+  <class id="17" language="java" name="com.first.lastproject.command.stock.StockListCommand" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/stock/StockListCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="580" y="762"/>    
@@ -190,10 +179,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="com.first.lastproject.command.stock.StockModifyProCommand" 
+  <class id="18" language="java" name="com.first.lastproject.command.stock.StockIngredientModifyProCommand" 
     project="realLastProject" 
-    file="/realLastProject/src/main/java/com/first/lastproject/command/stock/StockModifyProCommand.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+    file="/realLastProject/src/main/java/com/first/lastproject/command/stock/StockIngredientModifyProCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="776" y="762"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -201,7 +190,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="com.first.lastproject.command.stock.StockAddFormCommand" 
+  <class id="19" language="java" name="com.first.lastproject.command.stock.StockAddFormCommand" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/stock/StockAddFormCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -212,7 +201,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="com.first.lastproject.command.member.MemeberLoginProCommand" 
+  <class id="20" language="java" name="com.first.lastproject.command.member.MemeberLoginProCommand" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/member/MemeberLoginProCommand.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -223,7 +212,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="com.first.lastproject.command.member.MemberRegisterCommand" 
+  <class id="21" language="java" name="com.first.lastproject.command.member.MemberRegisterCommand" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/member/MemberRegisterCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -234,7 +223,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="com.first.lastproject.command.member.MemberModifyProCommand" 
+  <class id="22" language="java" name="com.first.lastproject.command.member.MemberModifyProCommand" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/member/MemberModifyProCommand.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -245,7 +234,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="com.first.lastproject.command.member.MemberLoginFormCommand" 
+  <class id="23" language="java" name="com.first.lastproject.command.member.MemberLoginFormCommand" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/member/MemberLoginFormCommand.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -256,7 +245,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="25" language="java" name="com.first.lastproject.command.member.MemberCommand" project="realLastProject" 
+  <interface id="24" language="java" name="com.first.lastproject.command.member.MemberCommand" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/member/MemberCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1324" y="244"/>    
@@ -266,7 +255,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="26" language="java" name="com.first.lastproject.command.member.MemeberModifyFormCommand" 
+  <class id="25" language="java" name="com.first.lastproject.command.member.MemeberModifyFormCommand" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/member/MemeberModifyFormCommand.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -277,7 +266,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="27" language="java" name="com.first.lastproject.command.seat.SeatSelectConfirmProCommand" 
+  <class id="26" language="java" name="com.first.lastproject.command.seat.SeatSelectConfirmProCommand" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/seat/SeatSelectConfirmProCommand.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -288,7 +277,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="28" language="java" name="com.first.lastproject.command.seat.SeatCommand" project="realLastProject" 
+  <interface id="27" language="java" name="com.first.lastproject.command.seat.SeatCommand" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/seat/SeatCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1301" y="472"/>    
@@ -298,7 +287,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="29" language="java" name="com.first.lastproject.command.seat.SeatSelectConfirmFormCommand" 
+  <class id="28" language="java" name="com.first.lastproject.command.seat.SeatSelectConfirmFormCommand" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/seat/SeatSelectConfirmFormCommand.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -309,7 +298,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="30" language="java" name="com.first.lastproject.command.seat.SeatListCommand" project="realLastProject" 
+  <class id="29" language="java" name="com.first.lastproject.command.seat.SeatListCommand" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/command/seat/SeatListCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1559" y="342"/>    
@@ -319,7 +308,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="31" language="java" name="com.first.lastproject.controller.HomeController" project="realLastProject" 
+  <class id="30" language="java" name="com.first.lastproject.controller.HomeController" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/controller/HomeController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="963" y="466"/>    
@@ -329,7 +318,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="32" language="java" name="com.first.lastproject.dao.board.InterfaceBoardDao" project="realLastProject" 
+  <interface id="31" language="java" name="com.first.lastproject.dao.board.InterfaceBoardDao" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/board/InterfaceBoardDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1711" y="851"/>    
@@ -339,7 +328,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="33" language="java" name="com.first.lastproject.dao.board.BoardDao" project="realLastProject" 
+  <class id="32" language="java" name="com.first.lastproject.dao.board.BoardDao" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/board/BoardDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1711" y="657"/>    
@@ -349,7 +338,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="34" language="java" name="com.first.lastproject.dao.food.FoodDao" project="realLastProject" 
+  <class id="33" language="java" name="com.first.lastproject.dao.food.FoodDao" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/food/FoodDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1028" y="630"/>    
@@ -359,7 +348,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="35" language="java" name="com.first.lastproject.dao.food.InterfaceFoodDao" project="realLastProject" 
+  <interface id="34" language="java" name="com.first.lastproject.dao.food.InterfaceFoodDao" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/food/InterfaceFoodDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1028" y="760"/>    
@@ -369,7 +358,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="36" language="java" name="com.first.lastproject.dao.ingredient.InterfaceIngredientDao" 
+  <interface id="35" language="java" name="com.first.lastproject.dao.ingredient.InterfaceIngredientDao" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/ingredient/InterfaceIngredientDao.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -380,7 +369,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="37" language="java" name="com.first.lastproject.dao.ingredient.IngredientDao" project="realLastProject" 
+  <class id="36" language="java" name="com.first.lastproject.dao.ingredient.IngredientDao" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/ingredient/IngredientDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1187" y="631"/>    
@@ -390,7 +379,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="38" language="java" name="com.first.lastproject.dao.member.InterfaceMemberDao" 
+  <interface id="37" language="java" name="com.first.lastproject.dao.member.InterfaceMemberDao" 
     project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/member/InterfaceMemberDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -401,7 +390,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="39" language="java" name="com.first.lastproject.dao.member.MemberDao" project="realLastProject" 
+  <class id="38" language="java" name="com.first.lastproject.dao.member.MemberDao" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/member/MemberDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1350" y="640"/>    
@@ -411,7 +400,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="40" language="java" name="com.first.lastproject.dao.seat.InterfaceSeatDao" project="realLastProject" 
+  <interface id="39" language="java" name="com.first.lastproject.dao.seat.InterfaceSeatDao" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/seat/InterfaceSeatDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1516" y="823"/>    
@@ -421,7 +410,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="41" language="java" name="com.first.lastproject.dao.seat.SeatDao" project="realLastProject" 
+  <class id="40" language="java" name="com.first.lastproject.dao.seat.SeatDao" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dao/seat/SeatDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1516" y="648"/>    
@@ -431,7 +420,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="42" language="java" name="com.first.lastproject.dto.BoardDto" project="realLastProject" 
+  <class id="41" language="java" name="com.first.lastproject.dto.BoardDto" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dto/BoardDto.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1658" y="1471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -440,7 +429,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="43" language="java" name="com.first.lastproject.dto.MemberDto" project="realLastProject" 
+  <class id="42" language="java" name="com.first.lastproject.dto.MemberDto" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dto/MemberDto.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1472" y="1337"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -449,7 +438,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="44" language="java" name="com.first.lastproject.dto.GoodsDto" project="realLastProject" 
+  <class id="43" language="java" name="com.first.lastproject.dto.GoodsDto" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dto/GoodsDto.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1288" y="1202"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -458,7 +447,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="45" language="java" name="com.first.lastproject.dto.SeatDto" project="realLastProject" 
+  <class id="44" language="java" name="com.first.lastproject.dto.SeatDto" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dto/SeatDto.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1107" y="1256"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -467,7 +456,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="46" language="java" name="com.first.lastproject.dto.IngredientDto" project="realLastProject" 
+  <class id="45" language="java" name="com.first.lastproject.dto.IngredientDto" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dto/IngredientDto.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1288" y="1414"/>    
@@ -477,7 +466,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="47" language="java" name="com.first.lastproject.dto.OrderMenu" project="realLastProject" 
+  <class id="46" language="java" name="com.first.lastproject.dto.OrderMenu" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dto/OrderMenu.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1103" y="1528"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -486,7 +475,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="48" language="java" name="com.first.lastproject.dto.RecipeDto" project="realLastProject" 
+  <class id="47" language="java" name="com.first.lastproject.dto.RecipeDto" project="realLastProject" 
     file="/realLastProject/src/main/java/com/first/lastproject/dto/RecipeDto.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1293" y="1615"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -495,134 +484,130 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="49">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <association id="50">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="51" name="instance">        
-        <position height="0" width="0" x="6" y="48"/>      
-      </attribute>      
-      <multiplicity id="52" minimum="0" maximum="1">        
-        <position height="0" width="0" x="6" y="48"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="33" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="53">    
-    <end type="SOURCE" refId="39"/>    
-    <end type="TARGET" refId="38"/>  
-  </realization>  
-  <realization id="54">    
-    <end type="SOURCE" refId="37"/>    
-    <end type="TARGET" refId="36"/>  
-  </realization>  
-  <realization id="55">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="25"/>  
-  </realization>  
-  <realization id="56">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="28"/>  
-  </realization>  
-  <realization id="57">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="58">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="32"/>  
-  </realization>  
-  <realization id="59">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="60">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="28"/>  
-  </realization>  
-  <realization id="61">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <realization id="62">    
-    <end type="SOURCE" refId="41"/>    
-    <end type="TARGET" refId="40"/>  
-  </realization>  
-  <realization id="63">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <realization id="64">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="25"/>  
-  </realization>  
-  <realization id="65">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <realization id="66">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <realization id="67">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="25"/>  
-  </realization>  
-  <realization id="68">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="69">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <realization id="70">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <realization id="71">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <realization id="72">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <realization id="73">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <realization id="74">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="25"/>  
-  </realization>  
-  <realization id="75">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <realization id="76">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <realization id="77">    
+  <realization id="48">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="13"/>  
   </realization>  
-  <realization id="78">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="25"/>  
+  <realization id="49">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="24"/>  
   </realization>  
-  <realization id="79">    
-    <end type="SOURCE" refId="30"/>    
-    <end type="TARGET" refId="28"/>  
+  <realization id="50">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="15"/>  
   </realization>  
-  <realization id="80">    
-    <end type="SOURCE" refId="34"/>    
+  <realization id="51">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="52">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="53">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <realization id="54">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="31"/>  
+  </realization>  
+  <realization id="55">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="56">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <realization id="57">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <realization id="58">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="34"/>  
+  </realization>  
+  <realization id="59">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <realization id="60">    
+    <end type="SOURCE" refId="36"/>    
     <end type="TARGET" refId="35"/>  
   </realization>  
+  <realization id="61">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="62">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <realization id="63">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="37"/>  
+  </realization>  
+  <realization id="64">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <realization id="65">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="39"/>  
+  </realization>  
+  <realization id="66">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <realization id="67">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <realization id="68">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="69">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <realization id="70">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <realization id="71">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <realization id="72">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <realization id="73">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <realization id="74">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="75">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="76">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="77" name="instance">        
+        <position height="0" width="0" x="6" y="48"/>      
+      </attribute>      
+      <multiplicity id="78" minimum="0" maximum="1">        
+        <position height="0" width="0" x="6" y="48"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

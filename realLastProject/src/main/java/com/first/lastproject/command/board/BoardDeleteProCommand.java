@@ -21,11 +21,11 @@ public class BoardDeleteProCommand implements BoardCommand {
 		String pageNum = request.getParameter("pageNum");
 		String passwd = request.getParameter("passwd");
 		
-		InterfaceBoardDao dao = BoardDao.getInstance();
-		int resultPasswd = dao.check(num, passwd);
+		InterfaceBoardDao boardDao = BoardDao.getInstance();
+		int resultPasswd = boardDao.check(num, passwd);
 		//resultPasswd 가 1 이면 비밀번호 일치, 0이면 비밀번호 불일치.
 		if(resultPasswd !=0) {
-			int result = dao.deleteArticle(num);
+			int result = boardDao.deleteArticle(num);
 			model.addAttribute("result", result);
 		} 
 		

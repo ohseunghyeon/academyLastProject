@@ -20,18 +20,15 @@ public class GoodsListCommand implements GoodsCommand {
 		
 		if (request.getSession().getAttribute("shoppingBag") != null) {
 			String[] shoppingBag = (String[]) request.getSession().getAttribute("shoppingBag");
-			for (String str : shoppingBag) {
-				System.out.println(str);
-			}
 			model.addAttribute("shoppingBag", shoppingBag);
 		}
 		
 		InterfaceFoodDao foodDao = FoodDao.getInstance();
-		List<GoodsDto> goodslist = foodDao.goods();
+		List<GoodsDto> goodslist = foodDao.listGoods();
 		
 		model.addAttribute("goodslist", goodslist);
 		
-		return "/goods/GoodsList";
+		return "guest/goods/goodsList";
 	}
 
 }

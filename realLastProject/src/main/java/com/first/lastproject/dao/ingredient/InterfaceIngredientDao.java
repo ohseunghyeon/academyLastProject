@@ -9,6 +9,6 @@ public interface InterfaceIngredientDao {
 //ingredient 재료
 	public int getIngredient();
 	public List<IngredientDto> listIngredient();
-	public int modifyingredient(IngredientDto dto,int ingredient_code);
+	public int modifyingredient(int ingredient_code, int ingre_num);
 
 }

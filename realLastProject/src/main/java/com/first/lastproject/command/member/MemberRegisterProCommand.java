@@ -24,7 +24,7 @@ public class MemberRegisterProCommand implements MemberCommand {
 		InterfaceMemberDao dao = MemberDao.getInstance();
 		int result = dao.addMember(dto);
 		model.addAttribute("result", result);
-		return "/member/memberRegisterPro";
+		return "member/memberRegisterPro";
 	}
 
 }

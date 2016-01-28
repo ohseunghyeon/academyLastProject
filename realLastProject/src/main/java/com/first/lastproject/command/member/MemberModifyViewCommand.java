@@ -26,7 +26,7 @@ public class MemberModifyViewCommand implements MemberCommand {
 			dto = dao.getMember(id);
 			model.addAttribute("dto", dto);
 		}
-		return "/member/memberModifyView";
+		return "member/memberModifyView";
 	}
 
 }

@@ -24,6 +24,6 @@ public class MemberModifyProCommand implements MemberCommand {
 	dto.setEmail("email");
 	int result = dao.modifyMember(dto);
 	model.addAttribute("result", result);
-		return "/member/memberModifyPro";
+		return "member/memberModifyPro";
 	}
 }

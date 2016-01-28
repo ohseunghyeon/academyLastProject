@@ -21,13 +21,13 @@ public class MemberLoginProCommand implements MemberCommand {
 		int result = dao.checkmember(id, passwd);
 		if(result == 1) {
 			request.getSession().setAttribute("result", result);
-			return "/member/memberMain";
+			return "member/memberMain";
 		} else if(result == -1) {
 			model.addAttribute("result", result);
-			return "/member/memberLoginForm";
+			return "member/memberLoginForm";
 		} else {
 			model.addAttribute("result", result);
-			return "/member/memberLoginForm";
+			return "member/memberLoginForm";
 		}
 		
 	}
