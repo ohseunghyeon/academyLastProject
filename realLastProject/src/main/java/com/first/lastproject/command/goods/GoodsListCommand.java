@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.food.FoodDao;
 import com.first.lastproject.dao.food.InterfaceFoodDao;
-import com.first.lastproject.dto.GoodsDto;
+import com.first.lastproject.dto.FoodDto;
 
 public class GoodsListCommand implements GoodsCommand {
 
@@ -23,8 +23,8 @@ public class GoodsListCommand implements GoodsCommand {
 			model.addAttribute("shoppingBag", shoppingBag);
 		}
 		
-		InterfaceFoodDao foodDao = FoodDao.getInstance();
-		List<GoodsDto> goodslist = foodDao.listGoods();
+		InterfaceFoodDao dao = FoodDao.getInstance();
+		List<FoodDto> goodslist = dao.listGoods();
 		
 		model.addAttribute("goodslist", goodslist);
 		

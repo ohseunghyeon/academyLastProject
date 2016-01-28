@@ -11,7 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.first.lastproject.dto.GoodsDto;
+import com.first.lastproject.dto.FoodDto;
+
 
 public class FoodDao implements InterfaceFoodDao {
 	DataSource dataSource;
@@ -36,11 +37,11 @@ public class FoodDao implements InterfaceFoodDao {
 	}
 
 	@Override
-	public List<GoodsDto> listGoods() {
+	public List<FoodDto> listGoods() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<GoodsDto> goodsList = null;
+		ArrayList<FoodDto> goodsList = null;
 
 		try {
 			con = dataSource.getConnection(); // 컨넥션풀에서 connection객체 가져온다.
@@ -49,9 +50,9 @@ public class FoodDao implements InterfaceFoodDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				if (goodsList == null) {
-					goodsList = new ArrayList<GoodsDto>();
+					goodsList = new ArrayList<FoodDto>();
 				}
-				GoodsDto goods = new GoodsDto();
+				FoodDto goods = new FoodDto();
 				goods.setFood_code(rs.getInt(1));
 				goods.setFood_name(rs.getString(2));
 				goods.setPrice(rs.getInt(3));
@@ -77,11 +78,11 @@ public class FoodDao implements InterfaceFoodDao {
 	}
 
 	@Override
-	public List<GoodsDto> getStockDessert() {
+	public List<FoodDto> getStockDessert() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<GoodsDto> goodsList = null;
+		ArrayList<FoodDto> goodsList = null;
 
 		try {
 
@@ -93,10 +94,10 @@ public class FoodDao implements InterfaceFoodDao {
 			while (rs.next()) {
 
 				if (goodsList == null) {
-					goodsList = new ArrayList<GoodsDto>();
+					goodsList = new ArrayList<FoodDto>();
 				}
 
-				GoodsDto goods = new GoodsDto();
+				FoodDto goods = new FoodDto();
 				goods.setFood_code(rs.getInt(1));
 				goods.setFood_name(rs.getString(2));
 				goods.setPrice(rs.getInt(3));
@@ -149,6 +150,44 @@ public class FoodDao implements InterfaceFoodDao {
 		}
 		return count;
 
+	}
+
+	@Override
+	public FoodDto getFood(int food_code) {
+		FoodDto dto = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection(); //컨넥션풀에서 connection객체 가져온다.
+			String sql = "select * from p_food where food_code=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, food_code);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if (dto == null) {
+					dto = new FoodDto();
+				}
+			dto.setFood_code(rs.getInt(1));
+			dto.setFood_name(rs.getString(2));
+			dto.setPrice(rs.getInt(3));
+			dto.setFood_num(4);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dto;
 	}
 
 }

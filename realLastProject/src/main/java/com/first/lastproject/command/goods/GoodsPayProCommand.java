@@ -6,21 +6,35 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.first.lastproject.dao.order.InterfaceOrderDao;
+import com.first.lastproject.dao.order.OrderDao;
+
 public class GoodsPayProCommand implements GoodsCommand {
 
 	@Override
 	public String execute(Model model) {
-		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
 		String id = (String) request.getSession().getAttribute("id");
 		int seat_num = (Integer) request.getSession().getAttribute("seat_num");
 		
-		//order 테이블에 insert함으로 주문 레코드 하나 추가.
-		//insert into p_order values (seq_order_code.nextval, seatNum세션에서 받아오기, id 세션에서 받아오기, sysdate, sysdate)
-		// 
-		return null;
+		String[] shoppingBag = request.getParameterValues("food_code");
+		
+		InterfaceOrderDao orderDao = OrderDao.getInstance();
+		int result = orderDao.insertOrder(id, seat_num);
+		if (result == 1) {
+			String order_id = orderDao.getOrder_code(seat_num);
+			
+			int insertOrderMenu = 0; 
+			for (String food_code : shoppingBag) {
+				insertOrderMenu = orderDao.insertOrderMenu(order_id, Integer.parseInt(food_code));
+			}
+		}
+		
+		
+		
+		return "guest/payment/paymentPro";
 	}
 
 }

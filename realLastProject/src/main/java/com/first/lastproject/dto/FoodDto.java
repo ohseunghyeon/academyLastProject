@@ -1,6 +1,6 @@
 package com.first.lastproject.dto;
 
-public class GoodsDto {
+public class FoodDto {
 	private int food_code;
 	private String food_name;
 	private int price;

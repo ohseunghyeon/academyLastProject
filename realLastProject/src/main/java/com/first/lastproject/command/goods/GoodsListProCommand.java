@@ -18,9 +18,9 @@ public class GoodsListProCommand implements GoodsCommand {
 			System.out.println("선택된 물건 " + str);
 		}
 		request.getSession().setAttribute("shoppingBag", shoppingBag);
-		model.addAttribute("shoppingBag", request.getSession().getAttribute("shoppingBag"));
 		
-		return "guest/goods/goodsListPro";
+		
+		return "redirect:/paymentForm";
 	}
 
 }

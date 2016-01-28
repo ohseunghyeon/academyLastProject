@@ -151,7 +151,7 @@ body {
 </head>
 <body>
 	<div id="con">
-		<div id="header">관리자 전용 모드입니다.</div>
+		<div id="header">guest</div>
 
 		<div id="nav">
 			<p>CAFE SASAEG.</p>
