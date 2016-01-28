@@ -75,23 +75,23 @@ public class SeatDao implements InterfaceSeatDao {
 
 	public OrderDto seatInformation(int seat_num) {
 
-		OrderDto seats = new OrderDto();
+		OrderDto orderDto = new OrderDto();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select * from p_order where order_id=?";
+			String sql = "select * from p_order where seat_num=? order by order_time desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, seat_num);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				seats.setOrder_id(rs.getString("order_id"));
-				seats.setSeat_num(rs.getInt("seat_num"));
-				seats.setId(rs.getString("id"));
-				seats.setOrder_time(rs.getTimestamp("order_time"));
-				seats.setEnd_time(rs.getTimestamp("end_time"));
+				orderDto.setOrder_id(rs.getString("order_id"));
+				orderDto.setSeat_num(rs.getInt("seat_num"));
+				orderDto.setId(rs.getString("id"));
+				orderDto.setOrder_time(rs.getTimestamp("order_time"));
+				orderDto.setEnd_time(rs.getTimestamp("end_time"));
 
 			}
 		} catch (SQLException e) {
@@ -109,7 +109,7 @@ public class SeatDao implements InterfaceSeatDao {
 			}
 		}
 
-		return seats;
+		return orderDto;
 
 	}
 

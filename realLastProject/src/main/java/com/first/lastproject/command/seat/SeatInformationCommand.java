@@ -24,10 +24,15 @@ public class SeatInformationCommand implements SeatCommand {
 		int seat_num = Integer.parseInt(request.getParameter("seat_num"));
 		orderDto = seatDao.seatInformation(seat_num);
 		
-		System.out.println(1);
+		
 		model.addAttribute("seatDao", seatDao);
 		model.addAttribute("orderDto", orderDto);
-		
+		System.out.println(seat_num +"번");
+		System.out.println(orderDto.getSeat_num());
+		System.out.println(orderDto.getId());
+		System.out.println(orderDto.getOrder_id());
+		System.out.println(orderDto.getOrder_time());
+		System.out.println(orderDto.getEnd_time());
 		return "host/seat/seatInformation";
 	}
 
