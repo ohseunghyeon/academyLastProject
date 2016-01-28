@@ -20,13 +20,14 @@
 </style>
 <body>
 	<div id="wrap">
-	
+	<c:if test="${memorguest == 1}">
+	<div id="header">${id}님 안녕하세요. /마일리지 :10원 /쿠폰:1개/<a href="memberModifyForm">회원정보수정</a></div>
+	</c:if>
+	<c:if test="${memorguest != 1}">
+	<div id="header">안녕하세요 손님.</div>
+	</c:if>
 		<table align="center">
 			<tr>
-
-
-			
-
 					<c:if test="${seats[0].occupied==0}">
 						<td id="blue" width="60" height="60">
 						<a href ="seatConfirm?seat_num=${seats[0].seat_num}">${seats[0].seat_num}</a></td>

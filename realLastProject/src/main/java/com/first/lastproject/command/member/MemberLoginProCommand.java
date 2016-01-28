@@ -17,12 +17,15 @@ public class MemberLoginProCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
+		int memorguest = Integer.parseInt(request.getParameter("memorguest"));
 		InterfaceMemberDao dao = MemberDao.getInstance();
 		int result = dao.checkmember(id, passwd);
 		if(result == 1) {
+			memorguest = 1;
 			request.getSession().setAttribute("id", id);
 			model.addAttribute("result", result);
-			return "member/memberMain";
+			model.addAttribute("memorguest", memorguest);
+			return "guest/seat/seatList";
 
 		} else if(result == -1) {
 			model.addAttribute("result", result);

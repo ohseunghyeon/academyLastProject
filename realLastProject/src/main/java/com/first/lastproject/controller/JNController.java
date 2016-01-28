@@ -13,6 +13,7 @@ import com.first.lastproject.command.member.MemberLogoutCommand;
 import com.first.lastproject.command.member.MemberModifyProCommand;
 import com.first.lastproject.command.member.MemberModifyViewCommand;
 import com.first.lastproject.command.member.MemberRegisterProCommand;
+import com.first.lastproject.command.member.NoMemberLoginProCommand;
 
 @Controller
 public class JNController {
@@ -51,17 +52,20 @@ public class JNController {
 		return viewname;
 	}
 	
+	@RequestMapping("/nomemberLoginPro")	
+	public String nomemberLoginPro(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		MemberCommand command = new NoMemberLoginProCommand();
+		String viewname = command.execute(model);
+		return viewname;
+	}
+	
 	@RequestMapping("/memberLogout")	
 	public String memberLogout(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		MemberCommand command = new MemberLogoutCommand();
 		String viewname = command.execute(model);
 		return viewname;
-	}
-	
-	@RequestMapping("/memberMain")
-	public String memberMain(Model model) {
-		return "member/memberMain";
 	}
 	
 	@RequestMapping("/memberModifyForm")
