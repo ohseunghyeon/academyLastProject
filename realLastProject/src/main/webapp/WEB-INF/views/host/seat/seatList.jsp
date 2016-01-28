@@ -29,7 +29,7 @@
 
 					<c:if test="${seats[0].occupied==0}">
 						<td id="blue" width="60" height="60">
-						<a href ="seatConfirm?seat_num=${seats[0].seat_num}">${seats[0].seat_num}</a></td>
+						<a href ="seatInfomation?=${seats[0].seat_num}">${seats[0].seat_num}</a></td>
 					
 					</c:if>
 
@@ -64,12 +64,12 @@
 					
 					<c:if test="${seats[3].occupied==0}">
 						<td id="blue" width="60" height="60">
-						<a href ="seatConfirm?seat_num=${seats[3].seat_num}">${seats[3].seat_num}3</a></td>
+						<a href ="seatConfirm?seat_num=${seats[3].seat_num}">${seats[3].seat_num}</a></td>
 					</c:if>
 					
 					<c:if test="${seats[3].occupied==1}">
 						<td id="red" width="60" height="60">
-						<a href ="seatConfirm?seat_num=${seats[3].seat_num}">${seats[3].seat_num}3</a></td>
+						<a href ="seatConfirm?seat_num=${seats[3].seat_num}">${seats[3].seat_num}</a></td>
 					</c:if>
 					
 				
@@ -77,11 +77,11 @@
 				<td width="60" height="60"></td>
 				<c:if test="${seats[4].occupied==0}">
 					<td id="blue" width="60" height="60">
-					<a href ="seatConfirm?seat_num=${seats[4].seat_num}">${seats[4].seat_num}</a></td>
+					<a href ="seatInformation?seat_num=${seats[4].seat_num}">${seats[4].seat_num}</a></td>
 				</c:if>
 				<c:if test="${seats[4].occupied==1}">
 					<td id="red" width="60" height="60">
-					<a href ="seatConfirm?seat_num=${seats[4].seat_num}">${seats[4].seat_num}</a></td>
+					<a href ="seatInformation?seat_num=${seats[4].seat_num}">${seats[4].seat_num}</a></td>
 				</c:if>
 				
 				<c:if test="${seats[5].occupied==0}">
@@ -100,11 +100,11 @@
 			<tr>
 				<c:if test="${seats[6].occupied==0}">
 					<td id="blue" width="60" height="60">
-					<a href ="seatConfirm?seat_num=${seats[6].seat_num}">${seats[6].seat_num}</a></td>
+					<a href ="seatInformation?seat_num=${seats[6].seat_num}">${seats[6].seat_num}</a></td>
 				</c:if>
 				<c:if test="${seats[6].occupied==1}">
 					<td id="red" width="60" height="60">
-					<a href ="seatConfirm?seat_num=${seats[6].seat_num}">${seats[6].seat_num}</a></td>
+					<a href ="seatInfo=${seats[6].seat_num}">${seats[6].seat_num}</a></td>
 				</c:if>
 				
 				

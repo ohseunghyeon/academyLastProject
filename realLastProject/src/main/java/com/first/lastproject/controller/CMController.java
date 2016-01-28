@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.first.lastproject.command.seat.SeatCommand;
+import com.first.lastproject.command.seat.SeatInformationCommand;
 import com.first.lastproject.command.seat.SeatListCommand;
 import com.first.lastproject.command.seat.SeatSelectConfirmFormCommand;
 import com.first.lastproject.command.seat.SeatSelectConfirmProCommand;
@@ -43,6 +44,15 @@ public class CMController {
 		
 		return viewName;
 		
+	}
+	@RequestMapping("/seatInformation")
+	public String SeatInfomation(HttpServletRequest request, Model model){
+		System.out.println("seatInformation()");
+		model.addAttribute("request", request);
+		SeatCommand command = new SeatInformationCommand();
+		String viewName=command.execute(model);
+		
+		return viewName;
 	}
 }
 
