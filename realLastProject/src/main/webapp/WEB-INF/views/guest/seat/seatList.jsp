@@ -20,11 +20,14 @@
 </style>
 <body>
 	<div id="wrap">
-	<c:if test="${memorguest == 1}">
+	<c:if test="${memCode == 1}">
 	<div id="header">${id}님 안녕하세요. /마일리지 :10원 /쿠폰:1개/<a href="memberModifyForm">회원정보수정</a></div>
 	</c:if>
-	<c:if test="${memorguest != 1}">
+	<c:if test="${memCode == 0}">
 	<div id="header">안녕하세요 손님.</div>
+	</c:if>
+	<c:if test="${memCode == 2}">
+	<div id="header">관리자 전용 모드입니다.</div>
 	</c:if>
 		<table align="center">
 			<tr>

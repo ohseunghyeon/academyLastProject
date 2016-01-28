@@ -15,6 +15,7 @@ public class NoMemberLoginProCommand implements MemberCommand {
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		int memCode = 0;
 		String nomember = "nomember";
 		InterfaceMemberDao dao = MemberDao.getInstance();
 		int result = dao.checkmember(nomember, nomember);
@@ -22,7 +23,8 @@ public class NoMemberLoginProCommand implements MemberCommand {
 		if(result == 1) {
 			request.getSession().setAttribute("id", nomember);
 			model.addAttribute("result", result);
+			model.addAttribute("memCode", memCode);
 		}
-		return "guest/seat/seatList";
+		return "redirect:/seatList";
 	}
 }

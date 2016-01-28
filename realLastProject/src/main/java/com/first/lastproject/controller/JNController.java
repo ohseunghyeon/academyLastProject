@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.first.lastproject.command.member.HostLoginProCommand;
 import com.first.lastproject.command.member.MemberCommand;
 import com.first.lastproject.command.member.MemberLoginFormCommand;
 import com.first.lastproject.command.member.MemberLoginProCommand;
@@ -60,6 +61,18 @@ public class JNController {
 		return viewname;
 	}
 	
+	@RequestMapping("/hostLoginForm")	
+	public String hostLoginForm(Model model) {
+		return "/member/hostLoginForm";
+	}
+	
+	@RequestMapping("/hostLoginPro")	
+	public String hostLoginPro(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		MemberCommand command = new HostLoginProCommand();
+		String viewname = command.execute(model);
+		return viewname;
+	}
 	@RequestMapping("/memberLogout")	
 	public String memberLogout(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);

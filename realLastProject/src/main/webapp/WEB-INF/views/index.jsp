@@ -5,7 +5,7 @@
 
 <body>
 	<form method="post" action="memberLoginPro">
-	<input type="hidden" name="memorguest" value="0">
+	<input type="hidden" name="memCode" value="0">
 		<fieldset>
 			<legend> 회원 로그인 </legend>
 			<table class="member">
@@ -39,13 +39,13 @@
 				<tr>
 					<td>
 						비회원<br> 
-						<a href="nomemberLoginPro"><img src="/lastproject/resources/images/nom.png" width=70 height=70></a><br>
+						<a href="nomemberLoginPro?memCode=0"><img src="/lastproject/resources/images/nom.png" width=70 height=70></a><br>
 					</td>
 				</tr>
 			</table>
 		</fieldset>
 
-		<a href="hostlogin.html"><img class="host"
+		<a href="hostLoginForm"><img class="host"
 			src="/lastproject/resources/images/mem.png" width=70 height=70></a>
 
 	</form>
