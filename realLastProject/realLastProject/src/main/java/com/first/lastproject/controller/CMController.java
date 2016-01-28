@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.first.lastproject.command.seat.SeatCommand;
 import com.first.lastproject.command.seat.SeatListCommand;
 import com.first.lastproject.command.seat.SeatSelectConfirmFormCommand;
-import com.first.lastproject.command.seat.SeatSelectConfirmProCommand;
 
 
 /**
@@ -30,20 +29,10 @@ public class CMController {
 	}
 	@RequestMapping("/seatConfirm")
 	public String seatConfirm(HttpServletRequest request, Model model){
-		System.out.println("seatConfirm()");
+		System.out.println("getSeats()");
 		model.addAttribute("request", request);
 		SeatCommand command = new SeatSelectConfirmFormCommand(); 
 		String viewName = command.execute(model);
-		
-		return viewName;
-		
-	}
-	@RequestMapping("/seatSelectConfirmPro")
-	public String SeatSelectConfirmPro(HttpServletRequest request, Model model){
-		System.out.println("selectSeats()");
-		model.addAttribute("request", request);
-		SeatCommand command = new SeatSelectConfirmProCommand();
-		String viewName= command.execute(model);
 		
 		return viewName;
 		

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+	fieldset {
+		display:inline;
+		border:1px solid black;
+		background:#D4EDE2;
+		width:300px;
+		height:110px;
+		float:left;
+		margin:100px 300px 500px 450px;
+		padding:20px 30px;       /* 위아래 패딩 10px, 좌우패딩 30px*/
+		border-radius:30px;   /*박스모서리 데두리모서리를 둥글게 처리하는특성이다.*/
+	}
+	.button {
+		float:right;
+		margin-top:25px;
+		margin-bottom:10px;      /*margin: 박스모델주변 여백을 설정하는 속성*/
+		margin-left:50px;
+	}
+#para3 {
+	text-align:center;
+	font-size:2em;
+	
+	}
+	a img {
+		margin-top:300px;
+		margin-left:20px;
+	}
+	
+
+
+</style>
+</head>
+<body>
+	<form method="post" action="">
+	<p id="para3"><strong>관리자입니다. 비밀번호를 입력하세요.</strong><br>
+
+	<fieldset>
+		<legend> 관리자 로그인 </legend>
+			<table class="member">
+				<tr>
+					<th>Password</th>
+					<td>
+						<input class="input" type="password" name="passwd" maxlength="10">
+					</td>	
+				</tr>
+	
+			</table>
+		<table class="button">
+		<tr>
+			<td><input class="inputbutton" type="button" value="로그인" onclick="window.location='hostSeat.html'"></td>
+		<tr>
+		<td><a href="login.html"><input type="button" value="돌아가기"></a>
+		</td></tr>
+		
+		</table>
+	</fieldset>
+	</form>
+</body>
+</html>

@@ -5,9 +5,19 @@
 <%@ page import="java.sql.*"%>
 <html>
 <body>
+	<form action="" method="post" name=seatConfirm>
+		<fieldset id="content">
+			<legend>
+				<font color="orange" size="3"><b>Confirm</b></font>
+			</legend>
 
-값받아오는곳 ㅇㅇㅇ
-${seat_num}
+			<br> ${seat_num}번 자리 예약 하시겠습니까? <br> <br>
+		</fieldset>
 
+
+		<br> <input class="inputbutton" type="submit" value="확인"/> 
+		<input class="inputbutton" type="button" value="취소" onclick="window.location='seatList'" />
+
+	</form>
 </body>
 </html>
