@@ -19,7 +19,7 @@ public class JNController {
 	
 	@RequestMapping("/index")
 	public String index(Model model) {
-		return "index";
+		return "/index";
 	}
 
 	@RequestMapping("/memberRegister")

@@ -20,8 +20,10 @@ public class MemberModifyProCommand implements MemberCommand {
 	InterfaceMemberDao dao = MemberDao.getInstance();
 	dto.setId((String)request.getSession().getAttribute("id"));
 	dto.setPasswd(request.getParameter("passwd"));
-	dto.setPhone_number("phone_number");
-	dto.setEmail("email");
+	dto.setPhone_number(request.getParameter("phone_number"));
+	dto.setEmail(request.getParameter("email"));
+	System.out.println(dto.getEmail());
+	System.out.println(dto.getPhone_number());
 	int result = dao.modifyMember(dto);
 	model.addAttribute("result", result);
 		return "member/memberModifyPro";

@@ -20,8 +20,10 @@ public class MemberLoginProCommand implements MemberCommand {
 		InterfaceMemberDao dao = MemberDao.getInstance();
 		int result = dao.checkmember(id, passwd);
 		if(result == 1) {
-			request.getSession().setAttribute("result", result);
-			return "member/memberMain";
+			request.getSession().setAttribute("id", id);
+			model.addAttribute("result", result);
+			return "/member/memberMain";
+
 		} else if(result == -1) {
 			model.addAttribute("result", result);
 			return "member/memberLoginForm";
