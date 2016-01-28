@@ -20,9 +20,7 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>
-					<input class="input" type="text" name="writer" maxlength="20">
-				</td>
+				<td>${id}</td>
 			</tr>
 			<tr>
 				<th>이메일</th>
@@ -40,12 +38,6 @@
 				<th>글내용</th>
 				<td>
 					<textarea rows="10" cols="50" class="input"  name="content"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td>
-					<input class="input" type="password" name="passwd" maxlength="20">
 				</td>
 			</tr>
 			<tr>
