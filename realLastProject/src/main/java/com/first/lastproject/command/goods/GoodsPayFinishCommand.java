@@ -9,14 +9,14 @@ import org.springframework.ui.Model;
 import com.first.lastproject.dao.order.InterfaceOrderDao;
 import com.first.lastproject.dao.order.OrderDao;
 
-public class GoodsPayProCommand implements GoodsCommand {
+public class GoodsPayFinishCommand implements GoodsCommand {
 
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		String id = (String) request.getSession().getAttribute("id");
+		/*String id = (String) request.getSession().getAttribute("id");
 		int seat_num = (Integer) request.getSession().getAttribute("seat_num");
 		
 		String[] shoppingBag = request.getParameterValues("food_code");
@@ -30,11 +30,11 @@ public class GoodsPayProCommand implements GoodsCommand {
 			for (String food_code : shoppingBag) {
 				insertOrderMenu = orderDao.insertOrderMenu(order_id, Integer.parseInt(food_code));
 			}
-		}
+		}*/
 		
 		
 		
-		return "guest/payment/paymentPro";
+		return "guest/payment/paymentFinish";
 	}
 
 }

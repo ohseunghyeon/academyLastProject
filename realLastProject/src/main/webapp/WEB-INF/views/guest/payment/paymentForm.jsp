@@ -116,7 +116,7 @@ body {
 			<div id="footer">FOOTER</div>
 		</div>
 	</div>
-	
+
 	<div ng-app="" ng-init="quantity=1; price=5000">
 		quantity : <input type="number" ng-model="quantity" maxlength="6">
 		price : <input type="number" ng-model="price"> total : {{
@@ -124,16 +124,13 @@ body {
 	</div>
 
 	<table>
-		<c:forEach var="food" items="${foodList}">
+		<%-- <c:forEach var="food" items="${foodList}">
 			<tr>
-				<td>
-					<input type="text" value="${food.food_name}">
-					<input type="text" value="${food.price}">
-					<input type="number" value="1">
-					
-				</td>
+				<td><input type="text" value="${food.food_name}"> <input
+					type="text" value="${food.price}"> <input type="number"
+					value="1"></td>
 			</tr>
-		</c:forEach>
+		</c:forEach> --%>
 	</table>
 
 
@@ -192,7 +189,7 @@ body {
 					<th width="200" height="15">보유 쿠폰 할인</th>
 					<td><input type="text" name="coupon" size="10" value="쿠폰번호 입력" /></td>
 					<td><input class="inputbutton" type="button" name="coupon1"
-						value="쿠폰 조회" onclick="window.location='coupon.html'" /></td>
+						value="쿠폰 조회" onclick="window.location='coupon'" /></td>
 					<td rowspan="3"><input class="inputbutton" type="button"
 						name="coupon1" value="적용" /></td>
 				</tr>
@@ -224,10 +221,11 @@ body {
 				</tr>
 			</table>
 		</fieldset>
-		<br> <br> <br> <input class="inputbutton" type="button"
-			value="결제하기" onclick="window.location='paymentFinish.html'">
+		<br> <br> <br> 
+		<input class="inputbutton" type="button"
+			value="결제하기" onclick="window.location='paymentFinish'">
 		<input class="inputbutton" type="button" value="결제취소"
-			onclick="window.location='menu.html'">
+			onclick="window.location='seatList'">
 
 	</fieldset>
 	<script

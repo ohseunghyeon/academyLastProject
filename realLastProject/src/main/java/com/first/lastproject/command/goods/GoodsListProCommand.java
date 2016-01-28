@@ -11,16 +11,21 @@ public class GoodsListProCommand implements GoodsCommand {
 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-		String[] shoppingBag = request.getParameterValues("food_code");
-
+		
+		String[] food_code = request.getParameterValues("food_code");
+		String[] food_name = request.getParameterValues("food_name");
+		String[] food_num = request.getParameterValues("food_num");
+		
+		
+		
+		/*
+ 		String[] shoppingBag = request.getParameterValues("food_code");
 		for (String str : shoppingBag) {
 			System.out.println("선택된 물건 " + str);
 		}
-		request.getSession().setAttribute("shoppingBag", shoppingBag);
+		request.getSession().setAttribute("shoppingBag", shoppingBag);*/
 		
 		
 		return "redirect:/paymentForm";
 	}
-
 }

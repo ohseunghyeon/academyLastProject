@@ -10,7 +10,7 @@ import com.first.lastproject.command.goods.GoodsCommand;
 import com.first.lastproject.command.goods.GoodsListCommand;
 import com.first.lastproject.command.goods.GoodsListProCommand;
 import com.first.lastproject.command.goods.GoodsPayFormCommand;
-import com.first.lastproject.command.goods.GoodsPayProCommand;
+import com.first.lastproject.command.goods.GoodsPayFinishCommand;
 
 @Controller
 public class EomController {
@@ -43,13 +43,14 @@ public class EomController {
 		return viewName;
 	}
 	
-	@RequestMapping("/paymentPro")
-	public String paymentPro(HttpServletRequest request, Model model) {
+	@RequestMapping("/paymentFinish")
+	public String paymentFinish(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		GoodsCommand command = new GoodsPayProCommand();
+		GoodsCommand command = new GoodsPayFinishCommand();
 		
 		String viewName = command.execute(model);
 		
 		return viewName;
 	}
+	
 }

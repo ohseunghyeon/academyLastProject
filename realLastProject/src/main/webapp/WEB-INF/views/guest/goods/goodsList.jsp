@@ -185,14 +185,26 @@ body {
 							</c:forEach>
 							<tr>
 								<td>장바구니</td>
-							</tr>
-							<c:forEach var="goods" items="${shoppingBag}">
-								<tr>
-									<td>${goods}</td>
-								</tr>
-							</c:forEach>
-
 							<tr>
+								<td>
+									<input type="hidden" name="food_code" value="1">
+									<input type="text" value="에스프레소">
+									<input type="number" name="quantity" value="4">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="hidden" name="food_code" value="2">
+									<input type="text" value="아메리카노">
+									<input type="number" name="quantity" value="3">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="hidden" name="food_code" value="3">
+									<input type="text" value="아이스아메리카노">
+									<input type="number" name="quantity" value="2">
+								</td>
 								<td><input type="submit" value="전송"></td>
 							</tr>
 						</table>
