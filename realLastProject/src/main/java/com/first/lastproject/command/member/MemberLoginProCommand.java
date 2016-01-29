@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.member.InterfaceMemberDao;
 import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dto.MemberDto;
 
 public class MemberLoginProCommand implements MemberCommand {
 
@@ -18,13 +19,15 @@ public class MemberLoginProCommand implements MemberCommand {
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
 		int memCode = Integer.parseInt(request.getParameter("memCode"));
-		InterfaceMemberDao dao = MemberDao.getInstance();
-		int result = dao.checkmember(id, passwd);
+		InterfaceMemberDao memberDao = MemberDao.getInstance();
+		int result = memberDao.checkMember(id, passwd);
 		if(result == 1) {
 			request.getSession().setAttribute("id", id);
-			model.addAttribute("result", result);
+			MemberDto memberDto = memberDao.getMember(id);
+			memberDto.getMileage();
+			model.addAttribute("result", result);	//정남아 이 부분은 왜 해놓은 거야?
 			memCode = 1;
-			model.addAttribute("memCode", memCode);
+			model.addAttribute("memCode", memCode); //정남아 이 부분 왜 해놓은 거야?
 			return "redirect:/seatList";
 
 		} else if(result == -1) {

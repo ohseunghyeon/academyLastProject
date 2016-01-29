@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.order.InterfaceOrderDao;
 import com.first.lastproject.dao.order.OrderDao;
+import com.first.lastproject.dao.seat.InterfaceSeatDao;
+import com.first.lastproject.dao.seat.SeatDao;
 
 public class GoodsPayFinishCommand implements GoodsCommand {
 
@@ -25,6 +27,9 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		int insertOrderMenuError = 0; // 전체 메뉴 삽입 실패했는지 확인하기 위함
 		if (orderInsertResult == 1) { // 이제 주문 메뉴 추가 order_code와 food_code로 메뉴
 										// 하나씩 추가
+			InterfaceSeatDao seatDao = SeatDao.getInstance();
+				seatDao.startSeat(seat_num);
+			
 			String[] foodCodes = request.getParameterValues("food_code");
 			String[] foodNums = request.getParameterValues("food_num");
 

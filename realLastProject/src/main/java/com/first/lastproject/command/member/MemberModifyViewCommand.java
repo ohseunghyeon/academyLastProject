@@ -21,7 +21,7 @@ public class MemberModifyViewCommand implements MemberCommand {
 		String passwd = request.getParameter("passwd");
 		InterfaceMemberDao dao = MemberDao.getInstance();
 		MemberDto dto = new MemberDto();
-		int result = dao.checkmember(id, passwd);
+		int result = dao.checkMember(id, passwd);
 		if(result == 1) {
 			dto = dao.getMember(id);
 			model.addAttribute("dto", dto);

@@ -9,8 +9,8 @@ public interface InterfaceSeatDao {
 
 //seat 좌석
 	public ArrayList<SeatDto> getSeats();
-	public int selectSeats();
-	public int timeFinishedSeats();
+	public int startSeat(int seat_num);
+	public int timeFinishedSeat(int seat_num);
 //host에서 좌석 정보보기
 	public OrderDto seatInformation(int seat_num);
 }
