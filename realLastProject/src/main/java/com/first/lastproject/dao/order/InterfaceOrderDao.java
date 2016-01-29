@@ -11,5 +11,5 @@ public interface InterfaceOrderDao {
 	public String getOrder_code(int seat_num);
 	
 //host 접속시 orderList 보기
-	public ArrayList<HostOrderListDto> getOrderList();
+	public String getOrderList(String order_id);
 }

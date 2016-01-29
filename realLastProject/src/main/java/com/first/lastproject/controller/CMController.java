@@ -56,7 +56,7 @@ public class CMController {
 		
 		return viewName;
 	}
-	@RequestMapping("/HostOrderList")
+	@RequestMapping("/orderList")
 	public String HostOrderList(HttpServletRequest request, Model model){
 		System.out.println("HostOrderList()");
 		model.addAttribute("request", request);
