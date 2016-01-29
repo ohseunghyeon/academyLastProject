@@ -4,8 +4,21 @@
 <%@ page import="java.sql.*"%>
 
 <body>
+
+ <div id="nav">
+         <p>CAFE SASAEG</p>
+         <ul>
+            <li><a href="seatList">좌석</li></a>
+			<li><a href="orderList">주문</li></a>
+			
+			
+            
+         </ul>
+      </div>
+      
+
 	<form>
-		<fieldset id="content">
+<fieldset id="content">
 			<legend>
 				<font color="orange" size="6"><b>Order </b></font>
 			</legend>
@@ -23,19 +36,33 @@
 						<th width="200" height="15">테이블 번호</th>
 						<th width="200" height="15">주문내역</th>
 					</tr>
-
-					<c:forEach var="" items="" begin="0" end="">
-						<font size="1">
-							<tr>
-								<td>1</td>
-								<td>2</td>
-								<td>아메리카노(2)<br> 치즈 케익(1) <input class="inputclass"
-									type="checkbox"> <input type="button" value="확인"></td>
-							</tr>
-					</c:forEach>
-					</font>
 				</table>
+					
+					<tr>
+					<td>
+						<c:forEach var="holDtoArray" items="${holDtoArray}">
+							
+							${holDtoArray.order_id}
+						 	${holDtoArray.seat_num}
+							${holDtoArray.food_name}
+							<input type="submit" value="확인">
+							<br>
+						 	
+						</c:forEach>
+					</td>
+					</tr>
+				
+					
+				
 			</fieldset>
 		</fieldset>
+		
+		
+		
+		
+	
+	
+		
 	</form>
 </body>
+	

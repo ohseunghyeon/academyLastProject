@@ -9,21 +9,20 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.first.lastproject.dto.IngredientDto;
 import com.first.lastproject.dto.MemberDto;
 
 public class MemberDao implements InterfaceMemberDao {
-DataSource dataSource;
-	
+	DataSource dataSource;
+
 	private static MemberDao instance;
-	
+
 	public static MemberDao getInstance() {
 		if (instance == null) {
 			instance = new MemberDao();
 		}
 		return instance;
 	}
-	
+
 	private MemberDao() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
@@ -33,12 +32,13 @@ DataSource dataSource;
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public int addMember(MemberDto dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		try {
 			con = dataSource.getConnection();
 			String sql = "INSERT INTO p_user VALUES (?,?,500,?,?,0,0)";
@@ -52,8 +52,10 @@ DataSource dataSource;
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -61,24 +63,23 @@ DataSource dataSource;
 		return result;
 	}
 
-
 	@Override
-	public int checkmember(String id, String passwd) {
-		 
+	public int checkMember(String id, String passwd) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		
+
 		try {
-			con = dataSource.getConnection(); 
+			con = dataSource.getConnection();
 			String sql = "SELECT * FROM p_user WHERE id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-	
-			if(rs.next()) {
-				if(passwd.equals(rs.getString("passwd"))) {
+
+			if (rs.next()) {
+				if (passwd.equals(rs.getString("passwd"))) {
 					result = 1;
 				} else {
 					result = -1;
@@ -90,10 +91,13 @@ DataSource dataSource;
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			} catch(SQLException e) {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -112,25 +116,28 @@ DataSource dataSource;
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				dto.setId(rs.getString("id"));
 				dto.setPasswd(rs.getString("passwd"));
 				dto.setPhone_number(rs.getString("phone_number"));
 				dto.setEmail(rs.getString("email"));
 				dto.setMileage(rs.getInt("mileage"));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
+
 		}
 		return dto;
 	}
@@ -149,26 +156,29 @@ DataSource dataSource;
 			pstmt.setString(3, dto.getEmail());
 			pstmt.setString(4, dto.getId());
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 		return result;
 	}
+
 	public int makeCoupon(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int count = 0;
-		
+
 		try {
 			con = dataSource.getConnection();
 			String sql = "INSERT INTO p_coupon VALUES (seq_coupon_num.nextval,?,sysdate+180)";
@@ -179,46 +189,94 @@ DataSource dataSource;
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		return count;
 	}
+
 	public int getCoupon(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int coupon_code = 0;
-		
+
 		try {
 			con = dataSource.getConnection();
-			String sql ="select coupon_code from p_coupon where id=?";
+			String sql = "select coupon_code from p_coupon where id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			rs= pstmt.executeQuery();
-			
-			if(rs.next()) {  
-				coupon_code=rs.getInt("coupon_code");
-				
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				coupon_code = rs.getInt("coupon_code");
+
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			} catch(SQLException e) {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
 		return coupon_code;
-		
 	}
 
+	public MemberDto getCouponMileageForMainPage(String id) {
+		MemberDto dto = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT * FROM p_user WHERE id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new MemberDto();
+				dto.setMileage(rs.getInt("mileage"));
+				if (dto.getGet_coupon() == 1) {
+					sql = "SELECT * FROM coupon WHERE id = ?";
+					pstmt.close();
+					pstmt = con.prepareStatement(sql);
+					rs.close();
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						dto.setGet_coupon(1);
+					} else {
+						dto.setGet_coupon(0);
+					}
+				} else {
+					dto.setGet_coupon(rs.getInt("get_coupon"));
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return dto;
+	}
 }

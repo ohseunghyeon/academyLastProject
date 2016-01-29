@@ -20,7 +20,7 @@ public class HostLoginProCommand implements MemberCommand {
 		int memCode = Integer.parseInt(request.getParameter("memCode"));
 	
 		InterfaceMemberDao dao = MemberDao.getInstance();
-		int result = dao.checkmember(id, passwd);
+		int result = dao.checkMember(id, passwd);
 		if(result == 1) {
 			request.getSession().setAttribute("id", id);
 			memCode = 2;

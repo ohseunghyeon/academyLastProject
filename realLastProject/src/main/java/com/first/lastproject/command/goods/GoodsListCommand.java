@@ -1,10 +1,6 @@
 package com.first.lastproject.command.goods;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.food.FoodDao;

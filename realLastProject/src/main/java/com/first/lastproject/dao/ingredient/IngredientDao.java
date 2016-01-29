@@ -80,7 +80,7 @@ public class IngredientDao implements InterfaceIngredientDao {
 	}
 
 	@Override
-	public int modifyingredient(int ingredient_code, int ingre_num) {
+	public int modifyIngredient(int ingredient_code, int ingre_num) {
 		int count = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -99,6 +99,43 @@ public class IngredientDao implements InterfaceIngredientDao {
 			try {
 				if (pstmt != null)
 					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return count;
+	}
+
+	@Override
+	public int reduceIngredient(int food_code) {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;		
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT i.ingredient_code FROM p_food f, p_recipe r , p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, food_code);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				sql = "UPDATE p_ingredient SET ingre_num = ingre_num - 1 WHERE ingredient_code = ?";
+				pstmt2 = con.prepareStatement(sql);
+				pstmt2.setInt(1, rs.getInt("ingredient_code"));
+				pstmt2.executeQuery();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (pstmt2 != null)
+					pstmt2.close();
 				if (con != null)
 					con.close();
 			} catch (SQLException ex) {

@@ -114,15 +114,55 @@ public class SeatDao implements InterfaceSeatDao {
 	}
 
 	@Override
-	public int selectSeats() {
-		// TODO 자동 생성된 메소드 스텁
-		return 0;
+	public int startSeat(int seat_num) { //결제 완료시 좌석을 점유됨으로 변경.
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE p_seat SET occupied=1 WHERE seat_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, seat_num);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return result;
 	}
 
 	@Override
-	public int timeFinishedSeats() {
-		// TODO 자동 생성된 메소드 스텁
-		return 0;
+	public int timeFinishedSeat(int seat_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE p_seat SET occupied=0 WHERE seat_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, seat_num);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return result;
 	}
 
 }

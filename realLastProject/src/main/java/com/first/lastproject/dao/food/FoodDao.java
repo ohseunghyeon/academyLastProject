@@ -41,6 +41,7 @@ public class FoodDao implements InterfaceFoodDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		ArrayList<FoodDto> goodsList = null;
 
 		try {
@@ -53,10 +54,26 @@ public class FoodDao implements InterfaceFoodDao {
 					goodsList = new ArrayList<FoodDto>();
 				}
 				FoodDto goods = new FoodDto();
-				goods.setFood_code(rs.getInt(1));
-				goods.setFood_name(rs.getString(2));
-				goods.setPrice(rs.getInt(3));
-				goods.setFood_num(rs.getInt(4));
+				goods.setFood_code(rs.getInt("food_code"));
+				goods.setFood_name(rs.getString("food_name"));
+				goods.setPrice(rs.getInt("price"));
+				goods.setFood_num(rs.getInt("food_num"));
+				goods.setSold_out(0);	//매진 아님
+				if (rs.getInt("food_num") < 0) { //생산품의 경우
+					sql = "select ingre_num from p_food f, p_recipe r, p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code = ? order by f.food_code";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, goods.getFood_code());
+					rs2 = pstmt.executeQuery();
+					while (rs2.next()) {
+						if (rs2.getInt("ingre_num") == 0) {
+							goods.setSold_out(1);
+						}
+					}
+				} else {		 //이미 생산된 디저트 종류의 경우 
+					if (goods.getFood_num() == 0) { // 수량이 없는 경우
+						goods.setSold_out(1);		//매진
+					}
+				}
 				goodsList.add(goods);
 			}
 
@@ -166,8 +183,9 @@ public class FoodDao implements InterfaceFoodDao {
 			pstmt.setInt(1, food_code);
 			
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
+				System.out.println(rs.getString("food_name") + rs.getInt("food_num"));
 				if (dto == null) {
 					dto = new FoodDto();
 				}

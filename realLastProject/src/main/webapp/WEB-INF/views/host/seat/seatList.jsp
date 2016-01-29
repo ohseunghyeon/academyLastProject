@@ -19,6 +19,18 @@
 }
 </style>
 <body>
+	
+	<div id="nav">
+         <p>CAFE SASAEG</p>
+         <ul>
+            <li><a href="seatList">좌석</li></a>
+			<li><a href="orderList">주문</li></a>
+			
+			
+            
+         </ul>
+      </div>
+	
 	<div id="wrap">
 	
 		<table align="center">

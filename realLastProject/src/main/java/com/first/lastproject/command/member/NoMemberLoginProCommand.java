@@ -18,7 +18,7 @@ public class NoMemberLoginProCommand implements MemberCommand {
 		int memCode = 0;
 		String nomember = "nomember";
 		InterfaceMemberDao dao = MemberDao.getInstance();
-		int result = dao.checkmember(nomember, nomember);
+		int result = dao.checkMember(nomember, nomember);
 		System.out.println(result);
 		if(result == 1) {
 			request.getSession().setAttribute("id", nomember);

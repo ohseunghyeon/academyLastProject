@@ -69,11 +69,12 @@ public class OrderDao implements InterfaceOrderDao {
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO p_order_menu VALUES (?,?)";
+			String sql = "INSERT INTO p_order_menu VALUES (?,?)";	//산 거 추가.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, order_code);
 			pstmt.setInt(2, food_code);
 			count = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -120,83 +121,82 @@ public class OrderDao implements InterfaceOrderDao {
 		}
 		return order_code;
 	}
-	
-	public ArrayList<HostOrderListDto> getOrderList() {
-		
+
+	public String getOrderList(String order_id) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<HostOrderListDto> orderList = new ArrayList<HostOrderListDto>();
-		
+		String food_name = null;
+
 		try {
 			con = dataSource.getConnection();
-			String sql = "select * from order_menu o join food f on(o.food_code=f.food_code)";
+			String sql = "select * from p_order_menu o join p_food f on(o.food_code=f.food_code) where order_id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, order_id);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
-				HostOrderListDto HOLdto = new HostOrderListDto();
-				
-				HOLdto.setFood_code(rs.getInt("food_code"));
-				HOLdto.setSeat_num(rs.getInt("seat_num"));
-				HOLdto.setFood_name(rs.getString("food_name"));
-				
+				if (food_name == null) {
+					food_name = "";
 				}
-			}catch (SQLException e) {
-				e.getStackTrace();
-			}finally{
-				try {
-					if (rs != null)
-						rs.close();
-					if (pstmt != null)
-						pstmt.close();
-					if (con != null)
-						con.close();
-				} catch (SQLException e) {
-					e.getStackTrace();
-				}
+				food_name += rs.getString("food_name") + " ";
 			}
-			return orderList;
+		} catch (SQLException e) {
+			e.getStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.getStackTrace();
+			}
 		}
+		return food_name;
+	}
+
 	public ArrayList<OrderDto> getOrder_done() {
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<OrderDto> order_done = new ArrayList<OrderDto>();
-		
+		ArrayList<OrderDto> order_done = null;
+
 		try {
 			con = dataSource.getConnection();
-			String sql = "select*from p_order where order_done=0";
+			String sql = "select * from p_order where order_done=0";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
-				OrderDto orderDto= new OrderDto();
-				orderDto.setOrder_done(rs.getInt("order_done"));
+				if (order_done == null) {
+					order_done = new ArrayList<OrderDto>();
+				}
+				OrderDto orderDto = new OrderDto();
 				orderDto.setOrder_id(rs.getString("order_id"));
 				orderDto.setSeat_num(rs.getInt("seat_num"));
-				
-				}
-			}catch (SQLException e) {
-				e.getStackTrace();
-			}finally{
-				try {
-					if (rs != null)
-						rs.close();
-					if (pstmt != null)
-						pstmt.close();
-					if (con != null)
-						con.close();
-				} catch (SQLException e) {
-					e.getStackTrace();
-				}
+				order_done.add(orderDto);
 			}
-		
-		
-		
-		
+		} catch (SQLException e) {
+			e.getStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.getStackTrace();
+			}
+		}
+
 		return order_done;
 	}
-	
+
 }
