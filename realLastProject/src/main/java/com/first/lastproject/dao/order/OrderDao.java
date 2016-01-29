@@ -35,16 +35,16 @@ public class OrderDao implements InterfaceOrderDao {
 		}
 	}
 
-	public int insertOrder(String id, int seat_code) {
+	public int insertOrder(String id, int seat_num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int count = 0;
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO p_order VALUES (seq_order_code.nextval,?,?,sysdate,sysdate+3/24)";
+			String sql = "INSERT INTO p_order VALUES (seq_order_code.nextval,?,?,sysdate,sysdate+3/24, 0)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, seat_code);
+			pstmt.setInt(1, seat_num);
 			pstmt.setString(2, id);
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -94,7 +94,7 @@ public class OrderDao implements InterfaceOrderDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String order_id = null;
+		String order_code = null;
 		try {
 			con = dataSource.getConnection(); // 컨넥션풀에서 connection객체 가져온다.
 			String sql = "select * from p_order where seat_num=? order by order_time DESC";
@@ -103,7 +103,7 @@ public class OrderDao implements InterfaceOrderDao {
 
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				order_id = rs.getString("order_id");
+				order_code = rs.getString("order_id");
 			}
 
 		} catch (SQLException e) {
@@ -118,7 +118,7 @@ public class OrderDao implements InterfaceOrderDao {
 				e2.printStackTrace();
 			}
 		}
-		return order_id;
+		return order_code;
 	}
 	
 	public ArrayList<HostOrderListDto> getOrderList() {

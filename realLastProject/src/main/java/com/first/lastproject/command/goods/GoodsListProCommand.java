@@ -1,8 +1,14 @@
 package com.first.lastproject.command.goods;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
+
+import com.first.lastproject.dao.food.FoodDao;
+import com.first.lastproject.dao.food.InterfaceFoodDao;
+import com.first.lastproject.dto.FoodDto;
 
 public class GoodsListProCommand implements GoodsCommand {
 
@@ -12,20 +18,35 @@ public class GoodsListProCommand implements GoodsCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
+		//앞에서 선택된 장바구니의 메뉴 코드와 수량을 받아옴
 		String[] food_code = request.getParameterValues("food_code");
-		String[] food_name = request.getParameterValues("food_name");
 		String[] food_num = request.getParameterValues("food_num");
 		
-		
-		
-		/*
- 		String[] shoppingBag = request.getParameterValues("food_code");
-		for (String str : shoppingBag) {
-			System.out.println("선택된 물건 " + str);
+		//받아온 코드와 수량을 map에 넣겠다.
+		Map<String, String> shoppingBag = new HashMap<String, String>();
+		for (int i = 0; i < food_code.length; i++) {
+			shoppingBag.put(food_code[i], food_num[i]);
 		}
-		request.getSession().setAttribute("shoppingBag", shoppingBag);*/
 		
+		InterfaceFoodDao dao = FoodDao.getInstance();
+		ArrayList<FoodDto> shoppingBagForPayment = new ArrayList<FoodDto>(); //결제창에서 뿌릴, 고객이 선택해서 넘어온 메뉴
+		for (int i = 0; i < food_code.length; i++) {
+			FoodDto foodDto = dao.getFood(Integer.parseInt(food_code[i]));	//고객이 선택한 메뉴
+			foodDto.setFood_num(Integer.parseInt(food_num[i]));	//고객이 선택한 수량
+			shoppingBagForPayment.add(foodDto);	//하나씩 차곡차곡
+		}
+
+		model.addAttribute("shoppingBagForPayment", shoppingBagForPayment);
 		
-		return "redirect:/paymentForm";
+		return "guest/payment/paymentForm";
 	}
 }
+
+/*
+	String[] shoppingBag = request.getParameterValues("food_code");
+for (String str : shoppingBag) {
+	System.out.println("선택된 물건 " + str);
+}
+request.getSession().setAttribute("shoppingBag", shoppingBag);
+쇼핑백 기능 구현하다가 때려치운 것
+*/

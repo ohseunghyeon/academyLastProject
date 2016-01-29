@@ -135,99 +135,91 @@ body {
 
 
 
-
-	<fieldset id="content">
-		<legend>
-			<font color="orange" size="6"><b>Payment </b></font>
-		</legend>
-		<br>
-
-		<fieldset>
+	<form action="paymentFinish" method="post">
+		<fieldset id="content">
 			<legend>
-				<font color="orange"><b>ProductInfo</b></font>
+				<font color="orange" size="6"><b>Payment </b></font>
 			</legend>
+			<br>
 
-			<table id="payment" cellspacing="10" cellpadding="0">
+			<fieldset>
+				<legend>
+					<font color="orange"><b>ProductInfo</b></font>
+				</legend>
 
-				<tr>
-					<th width="200" height="15">상품정보</th>
-					<td width="50" height="15" align="center">수량</td>
-					<td width="200" height="15" align="center">상품금액</td>
-					<td width="80" height="15" align="center">마일리지</td>
-					<td width="200" height="15" align="center">주문금액</td>
-				</tr>
+				<table id="payment" cellspacing="10" cellpadding="0">
 
-				<c:forEach var="dto" items="${arr}">
-					<font size="4">
+					<tr>
+						<th width="200" height="15">상품정보</th>
+						<td width="50" height="15" align="center">수량</td>
+						<td width="200" height="15" align="center">상품금액</td>
+						<td width="80" height="15" align="center">마일리지</td>
+						<td width="200" height="15" align="center">주문금액</td>
+					</tr>
+
+					<c:forEach var="foodDto" items="${shoppingBagForPayment}">
+						<input type="hidden" name="food_code" value="${foodDto.food_code}">
+						<input type="hidden" name="food_num" value="${foodDto.food_num}">
 						<tr>
-							<td>아메리카노</td>
-							<td>2</td>
-							<td>3,000원</td>
-							<td>150원</td>
-							<td>6,000원</td>
+							<td>${foodDto.food_name}</td>
+							<td>${foodDto.food_num}</td>
+							<td>${foodDto.price}원</td>
+							<td>${foodDto.price * 0.05}</td>
+							<td>${foodDto.price * foodDto.food_num}원</td>
 						</tr>
+					</c:forEach>
+				</table>
+			</fieldset>
 
-						<tr>
-							<td>치즈 케익</td>
-							<td>1</td>
-							<td>10,000원</td>
-							<td>500원</td>
-							<td>10,000원</td>
-						</tr>
-					</font>
-				</c:forEach>
-			</table>
+			<fieldset>
+				<legend>
+					<font color="orange"><b>Coupon/Discount</b></font>
+				</legend>
+
+				<table id="payment" cellspacing="5">
+					<tr>
+						<th width="200" height="15">보유 쿠폰 할인</th>
+						<td><input type="text" name="coupon" size="10"
+							value="쿠폰번호 입력" /></td>
+						<td><input class="inputbutton" type="button" name="coupon1"
+							value="쿠폰 조회" onclick="window.location='coupon'" /></td>
+						<td rowspan="3"><input class="inputbutton" type="button"
+							name="coupon1" value="적용" /></td>
+					</tr>
+					<tr>
+						<th width="200" height="15">마일리지 할인</th>
+						<td><input type="checkbox" />사용</td>
+						<td><input type="text" name="마일리지" size="10" value="" />원</td>
+
+
+
+					</tr>
+
+					<tr>
+						<th width="200" height="15">할인합계</th>
+						<td><input type="text" name="discount" size="10" value="3000" />원</td>
+					</tr>
+
+				</table>
+			</fieldset>
+
+			<fieldset>
+				<legend>
+					<font color="orange"><b>Final Amount</b></font>
+				</legend>
+				<table id="payment" cellspacing="5">
+					<tr>
+						<th width="200" height="15">최종 결제 금액</th>
+						<td>13,000 원</td>
+					</tr>
+				</table>
+			</fieldset>
+			<br> <br> <br> <input class="inputbutton"
+				type="submit" value="결제하기"> <input class="inputbutton"
+				type="button" value="결제취소" onclick="window.location='goodsList'">
+
 		</fieldset>
-
-		<fieldset>
-			<legend>
-				<font color="orange"><b>Coupon/Discount</b></font>
-			</legend>
-
-			<table id="payment" cellspacing="5">
-				<tr>
-					<th width="200" height="15">보유 쿠폰 할인</th>
-					<td><input type="text" name="coupon" size="10" value="쿠폰번호 입력" /></td>
-					<td><input class="inputbutton" type="button" name="coupon1"
-						value="쿠폰 조회" onclick="window.location='coupon'" /></td>
-					<td rowspan="3"><input class="inputbutton" type="button"
-						name="coupon1" value="적용" /></td>
-				</tr>
-				<tr>
-					<th width="200" height="15">마일리지 할인</th>
-					<td><input type="checkbox" />사용</td>
-					<td><input type="text" name="마일리지" size="10" value="" />원</td>
-
-
-
-				</tr>
-
-				<tr>
-					<th width="200" height="15">할인합계</th>
-					<td><input type="text" name="discount" size="10" value="3000" />원</td>
-				</tr>
-
-			</table>
-		</fieldset>
-
-		<fieldset>
-			<legend>
-				<font color="orange"><b>Final Amount</b></font>
-			</legend>
-			<table id="payment" cellspacing="5">
-				<tr>
-					<th width="200" height="15">최종 결제 금액</th>
-					<td>13,000 원</td>
-				</tr>
-			</table>
-		</fieldset>
-		<br> <br> <br> 
-		<input class="inputbutton" type="button"
-			value="결제하기" onclick="window.location='paymentFinish'">
-		<input class="inputbutton" type="button" value="결제취소"
-			onclick="window.location='seatList'">
-
-	</fieldset>
+	</form>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 </body>
