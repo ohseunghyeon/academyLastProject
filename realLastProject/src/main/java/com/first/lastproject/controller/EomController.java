@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.first.lastproject.command.goods.GoodsCommand;
 import com.first.lastproject.command.goods.GoodsListCommand;
 import com.first.lastproject.command.goods.GoodsListProCommand;
-import com.first.lastproject.command.goods.GoodsPayFormCommand;
 import com.first.lastproject.command.goods.GoodsPayFinishCommand;
 
 @Controller
@@ -17,6 +16,7 @@ public class EomController {
 	
 	@RequestMapping("/goodsList")
 	public String goodsList(HttpServletRequest request, Model model) {
+		System.out.println("goodsList()");
 		model.addAttribute("request", request);	
 		GoodsCommand command = new GoodsListCommand();
 		
@@ -26,6 +26,7 @@ public class EomController {
 	
 	@RequestMapping("/goodsListPro")
 	public String goodsListPro(HttpServletRequest request, Model model) {
+		System.out.println("goodsListPro");
 		model.addAttribute("request", request);	
 		GoodsCommand command = new GoodsListProCommand();
 		
@@ -33,24 +34,13 @@ public class EomController {
 		return viewName;
 	}
 	
-	@RequestMapping("/paymentForm")
-	public String paymentForm(HttpServletRequest request, Model model) {
-		model.addAttribute("request", request);
-		GoodsCommand command = new GoodsPayFormCommand();
-		
-		String viewName = command.execute(model);
-		
-		return viewName;
-	}
-	
 	@RequestMapping("/paymentFinish")
 	public String paymentFinish(HttpServletRequest request, Model model) {
-		model.addAttribute("request", request);
+		System.out.println("paymentFinish()");
+		model.addAttribute("request", request);	
 		GoodsCommand command = new GoodsPayFinishCommand();
 		
 		String viewName = command.execute(model);
-		
 		return viewName;
 	}
-	
 }
