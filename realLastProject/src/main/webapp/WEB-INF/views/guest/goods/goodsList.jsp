@@ -180,6 +180,7 @@ body {
 										value="${goodslist.food_code}"></td>
 									<td>${goodslist.food_name}</td>
 									<td>${goodslist.price}</td>
+									<td>${goodslist.sold_out}</td>
 								</tr>
 
 							</c:forEach>

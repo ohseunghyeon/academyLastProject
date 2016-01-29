@@ -4,7 +4,8 @@ public class FoodDto {
 	private int food_code;
 	private String food_name;
 	private int price;
-	private int food_num;
+	private int food_num; //바로바로 생산해서 판매할 제품은 수량이 -1이다.
+	private int sold_out;
 
 	public int getFood_code() {
 		return food_code;
@@ -37,4 +38,13 @@ public class FoodDto {
 	public void setFood_num(int food_num) {
 		this.food_num = food_num;
 	}
+
+	public int getSold_out() {
+		return sold_out;
+	}
+
+	public void setSold_out(int sold_out) {
+		this.sold_out = sold_out;
+	}
+	
 }
