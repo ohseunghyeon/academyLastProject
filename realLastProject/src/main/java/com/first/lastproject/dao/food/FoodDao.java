@@ -60,11 +60,10 @@ public class FoodDao implements InterfaceFoodDao {
 				goods.setFood_num(rs.getInt("food_num"));
 				goods.setSold_out(0);	//매진 아님
 				if (rs.getInt("food_num") < 0) { //생산품의 경우
-					sql = "select ingre_num from p_food f, p_recipe r , p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code = ? order by f.food_code";
+					sql = "select ingre_num from p_food f, p_recipe r, p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code = ? order by f.food_code";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, goods.getFood_code());
 					rs2 = pstmt.executeQuery();
-					System.out.println(goods.getFood_name());
 					while (rs2.next()) {
 						if (rs2.getInt("ingre_num") == 0) {
 							goods.setSold_out(1);
@@ -184,8 +183,9 @@ public class FoodDao implements InterfaceFoodDao {
 			pstmt.setInt(1, food_code);
 			
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
+				System.out.println(rs.getString("food_name") + rs.getInt("food_num"));
 				if (dto == null) {
 					dto = new FoodDto();
 				}

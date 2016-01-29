@@ -42,11 +42,3 @@ public class GoodsListProCommand implements GoodsCommand {
 	}
 }
 
-/*
-	String[] shoppingBag = request.getParameterValues("food_code");
-for (String str : shoppingBag) {
-	System.out.println("선택된 물건 " + str);
-}
-request.getSession().setAttribute("shoppingBag", shoppingBag);
-쇼핑백 기능 구현하다가 때려치운 것
-*/

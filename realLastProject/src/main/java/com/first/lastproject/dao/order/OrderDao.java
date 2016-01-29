@@ -69,11 +69,12 @@ public class OrderDao implements InterfaceOrderDao {
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO p_order_menu VALUES (?,?)";
+			String sql = "INSERT INTO p_order_menu VALUES (?,?)";	//산 거 추가.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, order_code);
 			pstmt.setInt(2, food_code);
 			count = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -22,12 +22,10 @@ public class StockIngredientModifyProCommand implements StockCommand {
 		int ingre_num = Integer.parseInt(request.getParameter("ingre_num"));
 		
 		InterfaceIngredientDao dao = IngredientDao.getInstance();
-		int result = dao.modifyingredient(ingredient_code, ingre_num);
+		int result = dao.modifyIngredient(ingredient_code, ingre_num);
 		
 		model.addAttribute("ingredientModifyResult", result);
 
 		return "host/sotck/ingredientModifyPro";
-	
 	}
-
 }
