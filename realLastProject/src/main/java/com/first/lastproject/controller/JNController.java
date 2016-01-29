@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.first.lastproject.command.account.AccountCommand;
+import com.first.lastproject.command.account.AccountDayCommand;
 import com.first.lastproject.command.member.HostLoginProCommand;
 import com.first.lastproject.command.member.MemberCommand;
 import com.first.lastproject.command.member.MemberLoginFormCommand;
@@ -98,6 +100,14 @@ public class JNController {
 	public String memberModifyPro(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		MemberCommand command = new MemberModifyProCommand();
+		String viewname = command.execute(model);
+		return viewname;
+	}
+	
+	@RequestMapping("/accountDay")
+	public String accountDay(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		AccountCommand command = new AccountDayCommand();
 		String viewname = command.execute(model);
 		return viewname;
 	}
