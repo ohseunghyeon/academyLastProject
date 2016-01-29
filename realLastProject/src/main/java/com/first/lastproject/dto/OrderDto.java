@@ -8,6 +8,15 @@ public class OrderDto {
 	private String id;
 	private Timestamp order_time;
 	private Timestamp end_time;
+	private int order_done;
+
+	public int getOrder_done() {
+		return order_done;
+	}
+
+	public void setOrder_done(int order_done) {
+		this.order_done = order_done;
+	}
 
 	public String getOrder_id() {
 		return order_id;

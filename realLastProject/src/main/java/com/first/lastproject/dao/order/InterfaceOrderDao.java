@@ -1,8 +1,15 @@
 package com.first.lastproject.dao.order;
 
+import java.util.ArrayList;
+
+import com.first.lastproject.dto.HostOrderListDto;
+
 public interface InterfaceOrderDao {
 //주문
 	public int insertOrder(String id, int seat_code);
 	public int insertOrderMenu(String order_code, int food_code);
 	public String getOrder_code(int seat_num);
+	
+//host 접속시 orderList 보기
+	public ArrayList<HostOrderListDto> getOrderList();
 }

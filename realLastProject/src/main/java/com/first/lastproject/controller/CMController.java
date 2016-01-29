@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.first.lastproject.command.hostOrder.HostOrderCommand;
+import com.first.lastproject.command.hostOrder.HostOrderListCommand;
 import com.first.lastproject.command.seat.SeatCommand;
 import com.first.lastproject.command.seat.SeatInformationCommand;
 import com.first.lastproject.command.seat.SeatListCommand;
@@ -51,6 +53,15 @@ public class CMController {
 		model.addAttribute("request", request);
 		SeatCommand command = new SeatInformationCommand();
 		String viewName=command.execute(model);
+		
+		return viewName;
+	}
+	@RequestMapping("/HostOrderList")
+	public String HostOrderList(HttpServletRequest request, Model model){
+		System.out.println("HostOrderList()");
+		model.addAttribute("request", request);
+		HostOrderCommand command = new HostOrderListCommand();
+		String viewName = command.execute(model);
 		
 		return viewName;
 	}
