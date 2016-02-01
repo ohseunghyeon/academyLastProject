@@ -34,7 +34,7 @@
          <form role="form">
 		    <div class="form-group">
 		    <br>
-		      <input type="email" class="form-control" id="id" placeholder="Enter id">
+		      <input type="text" class="form-control" id="id" placeholder="Enter id">
 		    </div>
         </form>
         </th>
@@ -45,7 +45,7 @@
          <form role="form">
 		    <div class="form-group">
 		    <br>
-		      <input type="email" class="form-control" id="passwd" placeholder="Enter password">
+		      <input type="password" class="form-control" id="passwd" placeholder="Enter password">
 		    </div>
         </form>
         </th>
