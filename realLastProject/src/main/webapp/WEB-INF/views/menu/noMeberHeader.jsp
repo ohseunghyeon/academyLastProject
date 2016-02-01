@@ -14,9 +14,9 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6" style="background-color:lavender;"></div>
-    <div class="col-sm-4" style="background-color:lavenderblush;">	<mark>찬민</mark>님 안녕하세요.</div>
+    <div class="col-sm-4" style="background-color:lavenderblush;"></div>
    	<div class="col-sm-2" style="background-color:lavenderblush;">
-    <a href=" "><span class="glyphicon glyphicon-log-in"></span> Login</a>
+   	<mark>고객</mark>님 안녕하세요.
     </div>
   </div>
   <blockquote>
@@ -34,12 +34,10 @@
       <li class="active"><a href="#">Home</a></li>
       <li><a href=" ">좌석</a></li>
     	<li><a href=" ">메뉴</a></li>
-      <li><a href=" ">게시판</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="">마일리지:0원</a></li>
-      <li><a href="" >쿠폰:1개</a></li>
-      <li><a href="" >회원정보수정</a></li>
+      <li> <a href=" "><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href=" "><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
     </ul>
   </div>
 </nav>

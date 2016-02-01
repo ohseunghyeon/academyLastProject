@@ -202,6 +202,11 @@ public class SJController {
 		System.out.println("guestHeader()");
 		return "/menu/guestHeader";
 	}
+	@RequestMapping("/noMeberHeader")
+	public String noMeberHeader(Model model) {
+		System.out.println("noMeberHeader()");
+		return "/menu/noMeberHeader";
+	}
 
 
 }
