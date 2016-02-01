@@ -17,12 +17,12 @@
 <table class="table table-striped table-bordered table-hover table-condensed text-center">
 	<thead>
 	<tr class="info">
-		<th><p class="text-center">글번호</p></th>
-		<th><p class="text-center">글제목</p></th>
-		<th><p class="text-center">작성자</p></th>
-		<th><p class="text-center">작성일</p></th>
-		<th><p class="text-center">조회수</p></th>
-		<th><p class="text-center">IP</p></th>
+		<th style="width: 5%"><p class="text-center">글번호</p></th>
+		<th style="width: 35%"><p class="text-center">글제목</p></th>
+		<th style="width: 10%"><p class="text-center">작성자</p></th>
+		<th style="width: 15%"><p class="text-center">작성일</p></th>
+		<th style="width: 5%"><p class="text-center">조회수</p></th>
+		<th style="width: 10%"><p class="text-center">IP</p></th>
 
 	</tr>
 	</thead>
@@ -78,21 +78,27 @@
 	<c:if test="${count>0 }">
 	<!-- 처음[◀◀] 이전[▶▶] -->
 		<c:if test="${startPage >pageBlock}">
-			<a href="list">[◀◀]</a>
-			<a href="list?pageNum=${startPage - pageBlock -1 }"> [◀]</a>
+		<ul class="pagination pagination-sm">
+		<li><a href="boardList">◀◀</a></li>
+		<li><a href="boardList?pageNum=${startPage - pageBlock -1 }"> ◀</a></li>
+		</ul>
 		</c:if>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<c:if test="${i==currentPage}">
-				<b>[${i}]</b>
-			</c:if>
-			<c:if test="${i !=currentPage }">
-				<a href="list?pageNum=${i}">[${i}]</a>
-			</c:if>
+		<ul class="pagination pagination-sm">
+		<li class="disable"><c:if test="${i==currentPage}">
+			[${i}]
+		</c:if></li>
+		<li><c:if test="${i !=currentPage }">
+			<a href="boardList?pageNum=${i}">${i}</a>
+			</c:if></li>
+		</ul>
 		</c:forEach>
 	<!-- 다음[▶] 끝[▶▶] -->
 		<c:if test="${pageCount >endPage}">
-			<a href="list?pageNum=${startPage + pageBlock}">[▶]</a>
-			<a href="list?pageNum=${pageCount}">[▶▶]</a>
+		<ul class="pagination pagination-sm">
+		<li><a href="boardList?pageNum=${startPage + pageBlock}">▶</a></li>
+		<li><a href="boardList?pageNum=${pageCount}">▶▶</a></li>
+			</ul>
 			</c:if>
 	</c:if>
 	<jsp:include page="../menu/guestFooter.jsp" flush="false"/>

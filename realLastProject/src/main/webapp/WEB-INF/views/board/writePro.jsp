@@ -17,7 +17,7 @@
 	</c:if>
 	<c:if test="${result !=0 }">
 		<!-- 작성 성공 -->
-		<c:redirect url="list" />
+		<c:redirect url="boardList" />
 	</c:if>
 
 </html>

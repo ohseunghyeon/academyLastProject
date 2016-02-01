@@ -48,8 +48,8 @@
 				</button>
 				<button type="reset" class="btn btn-warning">취소
 				</button>
-				<button type="button" class="btn btn-warning" onclick="window.location='list'">목록보기
-				</button>
+				<a href="boardList"><button type="button" class="btn btn-warning">목록보기
+				</button></a>
 				</p>
 				</th>
 			</tr>
