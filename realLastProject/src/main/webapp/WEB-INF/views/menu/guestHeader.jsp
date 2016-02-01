@@ -34,11 +34,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li><a href=" ">좌석</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">메뉴<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">음료</a></li>
-          <li><a href="#">디저트</a></li>
-        </ul>
+    	<li><a href=" ">메뉴</a></li>
       <li><a href=" ">게시판</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -49,6 +45,15 @@
   </div>
 </nav>
 
+
+
+
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p>저희 카페에 찾아주셔셔 감사합니다. <a href="" title="Visit">SASAEG CAFE</a></p>		
+</footer>
 
 </body>
 </html>

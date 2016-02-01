@@ -192,5 +192,16 @@ public class SJController {
 		return viewname;
 
 	}
+	@RequestMapping("/testlogin")
+	public String testlogin(Model model) {
+		System.out.println("testlogin()");
+		return "/html/bootstrap3/login";
+	}
+	@RequestMapping("/guestHeader")
+	public String guestHeader(Model model) {
+		System.out.println("guestHeader()");
+		return "/menu/guestHeader";
+	}
+
 
 }
