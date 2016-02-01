@@ -17,7 +17,7 @@
     <div class="col-sm-6" style="background-color:lavender;"></div>
     <div class="col-sm-4" style="background-color:lavenderblush;"><mark>${id}</mark>님 안녕하세요.</div>
    	<div class="col-sm-2" style="background-color:lavenderblush;">
-    <a href=" "><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+    <a href="memberLogout"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
     </div>
   </div>
   <blockquote>

@@ -12,8 +12,8 @@ public class MemberLogoutCommand implements MemberCommand {
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		request.getSession().setAttribute("id", null);
-		return "member/index";
+		request.getSession().invalidate();
+		return "redirect:/index";
 	}
 
 }
