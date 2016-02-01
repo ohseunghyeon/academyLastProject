@@ -207,6 +207,21 @@ public class SJController {
 		System.out.println("hostHeader()");
 		return "/menu/hostHeader";
 	}
+	@RequestMapping("/guestFooter")
+	public String guestFooter(Model model) {
+		System.out.println("guestFooter()");
+		return "/menu/guestFooter";
+	}
+	@RequestMapping("/noMeberFooter")
+	public String noMeberFooter(Model model) {
+		System.out.println("noMeberFooter()");
+		return "/menu/noMeberFooter";
+	}
+	@RequestMapping("/hostFooter")
+	public String hostFooter(Model model) {
+		System.out.println("hostFooter()");
+		return "/menu/hostFooter";
+	}
 
 
 }

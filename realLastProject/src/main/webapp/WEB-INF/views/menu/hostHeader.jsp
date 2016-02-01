@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +12,9 @@
 </head>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6" style="background-color:lavender;"></div>
-    <div class="col-sm-4" style="background-color:lavenderblush;"><mark>관리자</mark>전용 </div>
-   	<div class="col-sm-2" style="background-color:lavenderblush;">
-    <a href=" "><span class="glyphicon glyphicon-log-in"></span> Login</a>
-    </div>
+    <div class="col-sm-8" style="background-color:lavender;"></div>
+    <div class="col-sm-4" style="background-color:lavender;">
+    <div class="pull-right"><mark>관리자</mark>전용 모드입니다.</div> </div>
   </div>
   <blockquote>
    <h1>sasaeg cafe</h1>
@@ -25,21 +22,21 @@
   </blockquote>
 </div>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand"><p>SASAEG <img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></p></a>
+      <a class="navbar-brand"><h4>SASAEG <img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></h4></a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href=" ">좌석</a></li>
-    	<li><a href=" ">메뉴</a></li>
-      <li><a href=" ">게시판</a></li>
+      <li class="active"><a href="#"><h4>Home</h4></a></li>
+      <li><a href=" "><h4>좌석</h4></a></li>
+      <li><a href=" "><h4>주문</h4></a></li>
+      <li><a href=" "><h4>재고</h4></a></li>
+       <li><a href=" "><h4>정산</h4></a></li>
+      <li><a href=" "><h4>게시판</h4></a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="">마일리지:0원</a></li>
-      <li><a href="" >쿠폰:1개</a></li>
-      <li><a href="" >회원정보수정</a></li>
+     <ul class="nav navbar-nav navbar-right">
+      <li><a href=" "><h4><span class="glyphicon glyphicon-log-in"></span> Logout</h4></a></li>
     </ul>
   </div>
 </nav>
