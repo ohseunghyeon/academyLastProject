@@ -14,7 +14,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6" style="background-color:lavender;"></div>
-    <div class="col-sm-4" style="background-color:lavenderblush;">	<mark>찬민</mark>님 안녕하세요.</div>
+    <div class="col-sm-4" style="background-color:lavenderblush;"><mark>찬민</mark>님 안녕하세요.</div>
    	<div class="col-sm-2" style="background-color:lavenderblush;">
     <a href=" "><span class="glyphicon glyphicon-log-in"></span> Login</a>
     </div>
@@ -28,7 +28,7 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand">SASAEG</a>
+      <a class="navbar-brand"><p>SASAEG <img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></p></a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
