@@ -13,15 +13,19 @@ public class AccountMonthCommand implements AccountCommand {
 
 	@Override
 	public String execute(Model model) {
-		AccountDto dto = new AccountDto();
+		AccountDto mTotal = new AccountDto();
 		InterfaceAccountDao dao = AccountDao.getInstance();
-		List <AccountDto> list = new ArrayList<AccountDto>();
-		dto = dao.getDayTotalAccount();
+		List <AccountDto> mList = new ArrayList<AccountDto>();
+		List <AccountDto> mPrice = new ArrayList<AccountDto>();
+		//dto = dao.getDayTotalAccount();
 		
-		list = dao.getMonthAccount();
-		model.addAttribute("list", list);
-		model.addAttribute("dto", dto);
-		return null;
+		mList = dao.getMonthAccountDays();
+		mPrice = dao.getMonthAccountPrice();
+		mTotal = dao.getMonthTotalAccount();
+		model.addAttribute("mList", mList);
+		model.addAttribute("mPrice", mPrice);
+		model.addAttribute("mTotal", mTotal);
+		return "/host/account/accountMonth";
 	}
 
 }

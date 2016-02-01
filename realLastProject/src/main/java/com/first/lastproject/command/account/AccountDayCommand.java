@@ -31,7 +31,7 @@ public class AccountDayCommand implements AccountCommand {
 		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
 		model.addAttribute("time", formattedDate );
-		return "/account/accountDay";
+		return "/host/account/accountDay";
 	}
 
 }

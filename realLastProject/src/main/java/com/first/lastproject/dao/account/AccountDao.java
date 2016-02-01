@@ -112,4 +112,114 @@ public class AccountDao implements InterfaceAccountDao {
 		return dto;
 	}
 
+	@Override
+	public List<AccountDto> getMonthAccountDays() {
+		ArrayList <AccountDto> monthList = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT TO_DATE(TO_CHAR(SYSDATE, 'yyyymm')|| "
+					+ "LPAD(LEVEL, 2, '0'))DATES"
+					+ "FROM DUAL "
+					+ "CONNECT BY TO_DATE(TO_CHAR(SYSDATE,'YYYYMM')|| '01', 'YYYYMMDD') + LEVEL - 1"
+					+ "<= LAST_DAY(SYSDATE)";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				if(monthList == null) {
+					monthList = new ArrayList<AccountDto>();
+				}
+				AccountDto dto1 = new AccountDto();
+			dto1.setDate(rs.getTimestamp(1));
+			monthList.add(dto1);
+			System.out.println(monthList);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		return monthList;
+	}
+
+	public List<AccountDto> getMonthAccountPrice() {
+		ArrayList <AccountDto> monthprice = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT SUM(price) total_price "
+					+ "FROM day_calculate_view WHERE order_time "
+					+ "BETWEEN to_date('2016-?-? 00:00:00', 'yyyy-mm-dd hh24:mi:ss')"
+					+ "AND to_date('2016-?-? 23:59:59', 'yyyy-mm-dd hh24:mi:ss')";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				if(monthprice == null) {
+					monthprice = new ArrayList<AccountDto>();
+				}
+				AccountDto dto2 = new AccountDto();
+			dto2.setPrice(1);
+			monthprice.add(dto2);
+			System.out.println(monthprice);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		return monthprice;
+	}
+	
+	public AccountDto getMonthTotalAccount() {
+		
+		AccountDto monPriceDto = new AccountDto();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT SUM(price) total_price FROM day_calculate_view "
+					+ "WHERE order_time between to_date('2016-?-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')"
+					+ "AND to_date('2016-?-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				monPriceDto.setTotal_price(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		return monPriceDto;
+	}
 }

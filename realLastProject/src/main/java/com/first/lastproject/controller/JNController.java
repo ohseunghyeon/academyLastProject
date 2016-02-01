@@ -111,4 +111,12 @@ public class JNController {
 		String viewname = command.execute(model);
 		return viewname;
 	}
+	
+	@RequestMapping("/accountMonth")
+	public String accountMonth(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		AccountCommand command = new AccountDayCommand();
+		String viewname = command.execute(model);
+		return viewname;
+	}
 }
