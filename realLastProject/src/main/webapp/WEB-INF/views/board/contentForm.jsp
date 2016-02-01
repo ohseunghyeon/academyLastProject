@@ -4,49 +4,51 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ page import="java.text.SimpleDateFormat" %>
 <jsp:include page="../menu/guestHeader.jsp" flush="false"/>
-<title>글 보기 </title>
-</head>
-<body>
-<h2>글보기 </h2>
-	<table border="1">
+<h3><p class="text-center">WRITE</p></h3>
+<div class="container text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+    </div>
+    <div class="col-sm-8 text-left"> 
+	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr>
-			<th style="width : 150px">글번호</th>
-			<th style="width: 150px" align="center">${number}</th>
-			<th style="width : 150px">조회수</th>
-			<th style="width: 150px" align="center">${dto.readcount}</th>
+			<th style="width : 150px"><p class="text-center bg-warning" >글번호</p></th>
+			<td style="width: 150px" align="center"><p class="text-center">${number}</p></td>
+			<th style="width : 150px"><p class="text-center bg-warning">조회수</p></th>
+			<td style="width: 150px" align="center"><p class="text-center">${dto.readcount}</p></td>
 		</tr>
 		<tr>
-		<th>작성자</th>
-		<td align="center">${dto.writer}</td>
-		<th>작성일</th>
-		<td align="center">
-		<fmt:formatDate value="${dto.reg_date}" type="both" pattern="yyyy-MM-dd HH:mm"/> </td>
+		<th><p class="text-center bg-warning">작성자</p></th>
+		<td align="center"><p class="text-center">${dto.writer}</p></td>
+		<th><p class="text-center bg-warning">작성일</p></th>
+		<td align="center"><p class="text-center">
+		<fmt:formatDate value="${dto.reg_date}" type="both" pattern="yyyy-MM-dd HH:mm"/></p> </td>
 		</tr>
 		<tr>
-		<th>글제목</th>
-		<td align="center">${dto.subject}</td>
-		<th>이메일</th>
-		<td align="center">${dto.email}</td>
+		<th><p class="text-center bg-warning">글제목</p></th>
+		<td align="center"><p class="text-center">${dto.subject}</p></td>
+		<th><p class="text-center bg-warning">이메일</p></th>
+		<td align="center"><p class="text-center">${dto.email}</p></td>
 		</tr>
 		<tr>
-		<th>글내용</th>
+		<th><p class="text-center bg-warning">글내용</p></th>
 		<td colspan="3">
-			<pre>${dto.content}</pre> </td>
+			<pre class="bg-warning">${dto.content}</pre></td>
 		</tr>
 		<tr>
 			<th colspan="4">
-				<input class="inputbutton" type="button" value="글수정" 
-						onclick="window.location='boardModifyForm?num=${dto.num}&pageNum=${pageNum}'">
-				<input class ="inputbutton" type="button" value="글삭제"
-						onclick="window.location='deleteForm?num=${dto.num}&pageNum=${pageNum}'">
-				<input class ="inputbutton" type="button" value="답글쓰기"
-						onclick="window.location='writeForm?num=${dto.num}&ref=${dto.ref}&re_step=${dto.re_step}&re_level=${dto.re_level}'">
-				<input class="inputbutton" type="button" value="목록보기" 
-						onclick="window.location='list?pageNum=${pageNum}'">
+			<p class="text-center">
+			<button type="button" class="btn btn-warning" onclick="window.location='boardModifyForm?num=${dto.num}&pageNum=${pageNum}'">글수정</button>
+			<button type="button" class="btn btn-warning" onclick="window.location='deleteForm?num=${dto.num}&pageNum=${pageNum}'">글삭제</button>
+			<button type="button" class="btn btn-warning" onclick="window.location='boardList?pageNum=${pageNum}'">목록보기</button>
+			</p>
 				</th>
 		</tr>
 	</table>
-
-</body>
+</div>
+ <div class="col-sm-2 sidenav">
+    </div>
+</div>
+</div>
 </html>
 <jsp:include page="../menu/guestFooter.jsp" flush="false"/>

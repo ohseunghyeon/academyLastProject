@@ -26,19 +26,19 @@
 			<tr class="warning">
 				<th><p class="text-center">이메일</p></th>
 				<td>
-				 <input type="text" class="form-control" id="email" placeholder="Enter email">
+				 <input type="text" class="form-control" name="email" placeholder="Enter email">
 				</td>
 			</tr>
 			<tr class="info">
 				<th><p class="text-center">글제목</p></th>
 				<td>
-					 <input type="text" class="form-control" id="subject" placeholder="Enter subject">
+					 <input type="text" class="form-control" name="subject" placeholder="Enter subject">
 				</td>
 			</tr>
 			<tr class="warning" >
 				<th><p class="text-center">글내용</p></th>
 				<td>
-				 <textarea rows="10" cols="70" id="content" placeholder="Enter content"></textarea>
+				 <textarea rows="10" cols="70" name="content" placeholder="Enter content"></textarea>
 				</td>
 			</tr>
 			<tr class="info">
