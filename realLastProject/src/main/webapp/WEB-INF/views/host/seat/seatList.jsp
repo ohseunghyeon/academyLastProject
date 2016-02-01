@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@include file="html/bootstrap3/bootstrap.html" %>	
 <%@ page import="java.sql.*"%>
 
 <html>
@@ -24,8 +23,8 @@
 	<div id="nav">
          <p>CAFE SASAEG</p>
          <ul>
-            <li><a href="seatList">좌석</li></a>
-			<li><a href="orderList">주문</li></a>
+            <li><a href="seatList">좌석</a></li>
+			<li><a href="hostOrderList">주문</a></li>
 			
 			
             

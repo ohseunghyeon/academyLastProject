@@ -10,7 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.first.lastproject.dto.HostOrderListDto;
 import com.first.lastproject.dto.OrderDto;
 
 public class OrderDao implements InterfaceOrderDao {
@@ -69,12 +68,12 @@ public class OrderDao implements InterfaceOrderDao {
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO p_order_menu VALUES (?,?)";	//산 거 추가.
+			String sql = "INSERT INTO p_order_menu VALUES (?,?)"; // 손님이 주문한 메뉴 추가.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, order_code);
 			pstmt.setInt(2, food_code);
 			count = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -122,7 +121,7 @@ public class OrderDao implements InterfaceOrderDao {
 		return order_code;
 	}
 
-	public String getOrderList(String order_id) {
+	public String concatFoodName(String order_id) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -131,7 +130,7 @@ public class OrderDao implements InterfaceOrderDao {
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "select * from p_order_menu o join p_food f on(o.food_code=f.food_code) where order_id = ?";
+			String sql = "select 'food_name' from p_order_menu o join p_food f on(o.food_code=f.food_code) where order_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, order_id);
 			rs = pstmt.executeQuery();
@@ -159,12 +158,12 @@ public class OrderDao implements InterfaceOrderDao {
 		return food_name;
 	}
 
-	public ArrayList<OrderDto> getOrder_done() {
+	public ArrayList<OrderDto> getUndoneOrder() {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<OrderDto> order_done = null;
+		ArrayList<OrderDto> orderUndoneList = null;
 
 		try {
 			con = dataSource.getConnection();
@@ -173,13 +172,13 @@ public class OrderDao implements InterfaceOrderDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				if (order_done == null) {
-					order_done = new ArrayList<OrderDto>();
+				if (orderUndoneList == null) {
+					orderUndoneList = new ArrayList<OrderDto>();
 				}
 				OrderDto orderDto = new OrderDto();
 				orderDto.setOrder_id(rs.getString("order_id"));
 				orderDto.setSeat_num(rs.getInt("seat_num"));
-				order_done.add(orderDto);
+				orderUndoneList.add(orderDto);
 			}
 		} catch (SQLException e) {
 			e.getStackTrace();
@@ -196,7 +195,60 @@ public class OrderDao implements InterfaceOrderDao {
 			}
 		}
 
-		return order_done;
+		return orderUndoneList;
 	}
 
+	@Override
+	public int updateOrderSeatEndTime(String order_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE p_order SET end_time=sysdate WHERE order_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, order_id);
+			count = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
+
+	@Override
+	public int makeOrderDone(String order_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE p_order SET order_done=1 WHERE order_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, order_id);
+			count = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
 }

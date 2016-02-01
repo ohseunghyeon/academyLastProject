@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import com.first.lastproject.dao.food.FoodDao;
 import com.first.lastproject.dao.ingredient.IngredientDao;
 import com.first.lastproject.dao.order.InterfaceOrderDao;
-import com.first.lastproject.dao.order.OrderDao;
+import com.first.lastproject.dao.order.concatFoodName;
 import com.first.lastproject.dao.seat.InterfaceSeatDao;
 import com.first.lastproject.dao.seat.SeatDao;
 
@@ -23,7 +23,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		String id = (String) request.getSession().getAttribute("id");
 		int seat_num = (Integer) request.getSession().getAttribute("seat_num");
 
-		InterfaceOrderDao orderDao = OrderDao.getInstance();
+		InterfaceOrderDao orderDao = concatFoodName.getInstance();
 		int orderInsertResult = orderDao.insertOrder(id, seat_num); // p_order에
 																	// 추가.
 
@@ -43,12 +43,9 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
 					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
-					System.out.println("food_code : " + food_code + "음식 수치" + Integer.parseInt(foodNums[i]) + "저장된 음식 수치" + FoodDao.getInstance().getFood(food_code).getFood_num()); //지금 이게 문제야!!!
+					
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문
-					if (insertOrderMenu == 1 /*&& FoodDao.getInstance().getFood(food_code).getFood_num() < 0*/) { // 구매시
-																												// 재료
-																												// 감소
-						System.out.println("아메리카노?");
+					if (insertOrderMenu == 1 && FoodDao.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
 						IngredientDao.getInstance().reduceIngredient(food_code);
 					} else {
 						insertOrderMenuError = 0;

@@ -1,68 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.sql.*"%>
-
+<head>
+<script type="text/javascript">
+	function orderDoneConfirm(order_id) {
+		if (confirm(order_id + "의 주문을 완료함?")) {
+			return window.location="makeOrderDone?order_id=" + order_id;
+		} else {
+			return false;
+		}
+	}
+	
+</script>
+</head>
 <body>
+	<div id="nav">
+		<p>CAFE SASAEG</p>
+		<ul>
+			<li><a href="seatList">좌석 </a></li>
 
- <div id="nav">
-         <p>CAFE SASAEG</p>
-         <ul>
-            <li><a href="seatList">좌석</li></a>
-			<li><a href="orderList">주문</li></a>
-			
-			
-            
-         </ul>
-      </div>
-      
+			<li><a href="hostOrderList">주문 </a></li>
 
-	<form>
-<fieldset id="content">
-			<legend>
-				<font color="orange" size="6"><b>Order </b></font>
-			</legend>
-			<br>
+		</ul>
+	</div>
+	<fieldset>
+		<legend>
+			<font color="orange"><b>OrderList</b></font>
+		</legend>
 
-			<fieldset>
-				<legend>
-					<font color="orange"><b>OrderList</b></font>
-				</legend>
-
-				<table id="payment" cellspacing="10" cellpadding="0">
-
+		<table border="1" id="payment" cellspacing="0" cellpadding="0">
+			<tr>
+				<th width="200" height="15">주문 번호</th>
+				<th width="200" height="15">테이블 번호</th>
+				<th width="200" height="15">주문내역</th>
+			</tr>
+			<c:if test="${hostOrderlistDtoArray != null}">
+				<c:forEach var="hostOrderlistDto" items="${hostOrderlistDtoArray}">
 					<tr>
-						<th width="200" height="15">주문 번호</th>
-						<th width="200" height="15">테이블 번호</th>
-						<th width="200" height="15">주문내역</th>
+						<td>${hostOrderlistDto.order_id}</td>
+						<td>${hostOrderlistDto.seat_num}</td>
+						<td>${hostOrderlistDto.food_name}</td>
+						<td><input type="button" value="확인"
+							onclick="orderDoneConfirm(${hostOrderlistDto.order_id})"></td>
 					</tr>
-				</table>
-					
-					<tr>
-					<td>
-						<c:forEach var="holDtoArray" items="${holDtoArray}">
-							
-							${holDtoArray.order_id}
-						 	${holDtoArray.seat_num}
-							${holDtoArray.food_name}
-							<input type="submit" value="확인">
-							<br>
-						 	
-						</c:forEach>
-					</td>
-					</tr>
-				
-					
-				
-			</fieldset>
-		</fieldset>
-		
-		
-		
-		
-	
-	
-		
-	</form>
+				</c:forEach>
+			</c:if>
+			<c:if test="${hostOrderlistDtoArray == null}">
+				<tr>
+					<td colspan="3">나갈 주문이 없습니다.</td>
+				</tr>
+			</c:if>
+		</table>
+	</fieldset>
 </body>
-	

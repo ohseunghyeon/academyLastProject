@@ -143,14 +143,14 @@ public class SeatDao implements InterfaceSeatDao {
 	public int timeFinishedSeat(int seat_num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		int result = 0;
+		int count = 0;
 		try {
 			con = dataSource.getConnection();
 			String sql = "UPDATE p_seat SET occupied=0 WHERE seat_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, seat_num);
-			result = pstmt.executeUpdate();
-			
+			count = pstmt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -162,7 +162,7 @@ public class SeatDao implements InterfaceSeatDao {
 			}
 			
 		}
-		return result;
+		return count;
 	}
 
 }

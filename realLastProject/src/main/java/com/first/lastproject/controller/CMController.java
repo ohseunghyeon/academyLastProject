@@ -6,13 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.first.lastproject.command.hostOrder.HostOrderCommand;
-import com.first.lastproject.command.hostOrder.HostOrderListCommand;
-import com.first.lastproject.command.seat.SeatCommand;
-import com.first.lastproject.command.seat.SeatInformationCommand;
-import com.first.lastproject.command.seat.SeatListCommand;
-import com.first.lastproject.command.seat.SeatSelectConfirmFormCommand;
-import com.first.lastproject.command.seat.SeatSelectConfirmProCommand;
+import com.first.lastproject.command.hostOrder.*;
+import com.first.lastproject.command.seat.*;
 
 @Controller
 public class CMController {
@@ -48,7 +43,7 @@ public class CMController {
 		
 	}
 	@RequestMapping("/seatInformation")
-	public String SeatInfomation(HttpServletRequest request, Model model){
+	public String seatInfomation(HttpServletRequest request, Model model){
 		System.out.println("seatInformation()");
 		model.addAttribute("request", request);
 		SeatCommand command = new SeatInformationCommand();
@@ -56,11 +51,31 @@ public class CMController {
 		
 		return viewName;
 	}
-	@RequestMapping("/orderList")
-	public String HostOrderList(HttpServletRequest request, Model model){
+	@RequestMapping("/hostOrderList")
+	public String hostOrderList(HttpServletRequest request, Model model){
 		System.out.println("HostOrderList()");
 		model.addAttribute("request", request);
 		HostOrderCommand command = new HostOrderListCommand();
+		String viewName = command.execute(model);
+		
+		return viewName;
+	}
+	
+	@RequestMapping("/seatFinish")
+	public String guestSeatFinish(HttpServletRequest request, Model model){
+		System.out.println("seatFinish()");
+		model.addAttribute("request", request);
+		SeatCommand command = new SeatFinishCommand();
+		String viewName = command.execute(model);
+		
+		return viewName;
+	}
+	
+	@RequestMapping("/makeOrderDone")
+	public String makeOrderDone(HttpServletRequest request, Model model){
+		System.out.println("makeOrderDone()");
+		model.addAttribute("request", request);
+		HostOrderCommand command = new HostOrderDoneCommand();
 		String viewName = command.execute(model);
 		
 		return viewName;

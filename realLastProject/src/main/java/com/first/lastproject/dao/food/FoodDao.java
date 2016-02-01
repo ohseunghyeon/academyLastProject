@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 
 import com.first.lastproject.dto.FoodDto;
 
-
 public class FoodDao implements InterfaceFoodDao {
 	DataSource dataSource;
 
@@ -58,8 +57,8 @@ public class FoodDao implements InterfaceFoodDao {
 				goods.setFood_name(rs.getString("food_name"));
 				goods.setPrice(rs.getInt("price"));
 				goods.setFood_num(rs.getInt("food_num"));
-				goods.setSold_out(0);	//매진 아님
-				if (rs.getInt("food_num") < 0) { //생산품의 경우
+				goods.setSold_out(0); // 매진 아님
+				if (rs.getInt("food_num") < 0) { // 생산품의 경우
 					sql = "select ingre_num from p_food f, p_recipe r, p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code = ? order by f.food_code";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, goods.getFood_code());
@@ -69,9 +68,9 @@ public class FoodDao implements InterfaceFoodDao {
 							goods.setSold_out(1);
 						}
 					}
-				} else {		 //이미 생산된 디저트 종류의 경우 
+				} else { // 이미 생산된 디저트 종류의 경우
 					if (goods.getFood_num() == 0) { // 수량이 없는 경우
-						goods.setSold_out(1);		//매진
+						goods.setSold_out(1); // 매진
 					}
 				}
 				goodsList.add(goods);
@@ -175,38 +174,39 @@ public class FoodDao implements InterfaceFoodDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
-			con = dataSource.getConnection(); //컨넥션풀에서 connection객체 가져온다.
+			con = dataSource.getConnection(); // 컨넥션풀에서 connection객체 가져온다.
 			String sql = "select * from p_food where food_code=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, food_code);
-			
+
 			rs = pstmt.executeQuery();
 
-			if(rs.next()) {
+			if (rs.next()) {
 				System.out.println(rs.getString("food_name") + rs.getInt("food_num"));
 				if (dto == null) {
 					dto = new FoodDto();
 				}
-			dto.setFood_code(rs.getInt(1));
-			dto.setFood_name(rs.getString(2));
-			dto.setPrice(rs.getInt(3));
-			dto.setFood_num(4);
+				dto.setFood_code(rs.getInt("food_code"));
+				dto.setFood_name(rs.getString("food_name"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setFood_num(rs.getInt("food_num"));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException e2) {
 				e2.printStackTrace();
 			}
 		}
 		return dto;
 	}
-	
-	
+
 }
