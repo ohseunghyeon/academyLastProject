@@ -48,7 +48,7 @@
 			</c:if>
 			<c:if test="${hostOrderlist == null}">
 				<tr>
-					<td colspan="3">나갈 주문이 없습니다.</td>
+					<td colspan="4">나갈 주문이 없습니다.</td>
 				</tr>
 			</c:if>
 		</table>
