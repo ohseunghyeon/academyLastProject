@@ -230,52 +230,43 @@ public class MemberDao implements InterfaceMemberDao {
 		}
 		return coupon_code;
 	}
-
-	/*public MemberDto getCouponMileageForMainPage(String id) {
-		MemberDto dto = null;
+	
+	@Override
+	public int addMileage(int food_code, String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		int result = 0;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT * FROM p_user WHERE id = ?";
+			String sql = "SELECT price FROM p_food WHERE food_code = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, food_code);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				dto = new MemberDto();
-				dto.setMileage(rs.getInt("mileage"));
-				if (dto.getGet_coupon() == 1) {
-					sql = "SELECT * FROM p_coupon WHERE id = ?";
-					pstmt.close();
-					pstmt = con.prepareStatement(sql);
-					rs.close();
-					rs = pstmt.executeQuery();
-					if (rs.next()) {
-						dto.setGet_coupon(1);
-					} else {
-						dto.setGet_coupon(0);
-					}
-				} else {
-					dto.setGet_coupon(rs.getInt("get_coupon"));
-				}
+				sql = "UPDATE p_user SET mileage = mileage + ? WHERE id = ?";
+				pstmt2 = con.prepareStatement(sql);
+				pstmt2.setInt(1, (int) Math.round((rs.getInt("price") * 0.05)));
+				pstmt2.setString(2, id);
+				result = pstmt2.executeUpdate();
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (rs != null)
+				if (rs != null) 
 					rs.close();
 				if (pstmt != null)
 					pstmt.close();
+				if (pstmt2 != null)
+					pstmt2.close();
 				if (con != null)
 					con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
-		return dto;
-	}*/
+		return result;
+	}
 }

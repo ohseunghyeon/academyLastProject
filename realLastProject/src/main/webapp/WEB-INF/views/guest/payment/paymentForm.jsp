@@ -143,7 +143,7 @@ body {
 							<td>${foodDto.food_name}</td>
 							<td>${foodDto.food_num}</td>
 							<td>${foodDto.price}원</td>
-							<td>${foodDto.price * 0.05}</td>
+							<td>${foodDto.price * foodDto.food_num * 0.05}</td>
 							<td>${foodDto.price * foodDto.food_num}원</td>
 						</tr>
 					</c:forEach>

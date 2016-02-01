@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.food.FoodDao;
 import com.first.lastproject.dao.ingredient.IngredientDao;
+import com.first.lastproject.dao.member.MemberDao;
 import com.first.lastproject.dao.order.InterfaceOrderDao;
 import com.first.lastproject.dao.order.OrderDao;
 import com.first.lastproject.dao.seat.InterfaceSeatDao;
 import com.first.lastproject.dao.seat.SeatDao;
+import com.first.lastproject.dto.MemberDto;
 
 public class GoodsPayFinishCommand implements GoodsCommand {
 
@@ -35,7 +37,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 
 			String[] foodCodes = request.getParameterValues("food_code");	//어떤 메뉴를
 			String[] foodNums = request.getParameterValues("food_num");	//얼마나 주문됐나
-
+			
 			String order_code = orderDao.getOrder_code(seat_num); //테이블 넘버로 주문 번호 가져오기
 
 			int insertOrderMenu = 1; // 각 메뉴가 실패했는지 확인하기 위함
@@ -43,7 +45,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
 					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
-					
+					MemberDao.getInstance().addMileage(food_code, id); //마일리지 추가
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문
 					if (insertOrderMenu == 1 && FoodDao.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
 						IngredientDao.getInstance().reduceIngredient(food_code);
@@ -53,9 +55,14 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				}
 			}
 		}
+		
 		if (insertOrderMenuError == 0) { // 이거 뜨는 페이지에서 확인 해야할 텐데..실패라고.
 			System.out.println(insertOrderMenuError);
 		}
+		
+		MemberDto memberDto = MemberDao.getInstance().getMember(id);
+		request.getSession().setAttribute("mileage", memberDto.getMileage());
+		
 		model.addAttribute("orderInsertResult", orderInsertResult);
 
 		return "guest/payment/paymentFinish";
