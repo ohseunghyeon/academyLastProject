@@ -215,7 +215,6 @@ public class MemberDao implements InterfaceMemberDao {
 
 			if (rs.next()) {
 				coupon_code = rs.getInt("coupon_code");
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -232,7 +231,7 @@ public class MemberDao implements InterfaceMemberDao {
 		return coupon_code;
 	}
 
-	public MemberDto getCouponMileageForMainPage(String id) {
+	/*public MemberDto getCouponMileageForMainPage(String id) {
 		MemberDto dto = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -247,7 +246,7 @@ public class MemberDao implements InterfaceMemberDao {
 				dto = new MemberDto();
 				dto.setMileage(rs.getInt("mileage"));
 				if (dto.getGet_coupon() == 1) {
-					sql = "SELECT * FROM coupon WHERE id = ?";
+					sql = "SELECT * FROM p_coupon WHERE id = ?";
 					pstmt.close();
 					pstmt = con.prepareStatement(sql);
 					rs.close();
@@ -278,5 +277,5 @@ public class MemberDao implements InterfaceMemberDao {
 
 		}
 		return dto;
-	}
+	}*/
 }

@@ -5,7 +5,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.first.lastproject.dao.board.BoardDao"%>
 <%@ page import="com.first.lastproject.dto.BoardDto" %>
-
+<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
 <title>게시판</title>
 
 <h2>글목록(글갯수 : ${count})</h2>

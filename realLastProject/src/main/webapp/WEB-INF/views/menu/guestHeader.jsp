@@ -15,13 +15,13 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6" style="background-color:lavender;"></div>
-    <div class="col-sm-4" style="background-color:lavenderblush;"><mark>찬민</mark>님 안녕하세요.</div>
+    <div class="col-sm-4" style="background-color:lavenderblush;"><mark>${id}</mark>님 안녕하세요.</div>
    	<div class="col-sm-2" style="background-color:lavenderblush;">
-    <a href=" "><span class="glyphicon glyphicon-log-in"></span> Login</a>
+    <a href=" "><span class="glyphicon glyphicon-log-out"></span>Logout</a>
     </div>
   </div>
   <blockquote>
-   <h1>sasaeg cafe</h1>
+   <h1>Sasaeg cafe</h1>
   <p> 커피 한잔, 책 한권 북카페</p>
   </blockquote>
 </div>
@@ -29,18 +29,20 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand"><p>SASAEG <img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></p></a>
+      <a class="navbar-brand"><p>SASAEG<img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></p></a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href=" ">좌석</a></li>
-    	<li><a href=" ">메뉴</a></li>
-      <li><a href=" ">게시판</a></li>
+      <li><a href="seatList">좌석</a></li>
+    	<li><a href="goodsList">메뉴</a></li>
+      <li><a href="boardList">게시판</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="">마일리지:0원</a></li>
-      <li><a href="" >쿠폰:1개</a></li>
-      <li><a href="" >회원정보수정</a></li>
+      <li><a>마일리지:${mileage} 포인트</a></li>
+      <li>
+      	  <c:if test="${coupon == 0}"><a>쿠폰 없어</a></c:if>
+      	  <c:if test="${coupon != 0}"><a href="coupon">쿠폰:${coupon}</a></c:if>
+      </li>
+      <li><a href="memberModifyForm">회원정보수정</a></li>
     </ul>
   </div>
 </nav>

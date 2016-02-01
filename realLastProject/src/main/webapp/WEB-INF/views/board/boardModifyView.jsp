@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-
+<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
 <h2> ±Û ¼öÁ¤</h2>
 
 <c:if test="${result==0 }">

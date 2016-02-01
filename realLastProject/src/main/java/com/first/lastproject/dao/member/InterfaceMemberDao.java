@@ -10,6 +10,6 @@ public interface InterfaceMemberDao {
 	public MemberDto getMember(String id);
 	public int makeCoupon(String id);
 	public int getCoupon(String id);
-	public MemberDto getCouponMileageForMainPage(String id);
+	/*public MemberDto getCouponMileageForMainPage(String id);*/
 	
 }

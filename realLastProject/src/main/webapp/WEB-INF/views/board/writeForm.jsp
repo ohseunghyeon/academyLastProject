@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-
+<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
 <h2>글쓰기</h2>
 <body onload="writefocus()">
 	<form action="writePro" name="writeform" method="post" onsubmit="return writecheck()">

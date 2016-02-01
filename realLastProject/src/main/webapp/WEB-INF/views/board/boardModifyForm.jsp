@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
 <title>글수정 페이지</title>
 </head>
 <body onload="passwdfocus()">

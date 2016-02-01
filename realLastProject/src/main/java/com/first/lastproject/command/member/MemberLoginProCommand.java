@@ -23,7 +23,8 @@ public class MemberLoginProCommand implements MemberCommand {
 		if(result == 1) {
 			request.getSession().setAttribute("id", id);
 			MemberDto memberDto = memberDao.getMember(id);
-			memberDto.getMileage();
+			request.getSession().setAttribute("mileage", memberDto.getMileage());
+			request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
 			model.addAttribute("result", result);	//정남아 이 부분은 왜 해놓은 거야?
 			return "redirect:/seatList";
 

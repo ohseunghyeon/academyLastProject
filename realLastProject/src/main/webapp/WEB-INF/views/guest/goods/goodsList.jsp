@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 th {
 	font-size: 18px;
@@ -150,78 +150,44 @@ body {
 </style>
 </head>
 <body>
-	<div id="con">
-		<div id="header">guest</div>
+	<form action="goodsListPro">
+		<table>
+			<c:forEach var="goodslist" items="${goodslist}">
+				<tr>
+					<td><input type="checkbox" name="food_code"
+						value="${goodslist.food_code}"></td>
+					<td>${goodslist.food_name}</td>
+					<td>${goodslist.price}</td>
+					<td>${goodslist.sold_out}</td>
+				</tr>
 
-		<div id="nav">
-			<p>CAFE SASAEG.</p>
-			<ul>
-				<li><a href="hostSeat.html">좌석</a></li>
+			</c:forEach>
+			<tr>
+				<td>장바구니</td>
+			<tr>
+				<td><input type="hidden" name="food_code" value="1"> <input
+					type="text" value="에스프레소"> <input type="number"
+					name="food_num" value="4"></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="food_code" value="2"> <input
+					type="text" value="아메리카노"> <input type="number"
+					name="food_num" value="3"></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="food_code" value="3"> <input
+					type="text" value="아이스아메리카노"> <input type="number"
+					name="food_num" value="2"></td>
+				<td><input type="submit" value="전송"></td>
+			</tr>
+		</table>
+	</form>
+	<div>
+		장바구니
+		<table>
 
-				<li><a href="Order.html">주문</a></li>
-
-				<li><a href="stock.html">재고</a></li>
-
-				<li><a href="account.html">정산</a></li>
-
-				<li><a href="board.html">게시판</a></li>
-
-
-			</ul>
-		</div>
-		<div id="wrap">
-			<div id="content">
-				<form action="goodsListPro">
-					<div>
-						<table>
-							<c:forEach var="goodslist" items="${goodslist}">
-								<tr>
-									<td><input type="checkbox" name="food_code"
-										value="${goodslist.food_code}"></td>
-									<td>${goodslist.food_name}</td>
-									<td>${goodslist.price}</td>
-									<td>${goodslist.sold_out}</td>
-								</tr>
-
-							</c:forEach>
-							<tr>
-								<td>장바구니</td>
-							<tr>
-								<td>
-									<input type="hidden" name="food_code" value="1">
-									<input type="text" value="에스프레소">
-									<input type="number" name="food_num" value="4">
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<input type="hidden" name="food_code" value="2">
-									<input type="text" value="아메리카노">
-									<input type="number" name="food_num" value="3">
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<input type="hidden" name="food_code" value="3">
-									<input type="text" value="아이스아메리카노">
-									<input type="number" name="food_num" value="2">
-								</td>
-								<td><input type="submit" value="전송"></td>
-							</tr>
-						</table>
-					</div>
-				</form>
-			</div>
-			<div>
-				장바구니
-				<table>
-
-				</table>
-			</div>
-			<div id="footer"></div>
-		</div>
+		</table>
 	</div>
-
 </body>
 </html>
 

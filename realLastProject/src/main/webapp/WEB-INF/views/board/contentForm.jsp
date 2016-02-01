@@ -3,6 +3,7 @@
 <%@ page import="com.first.lastproject.dto.BoardDto" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ page import="java.text.SimpleDateFormat" %>
+<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
 <title>글 보기 </title>
 </head>
 <body>

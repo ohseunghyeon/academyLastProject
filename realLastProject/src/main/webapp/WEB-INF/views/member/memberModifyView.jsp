@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import = "com.first.lastproject.dto.MemberDto" %>
+<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
 <body>
 <form method="post" action="memberModifyPro">
 	<table border="1">
