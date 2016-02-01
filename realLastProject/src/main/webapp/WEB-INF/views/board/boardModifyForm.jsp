@@ -13,7 +13,7 @@
 		<input type="hidden" name="num" value="${num}">
 		<input type="hidden" name="pageNum" value="${pageNum}">
 	
-		<table>
+		<table class="table table-striped table-bordered table-hover table-condensed text-center" >
 			<tr>
 				<th colspan="2">
 					비밀번호를 다시 확인해주세요.
@@ -27,7 +27,7 @@
 				<th colspan="2">
 					<input class="inputbutton" type="submit" value="글수정">
 					<input class="inputbutton" type="button" value="수정취소" 
-								onclick="window.location='list?pageNum=${pageNum}'">
+								onclick="window.location='boardList?pageNum=${pageNum}'">
 				</th>
 			</tr>
 		</table>	
