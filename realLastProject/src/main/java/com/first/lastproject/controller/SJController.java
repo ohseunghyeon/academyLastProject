@@ -192,11 +192,6 @@ public class SJController {
 		return viewname;
 
 	}
-	@RequestMapping("/testlogin")
-	public String testlogin(Model model) {
-		System.out.println("testlogin()");
-		return "/html/bootstrap3/login";
-	}
 	@RequestMapping("/guestHeader")
 	public String guestHeader(Model model) {
 		System.out.println("guestHeader()");
@@ -206,6 +201,11 @@ public class SJController {
 	public String noMeberHeader(Model model) {
 		System.out.println("noMeberHeader()");
 		return "/menu/noMeberHeader";
+	}
+	@RequestMapping("/hostHeader")
+	public String hostHeader(Model model) {
+		System.out.println("hostHeader()");
+		return "/menu/hostHeader";
 	}
 
 
