@@ -6,7 +6,7 @@
 <jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
 <html>
 <body>
-	<form action="seatSelectConfirmPro" method="post" name=seatConfirm>
+	<form action="seatSelectConfirmPro" method="post" name="seatConfirm">
 		<fieldset id="content">
 			<legend>
 				<font color="orange" size="3"><b>Confirm</b></font>
@@ -23,3 +23,4 @@
 	</form>
 </body>
 </html>
+<jsp:include page="../../menu/guestFooter.jsp" flush="false"/>

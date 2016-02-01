@@ -51,3 +51,4 @@
 	</form>
 </body>
 </html>
+<jsp:include page="../menu/guestFooter.jsp" flush="false"/>

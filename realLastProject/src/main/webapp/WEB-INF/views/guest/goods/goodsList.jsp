@@ -4,7 +4,7 @@
 <jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 <!DOCTYPE html>
 <html>
-<head>
+<!-- <head>
 <meta charset="UTF-8">
 <style>
 th {
@@ -148,7 +148,7 @@ body {
 	line-height: 0px;
 }
 </style>
-</head>
+</head> -->
 <body>
 	<form action="goodsListPro">
 		<table>
@@ -190,4 +190,4 @@ body {
 	</div>
 </body>
 </html>
-
+<jsp:include page="../../menu/guestFooter.jsp" flush="false"/>

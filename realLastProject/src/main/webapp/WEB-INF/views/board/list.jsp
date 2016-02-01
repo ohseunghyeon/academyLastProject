@@ -92,4 +92,5 @@
 			<a href="list?pageNum=${pageCount}">[¢º¢º]</a>
 			</c:if>
 	</c:if>
+	<jsp:include page="../menu/guestFooter.jsp" flush="false"/>
 	

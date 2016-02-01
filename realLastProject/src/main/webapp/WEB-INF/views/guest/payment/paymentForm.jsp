@@ -5,7 +5,7 @@
 <jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<!-- <head>
 <meta charset="utf-8" />
 <title></title>
 
@@ -97,26 +97,8 @@ body {
 </style>
 
 
-</head>
+</head> -->
 <body>
-	<div id="con">
-
-
-		<div id="header">guest</div>
-
-		<div id="nav">
-			<p>CAFE SASAEG</p>
-			<ul>
-				<li><a href="seat.html">좌석</a></li>
-				<li><a href="menu.html">메뉴</a></li>
-				<li><a href="guestBoard.html">게시판</a></li>
-			</ul>
-			<div id="wrap">
-				<div id="content">CONTENT</div>
-			</div>
-			<div id="footer">FOOTER</div>
-		</div>
-	</div>
 
 	<div ng-app="" ng-init="quantity=1; price=5000">
 		quantity : <input type="number" ng-model="quantity" maxlength="6">
@@ -142,14 +124,11 @@ body {
 				<font color="orange" size="6"><b>Payment </b></font>
 			</legend>
 			<br>
-
 			<fieldset>
 				<legend>
 					<font color="orange"><b>ProductInfo</b></font>
 				</legend>
-
 				<table id="payment" cellspacing="10" cellpadding="0">
-
 					<tr>
 						<th width="200" height="15">상품정보</th>
 						<td width="50" height="15" align="center">수량</td>
@@ -157,7 +136,6 @@ body {
 						<td width="80" height="15" align="center">마일리지</td>
 						<td width="200" height="15" align="center">주문금액</td>
 					</tr>
-
 					<c:forEach var="foodDto" items="${shoppingBagForPayment}">
 						<input type="hidden" name="food_code" value="${foodDto.food_code}">
 						<input type="hidden" name="food_num" value="${foodDto.food_num}">
@@ -225,3 +203,4 @@ body {
 		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 </body>
 </html>
+<jsp:include page="../../menu/guestFooter.jsp" flush="false"/>

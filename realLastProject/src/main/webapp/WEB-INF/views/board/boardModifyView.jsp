@@ -69,3 +69,4 @@
 			</form>
 		</body>	
 	</c:if>
+	<jsp:include page="../menu/guestFooter.jsp" flush="false"/>
