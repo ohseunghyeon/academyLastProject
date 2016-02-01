@@ -7,27 +7,29 @@
 <%@ page import="com.first.lastproject.dto.BoardDto" %>
 <jsp:include page="../menu/guestHeader.jsp" flush="false"/>
 <title>게시판</title>
+<div class="container">
+<h3><p class="text-center">WRITE LIST<small>(글개수 : ${count})</small></p></h3>
+	<div class="pull-right">
+	 <a href="writeForm"><button type="button" class="btn btn-warning">Write
+	 </button></a><br>
+	 </div>
 
-<h2>글목록(글갯수 : ${count})</h2>
+<table class="table table-striped table-bordered table-hover table-condensed text-center">
+	<thead>
+	<tr class="info">
+		<th><p class="text-center">글번호</p></th>
+		<th><p class="text-center">글제목</p></th>
+		<th><p class="text-center">작성자</p></th>
+		<th><p class="text-center">작성일</p></th>
+		<th><p class="text-center">조회수</p></th>
+		<th><p class="text-center">IP</p></th>
 
-<table border="1">
-	<tr>
-		<th colspan="6" align="right" style="height:25px">
-			<a href="writeForm">글쓰기</a>
-		</th>
 	</tr>
-	<tr>
-		<th style="width: 5%">글번호 </th>
-		<th style="width: 35%">글제목 </th>
-		<th style="width: 10%">작성자 </th>
-		<th style="width: 15%">작성일 </th>
-		<th style="width: 5%">조회수 </th>
-		<th style="width: 10%">IP</th>
-	</tr>
-	
+	</thead>
+	<tbody>
 	<c:if test="${count >0}">
 		<c:forEach var="dto" items="${list}">
-			<tr>
+			<tr class="warning">
 				<td align="center">
 				 ${number}
 				 	<c:set var="number" value="${number-1}"></c:set>
@@ -58,7 +60,6 @@
 				 	${dto.ip}
 				 </td>
 			</tr>
-		
 		</c:forEach>
 	</c:if>
 	<c:if test="${count == 0}}">
@@ -69,9 +70,11 @@
 			</td>
 		</tr>
 	</c:if>
-		
+</tbody>
 </table>
+</div>
 <br>
+<div class="container text-center">
 	<c:if test="${count>0 }">
 	<!-- 처음[◀◀] 이전[▶▶] -->
 		<c:if test="${startPage >pageBlock}">
@@ -93,4 +96,4 @@
 			</c:if>
 	</c:if>
 	<jsp:include page="../menu/guestFooter.jsp" flush="false"/>
-	
+</div>
