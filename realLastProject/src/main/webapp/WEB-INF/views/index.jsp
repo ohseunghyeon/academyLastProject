@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="menu/guestHeader.jsp" %>	
 
 <title>로그인 화면</title>
 
