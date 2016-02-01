@@ -18,7 +18,6 @@ public class MemberLoginProCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
-		int memCode = Integer.parseInt(request.getParameter("memCode"));
 		InterfaceMemberDao memberDao = MemberDao.getInstance();
 		int result = memberDao.checkMember(id, passwd);
 		if(result == 1) {
@@ -26,8 +25,6 @@ public class MemberLoginProCommand implements MemberCommand {
 			MemberDto memberDto = memberDao.getMember(id);
 			memberDto.getMileage();
 			model.addAttribute("result", result);	//정남아 이 부분은 왜 해놓은 거야?
-			memCode = 1;
-			model.addAttribute("memCode", memCode); //정남아 이 부분 왜 해놓은 거야?
 			return "redirect:/seatList";
 
 		} else if(result == -1) {

@@ -130,7 +130,7 @@ public class OrderDao implements InterfaceOrderDao {
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "select 'food_name' from p_order_menu o join p_food f on(o.food_code=f.food_code) where order_id = ?";
+			String sql = "select f.food_name, count(f.food_name) num from p_order_menu o join p_food f on(o.food_code=f.food_code) where order_id = ? group by f.food_name";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, order_id);
 			rs = pstmt.executeQuery();
@@ -139,7 +139,8 @@ public class OrderDao implements InterfaceOrderDao {
 				if (food_name == null) {
 					food_name = "";
 				}
-				food_name += rs.getString("food_name") + " ";
+				food_name += rs.getString("food_name") + "(" + rs.getInt("num") + ") ";
+				
 			}
 		} catch (SQLException e) {
 			e.getStackTrace();

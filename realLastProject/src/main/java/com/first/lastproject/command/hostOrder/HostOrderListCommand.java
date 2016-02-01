@@ -17,7 +17,7 @@ public class HostOrderListCommand implements HostOrderCommand {
 		ArrayList<OrderDto> order_done = orderDao.getUndoneOrder();
 
 		if (order_done != null) { //메뉴가 안 나간 주문이 존재할 경우.
-			ArrayList<HostOrderListDto> hostOrderlistDtoArray = new ArrayList<HostOrderListDto>();
+			ArrayList<HostOrderListDto> hostOrderlist = new ArrayList<HostOrderListDto>();
 			ArrayList<String> foodNameArray = new ArrayList<String>();
 			
 			for (int i = 0; i < order_done.size(); i++) { //출력할 주문메뉴 합치기 작업
@@ -30,10 +30,10 @@ public class HostOrderListCommand implements HostOrderCommand {
 				holDto.setFood_name(foodNameArray.get(i));
 				holDto.setOrder_id(order_done.get(i).getOrder_id());
 				holDto.setSeat_num(order_done.get(i).getSeat_num());
-				hostOrderlistDtoArray.add(holDto);
+				hostOrderlist.add(holDto);
 			}
 
-			model.addAttribute("hostOrderlistDtoArray", hostOrderlistDtoArray);
+			model.addAttribute("hostOrderlist", hostOrderlist);
 		}
 
 		return "host/order/orderList";

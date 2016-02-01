@@ -33,19 +33,20 @@
 				<th width="200" height="15">주문 번호</th>
 				<th width="200" height="15">테이블 번호</th>
 				<th width="200" height="15">주문내역</th>
+				<th width="200" height="15">확인</th>				
 			</tr>
-			<c:if test="${hostOrderlistDtoArray != null}">
-				<c:forEach var="hostOrderlistDto" items="${hostOrderlistDtoArray}">
+			<c:if test="${hostOrderlist != null}">
+				<c:forEach var="hostOrder" items="${hostOrderlist}">
 					<tr>
-						<td>${hostOrderlistDto.order_id}</td>
-						<td>${hostOrderlistDto.seat_num}</td>
-						<td>${hostOrderlistDto.food_name}</td>
+						<td>${hostOrder.order_id}</td>
+						<td>${hostOrder.seat_num}</td>
+						<td>${hostOrder.food_name}</td>
 						<td><input type="button" value="확인"
-							onclick="orderDoneConfirm(${hostOrderlistDto.order_id})"></td>
+							onclick="orderDoneConfirm(${hostOrder.order_id})"> </td>
 					</tr>
 				</c:forEach>
 			</c:if>
-			<c:if test="${hostOrderlistDtoArray == null}">
+			<c:if test="${hostOrderlist == null}">
 				<tr>
 					<td colspan="3">나갈 주문이 없습니다.</td>
 				</tr>

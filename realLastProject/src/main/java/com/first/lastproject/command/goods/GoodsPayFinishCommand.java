@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import com.first.lastproject.dao.food.FoodDao;
 import com.first.lastproject.dao.ingredient.IngredientDao;
 import com.first.lastproject.dao.order.InterfaceOrderDao;
-import com.first.lastproject.dao.order.concatFoodName;
+import com.first.lastproject.dao.order.OrderDao;
 import com.first.lastproject.dao.seat.InterfaceSeatDao;
 import com.first.lastproject.dao.seat.SeatDao;
 
@@ -23,7 +23,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		String id = (String) request.getSession().getAttribute("id");
 		int seat_num = (Integer) request.getSession().getAttribute("seat_num");
 
-		InterfaceOrderDao orderDao = concatFoodName.getInstance();
+		InterfaceOrderDao orderDao = OrderDao.getInstance();
 		int orderInsertResult = orderDao.insertOrder(id, seat_num); // p_order에
 																	// 추가.
 
