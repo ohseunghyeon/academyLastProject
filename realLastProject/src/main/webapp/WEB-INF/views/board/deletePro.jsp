@@ -22,7 +22,7 @@
 						erroralert(replyerror);
 					//-->
 				</script>
-				<meta http-equiv="refresh" content="0; url='list?pageNum=${pageNum}'">
+				<meta http-equiv="refresh" content="0; url='boardList?pageNum=${pageNum}'">
 				</c:if>
 			<c:if test="${result==0}">
 				<script type="text/javascript">
@@ -33,7 +33,7 @@
 			</c:if>
 		<c:if test="${result ==1 }">
 					<!-- 작성 성공 -->
-					<c:redirect url="list?pageNum=${pageNum}" />
+					<c:redirect url="boardList?pageNum=${pageNum}" />
 				</c:if>
 		</c:if>
 </body>

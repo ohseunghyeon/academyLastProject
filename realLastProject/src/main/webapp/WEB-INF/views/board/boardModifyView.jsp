@@ -2,8 +2,12 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <jsp:include page="../menu/guestHeader.jsp" flush="false"/>
-<h2> 글 수정</h2>
-
+<h3><p class="text-center">WRITE</p></h3>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+    </div>
+    <div class="col-sm-8 text-left"> 
 <c:if test="${result==0 }">
 		<script type="text/javascript">
 			<!-- 작성 실패 -->
@@ -20,53 +24,59 @@
 				<input type="hidden" name="num" value="${num}">
 				<input type="hidden" name="pageNum" value="${pageNum}">
 				
-				<table>
-					<tr>
-						<th colspan="2">
-						수정할 정보를 입력하세요.
+				<table class="table table-striped table-bordered table-hover table-condensed text-center">
+					<tr class="danger">
+						<th colspan="2"><p class="text-center">
+						<h4><p class="text-center">수정할 정보를 입력하세요.</p></h4>
 						</th>
 					</tr>
 					<tr>
-						<th> 작성자</th>
-						<td>${dto.writer}</td>
+						<th class="info"><p class="text-center">작성자</p></th>
+						<td class="warning"><p class="text-center">${dto.writer}</p></td>
 					</tr>		
 					<tr>
-						<th> 이메일</th>
-						<td>
+						<th class="info"><p class="text-center">이메일</p></th>
+						<td class="warning">
 							<c:if test="${dto.email == null}">
-								<input class="inputbutton" type="text" name="email" maxlength="30">
+								<input placeholder="Enter email" type="text" name="email" class="form-control">
 							</c:if>
 							<c:if test="${dto.email !=null}">
-								<input class="inputbutton" type="text" name="email" maxlength="30" value="${dto.email}">							
+								<input class="form-control" type="text" name="email" placeholder="Enter email" value="${dto.email}">							
 							</c:if>
 						</td>
 					</tr>
 					<tr>
-						<th>글제목</th>
-						<td>
-						<input class="inputbutton" type="text" name="subject" maxlength="50" value="${dto.subject}">
+						<th class="info"><p class="text-center">글제목</p></th>
+						<td class="warning">
+						<input class="form-control" type="text" name="subject"  placeholder="Enter subject" value="${dto.subject}">
 						</td>
 					</tr>	
 					<tr>
-						<th>글내용</th>
-						<td>
-						<textarea class="input" name="content" rows="10" cols="32" >${dto.content}</textarea>
+						<th class="info"><p class="text-center">글내용</p></th>
+						<td class="warning">
+						<textarea placeholder="Enter content" name="content" rows="10" cols="70" >${dto.content}</textarea>
 						</td>
 					</tr>			
 					<tr>
-						<th>비밀번호</th>
-						<td>
-						<input class="inputbutton" type="password" name="passwd" maxlength="12" value="${dto.passwd}">
+						<th class="info"><p class="text-center">비밀번호</p></th>
+						<td class="warning">
+						<input class="form-control" type="password" name="passwd" placeholder="Enter subject" value="${dto.passwd}">
 						</td>
 					</tr>	
-					<tr>
-						<th colspan="2">
-							<input class="inputbutton" type="submit" value="글수정">
-							<input class="inputbutton" type="reset" value="글취소">
-							<input class="inputbutton" type="button" value="목록보기" onclick="window.location='list?pageNum=${pageNum}'">
+					<tr class="danger">
+						<th colspan="2"><p class="text-center"> 
+						<button type="submit" class="btn btn-warning">글수정</button>
+						<button type="reset" class="btn btn-warning">글취소</button>
+						<button type="button" class="btn btn-warning" onclick="window.location='boardList?pageNum=${pageNum}'">목록보기</button>
+						</p></th>
 					</tr>
 				</table>
 			</form>
 		</body>	
 	</c:if>
+</div>
+<div class="col-sm-2 sidenav">
+</div>
+</div>
+</div>
 	<jsp:include page="../menu/guestFooter.jsp" flush="false"/>
