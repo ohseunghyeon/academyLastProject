@@ -17,30 +17,47 @@
 %>
 <style>
 #red {
-	background: red;
+	background: #FFA7A7;
 }
 
 #blue {
-	background: blue;
+	background: #E4F7BA;
 }
 </style>
 <body>
+ <div class="container-fluid">
+		<div class="row">
+ 		<div class="col-sm-2" ></div>
+ 		 <div class="col-sm-8" ><br>
 	<table align="center">
 		<tr>
+			<!-- 좌석 반복 시작 -->
 			<c:forEach var="seat" items="${seats}" varStatus="i">
+			
+				<!-- 14, 15번 앞에 9번 공백 있는 거 -->
 				<c:if test="${nineTd.indexOf(i.count) > -1}">
 					<c:forEach begin="0" end="8">
-						<td width="60" height="60"></td>
+						<td width="70" height="70"></td>
 					</c:forEach>
 				</c:if>
-				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="60"
-					height="60"><a href="seatConfirm?seat_num=${seat.seat_num}">${i.count}</a></td>
-			${td.indexOf(i.count) > -1 ? '<td width="60" height="60"></td>':''}
+				
+				<!-- 기본적으로 좌석 뿌려주는 로직 -->	
+				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="70"
+					height="70">
+					<a href="seatConfirm?seat_num=${seat.seat_num}"><p class="text-center">
+					<button type="button" class="btn btn-default ${seat.occupied == 0 ? 'active' : 'disabled'}">${i.count}</button></p></a>
+				</td>
+				
+				<!-- 한 칸 띄워주는 로직 -->
+			${td.indexOf(i.count) > -1 ? '<td width="70" height="70"></td>':''}
+				<!-- tr써서 행 내려주는 로직 -->
 			${tr.indexOf(i.count) > -1 ? '</tr><tr>':''}
 			
 			</c:forEach>
 		</tr>
-	</table>
-</body>
-</html>
+	</table><br><br>
+</div>
+<div class="col-sm-2" ></div>
+</div>
+</div>
 <jsp:include page="../../menu/guestFooter.jsp" flush="false" />

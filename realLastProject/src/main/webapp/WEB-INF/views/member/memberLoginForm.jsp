@@ -32,13 +32,13 @@
 						<input class="input" type="password" name="passwd" maxlength="10">
 					</td>	
 				</tr>
-	
 			</table>
 			<div class="pull-right">
 				<button type="submit" class="btn btn-warning">로그인</button>
 				<button type="reset" class="btn btn-warning">취소</button>
 			</div>
 		<div class="col-sm-4" ></div>
+		</div>
 		</div>
 		</div>
 	</form>
