@@ -13,6 +13,6 @@
 	<script type="text/javascript">
 		alert("정보가 수정되었습니다.");
 	</script>
-	<c:redirect url="memberMain" />
+	<c:redirect url="seatList" />
 </c:if>
 </body>
