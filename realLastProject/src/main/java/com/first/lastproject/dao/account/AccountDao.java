@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.Context;
@@ -163,6 +166,7 @@ public class AccountDao implements InterfaceAccountDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Calendar today = Calendar.getInstance();
+		today.set(today.get(Calendar.YEAR), monlist-1, 1);
 		int i = 1;
 		try {
 			con = dataSource.getConnection();
@@ -172,14 +176,11 @@ public class AccountDao implements InterfaceAccountDao {
 					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
 			for(i = 1; i <= today.getActualMaximum(Calendar.DATE); i++) {
 			pstmt = con.prepareStatement(sql);
-			System.out.println("start=" + today.get(Calendar.YEAR)+"-"+monlist+"-"+(i)+" 00:00:00");
-			System.out.println("end=" + today.get(Calendar.YEAR)+"-"+monlist+"-"+(i)+" 23:59:59");
-			pstmt.setString(1, today.get(Calendar.YEAR)+"-"+monlist+"-"+i+" 00:00:00");
-			if(i < today.getActualMaximum(Calendar.DATE)) {
-			pstmt.setString(2, today.get(Calendar.YEAR)+"-"+monlist+"-"+i+" 23:59:59");
-			} else if(i == today.getActualMaximum(Calendar.DATE)) {
-				pstmt.setString(2, today.get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
-			}
+			System.out.println("start=" + Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-"+(i)+" 00:00:00");
+			System.out.println("end=" + Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-"+(i)+" 23:59:59");
+			pstmt.setString(1, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-"+i+" 00:00:00");
+			pstmt.setString(2, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-"+i+" 23:59:59");
+	
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -289,7 +290,74 @@ public class AccountDao implements InterfaceAccountDao {
 		}
 		return selectList;
 	}
-
+	
+	public List<AccountDto> getSelectAccountPrice(String startday, String endday) {//기간 일자별 총 수익 금액
+		ArrayList <AccountDto> selectPrice = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Calendar today = Calendar.getInstance();
+		String[] startL = startday.split("-");
+		String[] endL = endday.split("-");
+		int start = Integer.parseInt(startL[0]+startL[1]+startL[2]);
+		long diffDays = 0;
+		
+		   try {
+		        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		        Date beginDate = formatter.parse(startday);
+		        Date endDate = formatter.parse(endday);
+		         
+		        // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루 단위가 나옴
+		        long diff = endDate.getTime() - beginDate.getTime();
+		        diffDays = diff / (24 * 60 * 60 * 1000);
+		 
+		        System.out.println("날짜차이=" + diffDays);
+		         
+		    } catch (ParseException e) {
+		        e.printStackTrace();
+		    }
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT SUM(price) price "
+					+ "FROM day_calculate_view WHERE order_time "
+					+ "BETWEEN to_date(?, 'yyyymmdd hh24:mi:ss') "
+					+ "AND to_date(?, 'yyyymmdd hh24:mi:ss')";
+			for(int i = 1; i <= diffDays; i++) {
+			pstmt = con.prepareStatement(sql);
+			System.out.println("start=" + (start++) + " 00:00:00");
+			System.out.println("end=" + (start++) +" 23:59:59");
+			
+			pstmt.setString(1, (start) + " 00:00:00");
+			pstmt.setString(2, (start) + " 23:59:59");
+	
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				if(selectPrice == null) {
+					selectPrice = new ArrayList<AccountDto>();
+				}
+				AccountDto dto = new AccountDto();
+			dto.setPrice(rs.getInt("price"));
+			selectPrice.add(dto);
+			continue;
+			}
+			pstmt.close();
+		}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		return selectPrice;
+	}
 	@Override
 	public AccountDto getSelectTotalAccount(String startday, String endday) {//기간 총 수익 금액
 		AccountDto selPriceDto = new AccountDto();

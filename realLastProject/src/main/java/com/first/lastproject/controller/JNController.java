@@ -32,6 +32,7 @@ public class JNController {
 	public String memberMain(Model model) {
 		return "/member/memberMain";
 	}
+	
 	@RequestMapping("/memberRegister")
 	public String memberRegister(Model model) {
 		return "/member/memberRegister";

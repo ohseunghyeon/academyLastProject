@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+	.list {
+	display:inline;
+	}
+</style> 
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
     <h3>정산 페이지(${time})</h3>
 	<form method="get" action="accountMonth">
@@ -37,22 +42,26 @@
 	</table>
 </form>
 <form>	
-		<table border ="1">
+		<table class="list" border ="1">
 			
 			<tr>
-				<th>일자</th>
-				<th>일간 수익</th>
-				<th>일간 사용 시간</th>
+				<th>일자</th>	
 			</tr>
-			<%-- <c:forEach var="mList" items="${mList}"> --%>
-			<c:forEach var="mPrice" items="${mPrice}">
+			 <c:forEach var="mList" items="${mList}">
 			<tr>
-				<td>0</td>		
-				<td>${mPrice.price}</td>			
-				<td>0</td>		
+				<td>${mList.date}</td>							
 			</tr>
-		<%-- </c:forEach> --%>
-		</c:forEach>
+		 </c:forEach>		
+		</table>
+		<table class="list" border ="1">
+			<tr>	
+				<th>일간 수익</th>
+			</tr>
+			 <c:forEach var="mPrice" items="${mPrice}">	
+			<tr>
+				<td>${mPrice.price}</td>	
+			</tr>
+		 </c:forEach>		
 		</table>
 		
 		<table border="1">

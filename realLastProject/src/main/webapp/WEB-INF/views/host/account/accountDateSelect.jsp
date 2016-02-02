@@ -45,13 +45,15 @@
 				<th>일간 사용 시간</th>
 			</tr>
 			<c:forEach var="selList" items="${selList}">
+			<c:forEach var="selPrice" items="${selPrice}">
 			<tr>
 				<td>${selList.date}</td>	
-				<%-- <c:forEach var="mPrice" items="${mPrice}">
-				<td>${mPrice.price}</td>
-				</c:forEach> --%>
+				
+				<td>${selPrice.price}</td>
+				 
 				<td>0</td>		
 			</tr>
+		</c:forEach>
 		</c:forEach>
 		</table>
 		

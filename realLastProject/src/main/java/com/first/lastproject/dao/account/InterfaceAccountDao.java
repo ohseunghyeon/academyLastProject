@@ -19,5 +19,7 @@ public interface InterfaceAccountDao {
 	public AccountDto getSelectTotalAccount(String startday, String endday);
 
 	public List<AccountDto> getSelectAccountDays(String startday, String endday);
+	
+	public List<AccountDto> getSelectAccountPrice(String startday, String endday);
 
 }

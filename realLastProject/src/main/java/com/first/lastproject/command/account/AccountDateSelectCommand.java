@@ -1,6 +1,5 @@
 package com.first.lastproject.command.account;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +25,12 @@ public class AccountDateSelectCommand implements AccountCommand {
 		String startday = request.getParameter("startday");
 		String endday = request.getParameter("endday");
 		selList = dao.getSelectAccountDays(startday, endday);
+		selPrice = dao.getSelectAccountPrice(startday, endday);
 		selTotal = dao.getSelectTotalAccount(startday, endday);
 		System.out.println(selTotal);
 		model.addAttribute("selList", selList);
 		model.addAttribute("selTotal", selTotal);
+		model.addAttribute("selPrice", selPrice);
 		model.addAttribute("startday", startday);
 		model.addAttribute("endday", endday);
 		return "/host/account/accountDateSelect";
