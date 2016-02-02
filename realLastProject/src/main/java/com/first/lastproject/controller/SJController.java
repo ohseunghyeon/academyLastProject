@@ -43,7 +43,7 @@ public class SJController {
 	@RequestMapping("/ingredientModifyForm")
 	public String modifyForm(Model model) {
 		System.out.println("ingredientModifyForm()");
-		return "host/stock/modifyForm";
+		return "host/stock/ingredientModifyForm";
 	}
 
 	@RequestMapping("/ingredientModifyPro")
@@ -59,8 +59,8 @@ public class SJController {
 
 	@RequestMapping("/foodModifyForm")
 	public String foodModifyForm(Model model) {
-		System.out.println("foodmodifyForm()");
-		return "host/stock/foodmodifyForm";
+		System.out.println("foodModifyForm()");
+		return "host/stock/foodModifyForm";
 	}
 
 	@RequestMapping("/foodModifyPro")
@@ -101,7 +101,7 @@ public class SJController {
 	@RequestMapping("/writePro")
 	public String writePro(HttpServletRequest request, Model model) {
 		System.out.println("writePro()");
-
+		
 		model.addAttribute("request", request);
 		BoardCommand command = new BoardWriteProCommand();
 		String viewname = command.execute(model);

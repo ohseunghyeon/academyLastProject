@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.first.lastproject.dao.board.BoardDao"%>
@@ -42,7 +43,7 @@
 				 	<c:if test="${dto.re_level >0 }">
 				 		<img src="${project}images/re.gif" border="0" width="20" height="15">
 				 	</c:if>
-				 	<a href="contentForm?num=${dto.num}&pageNum=${pageNum}&number=${number+1}">${dto.subject }</a>
+				 	<a href="contentForm?num=${dto.num}&pageNum=${pageNum}&number=${number+1}">${dto.subject}</a>
 				 	<c:if test="${dto.readcount >20}">
 				 		<img src="${project}images/hot.gif" border="0" width="20" height="15">
 				 	</c:if>

@@ -1,5 +1,6 @@
 package com.first.lastproject.command.board;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.Map;
 
@@ -22,6 +23,12 @@ public class BoardWriteProCommand implements BoardCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
 		BoardDto dto = new BoardDto();
 		dto.setWriter(request.getParameter("writer"));
 		dto.setEmail(request.getParameter("email"));
@@ -37,16 +44,16 @@ public class BoardWriteProCommand implements BoardCommand {
 		
 		InterfaceBoardDao dao = BoardDao.getInstance();
 		InterfaceMemberDao memberDao = MemberDao.getInstance();
-		int result = dao.writeArticle(dto);
+		int writeResult = dao.writeArticle(dto);
 		
 		String id = (String) request.getSession().getAttribute("id");
 		MemberDto memberDto = memberDao.getMember(id);
 		
 		if(memberDto.getGet_coupon()==0){
-			int couponCount = memberDao.makeCoupon(id);
-			model.addAttribute("couponCount", couponCount);
+			int makeCouponResult = memberDao.makeCoupon(id);
+			model.addAttribute("makeCouponResult", makeCouponResult);
 		}
-		model.addAttribute("result", result);
+		model.addAttribute("writeResult", writeResult);
 		
 		return "board/writePro";
 	}

@@ -10,10 +10,14 @@ public interface InterfaceAccountDao {
 
 	public AccountDto getDayTotalAccount();
 
-	public List<AccountDto> getMonthAccountDays();
+	public List<AccountDto> getMonthAccountDays(int monlist);
 	
-	public List<AccountDto> getMonthAccountPrice();
+	public List<AccountDto> getMonthAccountPrice(int monlist);
 
-	public AccountDto getMonthTotalAccount();
+	public AccountDto getMonthTotalAccount(int monlist);
+
+	public AccountDto getSelectTotalAccount(String startday, String endday);
+
+	public List<AccountDto> getSelectAccountDays(String startday, String endday);
 
 }

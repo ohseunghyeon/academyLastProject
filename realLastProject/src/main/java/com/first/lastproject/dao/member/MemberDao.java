@@ -185,6 +185,13 @@ public class MemberDao implements InterfaceMemberDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			count = pstmt.executeUpdate();
+			if (count == 1) {
+				sql = "UPDATE p_user SET get_coupon = 1 WHERE id = ?";
+				pstmt.close();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				count = pstmt.executeUpdate();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -208,13 +215,12 @@ public class MemberDao implements InterfaceMemberDao {
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "select coupon_code from p_coupon where id=?";
+			String sql = "SELECT coupon_num FROM p_coupon WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-
 			if (rs.next()) {
-				coupon_code = rs.getInt("coupon_code");
+				coupon_code = rs.getInt("coupon_num");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -16,6 +16,6 @@
 	</c:if>
 	<c:if test="${result !=0 }">
 		<!-- 작성 성공 -->
-		<c:redirect url="list?pageNum=${pageNum}" />
+		<c:redirect url="boardList?pageNum=${pageNum}" />
 	</c:if>
 </html>

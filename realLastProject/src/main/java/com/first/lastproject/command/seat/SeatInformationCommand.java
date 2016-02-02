@@ -20,7 +20,6 @@ public class SeatInformationCommand implements SeatCommand {
 		
 		InterfaceSeatDao seatDao = SeatDao.getInstance();
 		OrderDto orderDto = new OrderDto();
-		
 		int seat_num = Integer.parseInt(request.getParameter("seat_num"));
 		orderDto = seatDao.seatInformation(seat_num);
 		

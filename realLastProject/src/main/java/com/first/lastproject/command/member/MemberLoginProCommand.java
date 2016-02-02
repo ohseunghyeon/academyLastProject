@@ -25,7 +25,6 @@ public class MemberLoginProCommand implements MemberCommand {
 			MemberDto memberDto = memberDao.getMember(id);
 			request.getSession().setAttribute("mileage", memberDto.getMileage());
 			request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
-			model.addAttribute("result", result);	//정남아 이 부분은 왜 해놓은 거야?
 			return "redirect:/seatList";
 
 		} else if(result == -1) {

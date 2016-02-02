@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
-<h3>정산 페이지(${time})</h3>
-<form method="get" action="accountMonth">
+<h3>정산 페이지(${startday} ~ ${endday})</h3>
+<form method="get" action="accountMonth">	
 	<table>
 		<tr>
 			<td><input type="button" value="일간"
@@ -37,33 +37,32 @@
 	</table>
 </form>
 <form>
-	<table border="1">
-
-		<tr>
-			<th>주문번호</th>
-			<th>좌석번호</th>
-			<th>주문시간</th>
-			<th>사용시간</th>
-			<th>가격</th>
-		</tr>
-		<c:forEach var="dayList" items="${list}">
+	<table border ="1">
+			
 			<tr>
-				<td>${dayList.order_id}</td>
-				<td>${dayList.seat_num}</td>
-				<td>${dayList.order_time}</td>
-				<td>${dayList.used_time}</td>
-				<td>${dayList.price}</td>
+				<th>일자</th>
+				<th>일간 수익</th>
+				<th>일간 사용 시간</th>
+			</tr>
+			<c:forEach var="selList" items="${selList}">
+			<tr>
+				<td>${selList.date}</td>	
+				<%-- <c:forEach var="mPrice" items="${mPrice}">
+				<td>${mPrice.price}</td>
+				</c:forEach> --%>
+				<td>0</td>		
 			</tr>
 		</c:forEach>
-	</table>
-	<c:set var="dto" value="${dto}" />
-	<table border="1">
-		<tr>
-			<th>총 가격</th>
-		</tr>
-		<tr>
-			<td>${dto.total_price}</td>
-		</tr>
-	</table>
+		</table>
+		
+		<table border="1">
+			<tr>
+				<th>총 가격</th>
+			</tr>
+			<c:set var="selTotal" value="${selTotal}" />
+			<tr>
+				<td>${selTotal.total_price}</td>
+			</tr>	
+		</table>
 </form>
 <jsp:include page="../../menu/hostFooter.jsp" flush="false" />

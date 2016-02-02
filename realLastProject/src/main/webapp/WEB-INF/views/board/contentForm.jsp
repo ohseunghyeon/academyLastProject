@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.first.lastproject.dto.BoardDto" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <%@ page import="java.text.SimpleDateFormat" %>
 <jsp:include page="../menu/guestHeader.jsp" flush="false"/>
 <h3><p class="text-center">WRITE</p></h3>
@@ -18,7 +19,7 @@
 			<td style="width: 150px" align="center"><p class="text-center">${dto.readcount}</p></td>
 		</tr>
 		<tr>
-		<th><p class="text-center bg-warning">작성자</p></th>
+		<th><input type="hidden" name="id" value="${sessionScope.id}"><p class="text-center bg-warning">작성자</p></th>
 		<td align="center"><p class="text-center">${dto.writer}</p></td>
 		<th><p class="text-center bg-warning">작성일</p></th>
 		<td align="center"><p class="text-center">

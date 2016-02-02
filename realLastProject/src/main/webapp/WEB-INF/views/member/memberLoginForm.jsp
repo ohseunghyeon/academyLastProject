@@ -5,19 +5,22 @@
 <title>로그인 재시도 화면</title>
 </head>
 
-
-<body>
+<div class="container-fluid">
 <form method="post" action="memberLoginPro">
-	<fieldset>
-		<legend>로그인에 실패하였습니다. 
+		<tabel class="text-uppercase; text-danger">
+		<h4><p class="text-center"><mark>로그인에 실패하였습니다.</mark></p></h4>
 		<c:if test="${result != -1}">
-		아이디를 다시 확인하세요.
+		<h5><p class="text-center">아이디를 다시 확인하세요.</p></h5>
 		</c:if>
 		<c:if test="${result == -1}">
-		비밀번호를 다시 확인하세요.
+		<h5><p class="text-center">비밀번호를 다시 확인하세요.</p></h5>
 		</c:if>
-		</legend>
-			<table class="member">
+		</tabel>
+ <div class="container-fluid">
+		<div class="row">
+ 		<div class="col-sm-4" ></div>
+ 		 <div class="col-sm-4" ><br>
+			<table class="table table-striped table-bordered table-hover table-condensed text-center bg-warning" >
 				<tr>
 					<th>ID</th>
 					<td>
@@ -29,17 +32,14 @@
 						<input class="input" type="password" name="passwd" maxlength="10">
 					</td>	
 				</tr>
-	
 			</table>
-		<table class="button">
-		<tr>
-			<td>
-				<input type="submit" value="로그인" >
-				<input type="reset" value="취소">
-				</td>
-		</tr>
-		</table>
-	</fieldset>
+			<div class="pull-right">
+				<button type="submit" class="btn btn-warning">로그인</button>
+				<button type="reset" class="btn btn-warning">취소</button>
+			</div>
+		<div class="col-sm-4" ></div>
+		</div>
+		</div>
+		</div>
 	</form>
-</body>
-</html>
+</div>

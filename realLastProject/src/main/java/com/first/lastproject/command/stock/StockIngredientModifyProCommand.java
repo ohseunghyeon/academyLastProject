@@ -26,6 +26,6 @@ public class StockIngredientModifyProCommand implements StockCommand {
 		
 		model.addAttribute("ingredientModifyResult", result);
 
-		return "host/sotck/ingredientModifyPro";
+		return "host/stock/ingredientModifyPro";
 	}
 }

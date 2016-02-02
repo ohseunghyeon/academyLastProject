@@ -1,32 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>디저트 재고 수량 수정 페이지</title>
-</head>
+<jsp:include page="../../menu/hostHeader.jsp" flush="false" />
 
-<h2>디저트 재고 수량 수정 페이지</h2>
-<body>
+<h2><p class="text-center">Dessert Modify</p></h2>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-4 sidenav">
+    </div>
+    <div class="col-sm-4 text-left"> 
 	<form action="foodModifyPro" method="post">
-		<table>
-			<tr>
-				<th colspan="2">수정정보를 입력하세요.</th>
+		<table  class="table table-striped table-bordered table-hover table-condensed text-center" >
+			<tr class="info">
+				<th colspan="2"><h4><p class="text-center">수정 정보를 입력하세요.</p></h4></th>
 			</tr>
 			<tr>
-				<th>재고수량</th>
+				<th><h4><p class="text-center">재고수량</p></h4></th>
 				<td>
-					<input type="hidden" name="food_code" value="${param.food_code}">
-					<input class="input" type="number" name="food_num" min="0" max="999" value="${param.food_num}">
+				<h4><input type="hidden" name="food_code" value="${param.food_code}"></h4>
+				<h4><input class="input" type="number" name="food_num" min="0" max="999" value="${param.food_num}"></h4>
 				</td>
 			</tr>
-			<tr>
+			<tr class="info">
 				<th colspan="2">
-					<input class="inputbutton" type="submit" value="수정확인">
-					<input class="inputbutton" type="button" value="수정취소" 
-						onclick="window.location='ingredient'">
+				<h4><p class="text-center">
+				<button type="submit" class="btn btn-warning">수정확인
+				</button>
+				<button type="button" class="btn btn-warning" onclick="window.location='ingredient'">수정취소
+				</button></p></h4>
 				</th>
 			</tr>
 		</table>
 	</form>
-</body>
-
-</html>
+</div>
+</div>
+</div>
+<jsp:include page="../../menu/hostFooter.jsp" flush="false" />
