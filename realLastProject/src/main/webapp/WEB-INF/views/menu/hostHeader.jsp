@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>관리자 화면</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -29,14 +29,14 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#"><h4>Home</h4></a></li>
-      <li><a href=" "><h4>좌석</h4></a></li>
-      <li><a href=" "><h4>주문</h4></a></li>
-      <li><a href=" "><h4>재고</h4></a></li>
-       <li><a href=" "><h4>정산</h4></a></li>
-      <li><a href=" "><h4>게시판</h4></a></li>
+      <li><a href="seatList"><h4>좌석</h4></a></li>
+      <li><a href="hostOrderList"><h4>주문</h4></a></li>
+      <li><a href="ingredient"><h4>재고</h4></a></li>
+       <li><a href="accountDay"><h4>정산</h4></a></li>
+      <li><a href="boardList"><h4>게시판</h4></a></li>
     </ul>
      <ul class="nav navbar-nav navbar-right">
-      <li><a href=" "><h4><span class="glyphicon glyphicon-log-in"></span> Logout</h4></a></li>
+      <li><a href="memberLogout"><h4><span class="glyphicon glyphicon-log-out"></span> Logout</h4></a></li>
     </ul>
   </div>
 </nav>

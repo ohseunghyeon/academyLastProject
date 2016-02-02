@@ -68,3 +68,4 @@
 </div>
 </html>
 <jsp:include page="../../menu/guestFooter.jsp" flush="false" />
+<jsp:include page="../../menu/hostFooter.jsp" flush="false" />

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-
+<jsp:include page="../../menu/hostHeader.jsp" flush="false" />
     <h3>정산 페이지(${time})</h3>
 	<form method="get" action="accountMonth">
 	<table>
@@ -65,3 +65,4 @@
 			</tr>	
 		</table>
 	</form>
+	<jsp:include page="../../menu/hostFooter.jsp" flush="false" />

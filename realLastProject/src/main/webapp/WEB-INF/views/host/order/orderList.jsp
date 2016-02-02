@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="../../menu/hostHeader.jsp" flush="false" />
 <head>
 <script type="text/javascript">
 	function orderDoneConfirm(order_id) {
@@ -14,15 +15,7 @@
 </script>
 </head>
 <body>
-	<div id="nav">
-		<p>CAFE SASAEG</p>
-		<ul>
-			<li><a href="seatList">좌석 </a></li>
 
-			<li><a href="hostOrderList">주문 </a></li>
-
-		</ul>
-	</div>
 	<fieldset>
 		<legend>
 			<font color="orange"><b>OrderList</b></font>
@@ -54,3 +47,4 @@
 		</table>
 	</fieldset>
 </body>
+<jsp:include page="../../menu/hostFooter.jsp" flush="false" />

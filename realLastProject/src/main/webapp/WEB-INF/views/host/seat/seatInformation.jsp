@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.sql.*"%>
-
+<jsp:include page="../../menu/hostHeader.jsp" flush="false" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,3 +31,4 @@
 	</div>
 </body>
 </html>
+<jsp:include page="../../menu/hostFooter.jsp" flush="false" />
