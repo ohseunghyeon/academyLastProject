@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.first.lastproject.command.account.AccountCommand;
+import com.first.lastproject.command.account.AccountDateSelectCommand;
 import com.first.lastproject.command.account.AccountDayCommand;
+import com.first.lastproject.command.account.AccountMonthCommand;
 import com.first.lastproject.command.member.HostLoginProCommand;
 import com.first.lastproject.command.member.MemberCommand;
 import com.first.lastproject.command.member.MemberLoginFormCommand;
@@ -115,7 +117,15 @@ public class JNController {
 	@RequestMapping("/accountMonth")
 	public String accountMonth(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		AccountCommand command = new AccountDayCommand();
+		AccountCommand command = new AccountMonthCommand();
+		String viewname = command.execute(model);
+		return viewname;
+	}
+	
+	@RequestMapping("/accountDateSelect")
+	public String accountDateSelect(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		AccountCommand command = new AccountDateSelectCommand();
 		String viewname = command.execute(model);
 		return viewname;
 	}

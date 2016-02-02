@@ -2,7 +2,7 @@ package com.first.lastproject.command.account;
 
 import org.springframework.ui.Model;
 
-public class AccountDateselectCommand implements AccountCommand {
+public class AccountDateSelectCommand implements AccountCommand {
 
 	@Override
 	public String execute(Model model) {

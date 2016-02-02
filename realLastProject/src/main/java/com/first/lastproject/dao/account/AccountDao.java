@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class AccountDao implements InterfaceAccountDao {
 	}
 
 	@Override
-	public List<AccountDto> getDayAccount() {
+	public List<AccountDto> getDayAccount() {//일간 정산표
 		
 		ArrayList <AccountDto> dayList = null;
 		Connection con = null;
@@ -83,7 +84,7 @@ public class AccountDao implements InterfaceAccountDao {
 	}
 
 	@Override
-	public AccountDto getDayTotalAccount() {
+	public AccountDto getDayTotalAccount() {//일간 총 금액 및 시간표
 		
 		AccountDto dto = new AccountDto();
 		Connection con = null;
@@ -113,18 +114,14 @@ public class AccountDao implements InterfaceAccountDao {
 	}
 
 	@Override
-	public List<AccountDto> getMonthAccountDays() {
+	public List<AccountDto> getMonthAccountDays() {//월간 일자
 		ArrayList <AccountDto> monthList = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT TO_DATE(TO_CHAR(SYSDATE, 'yyyymm')|| "
-					+ "LPAD(LEVEL, 2, '0'))DATES"
-					+ "FROM DUAL "
-					+ "CONNECT BY TO_DATE(TO_CHAR(SYSDATE,'YYYYMM')|| '01', 'YYYYMMDD') + LEVEL - 1"
-					+ "<= LAST_DAY(SYSDATE)";
+			String sql = "SELECT TO_DATE(TO_CHAR(SYSDATE, 'yyyymm')|| LPAD(LEVEL, 2, '0'))DATES FROM DUAL CONNECT BY TO_DATE(TO_CHAR(SYSDATE,'YYYYMM')|| '01', 'YYYYMMDD') + LEVEL - 1 <= LAST_DAY(SYSDATE)";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -135,7 +132,7 @@ public class AccountDao implements InterfaceAccountDao {
 				AccountDto dto1 = new AccountDto();
 			dto1.setDate(rs.getTimestamp(1));
 			monthList.add(dto1);
-			System.out.println(monthList);
+			
 			}
 			
 		} catch (SQLException e) {
@@ -153,7 +150,7 @@ public class AccountDao implements InterfaceAccountDao {
 		return monthList;
 	}
 
-	public List<AccountDto> getMonthAccountPrice() {
+	public List<AccountDto> getMonthAccountPrice() {//월간 일자별 총 수익 금액
 		ArrayList <AccountDto> monthprice = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -162,8 +159,8 @@ public class AccountDao implements InterfaceAccountDao {
 			con = dataSource.getConnection();
 			String sql = "SELECT SUM(price) total_price "
 					+ "FROM day_calculate_view WHERE order_time "
-					+ "BETWEEN to_date('2016-?-? 00:00:00', 'yyyy-mm-dd hh24:mi:ss')"
-					+ "AND to_date('2016-?-? 23:59:59', 'yyyy-mm-dd hh24:mi:ss')";
+					+ "BETWEEN to_date('2016-02-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')"
+					+ "AND to_date('2016-02-01 23:59:59', 'yyyy-mm-dd hh24:mi:ss')";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -174,7 +171,7 @@ public class AccountDao implements InterfaceAccountDao {
 				AccountDto dto2 = new AccountDto();
 			dto2.setPrice(1);
 			monthprice.add(dto2);
-			System.out.println(monthprice);
+		
 			}
 			
 		} catch (SQLException e) {
@@ -192,20 +189,24 @@ public class AccountDao implements InterfaceAccountDao {
 		return monthprice;
 	}
 	
-	public AccountDto getMonthTotalAccount() {
+	public AccountDto getMonthTotalAccount(int monlist) {//월간 총 수익 금액
 		
 		AccountDto monPriceDto = new AccountDto();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println(monlist);
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT SUM(price) total_price FROM day_calculate_view "
-					+ "WHERE order_time between to_date('2016-?-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')"
-					+ "AND to_date('2016-?-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')";
+			String sql = "SELECT SUM(price) FROM day_calculate_view"
+					+ "WHERE order_time between to_date('2016?01 00:00:00', 'yyyymmdd hh24:mi:ss')"
+					+ "AND to_date('2016?31 23:59:59', 'yyyymmdd hh24:mi:ss')";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, monlist);
+			pstmt.setInt(2, monlist);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			
+			if(rs.next()) {
 				monPriceDto.setTotal_price(rs.getInt(1));
 			}
 		} catch (SQLException e) {
