@@ -33,7 +33,22 @@
 		<div class="col-sm-6 text-center">
 			<form>
 				<table class="table table-hover">
-					<c:forEach var="goodslist" items="${goodslist}">
+					<c:forEach var="goodslist" items="${goodslist}" begin="0" end="9">
+						<tr>
+							<td><input type="checkbox" name="food_code"
+								value="${goodslist.food_code}"></td>
+							<td><a onclick="getinbag(${goodslist.food_code})">${goodslist.food_name}</a></td>
+							<td>${goodslist.price}</td>
+							<td>${goodslist.sold_out}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</form>
+		</div>
+		<div class="col-sm-6 text-center">
+			<form>
+				<table class="table table-hover">
+					<c:forEach var="goodslist" items="${goodslist}" begin="10" end="19">
 						<tr>
 							<td><input type="checkbox" name="food_code"
 								value="${goodslist.food_code}"></td>
@@ -47,21 +62,9 @@
 		</div>
 		<div class="col-sm-6 text-center">
 			<form action="goodsListPro" name="bagform">
-				<!-- 
-					<tr>
-						<td>장바구니</td>
-					</tr>
-					<tr>
-						<td><input type="hidden" name="food_code" value="3">
-							<input type="text" value="아이스아메리카노"> <input type="number"
-							name="food_num" value="2"></td>
-
-						<td></td>
-					</tr>
-				-->
-				<input type="submit" value="전송">
 				<table class="table table-hover" id="shoppingBag">
 				</table> 
+				<input type="submit" value="결제화면으로">
 			</form>
 		</div>
 	</div>
