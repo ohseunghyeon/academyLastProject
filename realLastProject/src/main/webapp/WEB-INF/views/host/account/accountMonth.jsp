@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
-    <h3>정산 페이지(${time})</h3>
+    <h3>정산 페이지(2016년 ${monlist}월)</h3>
 	<form method="get" action="accountMonth">
 	<table>
 		<tr>
@@ -39,23 +39,22 @@
 <form>	
 		<table border ="1">
 		<c:forEach var="monthlist" items="${MList}">
-		<%-- <c:forEach var="monthprice" items="${MPrice}">--%>
+		 <c:forEach var="monthprice" items="${MPrice}"> 
 			<tr>
 				<th>일자</th>
-				<th>일간 사용 시간</th>
+				<th>일간 사용 시간</th> 
 				<th>일간 수익</th>
 				
 			</tr>
 			<tr>
 				<td>${monthlist.date}</td>
 				<td></td>
-				<td><%--${monthprice.price} --%></td>
+				 <td>${monthprice.price}</td> 
 					
 			</tr>
+	 	</c:forEach>
 		</c:forEach>
-		<%--</c:forEach>--%>
 		</table>
-		<c:set var="mTotal" value="${mTotal}" />
 		<table border="1">
 			<tr>
 				<th>총 가격</th>
@@ -63,5 +62,5 @@
 			<tr>
 				<td>${mTotal.total_price}</td>
 			</tr>	
-		</table>
+		</table> 
 	</form>

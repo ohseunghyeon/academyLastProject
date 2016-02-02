@@ -30,6 +30,7 @@ public class AccountMonthCommand implements AccountCommand {
 		model.addAttribute("mList", mList);
 		model.addAttribute("mPrice", mPrice);
 		model.addAttribute("mTotal", mTotal);
+		model.addAttribute("monlist", monlist);
 		return "/host/account/accountMonth";
 	}
 
