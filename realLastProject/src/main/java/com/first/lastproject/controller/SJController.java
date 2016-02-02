@@ -101,7 +101,7 @@ public class SJController {
 	@RequestMapping("/writePro")
 	public String writePro(HttpServletRequest request, Model model) {
 		System.out.println("writePro()");
-
+		
 		model.addAttribute("request", request);
 		BoardCommand command = new BoardWriteProCommand();
 		String viewname = command.execute(model);

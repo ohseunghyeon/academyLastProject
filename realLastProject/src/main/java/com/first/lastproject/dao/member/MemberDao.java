@@ -185,6 +185,13 @@ public class MemberDao implements InterfaceMemberDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			count = pstmt.executeUpdate();
+			if (count == 1) {
+				sql = "UPDATE p_user SET get_coupon = 1 WHERE id = ?";
+				pstmt.close();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				count = pstmt.executeUpdate();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

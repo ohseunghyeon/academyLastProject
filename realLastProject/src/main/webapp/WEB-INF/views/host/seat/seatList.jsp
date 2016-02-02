@@ -4,11 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.sql.*"%>
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+<head>
 <style>
 #red {
 	background: red;
@@ -18,6 +15,7 @@
 	background: blue;
 }
 </style>
+</head>
 <body>
 	<div id="wrap">
 		<table align="center">
