@@ -74,7 +74,6 @@ public class SeatDao implements InterfaceSeatDao {
 	}
 
 	public OrderDto seatInformation(int seat_num) {
-
 		OrderDto orderDto = new OrderDto();
 		Connection con = null;
 		PreparedStatement pstmt = null;

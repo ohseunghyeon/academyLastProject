@@ -59,12 +59,14 @@ public class FoodDao implements InterfaceFoodDao {
 				goods.setFood_num(rs.getInt("food_num"));
 				goods.setSold_out(0); // 매진 아님
 				if (rs.getInt("food_num") < 0) { // 생산품의 경우
-					sql = "select ingre_num from p_food f, p_recipe r, p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code = ? order by f.food_code";
+					//음료만 지나오는 거 확인.
+					sql = "SELECT ingre_num FROM p_food f, p_recipe r, p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code = ? order by f.food_code";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, goods.getFood_code());
 					rs2 = pstmt.executeQuery();
-					while (rs2.next()) {
-						if (rs2.getInt("ingre_num") == 0) {
+					while (rs2.next()) {						
+						/* if (rs2.getInt("ingre_num") == 1) { 주의 !!! 원래는 == 0이 와야한다. 재료가 0개 미만이 될 수 없으니까. 근데 매진된 상품의 구매를 막는 로직이 아직 없어 임시로 도입한다! */
+						if (rs2.getInt("ingre_num") < 1) {
 							goods.setSold_out(1);
 						}
 					}
