@@ -122,7 +122,7 @@ public class AccountDao implements InterfaceAccountDao {
 		try {
 			con = dataSource.getConnection();
 			String sql = "SELECT * FROM "
-					+ "(SELECT (TO_DATE (?, 'YYYY-MM-DD') + LEVEL - 1)'date' "
+					+ "(SELECT(TO_DATE (?, 'YYYY-MM-DD') + LEVEL - 1) "
 					+ "FROM DUAL "
 					+ "CONNECT BY (TO_DATE (?, 'YYYY-MM-DD') + LEVEL - 1) < "
 					+ "TO_DATE (?, 'YYYY-MM-DD'))";
@@ -137,11 +137,11 @@ public class AccountDao implements InterfaceAccountDao {
 					monthList = new ArrayList<AccountDto>();
 				}
 				AccountDto dto1 = new AccountDto();
-			dto1.setDate(rs.getString(1));
+			dto1.setDate(rs.getTimestamp(1));
+			System.out.println(dto1);
 			monthList.add(dto1);
-			
 			}
-			
+			System.out.println(monthList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -157,20 +157,25 @@ public class AccountDao implements InterfaceAccountDao {
 		return monthList;
 	}
 
-	public List<AccountDto> getMonthAccountPrice() {//월간 일자별 총 수익 금액
+	public List<AccountDto> getMonthAccountPrice(int monlist) {//월간 일자별 총 수익 금액
 		ArrayList <AccountDto> monthprice = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		Calendar today = Calendar.getInstance();
+		int i = 1;
 		try {
 			con = dataSource.getConnection();
 			String sql = "SELECT SUM(price) total_price "
 					+ "FROM day_calculate_view WHERE order_time "
-					+ "BETWEEN to_date('2016-02-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')"
-					+ "AND to_date('2016-02-01 23:59:59', 'yyyy-mm-dd hh24:mi:ss')";
+					+ "BETWEEN to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
+					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
 			pstmt = con.prepareStatement(sql);
+			for(i = 1; i < today.getActualMaximum(Calendar.DATE); i++) {
+			pstmt.setString(1, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-"+(i++)+ "00:00:00");
+			pstmt.setString(2, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-"+(++i)+ "00:00:00");
+	
 			rs = pstmt.executeQuery();
-			
 			while(rs.next()) {
 				if(monthprice == null) {
 					monthprice = new ArrayList<AccountDto>();
@@ -178,9 +183,10 @@ public class AccountDao implements InterfaceAccountDao {
 				AccountDto dto2 = new AccountDto();
 			dto2.setPrice(1);
 			monthprice.add(dto2);
-		
+			continue;
 			}
-			
+			rs.close();
+		}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -202,17 +208,18 @@ public class AccountDao implements InterfaceAccountDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		Calendar today = Calendar.getInstance();
 		System.out.println(monlist);
-		System.out.println(Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-01 00:00:00");
-		System.out.println(Calendar.getInstance().get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
+		System.out.println(today.get(Calendar.YEAR)+"-"+monlist+"-01 00:00:00");
+		System.out.println(today.get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
 		try {
 			con = dataSource.getConnection();
 			String sql = "SELECT SUM(price) FROM day_calculate_view "
 					+ "WHERE order_time between to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
 					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-01 00:00:00");
-			pstmt.setString(2, Calendar.getInstance().get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
+			pstmt.setString(1, today.get(Calendar.YEAR)+"-"+monlist+"-01 00:00:00");
+			pstmt.setString(2, today.get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -232,9 +239,53 @@ public class AccountDao implements InterfaceAccountDao {
 		}
 		return monPriceDto;
 	}
+	
+	@Override
+	public List<AccountDto> getSelectAccountDays(String startday, String endday) {//월간 일자
+		ArrayList <AccountDto> selectList = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT * FROM "
+					+ "(SELECT(TO_DATE (?, 'YYYY-MM-DD') + LEVEL - 1) "
+					+ "FROM DUAL "
+					+ "CONNECT BY (TO_DATE (?, 'YYYY-MM-DD') + LEVEL - 1) <= "
+					+ "TO_DATE (?, 'YYYY-MM-DD'))";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, startday);
+			pstmt.setString(2, startday);
+			pstmt.setString(3, endday);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				if(selectList == null) {
+					selectList = new ArrayList<AccountDto>();
+				}
+				AccountDto dto = new AccountDto();
+			dto.setDate(rs.getTimestamp(1));
+			System.out.println(dto);
+			selectList.add(dto);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		return selectList;
+	}
 
 	@Override
-	public AccountDto getSelectTotalAccount(String startday, String endday) {
+	public AccountDto getSelectTotalAccount(String startday, String endday) {//기간 총 수익 금액
 		AccountDto selPriceDto = new AccountDto();
 		Connection con = null;
 		PreparedStatement pstmt = null;

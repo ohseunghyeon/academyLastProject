@@ -25,7 +25,7 @@ public class AccountMonthCommand implements AccountCommand {
 		int monlist = Integer.parseInt(request.getParameter("monlist"));
 		
 		mList = dao.getMonthAccountDays(monlist);
-		mPrice = dao.getMonthAccountPrice();
+		mPrice = dao.getMonthAccountPrice(monlist);
 		mTotal = dao.getMonthTotalAccount(monlist);
 		System.out.println(mList);
 		model.addAttribute("mList", mList);

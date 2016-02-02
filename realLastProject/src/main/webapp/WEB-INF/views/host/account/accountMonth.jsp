@@ -38,34 +38,28 @@
 </form>
 <form>	
 		<table border ="1">
-		<c:forEach var="monthlist" items="${MList}">
-		<%-- <c:forEach var="monthprice" items="${MPrice}">--%>
+			
 			<tr>
 				<th>일자</th>
-				<th>일간 사용 시간</th>
 				<th>일간 수익</th>
+				<th>일간 사용 시간</th>
 			</tr>
+			<c:forEach var="mList" items="${mList}">
 			<tr>
-
-				<td>${monthlist.date}</td>
-				<td></td>
-				<td><%--${monthprice.price} --%></td>
-					
-			</tr>
-			<tr>
-				<td>0</td>
-				<td>0</td>
+				<td>${mList.date}</td>	
+				<%-- <c:forEach var="mPrice" items="${mPrice}">
+				<td>${mPrice.price}</td>
+				</c:forEach> --%>
 				<td>0</td>		
 			</tr>
-		</c:forEach>	
-	 	<%-- </c:forEach> --%>
-
+		</c:forEach>
 		</table>
-		<c:set var="mTotal" value="${mTotal}" />
+		
 		<table border="1">
 			<tr>
 				<th>총 가격</th>
 			</tr>
+			<c:set var="mTotal" value="${mTotal}" />
 			<tr>
 				<td>${mTotal.total_price}</td>
 			</tr>	

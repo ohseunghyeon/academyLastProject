@@ -12,7 +12,7 @@ public class AccountDto {
 	private String used_time;//Timestamp가 통하지 않음. 다른 방법을 찾아봐야 함. 1/29
 	private Timestamp total_time;
 	private int total_price;
-	private String date;
+	private Timestamp date;
 	
 	public String getOrder_id() {
 		return order_id;
@@ -62,10 +62,10 @@ public class AccountDto {
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
 	}
-	public String getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 }

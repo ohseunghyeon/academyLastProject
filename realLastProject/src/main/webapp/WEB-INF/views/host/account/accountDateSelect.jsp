@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
-
+<h3>정산 페이지(${startday} ~ ${endday})</h3>
 <form method="get" action="accountMonth">	
 	<table>
 		<tr>
@@ -37,6 +37,32 @@
 	</table>
 </form>
 <form>
-
+	<table border ="1">
+			
+			<tr>
+				<th>일자</th>
+				<th>일간 수익</th>
+				<th>일간 사용 시간</th>
+			</tr>
+			<c:forEach var="selList" items="${selList}">
+			<tr>
+				<td>${selList.date}</td>	
+				<%-- <c:forEach var="mPrice" items="${mPrice}">
+				<td>${mPrice.price}</td>
+				</c:forEach> --%>
+				<td>0</td>		
+			</tr>
+		</c:forEach>
+		</table>
+		
+		<table border="1">
+			<tr>
+				<th>총 가격</th>
+			</tr>
+			<c:set var="selTotal" value="${selTotal}" />
+			<tr>
+				<td>${selTotal.total_price}</td>
+			</tr>	
+		</table>
 </form>
 <jsp:include page="../../menu/hostFooter.jsp" flush="false" />
