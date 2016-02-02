@@ -28,9 +28,13 @@ public class JNController {
 		return "/index";
 	}
 
+	@RequestMapping("/memberMain")
+	public String memberMain(Model model) {
+		return "/member/memberMain";
+	}
 	@RequestMapping("/memberRegister")
 	public String memberRegister(Model model) {
-		return "member/memberRegister";
+		return "/member/memberRegister";
 	}	
 		
 	@RequestMapping("/memberRegisterPro")	

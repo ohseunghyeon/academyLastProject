@@ -44,14 +44,14 @@
 				<th>일간 수익</th>
 				<th>일간 사용 시간</th>
 			</tr>
-			<c:forEach var="mList" items="${mList}">
+			<%-- <c:forEach var="mList" items="${mList}"> --%>
+			<c:forEach var="mPrice" items="${mPrice}">
 			<tr>
-				<td>${mList.date}</td>	
-				<%-- <c:forEach var="mPrice" items="${mPrice}">
-				<td>${mPrice.price}</td>
-				</c:forEach> --%>
+				<td>0</td>		
+				<td>${mPrice.price}</td>			
 				<td>0</td>		
 			</tr>
+		<%-- </c:forEach> --%>
 		</c:forEach>
 		</table>
 		

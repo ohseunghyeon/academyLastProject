@@ -166,26 +166,32 @@ public class AccountDao implements InterfaceAccountDao {
 		int i = 1;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT SUM(price) total_price "
+			String sql = "SELECT SUM(price) price "
 					+ "FROM day_calculate_view WHERE order_time "
 					+ "BETWEEN to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
 					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
+			for(i = 1; i <= today.getActualMaximum(Calendar.DATE); i++) {
 			pstmt = con.prepareStatement(sql);
-			for(i = 1; i < today.getActualMaximum(Calendar.DATE); i++) {
-			pstmt.setString(1, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-"+(i++)+ "00:00:00");
-			pstmt.setString(2, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-"+(++i)+ "00:00:00");
-	
+			System.out.println("start=" + today.get(Calendar.YEAR)+"-"+monlist+"-"+(i)+" 00:00:00");
+			System.out.println("end=" + today.get(Calendar.YEAR)+"-"+monlist+"-"+(i)+" 23:59:59");
+			pstmt.setString(1, today.get(Calendar.YEAR)+"-"+monlist+"-"+i+" 00:00:00");
+			if(i < today.getActualMaximum(Calendar.DATE)) {
+			pstmt.setString(2, today.get(Calendar.YEAR)+"-"+monlist+"-"+i+" 23:59:59");
+			} else if(i == today.getActualMaximum(Calendar.DATE)) {
+				pstmt.setString(2, today.get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
+			}
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				if(monthprice == null) {
 					monthprice = new ArrayList<AccountDto>();
 				}
 				AccountDto dto2 = new AccountDto();
-			dto2.setPrice(1);
+			dto2.setPrice(rs.getInt("price"));
 			monthprice.add(dto2);
 			continue;
 			}
-			rs.close();
+			pstmt.close();
 		}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -241,7 +247,7 @@ public class AccountDao implements InterfaceAccountDao {
 	}
 	
 	@Override
-	public List<AccountDto> getSelectAccountDays(String startday, String endday) {//월간 일자
+	public List<AccountDto> getSelectAccountDays(String startday, String endday) {//기간 일자
 		ArrayList <AccountDto> selectList = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
