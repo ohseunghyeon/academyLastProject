@@ -10,7 +10,7 @@ public interface InterfaceAccountDao {
 
 	public AccountDto getDayTotalAccount();
 
-	public List<AccountDto> getMonthAccountDays();
+	public List<AccountDto> getMonthAccountDays(int monlist);
 	
 	public List<AccountDto> getMonthAccountPrice();
 

@@ -114,15 +114,22 @@ public class AccountDao implements InterfaceAccountDao {
 	}
 
 	@Override
-	public List<AccountDto> getMonthAccountDays() {//월간 일자
+	public List<AccountDto> getMonthAccountDays(int monlist) {//월간 일자
 		ArrayList <AccountDto> monthList = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT TO_DATE(TO_CHAR(SYSDATE, 'yyyymm')|| LPAD(LEVEL, 2, '0'))DATES FROM DUAL CONNECT BY TO_DATE(TO_CHAR(SYSDATE,'YYYYMM')|| '01', 'YYYYMMDD') + LEVEL - 1 <= LAST_DAY(SYSDATE)";
+			String sql = "SELECT * FROM "
+					+ "(SELECT (TO_DATE (?, 'YYYY-MM-DD') + LEVEL - 1)'date' "
+					+ "FROM DUAL "
+					+ "CONNECT BY (TO_DATE (?, 'YYYY-MM-DD') + LEVEL - 1) < "
+					+ "TO_DATE (?, 'YYYY-MM-DD'))";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-01");
+			pstmt.setString(2, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-01");
+			pstmt.setString(3, Calendar.getInstance().get(Calendar.YEAR)+"-"+(monlist+1)+"-01");
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -130,7 +137,7 @@ public class AccountDao implements InterfaceAccountDao {
 					monthList = new ArrayList<AccountDto>();
 				}
 				AccountDto dto1 = new AccountDto();
-			dto1.setDate(rs.getTimestamp(1));
+			dto1.setDate(rs.getString(1));
 			monthList.add(dto1);
 			
 			}

@@ -44,16 +44,22 @@
 				<th>일자</th>
 				<th>일간 사용 시간</th>
 				<th>일간 수익</th>
-				
 			</tr>
 			<tr>
+
 				<td>${monthlist.date}</td>
 				<td></td>
 				<td><%--${monthprice.price} --%></td>
 					
 			</tr>
-		</c:forEach>
-		<%--</c:forEach>--%>
+			<tr>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>		
+			</tr>
+		</c:forEach>	
+	 	<%-- </c:forEach> --%>
+
 		</table>
 		<c:set var="mTotal" value="${mTotal}" />
 		<table border="1">
