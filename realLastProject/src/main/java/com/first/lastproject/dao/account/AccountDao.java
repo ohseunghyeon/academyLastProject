@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.naming.Context;
@@ -49,7 +49,7 @@ public class AccountDao implements InterfaceAccountDao {
 			String sql = "SELECT * FROM day_calculate_view "
 					+ "WHERE order_time >= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') "
 					+ "AND order_time < to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd')"
-					+ "ORDER BY order_id ASC";
+					+ " ORDER BY order_id ASC";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			System.out.println(rs);
@@ -196,17 +196,19 @@ public class AccountDao implements InterfaceAccountDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		System.out.println(monlist);
+		System.out.println(Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-01 00:00:00");
+		System.out.println(Calendar.getInstance().get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT SUM(price) FROM day_calculate_view"
-					+ "WHERE order_time between to_date('2016?01 00:00:00', 'yyyymmdd hh24:mi:ss')"
-					+ "AND to_date('2016?31 23:59:59', 'yyyymmdd hh24:mi:ss')";
+			String sql = "SELECT SUM(price) FROM day_calculate_view "
+					+ "WHERE order_time between to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
+					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, monlist);
-			pstmt.setInt(2, monlist);
+			pstmt.setString(1, Calendar.getInstance().get(Calendar.YEAR)+"-"+monlist+"-01 00:00:00");
+			pstmt.setString(2, Calendar.getInstance().get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				monPriceDto.setTotal_price(rs.getInt(1));
 			}
 		} catch (SQLException e) {
@@ -222,5 +224,42 @@ public class AccountDao implements InterfaceAccountDao {
 		
 		}
 		return monPriceDto;
+	}
+
+	@Override
+	public AccountDto getSelectTotalAccount(String startday, String endday) {
+		AccountDto selPriceDto = new AccountDto();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println(startday);
+		System.out.println(endday);
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT SUM(price) as total_price FROM day_calculate_view "
+					+ "WHERE order_time between to_date(?, 'yyyy-mm-dd') "
+					+ "AND to_date(?, 'yyyy-mm-dd')";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, startday);
+			pstmt.setString(2, endday);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				selPriceDto.setTotal_price(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		
+		return selPriceDto;
 	}
 }
