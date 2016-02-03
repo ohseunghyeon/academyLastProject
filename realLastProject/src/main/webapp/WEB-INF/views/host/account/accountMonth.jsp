@@ -2,14 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-	.list {
+	#list {
 	display:inline;
+	width : 240px;
 	}
 </style> 
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
-    <h3>정산 페이지(${time})</h3>
+
+<div class="container-fluid">
+
+<h3><p class="text-center">정산<mark><small>${time}</small></mark></p></h3>
+<br><br><br>
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-7">
 	<form method="get" action="accountMonth">
-	<table>
+	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr>
 			<td><input type="button" value="일간"
 				onclick="window.location='accountDay'"></td>
@@ -31,9 +39,8 @@
 				</datalist></td>
 		</tr>
 	</table>
-</form>
-<form method="get" action="accountDateSelect">
-	<table>
+ <form method="get" action="accountDateSelect">
+	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr>
 			<td><input type="submit" value="기간선택"> <input
 				type="date" value="dateselect" name="startday"> ~ <input
@@ -42,7 +49,7 @@
 	</table>
 </form>
 <form>	
-		<table class="list" border ="1">
+		<table class="table table-bordered table-hover table-condensed text-center " id="list" border ="1">
 			
 			<tr>
 				<th>일자</th>	
@@ -53,7 +60,7 @@
 			</tr>
 		 </c:forEach>		
 		</table>
-		<table class="list" border ="1">
+		<table class="table table-bordered table-hover table-condensed text-center " id="list" border ="1">
 			<tr>	
 				<th>일간 수익</th>
 			</tr>
@@ -63,7 +70,7 @@
 			</tr>
 		 </c:forEach>		
 		</table>
-		<table class="list" border = "1">
+		<table class="table table-bordered table-hover table-condensed text-center " id="list" border = "1">
 			<tr>
 				<th>일간 사용 시간</th>
 			</tr>
@@ -71,16 +78,17 @@
 				<td>0</td>	
 			</tr>
 		</table>
-			
-		
-		<table border="1">
-			<tr>
-				<th>총 가격</th>
-			</tr>
-			<c:set var="mTotal" value="${mTotal}" />
-			<tr>
-				<td>${mTotal.total_price}</td>
-			</tr>	
-		</table>
 	</form>
+</div>
+<div class="col-sm-3">
+	<table class="table table-bordered table-hover table-condensed text-center ">
+		<tr>
+			<th style=" background-color:lavender; width : 100px"><h4><p class="text-danger">Total Price</p></h4></th>
+			<c:set var="mTotal" value="${mTotal}" />
+				<td><h4>${mTotal.total_price}</h4></td>
+		</tr>	
+		</table></div>
+<div class="col-sm-1"></div>
+</div>
+</div>
 	<jsp:include page="../../menu/hostFooter.jsp" flush="false" />

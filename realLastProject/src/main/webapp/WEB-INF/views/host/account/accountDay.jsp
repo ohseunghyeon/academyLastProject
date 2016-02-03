@@ -2,13 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
-<h3>정산 페이지(${time})</h3>
+
+<div class="container-fluid">
+
+<h3><p class="text-center">정산<mark><small>${time}</small></mark></p></h3>
+<br><br><br>
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-7">
 <form method="get" action="accountMonth">
-	<table>
-		<tr>
-			<td><input type="button" value="일간"
-				onclick="window.location='accountDay'"></td>
-			<td><input type="submit" value="월간"> 
+	<table class="table table-bordered table-hover table-condensed text-center ">
+		<tr style="background-color:lavender;">
+			<td>
+			<button type="button" class="btn btn-success btn-sm" onclick="window.location='accountDay'">일간</button>
+			<button type="submit" class="btn btn-danger btn-sm">월간</button>
 			<input name="monlist" type="text" list="monthList"> <datalist
 					id="monthList">
 					<option value="01" label="january"></option>
@@ -28,23 +35,25 @@
 	</table>
 </form>
 <form method="get" action="accountDateSelect">
-	<table>
-		<tr>
-			<td><input type="submit" value="기간선택"> <input
+	<table class="table table-bordered table-hover table-condensed text-center ">
+		<tr style="background-color:lavender;">
+			<td>
+			<button type="submit" class="btn btn-info btn-sm">기간선택</button>
+			 <input
 				type="date" value="dateselect" name="startday"> ~ <input
 				type="date" value="dateselect" name="endday"></td>
 		</tr>
 	</table>
 </form>
 <form>
-	<table border="1">
+	<table class="table table-bordered table-hover table-condensed text-center ">
 
-		<tr>
-			<th>주문번호</th>
-			<th>좌석번호</th>
-			<th>주문시간</th>
-			<th>사용시간</th>
-			<th>가격</th>
+		<tr style="background-color:lavender;"> 
+			<th><p class="text-center">주문번호</p></th>
+			<th><p class="text-center">좌석번호</p></th>
+			<th><p class="text-center">주문시간</p></th>
+			<th><p class="text-center">사용시간</p></th>
+			<th><p class="text-center">가격</p></th>
 		</tr>
 		<c:forEach var="dayList" items="${list}">
 			<tr>
@@ -55,15 +64,18 @@
 				<td>${dayList.price}</td>
 			</tr>
 		</c:forEach>
-	</table>
-	<c:set var="dto" value="${dto}" />
-	<table border="1">
-		<tr>
-			<th>총 가격</th>
-		</tr>
-		<tr>
-			<td>${dto.total_price}</td>
-		</tr>
-	</table>
+	</table >
 </form>
+</div>
+<div class="col-sm-3"><c:set var="dto" value="${dto}" />
+	<table class="table table-bordered table-hover table-condensed text-center ">
+		<tr>
+			<th style=" background-color:lavender; width : 100px"><h4><p class="text-danger">Total Price</p></h4></th>
+			<td><h4><mark>${dto.total_price}</mark></h4></td>
+		</tr>
+	</table></div>
+<div class="col-sm-1"></div>
+</div>
+</div>
+<br><br><br>
 <jsp:include page="../../menu/hostFooter.jsp" flush="false" />
