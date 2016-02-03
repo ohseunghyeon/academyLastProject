@@ -41,7 +41,13 @@ public class MemberDao implements InterfaceMemberDao {
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO p_user VALUES (?,?,500,?,?,0,0)";
+			String sql = "INSERT INTO p_user VALUES (?,?,0,?,?,0,0)"; // 아이디,
+																		// 비밀번호,
+																		// 마일리지,
+																		// 전번,
+																		// 이메일,
+																		// 게스트,
+																		// 쿠폰
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPasswd());
@@ -58,6 +64,37 @@ public class MemberDao implements InterfaceMemberDao {
 					con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int check(String id) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT id FROM p_user WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
 			}
 		}
 		return result;
@@ -236,7 +273,7 @@ public class MemberDao implements InterfaceMemberDao {
 		}
 		return coupon_code;
 	}
-	
+
 	@Override
 	public int addMileage(int food_code, String id) {
 		Connection con = null;
@@ -261,7 +298,7 @@ public class MemberDao implements InterfaceMemberDao {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (rs != null) 
+				if (rs != null)
 					rs.close();
 				if (pstmt != null)
 					pstmt.close();

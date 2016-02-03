@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.first.lastproject.command.goods.GoodsCommand;
 import com.first.lastproject.command.goods.GoodsShoppingBagCommand;
+import com.first.lastproject.command.member.MemberCommand;
+import com.first.lastproject.command.member.MemberConfirmIdCommand;
 
 /**
  * Handles requests for the application home page.
@@ -47,6 +49,16 @@ public class HomeController {
 		model.addAttribute("request", request);
 		
 		GoodsCommand command = new GoodsShoppingBagCommand();
+		String viewName = command.execute(model);
+		return viewName;
+	}
+	
+	@RequestMapping("confirmId")
+	public String confirmId(HttpServletRequest request, Model model) {
+		System.out.println("confirmId()");
+		model.addAttribute("request", request);
+		
+		MemberCommand command = new MemberConfirmIdCommand();
 		String viewName = command.execute(model);
 		return viewName;
 	}

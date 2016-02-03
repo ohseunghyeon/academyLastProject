@@ -16,14 +16,18 @@ public class MemberRegisterProCommand implements MemberCommand {
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		
+		//data from memberRegister.jsp
 		MemberDto dto = new MemberDto();
 		dto.setId(request.getParameter("id"));
 		dto.setPasswd(request.getParameter("passwd"));
 		dto.setPhone_number(request.getParameter("phone_number"));
 		dto.setEmail(request.getParameter("email"));
+		
 		InterfaceMemberDao dao = MemberDao.getInstance();
 		int result = dao.addMember(dto);
 		model.addAttribute("result", result);
+		
 		return "member/memberRegisterPro";
 	}
 
