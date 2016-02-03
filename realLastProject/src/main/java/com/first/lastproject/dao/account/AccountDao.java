@@ -386,9 +386,13 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 		int year = Integer.parseInt(startL[0]);
 		int month = Integer.parseInt(startL[1]);
 		int day = Integer.parseInt(startL[2]);
+		int day2 = Integer.parseInt(startL[2]);
+		int day3 = Integer.parseInt(startL[2]);
+		int day4 = Integer.parseInt(startL[2]);
 		int start = Integer.parseInt(startL[0]+startL[1]+startL[2]);
 		long diffDays = 0;
 		today.set(today.get(Calendar.YEAR), month - 1, day);
+		System.out.println(month - 1);
 		
 		   try {
 		        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -411,14 +415,21 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 					+ "FROM day_calculate_view WHERE order_time "
 					+ "BETWEEN to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
 					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
-			for(int i = 1; i <= diffDays; i++) {
+			for(int i = 0; i <= diffDays; i++) {
 			pstmt = con.prepareStatement(sql);
-			System.out.println("start=" + (start++) + " 00:00:00");
-			System.out.println("end=" + (start++) + " 23:59:59");
+			System.out.println("start = " + year + "-" + month + "-" + (day++) + " 00:00:00");
+			System.out.println("end = " + year + "-" + month + "-" + (day2++) + " 23:59:59");
 			
-			pstmt.setString(1, year + " 00:00:00");
-			pstmt.setString(2, (start++) + " 23:59:59");
-	
+			pstmt.setString(1, year + "-" + month + "-" + (day3++) + " 00:00:00");
+			pstmt.setString(2, year + "-" + month + "-" + (day4++) + " 23:59:59");
+			if(day > today.getActualMaximum(Calendar.DATE)) {
+				day = 1;
+				day2 = 1;
+				day3 = 1;
+				day4 = 1;
+				month = month+1;
+				today.set(today.get(Calendar.YEAR), month - 1, day);
+			}
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

@@ -21,7 +21,6 @@ public class AccountDayCommand implements AccountCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String dayDate = request.getParameter("dayDate");
-		System.out.println("dayDate1 = " + dayDate);
 		Date date = new Date();
 		DateFormat dateFormat = null;
 		String formattedDate = null;
@@ -39,11 +38,11 @@ public class AccountDayCommand implements AccountCommand {
 		if (dayDate == null) {
 			list = dao.getDayAccount();
 			dto = dao.getDayTotalAccount();
-			System.out.println("일간 list,dto =" + list + "," + dto);
+			
 		} else {
 			list = dao.getDayAccount(dayDate.substring(0, 10));
 			dto = dao.getDayTotalAccount(dayDate.substring(0, 10));
-			System.out.println("선택 list,dto =" + list + "," + dto);
+			
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
