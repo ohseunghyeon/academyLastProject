@@ -93,7 +93,7 @@
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 		<ul class="pagination pagination-sm">
 		<li class="disable"><c:if test="${i==currentPage}">
-			[${i}]
+			<a>${i}</a>				<!-- 수지야 이 부분이 현재 페이지 숫자인데, 현재 페이지라는 걸 표시하게 해주라 -->
 		</c:if></li>
 		<li><c:if test="${i !=currentPage }">
 			<a href="boardList?pageNum=${i}">${i}</a>
