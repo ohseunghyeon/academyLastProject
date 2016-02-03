@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <style>
 	#list {
 	display:inline;
-	width : 240px;
 	}
 </style> 
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
@@ -19,10 +19,10 @@
 <div class="col-sm-7">
 	<form method="get" action="accountMonth">
 	<table class="table table-bordered table-hover table-condensed text-center ">
-		<tr>
-			<td><input type="button" value="일간"
-				onclick="window.location='accountDay'"></td>
-			<td><input type="submit" value="월간"> 
+		<tr style="background-color:lavender;">
+			<td>
+			<button type="button" class="btn btn-success btn-sm" onclick="window.location='accountDay'">일간</button>
+			<button type="submit" class="btn btn-danger btn-sm">월간</button>
 			<input name="monlist" type="text" list="monthList"> <datalist
 					id="monthList">
 					<option value="01" label="january"></option>
@@ -40,20 +40,20 @@
 				</datalist></td>
 		</tr>
 	</table>
+	</form>
  <form method="get" action="accountDateSelect">
 	<table class="table table-bordered table-hover table-condensed text-center ">
-		<tr>
-			<td><input type="submit" value="기간선택"> <input
+		<tr style="background-color:lavender;" >
+			<td><button type="submit" class="btn btn-info btn-sm">기간선택</button> <input
 				type="date" value="dateselect" name="startday"> ~ <input
 				type="date" value="dateselect" name="endday"></td>
 		</tr>
 	</table>
 </form>
 <form>	
-		<table class="table table-bordered table-hover table-condensed text-center " id="list" border ="1">
-			
-			<tr>
-				<th>일자</th>	
+		<table class="table table-bordered table-hover table-condensed text-center " id="list" border ="1" style="width : 350px">
+			<tr style="background-color:lavender;" >
+				<th><p class="text-center">일자</p></th>	
 			</tr>
 			 <c:forEach var="mList" items="${mList}">
 			<tr>
@@ -61,9 +61,9 @@
 			</tr>
 		 </c:forEach>		
 		</table>
-		<table class="table table-bordered table-hover table-condensed text-center " id="list" border ="1">
-			<tr>	
-				<th>일간 수익</th>
+		<table class="table table-bordered table-hover table-condensed text-center " id="list" border ="1" style="width : 210px">
+			<tr style="background-color:lavender;">	
+				<th><p class="text-center">일간 수익</p></th>
 			</tr>
 			 <c:forEach var="mPrice" items="${mPrice}">	
 			<tr>
@@ -71,9 +71,9 @@
 			</tr>
 		 </c:forEach>		
 		</table>
-		<table class="table table-bordered table-hover table-condensed text-center " id="list" border = "1">
-			<tr>
-				<th>일간 사용 시간</th>
+		<table class="table table-bordered table-hover table-condensed text-center " id="list" border = "1" style="width : 170px">
+			<tr style="background-color:lavender;">
+				<th><p class="text-center">일간 사용 시간</p></th>
 			</tr>
 			<tr>
 				<td>0</td>	
@@ -81,12 +81,12 @@
 		</table>
 	</form>
 </div>
-<div class="col-sm-3">
+<div class="col-sm-3"><br>
 	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr>
 			<th style=" background-color:lavender; width : 100px"><h4><p class="text-danger">Total Price</p></h4></th>
 			<c:set var="mTotal" value="${mTotal}" />
-				<td><h4>${mTotal.total_price}</h4></td>
+				<td><h4><mark>${mTotal.total_price}원</mark></h4></td>
 		</tr>	
 		</table></div>
 <div class="col-sm-1"></div>

@@ -72,7 +72,7 @@
 	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr>
 			<th style=" background-color:lavender; width : 100px"><h4><p class="text-danger">Total Price</p></h4></th>
-			<td><h4><mark>${dto.total_price}</mark></h4></td>
+			<td><h4><mark>${dto.total_price}원</mark></h4></td>
 		</tr>
 	</table></div>
 <div class="col-sm-1"></div>
