@@ -8,9 +8,15 @@
 <c:if test="${sessionScope.id != 'nomember'}">
 <jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 </c:if>
+<jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<body>
+<h3><p class="text-center">Coupon</p></h3>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+    </div>
+    <div class="col-sm-8 text-left"> 
 
 	<div ng-app="" ng-init="quantity=1; price=5000">
 		quantity : <input type="number" ng-model="quantity" maxlength="6">
@@ -113,6 +119,8 @@
 	</form>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-</body>
-</html>
+</div>
+<div class="col-sm-2 sidenav"></div>
+</div>
+</div>
 <jsp:include page="../../menu/guestFooter.jsp" flush="false"/>
