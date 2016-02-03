@@ -22,6 +22,7 @@ public class GoodsListProCommand implements GoodsCommand {
 		String[] food_code = request.getParameterValues("food_code");
 		String[] food_num = request.getParameterValues("food_num");
 		
+		
 		//받아온 코드와 수량을 map에 넣겠다.
 		Map<String, String> shoppingBag = new HashMap<String, String>();
 		for (int i = 0; i < food_code.length; i++) {

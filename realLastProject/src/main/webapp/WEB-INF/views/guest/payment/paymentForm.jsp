@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="/lastproject/resources/angular.js"></script>
+<script type="text/javascript">
+
+function couponPage(){
+	window.open("coupon" ,"manubar=no,width= 500,height=200");
+}
+
+</script>
+</head>
+<!--쿠폰 페이지  -->
+<!--  -->
 
 <c:if test="${sessionScope.id == 'nomember'}">
 <jsp:include page="../../menu/noMemberHeader.jsp" flush="false" />
@@ -8,8 +21,8 @@
 <c:if test="${sessionScope.id != 'nomember'}">
 <jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 </c:if>
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<body>
 <h3><p class="text-center">Coupon</p></h3>
 <div class="container-fluid text-center">    
   <div class="row content">
@@ -17,25 +30,7 @@
     </div>
     <div class="col-sm-8 text-left"> 
 
-	<div ng-app="" ng-init="quantity=1; price=5000">
-		quantity : <input type="number" ng-model="quantity" maxlength="6">
-		price : <input type="number" ng-model="price"> total : {{
-		quantity * price }}
-	</div>
-
-	<table>
-		<%-- <c:forEach var="food" items="${foodList}">
-			<tr>
-				<td><input type="text" value="${food.food_name}"> <input
-					type="text" value="${food.price}"> <input type="number"
-					value="1"></td>
-			</tr>
-		</c:forEach> --%>
-	</table>
-
-
-
-	<form action="paymentFinish" method="post">
+	<form action="paymentFinish" method="post" name="paymentForm">
 		<fieldset id="content">
 			<legend>
 				<font color="orange" size="6"><b>Payment </b></font>
@@ -78,37 +73,47 @@
 						<td><input type="text" name="coupon" size="10"
 							value="쿠폰번호 입력" /></td>
 						<td><input class="inputbutton" type="button" name="coupon1"
-							value="쿠폰 조회" onclick="window.location='coupon'" /></td>
-						<td rowspan="3"><input class="inputbutton" type="button"
-							name="coupon1" value="적용" /></td>
+							value="쿠폰 조회" onclick="couponPage()" /></td>
 					</tr>
 					<tr>
-						<th width="200" height="15">마일리지 할인</th>
-						<td><input type="checkbox" />사용</td>
-						<td><input type="text" name="마일리지" size="10" value="" />원</td>
-
-
-
+						<th width="200" height="15">보유 마일리지</th>
+						<td>${mileage}원</td>
 					</tr>
-
+					<tr>	
+						<th width="200" height="15">사용 마일리지</th>
+						<td><input type="text" name="mileage" size="10"/>원</td>
+					</tr>
 					<tr>
 						<th width="200" height="15">할인합계</th>
-						<td><input type="text" name="discount" size="10" value="3000" />원</td>
+						<td><input type="text" name="discount" size="10" value="" />원</td>
 					</tr>
-
-				</table>
+<!-----------------------------------angularJS-------------------------------------------->
+	<div ng-app="myApp" ng-controller="costCtrl">
+	<%-- 보유마일리지:<input type="number" ng-model="${mileage}"> --%>
+	 사용마일리지:<input type="number" ng-model="mileage">
+	<p>할인합계={{( mileage) | currency : "￦"}}원</p>
+	</div>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('costCtrl', function($scope) {
+			$scope.salePrice;
+			$scope.mileage;
+		});
+	</script>
+<!------------------------------------------------------------------------------->	
+		</table>
 			</fieldset>
-
 			<fieldset>
 				<legend>
 					<font color="orange"><b>Final Amount</b></font>
 				</legend>
-				<table id="payment" cellspacing="5">
+				
+		<table id="payment" cellspacing="5">
 					<tr>
 						<th width="200" height="15">최종 결제 금액</th>
-						<td>13,000 원</td>
+						<td>원</td>
 					</tr>
-				</table>
+		</table>
 			</fieldset>
 			<br> <br> <br> <input class="inputbutton"
 				type="submit" value="결제하기"> <input class="inputbutton"
@@ -116,10 +121,11 @@
 
 		</fieldset>
 	</form>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+	
 </div>
 <div class="col-sm-2 sidenav"></div>
 </div>
 </div>
 <jsp:include page="../../menu/guestFooter.jsp" flush="false"/>
+</body>
+</html>

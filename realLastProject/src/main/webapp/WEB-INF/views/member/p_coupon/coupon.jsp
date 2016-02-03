@@ -3,13 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
 
-<head>
+
 <script type="text/javascript">
 function setCoupon(coupon_code) {
-	opener.document.paymentForm.coupon.value = coupon_code;
+	opener.document.paymentForm.coupon.value =coupon_code;
 	self.close();
+	}
+
 </script>
-</head>
+
+
+<body>
 <h3><p class="text-center">Coupon</p></h3>
 <div class="container-fluid text-center">    
   <div class="row content">
@@ -47,3 +51,4 @@ function setCoupon(coupon_code) {
 <div class="col-sm-2 sidenav"></div>
 </div>
 </div>
+</body>

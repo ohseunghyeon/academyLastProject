@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:if test="${sessionScope.id == 'nomember'}">
 <jsp:include page="../../menu/noMemberHeader.jsp" flush="false" />
 </c:if>
@@ -10,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <script src="/ajaxEx/resources/request.js"></script>
-
+<script src="angular.js"></script>
 <script type="text/javascript">
 
 	function getinbag(food_code) {
@@ -33,6 +34,7 @@
 	}
 
 </script>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-6 text-center">
@@ -61,6 +63,7 @@
 							<td>${goodslist.price}</td>
 							<td>${goodslist.sold_out}</td>
 						</tr>
+						
 					</c:forEach>
 				</table>
 			</form>
