@@ -7,8 +7,12 @@ import com.first.lastproject.dto.AccountDto;
 public interface InterfaceAccountDao {
 
 	public List<AccountDto> getDayAccount();
+	
+	public List<AccountDto> getDayAccount(String dayDate);
 
 	public AccountDto getDayTotalAccount();
+	
+	public AccountDto getDayTotalAccount(String dayDate);
 
 	public List<AccountDto> getMonthAccountDays(int monlist);
 	
@@ -21,5 +25,7 @@ public interface InterfaceAccountDao {
 	public List<AccountDto> getSelectAccountDays(String startday, String endday);
 	
 	public List<AccountDto> getSelectAccountPrice(String startday, String endday);
+
+	
 
 }

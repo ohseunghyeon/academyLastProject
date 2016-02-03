@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
+<style>
+	.list {
+	display:inline;
+	float:left;
+	}
+</style> 
 <h3>정산 페이지(${startday} ~ ${endday})</h3>
 <form method="get" action="accountMonth">	
 	<table>
@@ -37,24 +43,33 @@
 	</table>
 </form>
 <form>
-	<table border ="1">
-			
+	<table class="list" border = "1">	
 			<tr>
 				<th>일자</th>
-				<th>일간 수익</th>
-				<th>일간 사용 시간</th>
 			</tr>
 			<c:forEach var="selList" items="${selList}">
-			<c:forEach var="selPrice" items="${selPrice}">
 			<tr>
-				<td>${selList.date}</td>	
-				
-				<td>${selPrice.price}</td>
-				 
-				<td>0</td>		
+				<td><a href="accountDay?dayDate=${selList.date}">${selList.date}</a></td>		
 			</tr>
 		</c:forEach>
-		</c:forEach>
+		</table>
+		<table class="list" border = "1">
+			<tr>
+				<th>일간 수익</th>
+			</tr>
+			<c:forEach var="selPrice" items="${selPrice}">
+			<tr>
+				<td>${selPrice.price}</td>
+			</tr>
+			</c:forEach>
+		</table>
+		<table class="list" border = "1">
+			<tr>
+				<th>일간 사용 시간</th>
+			</tr>
+			<tr>
+				<td>0</td>	
+			</tr>
 		</table>
 		
 		<table border="1">

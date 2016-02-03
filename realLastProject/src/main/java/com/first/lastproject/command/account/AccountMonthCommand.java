@@ -1,6 +1,8 @@
 package com.first.lastproject.command.account;
 
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -19,15 +21,17 @@ public class AccountMonthCommand implements AccountCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		AccountDto mTotal = new AccountDto();
+		Calendar calendar = Calendar.getInstance();
 		InterfaceAccountDao dao = AccountDao.getInstance();
 		List <AccountDto> mList = new ArrayList<AccountDto>();
 		List <AccountDto> mPrice = new ArrayList<AccountDto>();
 		int monlist = Integer.parseInt(request.getParameter("monlist"));
+		String time = (calendar.get(Calendar.YEAR) +"년 " + monlist + "월");
 		
 		mList = dao.getMonthAccountDays(monlist);
 		mPrice = dao.getMonthAccountPrice(monlist);
 		mTotal = dao.getMonthTotalAccount(monlist);
-		System.out.println(mList);
+		model.addAttribute("time", time);
 		model.addAttribute("mList", mList);
 		model.addAttribute("mPrice", mPrice);
 		model.addAttribute("mTotal", mTotal);

@@ -55,7 +55,7 @@ public class AccountDao implements InterfaceAccountDao {
 					+ " ORDER BY order_id ASC";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			System.out.println(rs);
+			
 			
 			while(rs.next()) {
 				if(dayList == null) {
@@ -68,7 +68,54 @@ public class AccountDao implements InterfaceAccountDao {
 			dto.setUsed_time(rs.getString("used_time"));
 			dto.setPrice(rs.getInt("price"));
 			dayList.add(dto);
-			System.out.println(dayList);
+			
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		return dayList;
+	}
+	
+public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간/기간 정산에서 일자 누를 시에
+		
+		ArrayList <AccountDto> dayList = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT * FROM day_calculate_view "
+					+ "WHERE order_time BETWEEN to_date(?, 'yyyy-mm-dd hh24:mi:ss')"
+					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')"
+					+ " ORDER BY order_id ASC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dayDate + " 00:00:00");
+			pstmt.setString(2, dayDate + " 23:59:59");
+			rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				if(dayList == null) {
+					dayList = new ArrayList<AccountDto>();
+				}
+				AccountDto dto = new AccountDto();
+			dto.setOrder_id(rs.getString("order_id"));
+			dto.setSeat_num(rs.getInt("seat_num"));
+			dto.setOrder_time(rs.getTimestamp("order_time"));
+			dto.setUsed_time(rs.getString("used_time"));
+			dto.setPrice(rs.getInt("price"));
+			dayList.add(dto);
+			
 			}
 			
 		} catch (SQLException e) {
@@ -95,8 +142,45 @@ public class AccountDao implements InterfaceAccountDao {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT SUM(price) total_price FROM day_calculate_view WHERE order_time >= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') AND order_time < to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd')";
+			String sql = "SELECT SUM(price) total_price FROM day_calculate_view "
+					+ "WHERE order_time >= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') "
+					+ "AND order_time < to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd')";
 			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto.setTotal_price(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		return dto;
+	}
+	
+	@Override
+	public AccountDto getDayTotalAccount(String dayDate) {//일간 총 금액 및 시간표-월간 및 기간에서 일자 누를 시에
+		
+		AccountDto dto = new AccountDto();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("dayDate2 ="+ dayDate);
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT SUM(price) total_price FROM day_calculate_view "
+					+ "WHERE order_time BETWEEN to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
+					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dayDate + " 00:00:00");
+			pstmt.setString(2, dayDate + " 23:59:59");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				dto.setTotal_price(rs.getInt(1));
@@ -141,7 +225,7 @@ public class AccountDao implements InterfaceAccountDao {
 				}
 				AccountDto dto1 = new AccountDto();
 			dto1.setDate(rs.getTimestamp(1));
-			System.out.println(dto1);
+			
 			monthList.add(dto1);
 			}
 			System.out.println(monthList);
@@ -299,8 +383,12 @@ public class AccountDao implements InterfaceAccountDao {
 		Calendar today = Calendar.getInstance();
 		String[] startL = startday.split("-");
 		String[] endL = endday.split("-");
+		int year = Integer.parseInt(startL[0]);
+		int month = Integer.parseInt(startL[1]);
+		int day = Integer.parseInt(startL[2]);
 		int start = Integer.parseInt(startL[0]+startL[1]+startL[2]);
 		long diffDays = 0;
+		today.set(today.get(Calendar.YEAR), month - 1, day);
 		
 		   try {
 		        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -321,15 +409,15 @@ public class AccountDao implements InterfaceAccountDao {
 			con = dataSource.getConnection();
 			String sql = "SELECT SUM(price) price "
 					+ "FROM day_calculate_view WHERE order_time "
-					+ "BETWEEN to_date(?, 'yyyymmdd hh24:mi:ss') "
-					+ "AND to_date(?, 'yyyymmdd hh24:mi:ss')";
+					+ "BETWEEN to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
+					+ "AND to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
 			for(int i = 1; i <= diffDays; i++) {
 			pstmt = con.prepareStatement(sql);
 			System.out.println("start=" + (start++) + " 00:00:00");
-			System.out.println("end=" + (start++) +" 23:59:59");
+			System.out.println("end=" + (start++) + " 23:59:59");
 			
-			pstmt.setString(1, (start) + " 00:00:00");
-			pstmt.setString(2, (start) + " 23:59:59");
+			pstmt.setString(1, year + " 00:00:00");
+			pstmt.setString(2, (start++) + " 23:59:59");
 	
 			rs = pstmt.executeQuery();
 			

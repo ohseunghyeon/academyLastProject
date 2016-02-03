@@ -49,7 +49,7 @@
 			</tr>
 			 <c:forEach var="mList" items="${mList}">
 			<tr>
-				<td>${mList.date}</td>							
+				<td><a href="accountDay?dayDate=${mList.date}">${mList.date}</a></td>						
 			</tr>
 		 </c:forEach>		
 		</table>
@@ -63,6 +63,15 @@
 			</tr>
 		 </c:forEach>		
 		</table>
+		<table class="list" border = "1">
+			<tr>
+				<th>일간 사용 시간</th>
+			</tr>
+			<tr>
+				<td>0</td>	
+			</tr>
+		</table>
+			
 		
 		<table border="1">
 			<tr>

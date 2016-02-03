@@ -27,7 +27,6 @@ public class AccountDateSelectCommand implements AccountCommand {
 		selList = dao.getSelectAccountDays(startday, endday);
 		selPrice = dao.getSelectAccountPrice(startday, endday);
 		selTotal = dao.getSelectTotalAccount(startday, endday);
-		System.out.println(selTotal);
 		model.addAttribute("selList", selList);
 		model.addAttribute("selTotal", selTotal);
 		model.addAttribute("selPrice", selPrice);
