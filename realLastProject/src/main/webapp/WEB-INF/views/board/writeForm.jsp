@@ -2,7 +2,12 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
+<c:if test="${sessionScope.id == 'host'}">
+<jsp:include page="../menu/hostHeader.jsp" flush="false" />
+</c:if>
+<c:if test="${sessionScope.id != 'host'}">
+<jsp:include page="../menu/guestHeader.jsp" flush="false" />
+</c:if>
 <h3><p class="text-center">WRITE</p></h3>
 <div class="container-fluid text-center">    
   <div class="row content">

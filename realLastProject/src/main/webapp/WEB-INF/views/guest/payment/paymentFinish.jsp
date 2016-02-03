@@ -3,7 +3,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.sql.*"%>
-<jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
+<c:if test="${sessionScope.id == 'nomember'}">
+<jsp:include page="../../menu/noMemberHeader.jsp" flush="false" />
+</c:if>
+<c:if test="${sessionScope.id != 'nomember'}">
+<jsp:include page="../../menu/guestHeader.jsp" flush="false" />
+</c:if>
 <html>
 <body>
 	<form action="seatSelectConfirmPro" method="post" name=seatConfirm>
@@ -13,7 +18,7 @@
 			</legend>
 			
 
-			<br> 결제내역 확인 페이지 <br> <br>
+			<br> 결제가 완료되었습니다. <br> <br>
 		</fieldset>
 
 

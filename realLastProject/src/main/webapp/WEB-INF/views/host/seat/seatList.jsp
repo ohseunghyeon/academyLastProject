@@ -1,11 +1,12 @@
-<%@page import="java.util.List"%>
 <%@page import="java.util.Arrays"%>
-<%@ page import="com.first.lastproject.dto.SeatDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.sql.*"%>
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
+
+
 <%
 	List<Integer> td = Arrays.asList(2, 4, 8, 10, 12, 23);
 	request.setAttribute("td", td);
@@ -16,36 +17,51 @@
 	List<Integer> nineTd = Arrays.asList(14, 15);
 	request.setAttribute("nineTd", nineTd);
 %>
-<head>
 <style>
 #red {
-	background: red;
+	background: #FFA7A7;
 }
 
 #blue {
-	background: blue;
+	background: #E4F7BA;
 }
 </style>
-</head>
 <body>
-	<div id="wrap">
-		<table align="center">
-			<tr>
-				<c:forEach var="seat" items="${seats}" varStatus="i">
-					<c:if test="${nineTd.indexOf(i.count) > -1}">
-						<c:forEach begin="0" end="8">
-							<td width="60" height="60"></td>
-						</c:forEach>
-					</c:if>
-					<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="60"
-						height="60"><a href="seatInformation?seat_num=${seat.seat_num}">${i.count}</a></td>
-			${td.indexOf(i.count) > -1 ? '<td width="60" height="60"></td>':''}
+ <div class="container-fluid">
+		<div class="row">
+ 		<div class="col-sm-2" ></div>
+ 		 <div class="col-sm-8" ><br>
+	<table align="center">
+		<tr>
+			<!-- 좌석 반복 시작 -->
+			<c:forEach var="seat" items="${seats}" varStatus="i">
+			
+				<!-- 14, 15번 앞에 9번 공백 있는 거 -->
+				<c:if test="${nineTd.indexOf(i.count) > -1}">
+					<c:forEach begin="0" end="8">
+						<td width="70" height="70"></td>
+					</c:forEach>
+				</c:if>
+				
+				<!-- 기본적으로 좌석 뿌려주는 로직 -->	
+				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="70"height="70">
+					<c:if test="${seat.occupied == 1}"><a href="seatInformation?seat_num=${seat.seat_num}"></c:if>
+						<p class="text-center">
+							<button type="button" class="btn btn-default ${seat.occupied == 1 ? 'active' : 'disabled'}">${i.count}</button>
+						</p>
+					${seat.occupied == 1 ? '</a>' : ''}
+				</td>
+				
+				<!-- 한 칸 띄워주는 로직 -->
+			${td.indexOf(i.count) > -1 ? '<td width="70" height="70"></td>':''}
+				<!-- tr써서 행 내려주는 로직 -->
 			${tr.indexOf(i.count) > -1 ? '</tr><tr>':''}
 			
 			</c:forEach>
-			</tr>
-		</table>
-	</div>
-</body>
-</html>
-<jsp:include page="../../menu/hostFooter.jsp" flush="false" />
+		</tr>
+	</table><br><br>
+</div>
+<div class="col-sm-2" ></div>
+</div>
+</div>
+<jsp:include page="../../menu/guestFooter.jsp" flush="false" />

@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
-<title>로그인 재시도 화면</title>
+<head>
+  <title>로그인 재시도 화면</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
 </head>
 
 <div class="container-fluid">
@@ -35,9 +41,9 @@
 			</table>
 			<div class="pull-right">
 				<button type="submit" class="btn btn-warning">로그인</button>
-				<button type="reset" class="btn btn-warning">취소</button>
+				<button type="reset" class="btn btn-warning" onclick="window.location='index'">취소</button>
 			</div>
-		<div class="col-sm-4" ></div>
+		<div class="col-sm-4"></div>
 		</div>
 		</div>
 		</div>

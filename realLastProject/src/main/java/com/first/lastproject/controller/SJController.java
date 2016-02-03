@@ -14,6 +14,7 @@ import com.first.lastproject.command.board.BoardListCommand;
 import com.first.lastproject.command.board.BoardModifyFormCommand;
 import com.first.lastproject.command.board.BoardModifyProCommand;
 import com.first.lastproject.command.board.BoardModifyViewCommand;
+import com.first.lastproject.command.board.BoardSearchCommand;
 import com.first.lastproject.command.board.BoardWriteFormCommand;
 import com.first.lastproject.command.board.BoardWriteProCommand;
 import com.first.lastproject.command.member.MemberCommand;
@@ -221,6 +222,17 @@ public class SJController {
 	public String hostFooter(Model model) {
 		System.out.println("hostFooter()");
 		return "/menu/hostFooter";
+	}
+	@RequestMapping("/boardSerch")
+	public String boardSerch(HttpServletRequest request,Model model) {
+		System.out.println("boardSerch()");
+		
+		model.addAttribute("request", request);
+		BoardCommand command = new BoardSearchCommand();
+		String viewname = command.execute(model);
+		
+		
+		return viewname;
 	}
 
 

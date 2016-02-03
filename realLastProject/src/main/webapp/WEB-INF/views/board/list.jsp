@@ -6,7 +6,13 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.first.lastproject.dao.board.BoardDao"%>
 <%@ page import="com.first.lastproject.dto.BoardDto" %>
-<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
+
+<c:if test="${sessionScope.id == 'host'}">
+<jsp:include page="../menu/hostHeader.jsp" flush="false" />
+</c:if>
+<c:if test="${sessionScope.id != 'host'}">
+<jsp:include page="../menu/guestHeader.jsp" flush="false" />
+</c:if>
 <title>게시판</title>
 <div class="container">
 <h3><p class="text-center">WRITE LIST<small>(글개수 : ${count})</small></p></h3>
@@ -38,14 +44,14 @@
 				 <td>
 				 <c:if test="${dto.re_level >1 }">
 				 	<c:set var="wid" value="${(dto.re_level -1) *10}" />
-				 	<img src="${project}images/level.gif" border="0" width="${wid}" height="15">
+				 	<img src="/lastproject/resources/images/level.gif" border="0" width="${wid}" height="15">
 				 </c:if>
 				 	<c:if test="${dto.re_level >0 }">
-				 		<img src="${project}images/re.gif" border="0" width="20" height="15">
+				 		<img src="/lastproject/resources/images/re.gif" border="0" width="20" height="15">
 				 	</c:if>
 				 	<a href="contentForm?num=${dto.num}&pageNum=${pageNum}&number=${number+1}">${dto.subject}</a>
 				 	<c:if test="${dto.readcount >20}">
-				 		<img src="${project}images/hot.gif" border="0" width="20" height="15">
+				 		<img src="/lastproject/resources/images/hot.gif" border="0" width="20" height="15">
 				 	</c:if>
 				 </td>
 				 <td align="center">
@@ -87,7 +93,7 @@
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 		<ul class="pagination pagination-sm">
 		<li class="disable"><c:if test="${i==currentPage}">
-			[${i}]
+			<a>${i}</a>				<!-- 수지야 이 부분이 현재 페이지 숫자인데, 현재 페이지라는 걸 표시하게 해주라 -->
 		</c:if></li>
 		<li><c:if test="${i !=currentPage }">
 			<a href="boardList?pageNum=${i}">${i}</a>

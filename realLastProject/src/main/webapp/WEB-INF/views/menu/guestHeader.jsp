@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>회원 로그인</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -32,6 +32,7 @@
       <a class="navbar-brand"><p>SASAEG<img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></p></a>
     </div>
     <ul class="nav navbar-nav">
+    <li class="active"><a href="index">Home</a></li>
       <li><a href="seatList">좌석</a></li>
     	<li><a href="goodsList">메뉴</a></li>
       <li><a href="boardList">게시판</a></li>

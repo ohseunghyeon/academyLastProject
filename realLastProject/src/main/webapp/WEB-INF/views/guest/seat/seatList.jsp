@@ -4,7 +4,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.sql.*"%>
+<c:if test="${sessionScope.id == 'nomember'}">
+<jsp:include page="../../menu/noMemberHeader.jsp" flush="false" />
+</c:if>
+<c:if test="${sessionScope.id != 'nomember'}">
 <jsp:include page="../../menu/guestHeader.jsp" flush="false" />
+</c:if>
+
 <%
 	List<Integer> td = Arrays.asList(2, 4, 8, 10, 12, 23);
 	request.setAttribute("td", td);
