@@ -42,10 +42,12 @@
 				</c:if>
 				
 				<!-- 기본적으로 좌석 뿌려주는 로직 -->	
-				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="70"
-					height="70">
-					<a href="seatConfirm?seat_num=${seat.seat_num}"><p class="text-center">
-					<button type="button" class="btn btn-default ${seat.occupied == 0 ? 'active' : 'disabled'}">${i.count}</button></p></a>
+				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="70"height="70">
+					<c:if test="${seat.occupied == 0}"><a href="seatConfirm?seat_num=${seat.seat_num}"></c:if>
+						<p class="text-center">
+							<button type="button" class="btn btn-default ${seat.occupied == 0 ? 'active' : 'disabled'}">${i.count}</button>
+						</p>
+					${seat.occupied == 0 ? '</a>' : ''}
 				</td>
 				
 				<!-- 한 칸 띄워주는 로직 -->
