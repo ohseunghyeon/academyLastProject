@@ -44,14 +44,14 @@
 				 <td>
 				 <c:if test="${dto.re_level >1 }">
 				 	<c:set var="wid" value="${(dto.re_level -1) *10}" />
-				 	<img src="${project}images/level.gif" border="0" width="${wid}" height="15">
+				 	<img src="/lastproject/resources/images/level.gif" border="0" width="${wid}" height="15">
 				 </c:if>
 				 	<c:if test="${dto.re_level >0 }">
-				 		<img src="${project}images/re.gif" border="0" width="20" height="15">
+				 		<img src="/lastproject/resources/images/re.gif" border="0" width="20" height="15">
 				 	</c:if>
 				 	<a href="contentForm?num=${dto.num}&pageNum=${pageNum}&number=${number+1}">${dto.subject}</a>
 				 	<c:if test="${dto.readcount >20}">
-				 		<img src="${project}images/hot.gif" border="0" width="20" height="15">
+				 		<img src="/lastproject/resources/images/hot.gif" border="0" width="20" height="15">
 				 	</c:if>
 				 </td>
 				 <td align="center">
