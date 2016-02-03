@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
 <style>
 	.list {
@@ -49,7 +50,7 @@
 			</tr>
 			<c:forEach var="selList" items="${selList}">
 			<tr>
-				<td><a href="accountDay?dayDate=${selList.date}">${selList.date}</a></td>		
+				<td><a href="accountDay?dayDate=${selList.date}"><fmt:formatDate value="${selList.date}" type="date" /></a></td>		
 			</tr>
 		</c:forEach>
 		</table>

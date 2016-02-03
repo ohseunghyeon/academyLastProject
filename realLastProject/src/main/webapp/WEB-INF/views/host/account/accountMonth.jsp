@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <style>
 	#list {
 	display:inline;
@@ -56,7 +57,7 @@
 			</tr>
 			 <c:forEach var="mList" items="${mList}">
 			<tr>
-				<td><a href="accountDay?dayDate=${mList.date}">${mList.date}</a></td>						
+				<td><a href="accountDay?dayDate=${mList.date}"><fmt:formatDate value="${mList.date}" type="date" /></a></td>						
 			</tr>
 		 </c:forEach>		
 		</table>
