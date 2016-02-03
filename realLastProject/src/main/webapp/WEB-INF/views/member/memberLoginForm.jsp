@@ -37,7 +37,7 @@
 				<button type="submit" class="btn btn-warning">로그인</button>
 				<button type="reset" class="btn btn-warning">취소</button>
 			</div>
-		<div class="col-sm-4" ></div>
+		<div class="col-sm-4"></div>
 		</div>
 		</div>
 		</div>
