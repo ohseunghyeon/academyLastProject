@@ -1,5 +1,7 @@
 package com.first.lastproject.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -223,10 +225,14 @@ public class SJController {
 		System.out.println("hostFooter()");
 		return "/menu/hostFooter";
 	}
-	@RequestMapping("/boardSerch")
+	@RequestMapping("/boardSearch")
 	public String boardSerch(HttpServletRequest request,Model model) {
 		System.out.println("boardSerch()");
-		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("request", request);
 		BoardCommand command = new BoardSearchCommand();
 		String viewname = command.execute(model);

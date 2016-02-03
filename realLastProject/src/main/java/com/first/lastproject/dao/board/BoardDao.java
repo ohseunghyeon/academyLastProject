@@ -380,4 +380,162 @@ public class BoardDao implements InterfaceBoardDao {
 			return count;
 			
 		}
+
+	@Override
+	public ArrayList<BoardDto> searchWriter(String writer){
+		ArrayList<BoardDto> dtos = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select * from mvc_board where writer = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, writer);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (dtos == null) {
+					dtos = new ArrayList<BoardDto>();
+				}
+				BoardDto dto = new BoardDto();
+				dto.setNum(rs.getInt("num"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setEmail(rs.getString("email"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setPasswd(rs.getString("passwd"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setRef(rs.getInt("ref"));
+				dto.setRe_step(rs.getInt("re_step"));
+				dto.setRe_level(rs.getInt("re_level"));
+				dto.setContent(rs.getString("content"));
+				dto.setIp(rs.getString("ip"));
+				dtos.add(dto);
+			}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (con != null) con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	return dtos;
+	}
+		
+
+	@Override
+	public ArrayList<BoardDto> searchSubject(String subject) {
+		ArrayList<BoardDto> dtos = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select * from mvc_board where subject like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+ subject +"%");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (dtos == null) {
+					dtos = new ArrayList<BoardDto>();
+				}
+				BoardDto dto = new BoardDto();
+				dto.setNum(rs.getInt("num"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setEmail(rs.getString("email"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setPasswd(rs.getString("passwd"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setRef(rs.getInt("ref"));
+				dto.setRe_step(rs.getInt("re_step"));
+				dto.setRe_level(rs.getInt("re_level"));
+				dto.setContent(rs.getString("content"));
+				dto.setIp(rs.getString("ip"));
+				dtos.add(dto);
+			}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (con != null) con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	return dtos;
+	}
+	
+	public int getSeachWriterCount(String writer) {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = "select count(*) from mvc_board where writer=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, writer);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (con != null) con.close();
+			} catch (Exception e2) {
+				e2.getStackTrace();
+			}
+		}
+		return count;
+	}
+	@Override
+	public int getSeachSubjectCount(String subject) {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = "select count(*) from mvc_board where subject like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+subject+"%");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (con != null) con.close();
+			} catch (Exception e2) {
+				e2.getStackTrace();
+			}
+		}
+		return count;
+	}
+
+
+	
 }

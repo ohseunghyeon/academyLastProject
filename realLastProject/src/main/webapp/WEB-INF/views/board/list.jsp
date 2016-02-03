@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -13,9 +13,10 @@
 <c:if test="${sessionScope.id != 'host'}">
 <jsp:include page="../menu/guestHeader.jsp" flush="false" />
 </c:if>
-<title>°Ô½ÃÆÇ</title>
+<title>ê²Œì‹œíŒ</title>
 <div class="container">
-<h3><p class="text-center">WRITE LIST<small>(±Û°³¼ö : ${count})</small></p></h3>
+<h3><p class="text-center">WRITE LIST<small>(ê¸€ê°œìˆ˜ : ${count})</small></p></h3><br><br>
+
 	<div class="pull-right">
 	 <a href="writeForm"><button type="button" class="btn btn-warning">Write
 	 </button></a><br>
@@ -24,11 +25,11 @@
 <table class="table table-striped table-bordered table-hover table-condensed text-center">
 	<thead>
 	<tr class="info">
-		<th style="width: 5%"><p class="text-center">±Û¹øÈ£</p></th>
-		<th style="width: 35%"><p class="text-center">±ÛÁ¦¸ñ</p></th>
-		<th style="width: 10%"><p class="text-center">ÀÛ¼ºÀÚ</p></th>
-		<th style="width: 15%"><p class="text-center">ÀÛ¼ºÀÏ</p></th>
-		<th style="width: 5%"><p class="text-center">Á¶È¸¼ö</p></th>
+		<th style="width: 5%"><p class="text-center">ê¸€ë²ˆí˜¸</p></th>
+		<th style="width: 35%"><p class="text-center">ê¸€ì œëª©</p></th>
+		<th style="width: 10%"><p class="text-center">ìž‘ì„±ìž</p></th>
+		<th style="width: 15%"><p class="text-center">ìž‘ì„±ì¼</p></th>
+		<th style="width: 5%"><p class="text-center">ì¡°íšŒìˆ˜</p></th>
 		<th style="width: 10%"><p class="text-center">IP</p></th>
 
 	</tr>
@@ -70,10 +71,10 @@
 		</c:forEach>
 	</c:if>
 	<c:if test="${count == 0}}">
-		<!-- ±ÛÀÌ ¾ø´Â °æ¿ì -->
+		<!-- ê¸€ì´ ì—†ëŠ” ê²½ìš° -->
 		<tr>
 			<td colspan="6" align="center" style="height:40px">
-				°Ô½ÃÆÇ¿¡ ±ÛÀÌ ¾ø½À´Ï´Ù. ±Û¾²±â¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä.
+				ê²Œì‹œíŒì— ê¸€ì´ ì—†ìŠµë‹ˆë‹¤. ê¸€ì“°ê¸°ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”.
 			</td>
 		</tr>
 	</c:if>
@@ -83,30 +84,49 @@
 <br>
 <div class="container text-center">
 	<c:if test="${count>0 }">
-	<!-- Ã³À½[¢¸¢¸] ÀÌÀü[¢º¢º] -->
+	<!-- ì²˜ìŒ[â—€â—€] ì´ì „[â–¶â–¶] -->
 		<c:if test="${startPage >pageBlock}">
 		<ul class="pagination pagination-sm">
-		<li><a href="boardList">¢¸¢¸</a></li>
-		<li><a href="boardList?pageNum=${startPage - pageBlock -1 }"> ¢¸</a></li>
+		<li><a href="boardList">â—€â—€</a></li>
+		<li><a href="boardList?pageNum=${startPage - pageBlock -1 }"> â—€</a></li>
 		</ul>
 		</c:if>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 		<ul class="pagination pagination-sm">
 		<li class="disable"><c:if test="${i==currentPage}">
-			<a>${i}</a>				<!-- ¼öÁö¾ß ÀÌ ºÎºÐÀÌ ÇöÀç ÆäÀÌÁö ¼ýÀÚÀÎµ¥, ÇöÀç ÆäÀÌÁö¶ó´Â °É Ç¥½ÃÇÏ°Ô ÇØÁÖ¶ó -->
+			<a><span class="badge">${i}</span></a>		<!-- ìˆ˜ì§€ì•¼ ì´ ë¶€ë¶„ì´ í˜„ìž¬ íŽ˜ì´ì§€ ìˆ«ìžì¸ë°, í˜„ìž¬ íŽ˜ì´ì§€ë¼ëŠ” ê±¸ í‘œì‹œí•˜ê²Œ í•´ì£¼ë¼ -->
 		</c:if></li>
 		<li><c:if test="${i !=currentPage }">
 			<a href="boardList?pageNum=${i}">${i}</a>
 			</c:if></li>
 		</ul>
 		</c:forEach>
-	<!-- ´ÙÀ½[¢º] ³¡[¢º¢º] -->
+	<!-- ë‹¤ìŒ[â–¶] ë[â–¶â–¶] -->
 		<c:if test="${pageCount >endPage}">
 		<ul class="pagination pagination-sm">
-		<li><a href="boardList?pageNum=${startPage + pageBlock}">¢º</a></li>
-		<li><a href="boardList?pageNum=${pageCount}">¢º¢º</a></li>
+		<li><a href="boardList?pageNum=${startPage + pageBlock}">â–¶</a></li>
+		<li><a href="boardList?pageNum=${pageCount}">â–¶â–¶</a></li>
 			</ul>
 			</c:if>
 	</c:if>
+	
+<div class="container">
+  <form action="boardSearch"role="form" method="post">
+    <label class="radio-inline">
+      <input type="radio" name="searchmethod" value="writer">ìž‘ì„±ìž
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="searchmethod" value="subject">ì œëª©
+    </label>
+    <input class="input" type="text" name="searchinput" maxlength="12">
+    <button type="submit" class="btn btn-info btn-sm">
+      <span class="glyphicon glyphicon-search"></span> Search
+    </button>
+  </form>
+</div><br><br><br>
+	
+	
+	
 	<jsp:include page="../menu/guestFooter.jsp" flush="false"/>
+	
 </div>
