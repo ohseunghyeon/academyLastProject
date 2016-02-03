@@ -40,6 +40,6 @@
 		<input type="submit" value="비밀번호 찾기"> <input type="button"
 			value="돌아가기" onclick="window.location='index'">
 	</fieldset>
-	<img src = "../resources/images/WantedPoster.png"
-		width="300" height=300>
+	<img src = "/lastProject/resources/images/wantedposter.png"
+		width="400px" height="400px">
 </form>
