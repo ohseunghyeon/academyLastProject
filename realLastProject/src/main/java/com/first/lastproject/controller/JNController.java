@@ -12,6 +12,7 @@ import com.first.lastproject.command.account.AccountDayCommand;
 import com.first.lastproject.command.account.AccountMonthCommand;
 import com.first.lastproject.command.member.HostLoginProCommand;
 import com.first.lastproject.command.member.MemberCommand;
+import com.first.lastproject.command.member.MemberFindProCommand;
 import com.first.lastproject.command.member.MemberLoginFormCommand;
 import com.first.lastproject.command.member.MemberLoginProCommand;
 import com.first.lastproject.command.member.MemberLogoutCommand;
@@ -90,9 +91,22 @@ public class JNController {
 		return viewname;
 	}
 	
+	@RequestMapping("/memberFindForm")
+	public String memberFindForm(Model model) {
+		return "/member/memberFindForm";
+	}
+	
+	@RequestMapping("/memberFindPro")
+	public String memberFindPro(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		MemberCommand command = new MemberFindProCommand();
+		String viewname = command.execute(model);
+		return viewname;
+	}
+	
 	@RequestMapping("/memberModifyForm")
 	public String memberModifyForm(Model model) {
-		return "member/memberModifyForm";
+		return "/member/memberModifyForm";
 	}
 	
 	@RequestMapping("/memberModifyView")

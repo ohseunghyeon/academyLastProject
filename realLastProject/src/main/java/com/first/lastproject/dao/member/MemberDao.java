@@ -99,6 +99,82 @@ public class MemberDao implements InterfaceMemberDao {
 		}
 		return result;
 	}
+	
+	@Override
+	public int findId(String email) {
+		
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT email FROM p_user WHERE email= ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (email.equals(rs.getString("email"))) {
+					result = 1;
+				} else {
+					result = -1;
+				}
+			} else {
+				result = 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public int findPasswd(String id, String email) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT id,email FROM p_user WHERE id = ? AND email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (id.equals(rs.getString("id")) && email.equals(rs.getString("email"))) {
+					result = 1;
+				} else {
+					result = -1;
+				}
+			} 
+			System.out.println("resulta = " + result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 
 	@Override
 	public int checkMember(String id, String passwd) {
@@ -140,6 +216,7 @@ public class MemberDao implements InterfaceMemberDao {
 		}
 		return result;
 	}
+	
 
 	@Override
 	public MemberDto getMember(String id) {
@@ -159,6 +236,73 @@ public class MemberDao implements InterfaceMemberDao {
 				dto.setPhone_number(rs.getString("phone_number"));
 				dto.setEmail(rs.getString("email"));
 				dto.setMileage(rs.getInt("mileage"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return dto;
+	}
+	
+	public MemberDto getId(String email) {
+		MemberDto dto = new MemberDto();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT id FROM p_user WHERE email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto.setId(rs.getString("id"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return dto;
+	}
+	
+	public MemberDto getPasswd(String id, String email) {
+		MemberDto dto = new MemberDto();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT passwd FROM p_user WHERE id = ? AND email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto.setPasswd(rs.getString("passwd"));	
 			}
 
 		} catch (SQLException e) {
@@ -312,4 +456,6 @@ public class MemberDao implements InterfaceMemberDao {
 		}
 		return result;
 	}
+
+
 }

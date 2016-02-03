@@ -71,8 +71,8 @@
 						<div class="pull-right">
 							<button type="submit" class="btn btn-warning">로그인</button>
 							<!-- <button type="reset" class="btn btn-warning">취소</button> -->
-							<button type="button" class="btn btn-warning">아이디/비밀번호
-								찾기</button>
+							<button type="button" class="btn btn-warning"
+								onclick="window.location='memberFindForm'">아이디/비밀번호 찾기</button>
 							<button type="button" class="btn btn-warning"
 								onclick="window.location='memberRegister'">회원가입</button>
 						</div>
