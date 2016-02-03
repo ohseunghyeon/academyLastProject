@@ -2,102 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
+<c:if test="${sessionScope.id == 'nomember'}">
+<jsp:include page="../../menu/noMemberHeader.jsp" flush="false" />
+</c:if>
+<c:if test="${sessionScope.id != 'nomember'}">
+<jsp:include page="../../menu/guestHeader.jsp" flush="false" />
+</c:if>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<!-- <head>
-<meta charset="utf-8" />
-<title></title>
-
-<style>
-div {
-	border: 1px solid #D4EDE2;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-left: 0px;
-	padding-bottom: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-left: 0px;
-	margin-bottom: 0px;
-	text-align: center;
-}
-
-#con {
-	width: 1024px;
-	margin: 0 auto;
-	overflow: hidden;
-}
-
-#header {
-	font-size: 14px;
-	width: 400px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	float: right;
-	color: red;
-}
-
-#nav {
-	width: 1024px;
-	height: 80px;
-	clear: both;
-}
-
-#nav ul {
-	overflow: hidden;
-	width: 1024px;
-	height: 37px;
-}
-
-#nav ul li {
-	width: 150px;
-	height: 35px;
-	line-height: 30px;
-	text-align: center;
-	list-style: none;
-	float: left;
-	border: 1px solid #dddddd;
-	margin-right: auto;
-}
-
-body {
-	width: 1024px;
-}
-
-#wrap {
-	width: 1024px;
-	overflow: hidden;
-	height: 500px;
-}
-
-#content {
-	width: 1024px;
-	height: 500px;
-	float: left;
-}
-
-#banner {
-	width: 320px;
-	height: 500px;
-	float: left;
-}
-
-#footer {
-	width: 1024px;
-	height: 50px;
-	line-height: 50px;
-}
-
-#con #nav p {
-	height: 0px;
-	line-height: 0px;
-}
-</style>
-
-
-</head> -->
 <body>
 
 	<div ng-app="" ng-init="quantity=1; price=5000">

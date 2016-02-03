@@ -6,7 +6,13 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.first.lastproject.dao.board.BoardDao"%>
 <%@ page import="com.first.lastproject.dto.BoardDto" %>
-<jsp:include page="../menu/guestHeader.jsp" flush="false"/>
+
+<c:if test="${sessionScope.id == 'host'}">
+<jsp:include page="../menu/hostHeader.jsp" flush="false" />
+</c:if>
+<c:if test="${sessionScope.id != 'host'}">
+<jsp:include page="../menu/guestHeader.jsp" flush="false" />
+</c:if>
 <title>게시판</title>
 <div class="container">
 <h3><p class="text-center">WRITE LIST<small>(글개수 : ${count})</small></p></h3>
