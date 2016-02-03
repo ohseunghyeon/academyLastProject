@@ -9,7 +9,6 @@
 <c:if test="${sessionScope.id != 'nomember'}">
 <jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 </c:if>
-<jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
 
 <div class="container-fluid">
 	<div class="row">

@@ -8,7 +8,6 @@
 <c:if test="${sessionScope.id != 'nomember'}">
 <jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 </c:if>
-<jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <h3><p class="text-center">Coupon</p></h3>
