@@ -108,7 +108,16 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+		
+		
+ 
+<!-- java mail -->
+    <dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>mail</artifactId>
+        <version>1.4.7</version>
+    </dependency>
+    
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
