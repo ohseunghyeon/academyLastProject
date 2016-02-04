@@ -59,6 +59,7 @@ background:#FAFAAA;
 		<button type="button" class="btn btn-warning" onclick="window.location='index'">돌아가기</button>
 		
 </form>
+	
 </div>
 <div class="col-sm-1 text-left"></div>
 </div>

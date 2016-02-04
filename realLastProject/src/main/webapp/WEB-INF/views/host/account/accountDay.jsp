@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
+<script src= /lastproject/resources/JNscript.js></script>
 
 <div class="container-fluid">
 
@@ -11,7 +12,7 @@
 <div class="row">
 <div class="col-sm-1"></div>
 <div class="col-sm-7">
-<form method="get" action="accountMonth">
+<form method="get" action="accountMonth" name="accountForm" onsubmit="return accountMonCheck()">
 	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr style="background-color:lavender;">
 			<td>
@@ -35,7 +36,7 @@
 		</tr>
 	</table>
 </form>
-<form method="get" action="accountDateSelect">
+<form method="get" action="accountDateSelect"  name="accountForm" onsubmit="return accountSelCheck()">
 	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr style="background-color:lavender;">
 			<td>
