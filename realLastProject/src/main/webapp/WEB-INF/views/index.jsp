@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style>
+<!--
+ span{
+ background: #FF9E7D;
 
+ }
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,15 +39,15 @@
 						<h3>
 							<strong>로그인</strong>
 						</h3>
-						<table class="table table-bordered table-hover table-condensed"
+						<table
 							style="width: 400px; height: 100px;">
 							<thead>
 								<tr>
-									<th><h2>
+									<th><h3>
 											<p class="text-center">
-												<span class="label label-success">아이디</span>
+											<h2><span id="span" class="label">아이디</span></h2>
 											</p>
-										</h2></th>
+										</h3></th>
 									<th>
 										<!-- <form role="form"> -->
 										<div class="form-group">
@@ -52,11 +58,11 @@
 								</tr>
 								<tr>
 									<th>
-										<h2>
+										<h3>
 											<p class="text-center">
-												<span class="label label-success">비밀번호</span>
+											<h2><span id="span" class="label">비밀번호</span></h2>
 											</p>
-										</h2>
+										</h3>
 									</th>
 									<th>
 										<!-- <form role="form"> -->
@@ -90,8 +96,8 @@
 					<br> <br>
 					<p class="text-center">
 						<a href="nomemberLoginPro" class="success"><img
-							src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-500-family.png"
-							class="img-rounded" alt="비회원" width="120" height="120"></a>
+							src="/lastproject/resources/images/nomember.png"
+							class="img-rounded" alt="비회원" width="300" height="120"></a>
 					</p>
 				</div>
 			</div>

@@ -1,5 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<style>
+#check {
+
+display:inline;
+}
+
+#danger {
+background:#FFB2AF;
+}
+
+#info {
+background:#FAFAD2 ;
+
+}
+
+#warning {
+background:#FAFAD2 ;
+}
+
+</style>	
+	
+	
 <head>
 <title>회원가입</title>
 <meta charset="utf-8">
@@ -42,10 +65,10 @@ th {
 }
 </style>
 
-
-<h3>
+<br><br>
+<h2>
 	<p class="text-center">Register</p>
-</h3>
+</h2><br>
 <div class="container-fluid text-center">
 	<div class="row content">
 		<div class="col-sm-2 sidenav"></div>
@@ -55,43 +78,42 @@ th {
 					<input type="hidden" name="confirmid" value="2"><!-- 중복확인 했는지 알기 위함 -->
 				<table
 					class="table table-striped table-bordered table-hover table-condensed text-center">
-					<tr class="danger">
+					<tr id="danger">
 						<th colspan=2><p class="text-center">
 								<mark>회원 가입 메뉴입니다. 아래에 정보를 입력하세요.</mark>
 							</p></th>
 					<tr>
-					<tr class="warning">
+					<tr id="warning">
 						<th><h4>
 								<p class="text-center">ID</p>
 							</h4></th>
-						<td><input class="form-control" type="text" name="id"
-							placeholder="Enter id"></td>
-						<td>
-							<input type="button" value="중복체크다" onclick="confirmId()">
+						<td><input id="check" class="form-control" type="text" name="id"
+							placeholder="Enter id" style="width:300px;">
+							<button id="check" type="button" class="btn btn-warning" onclick="confirmId()">중복체크</button>
 						</td>
 					</tr>
-					<tr class="info">
+					<tr id="info">
 						<th><h4>
 								<p class="text-center">Password</p>
 							</h4></th>
 						<td><input class="form-control" type="password" name="passwd"
 							placeholder="Enter password"></td>
 					</tr>
-					<tr class="warning">
+					<tr id="warning">
 						<th><h4>
 								<p class="text-center">Phone Number</p>
 							</h4></th>
 						<td><input class="form-control" type="text"
 							name="phone_number" placeholder="Enter number"></td>
 					</tr>
-					<tr class="info">
+					<tr id="info">
 						<th><h4>
 								<p class="text-center">Email</p>
 							</h4></th>
 						<td><input class="form-control" type="text" name="email"
 							placeholder="Enter email"></td>
 					</tr>
-					<tr class="danger">
+					<tr id="danger">
 						<th colspan="3"><p class="text-center">
 								<button type="submit" class="btn btn-warning">회원가입</button>
 								<button type="reset" class="btn btn-warning">초기화</button>

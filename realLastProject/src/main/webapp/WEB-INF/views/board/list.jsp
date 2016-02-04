@@ -7,6 +7,16 @@
 <%@ page import="com.first.lastproject.dao.board.BoardDao"%>
 <%@ page import="com.first.lastproject.dto.BoardDto" %>
 
+<style>
+ #info {
+  background:#FFBCB9;
+ }
+ #warning {
+  background:#F0FFF0;
+ }
+</style>
+
+
 <c:if test="${sessionScope.id == 'host'}">
 <jsp:include page="../menu/hostHeader.jsp" flush="false" />
 </c:if>
@@ -18,13 +28,13 @@
 <h3><p class="text-center">WRITE LIST<small>(글개수 : ${count})</small></p></h3><br><br>
 
 	<div class="pull-right">
-	 <a href="writeForm"><button type="button" class="btn btn-warning">Write
+	 <a href="writeForm"><button type="button" class="btn btn-success">Write
 	 </button></a><br>
 	 </div>
 
 <table class="table table-striped table-bordered table-hover table-condensed text-center">
 	<thead>
-	<tr class="info">
+	<tr id="info">
 		<th style="width: 5%"><p class="text-center">글번호</p></th>
 		<th style="width: 35%"><p class="text-center">글제목</p></th>
 		<th style="width: 10%"><p class="text-center">작성자</p></th>
@@ -37,7 +47,7 @@
 	<tbody>
 	<c:if test="${count >0}">
 		<c:forEach var="dto" items="${list}">
-			<tr class="warning">
+			<tr id="warning">
 				<td align="center">
 				 ${number}
 				 	<c:set var="number" value="${number-1}"></c:set>

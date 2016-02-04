@@ -23,20 +23,20 @@
 		<table class="table table-striped table-bordered table-hover table-condensed text-center" >
 		<thead>
 			<tr><p class="text-center">
-				<th width="200" height="15"><h4><p class="text-center">주문 번호</p></h4></th>
-				<th width="200" height="15"><h4><p class="text-center">테이블 번호</p></h4></th>
-				<th width="200" height="15"><h4><p class="text-center">주문내역</p></h4></th>
-				<th width="200" height="15"><h4><p class="text-center">확인</p></h4></th></p>			
+				<th width="100"><h4><p class="text-center">주문 번호</p></h4></th>
+				<th width="100"><h4><p class="text-center">테이블 번호</p></h4></th>
+				<th width="400"><h4><p class="text-center">주문내역</p></h4></th>
+				<th width="150"><h4><p class="text-center">확인</p></h4></th></p>			
 			</tr>
 			</thead>
 			<c:if test="${hostOrderlist != null}">
 				<c:forEach var="hostOrder" items="${hostOrderlist}">
 					<tr>
-						<td>${hostOrder.order_id}</td>
-						<td>${hostOrder.seat_num}</td>
-						<td>${hostOrder.food_name}</td>
-						<td><input type="button" value="확인"
-							onclick="orderDoneConfirm(${hostOrder.order_id})"> </td>
+						<td><t4>${hostOrder.order_id}</t4></td>
+						<td><t4>${hostOrder.seat_num}</t4></td>
+						<td><t4>${hostOrder.food_name}</t4></td>
+						<td><t4><input type="button" value="확인"
+							onclick="orderDoneConfirm(${hostOrder.order_id})"></t4> </td>
 					</tr>
 				</c:forEach>
 			</c:if>

@@ -3,7 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <jsp:include page="../../menu/guestHeader.jsp" flush="false"/>
 
+<style>
+#info{
+background:#FFE65A;
+}
 
+</style>
+
+
+<head>
 <script type="text/javascript">
 function setCoupon(coupon_code) {
 	opener.document.paymentForm.coupon.value =coupon_code;
@@ -21,7 +29,7 @@ function setCoupon(coupon_code) {
     </div>
     <div class="col-sm-8 text-left"> 
  	<table class="table table-striped table-bordered table-hover table-condensed text-center">
-	<tr class="info">
+	<tr id="info">
 	<th><p class="text-center">Coupon</p></th>
 	<th><p class="text-center">쿠폰 사용기간</p></th>
 	</tr>
@@ -34,18 +42,10 @@ function setCoupon(coupon_code) {
 	<h4><p class="text-center"> 2016.01.01 ~ 2016.08.30</p></h4>
 	</td>
 	</tr>
-	
-	<tr class="info">
-	<td colspan="2">		 		
+	<tr id="info">
+	<td colspan="2"><button type="button"  class="btn btn-success" onclick="setCoupon('${coupon_code}')">사용하기</button>
+	</td>
 	</tr>
-	
-	<tr>
-		<th>
-			<input class="inputbutton" type="button" value="사용하기" onclick="setCoupon('${coupon_code}')"/>
-		</th>
-	</tr>
-	
-	
 	</table>
 </div>
 <div class="col-sm-2 sidenav"></div>

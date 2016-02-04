@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,14 +28,14 @@
   </blockquote>
 </div>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default"">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand"><p>SASAEG<img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></p></a>
+      <a class="navbar-brand"><span style="color:black">SASAEG<img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></span></a>
     </div>
     <ul class="nav navbar-nav">
-    <li class="active"><a href="index">Home</a></li>
-      <li><a href="seatList">좌석</a></li>
+    <li><a href="index">Home</a></li>
+      <li class="active"><a href="seatList">좌석</a></li>
     	<li><a href="goodsList">메뉴</a></li>
       <li><a href="boardList">게시판</a></li>
     </ul>
