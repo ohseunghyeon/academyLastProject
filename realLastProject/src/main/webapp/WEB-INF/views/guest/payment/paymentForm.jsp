@@ -22,9 +22,18 @@ background:#FFBC9B;
 function couponPage(){
 	window.open("coupon" ,"manubar=no,width= 500,height=200");
 }
-function sale(){
+function sale(mileage,price){
+var inputMileage = document.getElementsByName("mileage")[0].value;
+
+if(mileage < inputMileage){
+	alert("보유마일리지를 초과 입력 하셨습니다.");
+	return false;
+}else if(price < inputMileage) {
+	alert("결제금액 보다 많이 사용할수 없습니다.");
+	return false;
+}
 	
-	
+document.paymentForm.finalamount.value = price-inputMileage;
 }
 
 
@@ -100,15 +109,12 @@ function sale(){
 					</tr>
 					<tr>	
 						<th id="tt" width="200" height="15"><p class="text-center">사용 마일리지</p></th>
-						<td><input type="text" name="mileage" size="20"/>원
-							<input type="button" value="적용" onclick=''>
+						<td><input type="text" name="mileage" size="10"/> 원
+							<input type="button" value="적용" onclick="sale(${mileage},${price})">
 						</td>
 					
 					</tr>
-					<tr>
-						<th id="tt" width="200" height="15"><p class="text-center">할인합계</p></th>
-						<td><input type="text" name="discount" size="20"/>원</td>
-					</tr>
+					
 
 		</table>
 			</fieldset>
@@ -120,7 +126,8 @@ function sale(){
 		<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
 					<tr>
 						<th id="tt" width="200" height="15"><p class="text-center">최종 결제 금액</p></th>
-						<td><mark>${price}</mark>원</td>
+						<td><mark><input type="text" readonly name="finalamount" size="10" value="${price}"></mark>원</td>
+						
 					</tr>
 		</table>
 			</fieldset>

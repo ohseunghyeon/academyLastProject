@@ -240,6 +240,11 @@ public class SJController {
 		
 		return viewname;
 	}
+	@RequestMapping("/couponmain")
+	public String couponmain(Model model) {
+		System.out.println("couponmain()");
+		return "/member/p_coupon/couponmain";
+	}
 
 
 }

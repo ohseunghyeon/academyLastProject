@@ -16,6 +16,13 @@
  #menu1{
  background: #E4F7BA;
  }
+ #menu2 {
+ 
+ color:white;
+ }
+ #inline {
+ display:inline;
+ }
 </style>
 
 <!DOCTYPE html>
@@ -25,51 +32,88 @@
 <!-- <link href="/lastproject/resources/bootstrap.min.css" rel="stylesheet"/> -->
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row" ng-app="" ng-controller="CartForm">
 		
 			<div>
 			<ul class="nav nav-tabs">
+			<li id="menu2">zzzzzz</li>
 			<li class="active"><a id="menu" ng-click="drink()"><b>음료</b></a></li>
 			<li ><a id="menu1" ng-click="dessert()"><b>디저트</b></a></li>
 			</ul>
 			</div>
 			
-			<div class="col-sm-8 text-center" ng-hide="drinkHide">
-				<form>
-					<table class="table table-hover">
-						<c:forEach var="goodslist" items="${goodslist}" begin="0" end="9">
-							<tr>
-								<td><a
-									ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"
-									ng-click="show()">${goodslist.food_name}</a></td>
-								<td>${goodslist.price}</td>
-								<td>${goodslist.sold_out}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</form>
+			
+			<!-- 음료 -->
+			<div id="inline" class="col-sm-8 text-center" ng-hide="drinkHide">
+			<div class="container">
+			 <div class="col-sm-4">
+			 <div class="panel panel-default">
+			 <div class="panel-body">
+			 <c:forEach var="goodslist" items="${goodslist}" begin="0" end="4">
+			 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+			 <p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a></p>
+   			 <p>가격 : <b>${goodslist.price}</b></p>
+   			 <p>상태 : ${goodslist.sold_out}</p>
+   			 </c:forEach>
+   			 </div>
+   			 </div>
+   			 
+   			 </div>
+   			<div class="col-sm-4">
+   			<div class="panel panel-default">
+			 <div class="panel-body">
+   			 <c:forEach var="goodslist" items="${goodslist}" begin="5" end="9">
+			 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+			 <p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a></p>
+   			 <p>가격 : <b>${goodslist.price}</b></p>
+   			 <p>상태 : ${goodslist.sold_out}</p>
+   			 </c:forEach>
+   			</div>
+   			<div class="col-sm-4"></div>
+   			 </div>
+   			 </div>
+   			 </div>
+   			 </div>
+			
+			
+			
+<!-- 디저트 -->
+			<div id="inline" class="col-sm-8 text-center" ng-hide="dessertHide">
+			<div class="container">
+			 <div class="col-md-4">
+			 <div class="panel panel-default">
+			 <div class="panel-body">
+				<c:forEach var="goodslist" items="${goodslist}" begin="10" end="14">
+				<a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
+				<p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')">${goodslist.food_name}</a></p>
+				<p>가격 : ${goodslist.price}</p>
+				<p>상태 : ${goodslist.sold_out}</p>
+				</c:forEach>
 			</div>
-			<div class="col-sm-8 text-center" ng-hide="dessertHide">
-				<form>
-					<table class="table table-hover">
-						<c:forEach var="goodslist" items="${goodslist}" begin="10"
-							end="19">
-							<tr>
-								<td><a href
-									ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"
-									ng-click="show()">${goodslist.food_name}</a></td>
-								<td>${goodslist.price}</td>
-								<td>${goodslist.sold_out}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</form>
 			</div>
-
+			 </div>
+   			<div class="col-md-4">
+   			<div class="panel panel-default">
+			 <div class="panel-body">
+				<c:forEach var="goodslist" items="${goodslist}" begin="15" end="19">
+				<a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
+				<p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')">${goodslist.food_name}</a></p>
+				<p>가격 : ${goodslist.price}</p>
+				<p>상태 : ${goodslist.sold_out}</p>
+				</c:forEach>
+			</div>
+			</div>
+   			
+   			
+   			</div>
+			<div class="col-md-4"></div>
+   			 </div>
+</div>
+			<!-- 장바구니 -->
 			<div class="col-sm-4 text-center">
 				<form action="goodsListPro" name="bagform">
-					<table class="table table-hover" ng-hide="totalHide">
+					<table id="inline" class="table table-hover" ng-hide="totalHide">
 						<tr id="menu">
 							<th colspan="4">장바구니</th>
 						</tr>
@@ -102,8 +146,9 @@
 
 				</form>
 			</div>
-		</div>
-	</div>
+	</div>	
+</div>
+
 	<script>
 		function CartForm($scope) {
 			$scope.invoice = {
