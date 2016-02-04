@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <style>
 <!--
  span{
@@ -7,10 +12,6 @@
 
  }
 </style>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <title>사색 카페</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
