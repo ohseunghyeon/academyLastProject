@@ -40,7 +40,7 @@ background:#FAFAD2 ;
 			return false;
 		}
 		var url = "confirmId?id=" + document.registerform.id.value;
-		window.open(url, "confirm", "manubar=no, width=300, height=200");
+		window.open(url, "confirm", "manubar=no, width=500, height=300");
 	}
 	function inputCheck(form) {
 		if (!form.id.value) {
