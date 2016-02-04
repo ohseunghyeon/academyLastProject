@@ -23,7 +23,7 @@
 			<td>
 			<button type="button" class="btn btn-success btn-sm" onclick="window.location='accountDay'">일간</button>
 			<button type="submit" class="btn btn-danger btn-sm">월간</button>
-			<input name="monlist" type="text" list="monthList"> <datalist
+			<input name="monlist" type="text" list="monthList" required /> <datalist
 					id="monthList">
 					<option value="01" label="january"></option>
 					<option value="02" label="febuary"></option>
@@ -45,8 +45,8 @@
 	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr style="background-color:lavender;" >
 			<td><button type="submit" class="btn btn-info btn-sm">기간선택</button> <input
-				type="date" value="dateselect" name="startday"> ~ <input
-				type="date" value="dateselect" name="endday"></td>
+				type="date" value="dateselect" name="startday" required /> ~ <input
+				type="date" value="dateselect" name="endday" required /></td>
 		</tr>
 	</table>
 </form>

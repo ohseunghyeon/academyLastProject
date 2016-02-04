@@ -27,7 +27,7 @@
 			</tr>
 			<tr>
 				<th><p class="text-center">비밀번호</p></th>
-				<td><input class="input" type="password" name="passwd" maxlength="12"></td>
+				<td><input class="input" type="password" name="passwd" maxlength="12" required /></td>
 			</tr>
 			<tr class="info">
 				<th colspan="2"><p class="text-center">
