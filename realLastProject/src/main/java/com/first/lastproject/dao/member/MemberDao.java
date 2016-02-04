@@ -177,7 +177,7 @@ public class MemberDao implements InterfaceMemberDao {
 	}
 
 	@Override
-	public int checkMember(String id, String passwd) {
+	public int checkMember(String id, String passwd) { //아이디/비밀번호 일치 여부 판단
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -186,18 +186,18 @@ public class MemberDao implements InterfaceMemberDao {
 
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT * FROM p_user WHERE id = ?";
+			String sql = "SELECT * FROM p_user WHERE id = ?";//p_user 테이블에서 id에 일치하는 데이터 찾음.
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, id);//로그인 창에서 입력받아 넘어온 id값을 받음.
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				if (passwd.equals(rs.getString("passwd"))) {
+				if (passwd.equals(rs.getString("passwd"))) {//비밀번호 일치 시에 result 변수 1.
 					result = 1;
-				} else {
+				} else {//불일치시에는 -1.
 					result = -1;
 				}
-			} else {
+			} else {// 기타 오류 발생시에는 0. 
 				result = 0;
 			}
 		} catch (SQLException e) {
@@ -219,18 +219,18 @@ public class MemberDao implements InterfaceMemberDao {
 	
 
 	@Override
-	public MemberDto getMember(String id) {
+	public MemberDto getMember(String id) {//회원의 정보를 가져옴.
 		MemberDto dto = new MemberDto();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT * FROM p_user WHERE ID = ?";
+			String sql = "SELECT * FROM p_user WHERE ID = ?";//p_user 테이블에서 id와 일치하는 데이터 찾음.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			if (rs.next()) {//rs에 다음 데이터가 있는 한, dto에 각 데이터를 입력함.
 				dto.setId(rs.getString("id"));
 				dto.setPasswd(rs.getString("passwd"));
 				dto.setPhone_number(rs.getString("phone_number"));

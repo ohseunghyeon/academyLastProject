@@ -86,7 +86,7 @@
 			 <div class="panel panel-default">
 			 <div class="panel-body">
 				<c:forEach var="goodslist" items="${goodslist}" begin="10" end="14">
-				<a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
+				<a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
 				<p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')">${goodslist.food_name}</a></p>
 				<p>가격 : ${goodslist.price}</p>
 				<p>상태 : ${goodslist.sold_out}</p>
@@ -98,7 +98,7 @@
    			<div class="panel panel-default">
 			 <div class="panel-body">
 				<c:forEach var="goodslist" items="${goodslist}" begin="15" end="19">
-				<a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
+				<a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
 				<p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')">${goodslist.food_name}</a></p>
 				<p>가격 : ${goodslist.price}</p>
 				<p>상태 : ${goodslist.sold_out}</p>

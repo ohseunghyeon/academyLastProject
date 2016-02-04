@@ -29,11 +29,19 @@
 #blue {
 	background: #E4F7BA;
 }
+#well{
+width:230px;
+
+}
+#well1{
+backgrond:FFFFA2;
+
+}
 </style>
 <body>
  <div class="container-fluid">
 		<div class="row">
- 		<div class="col-sm-2" ></div>
+ 		<div class="col-sm-1" ></div>
  		 <div class="col-sm-8" ><br>
 	<table align="center">
 		<tr>
@@ -43,12 +51,12 @@
 				<!-- 14, 15번 앞에 9번 공백 있는 거 -->
 				<c:if test="${nineTd.indexOf(i.count) > -1}">
 					<c:forEach begin="0" end="8">
-						<td width="70" height="70"></td>
+						<td width="80" height="80"></td>
 					</c:forEach>
 				</c:if>
 				
 				<!-- 기본적으로 좌석 뿌려주는 로직 -->	
-				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="70"height="70">
+				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="80"height="80">
 					<c:if test="${seat.occupied == 0}"><a href="seatConfirm?seat_num=${seat.seat_num}"></c:if>
 						<p class="text-center">
 							<button type="button" class="btn btn-default ${seat.occupied == 0 ? 'active' : 'disabled'}">${i.count}</button>
@@ -65,7 +73,19 @@
 		</tr>
 	</table><br><br>
 </div>
-<div class="col-sm-2" ></div>
+<div class="col-sm-3" >
+<br><br>
+<br><br>
+<br><br>
+<table id="well" class="table table-bordered table-condensed ">
+<tr>
+<td><h4><span id="blue" class="label">색상</span>비점유좌석</h4>
+	<h4><span id="red" class="label">색상</span>점유좌석 <br></h4>
+	<span class="badge">1</span>커플석 : 16번~23번 좌석<br>
+	<span class="badge">2</span>룸 : 13번~15번, 24번 좌석<br></td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <jsp:include page="../../menu/guestFooter.jsp" flush="false" />

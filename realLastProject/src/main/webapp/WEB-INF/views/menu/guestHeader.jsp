@@ -43,7 +43,7 @@
       <li><a>마일리지:${mileage} 포인트</a></li>
       <li>
       	  <c:if test="${coupon == 0}"><a>쿠폰 없어</a></c:if>
-      	  <c:if test="${coupon != 0}"><a href="coupon">쿠폰 있어</a></c:if>
+      	  <c:if test="${coupon != 0}"><a href="couponmain">쿠폰 있어</a></c:if>
       </li>
       <li><a href="memberModifyForm">회원정보수정</a></li>
     </ul>
