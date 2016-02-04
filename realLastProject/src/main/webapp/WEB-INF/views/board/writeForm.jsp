@@ -48,6 +48,12 @@
 				</td>
 			</tr>
 			<tr class="info">
+				<th><p class="text-center">비밀번호</p></th>
+				<td>
+					 <input type="password" class="form-control" name="passwd" placeholder="Enter password">
+				</td>
+			</tr>
+			<tr class="info">
 				<th colspan="2">
 				<p class="text-center">
 				<button type="submit" class="btn btn-warning">작성
