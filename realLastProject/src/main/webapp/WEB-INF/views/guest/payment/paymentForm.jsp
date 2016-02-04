@@ -2,15 +2,30 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
+
 <script src="/lastproject/resources/angular.js"></script>
+
+<style>
+
+#tt {
+
+background:#FFBC9B;
+}
+
+
+</style>
+
+
 <script type="text/javascript">
+
 
 function couponPage(){
 	window.open("coupon" ,"manubar=no,width= 500,height=200");
 }
 
 </script>
+
+
 </head>
 <!--쿠폰 페이지  -->
 <!--  -->
@@ -23,7 +38,7 @@ function couponPage(){
 </c:if>
 
 <body>
-<h3><p class="text-center">Coupon</p></h3>
+<h3><p class="text-center"><font color="orange" size="6"><b>Payment </b></font></p></h3>
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -33,20 +48,20 @@ function couponPage(){
 	<form action="paymentFinish" method="post" name="paymentForm">
 		<fieldset id="content">
 			<legend>
-				<font color="orange" size="6"><b>Payment </b></font>
+				<font color="orange"><b><small>Payment</small> </b></font>
 			</legend>
 			<br>
 			<fieldset>
 				<legend>
 					<font color="orange"><b>ProductInfo</b></font>
 				</legend>
-				<table id="payment" cellspacing="10" cellpadding="0">
-					<tr>
-						<th width="200" height="15">상품정보</th>
-						<td width="50" height="15" align="center">수량</td>
-						<td width="200" height="15" align="center">상품금액</td>
-						<td width="80" height="15" align="center">마일리지</td>
-						<td width="200" height="15" align="center">주문금액</td>
+				<table class="table table-striped table-bordered table-hover table-condensed text-center" id="payment" cellspacing="10" cellpadding="0">
+					<tr id="tt" >
+						<th width="200" height="15"><p class="text-center">상품정보</p></th>
+						<th width="200" height="15"><p class="text-center">수량</p></th>
+						<th width="200" height="15"><p class="text-center">상품금액</p></th>
+						<th width="200" height="15"><p class="text-center">마일리지</p></th>
+						<th width="200" height="15"><p class="text-center">주문금액</p></th>
 					</tr>
 					<c:forEach var="foodDto" items="${shoppingBagForPayment}">
 						<input type="hidden" name="food_code" value="${foodDto.food_code}">
@@ -67,25 +82,25 @@ function couponPage(){
 					<font color="orange"><b>Coupon/Discount</b></font>
 				</legend>
 
-				<table id="payment" cellspacing="5">
+				<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
 					<tr>
-						<th width="200" height="15">보유 쿠폰 할인</th>
-						<td><input type="text" name="coupon" size="10"
-							value="쿠폰번호 입력" /></td>
-						<td><input class="inputbutton" type="button" name="coupon1"
-							value="쿠폰 조회" onclick="couponPage()" /></td>
+						<th id="tt" width="200" height="15"><p class="text-center">보유 쿠폰 할인</p></th>
+						<td>
+						<input type="text" name="coupon" size="20" placeholder="Enter coupon number" />
+						<button class="btn btn-warning" type="button" name="coupon1" onclick="couponPage()">쿠폰 조회</button>
+						</td>
 					</tr>
 					<tr>
-						<th width="200" height="15">보유 마일리지</th>
-						<td>${mileage}원</td>
+						<th id="tt" width="200" height="15"><p class="text-center">보유 마일리지</p></th>
+						<td><mark>${mileage}</mark>원</td>
 					</tr>
 					<tr>	
-						<th width="200" height="15">사용 마일리지</th>
-						<td><input type="text" name="mileage" size="10"/>원</td>
+						<th id="tt" width="200" height="15"><p class="text-center">사용 마일리지</p></th>
+						<td><input type="text" name="mileage" size="20"/>원</td>
 					</tr>
 					<tr>
-						<th width="200" height="15">할인합계</th>
-						<td><input type="text" name="discount" size="10" value="" />원</td>
+						<th id="tt" width="200" height="15"><p class="text-center">할인합계</p></th>
+						<td><input type="text" name="discount" size="20" value="" />원</td>
 					</tr>
 <!-----------------------------------angularJS-------------------------------------------->
 	<div ng-app="myApp" ng-controller="costCtrl">
@@ -108,24 +123,23 @@ function couponPage(){
 					<font color="orange"><b>Final Amount</b></font>
 				</legend>
 				
-		<table id="payment" cellspacing="5">
+		<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
 					<tr>
-						<th width="200" height="15">최종 결제 금액</th>
-						<td>원</td>
+						<th id="tt" width="200" height="15"><p class="text-center">최종 결제 금액</p></th>
+						<td><mark></mark>원</td>
 					</tr>
 		</table>
 			</fieldset>
-			<br> <br> <br> <input class="inputbutton"
-				type="submit" value="결제하기"> <input class="inputbutton"
-				type="button" value="결제취소" onclick="window.location='goodsList'">
-
+			<br> <p class="text-center">
+			<button type="submit" class="btn btn-warning">결제하기</button>
+			<button type="button" onclick="window.location='goodsList'" class="btn btn-warning">결제 취소</button></p>
 		</fieldset>
 	</form>
-	
 </div>
 <div class="col-sm-2 sidenav"></div>
 </div>
 </div>
+<br><br>
 <jsp:include page="../../menu/guestFooter.jsp" flush="false"/>
-</body>
+
 </html>
