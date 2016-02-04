@@ -64,7 +64,7 @@
 						<tr>
 							<th>메뉴</th>
 							<th>수량</th>
-							<th>가격</th>
+							<th>가격</th> 
 							<th></th>
 						</tr>
 						<tr ng-repeat="item in invoice.items">
@@ -105,17 +105,20 @@
 			$scope.dessertHide = true; /*클릭 전에 토탈 숨기기 위함*/
 			
 			$scope.addItem = function(code, name, pric) {
-				if ($scope.invoice.indexOf(code) == -1) {
-					$scope.invoice.items.push({
-						qty : 1,
-						food_code : code,
-						food_name : name,
-						price : pric
-					});
-				    
-					$scope.totalHide = false;
-					arr.push(item);
+				for (var i = 0; i < $scope.invoice.items.length; i++) {
+					if ($scope.invoice.items[i].food_code == code) {
+						$scope.invoice.items[i].qty += 1;
+						return;
+					}
 				}
+				$scope.invoice.items.push({
+					qty : 1,
+					food_code : code,
+					food_name : name,
+					price : pric
+				});
+			    
+				$scope.totalHide = false;
 			},
 			
 			
@@ -129,14 +132,14 @@
 				$scope.dessertHide = false;
 			},
 			
-			$scope.removeItem = function(index) {
+			$scope.removeItem = function(index) {	//아이템 제거하는 함수
 				$scope.invoice.items.splice(index, 1);
-				if (index == 0) {
+				if ($scope.invoice.items.length == 0) {
 					$scope.totalHide = true;
 				}
 			},
 
-			$scope.total = function() {
+			$scope.total = function() {	//총 가격 구하는 함수
 				var total = 0;
 				if (total != null) {
 					angular.forEach($scope.invoice.items, function(item) {
