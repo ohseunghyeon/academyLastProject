@@ -30,7 +30,11 @@
 	background: #E4F7BA;
 }
 #well{
-width:250px;
+width:230px;
+
+}
+#well1{
+backgrond:FFFFA2;
 
 }
 </style>
@@ -73,7 +77,7 @@ width:250px;
 <br><br>
 <br><br>
 <br><br>
-<table id="well" class="table table-striped table-bordered table-hover table-condensed ">
+<table id="well" class="table table-bordered table-condensed ">
 <tr>
 <td><h4><span id="blue" class="label">색상</span>비점유좌석</h4>
 	<h4><span id="red" class="label">색상</span>점유좌석 <br></h4>
@@ -81,8 +85,6 @@ width:250px;
 	<span class="badge">2</span>룸 : 13번~15번, 24번 좌석<br></td>
 </tr>
 </table>
-
-
 </div>
 </div>
 </div>
