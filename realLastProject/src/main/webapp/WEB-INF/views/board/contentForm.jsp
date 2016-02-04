@@ -47,6 +47,11 @@
 			<p class="text-center">
 			<button type="button" class="btn btn-warning" onclick="window.location='boardModifyForm?num=${dto.num}&pageNum=${pageNum}'">글수정</button>
 			<button type="button" class="btn btn-warning" onclick="window.location='deleteForm?num=${dto.num}&pageNum=${pageNum}'">글삭제</button>
+			<button type="button" class="btn btn-warning" onclick="window.location='writeForm?num=${dto.num}&ref=${dto.ref}&re_step=${dto.re_step}&re_level=${dto.re_level}'">
+			답글쓰기</button>
+			
+			
+			
 			<button type="button" class="btn btn-warning" onclick="window.location='boardList?pageNum=${pageNum}'">목록보기</button>
 			</p>
 				</th>
