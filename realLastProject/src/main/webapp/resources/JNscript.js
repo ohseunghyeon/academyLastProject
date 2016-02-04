@@ -10,7 +10,7 @@ function erroralert(msg) {
 	alert(msg);
 	history.back(); // 이전으로 돌아가라 
 }
-
+/*
 function accountMonCheck() {
 	if(document.accountForm.monlist < 1 || document.accountForm.monlist > 12) {
 		alert(montherror);
@@ -23,4 +23,4 @@ function accountSelCheck() {
 		alert(selecterror);
 		return false;
 	}
-}
+}*/
