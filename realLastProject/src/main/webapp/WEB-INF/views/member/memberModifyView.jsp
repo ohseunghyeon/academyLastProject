@@ -20,7 +20,7 @@
 		</tr>
 		<tr class="warning">
 			<th><p class="text-center">비밀번호</p></th>
-			<td><input placeholder="Enter password" type="password" name="passwd" class="form-control" value="${dto.passwd}"></td>
+			<td><input placeholder="Enter password" type="password" name="passwd" class="form-control" value="${dto.passwd}" required /></td>
 		</tr>
 		<tr class="warning">
 			<th><p class="text-center">전화번호</p></th>

@@ -18,7 +18,7 @@
 				<th><h4><p class="text-center">재고수량</p></h4></th>
 				<td>
 				<h4><input type="hidden" name="food_code" value="${param.food_code}"></h4>
-				<h4><input class="input" type="number" name="food_num" min="0" max="999" value="${param.food_num}"></h4>
+				<h4><input class="input" type="number" name="food_num" min="0" max="999" value="${param.food_num}" required /></h4>
 				</td>
 			</tr>
 			<tr class="info">

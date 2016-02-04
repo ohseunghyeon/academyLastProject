@@ -52,7 +52,7 @@
 										<!-- <form role="form"> -->
 										<div class="form-group">
 											<br> <input type="text" class="form-control" name="id"
-												placeholder="Enter id">
+												placeholder="Enter id" required />
 										</div> <!-- </form> -->
 									</th>
 								</tr>
@@ -68,7 +68,7 @@
 										<!-- <form role="form"> -->
 										<div class="form-group">
 											<br> <input type="password" class="form-control"
-												name="passwd" placeholder="Enter password">
+												name="passwd" placeholder="Enter password" required />
 										</div> <!-- </form> -->
 									</th>
 								</tr>
@@ -93,11 +93,11 @@
 							<strong>비회원!</strong>
 						</p>
 					</h3>
-					<br> <br>
+					<br>
 					<p class="text-center">
 						<a href="nomemberLoginPro" class="success"><img
-							src="/lastproject/resources/images/nomember.png"
-							class="img-rounded" alt="비회원" width="300" height="120"></a>
+							src="/lastproject/resources/images/index.png"
+							class="img-rounded" alt="비회원" width="180" height="180"></a>
 					</p>
 				</div>
 			</div>
