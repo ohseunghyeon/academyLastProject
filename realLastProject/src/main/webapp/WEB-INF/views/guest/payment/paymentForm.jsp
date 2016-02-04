@@ -22,13 +22,17 @@ background:#FFBC9B;
 function couponPage(){
 	window.open("coupon" ,"manubar=no,width= 500,height=200");
 }
+function sale(){
+	
+	
+}
+
 
 </script>
 
 
 </head>
 <!--쿠폰 페이지  -->
-<!--  -->
 
 <c:if test="${sessionScope.id == 'nomember'}">
 <jsp:include page="../../menu/noMemberHeader.jsp" flush="false" />
@@ -96,26 +100,16 @@ function couponPage(){
 					</tr>
 					<tr>	
 						<th id="tt" width="200" height="15"><p class="text-center">사용 마일리지</p></th>
-						<td><input type="text" name="mileage" size="20"/>원</td>
+						<td><input type="text" name="mileage" size="20"/>원
+							<input type="button" value="적용" onclick=''>
+						</td>
+					
 					</tr>
 					<tr>
 						<th id="tt" width="200" height="15"><p class="text-center">할인합계</p></th>
-						<td><input type="text" name="discount" size="20" value="" />원</td>
+						<td><input type="text" name="discount" size="20"/>원</td>
 					</tr>
-<!-----------------------------------angularJS-------------------------------------------->
-	<div ng-app="myApp" ng-controller="costCtrl">
-	<%-- 보유마일리지:<input type="number" ng-model="${mileage}"> --%>
-	 사용마일리지:<input type="number" ng-model="mileage">
-	<p>할인합계={{( mileage) | currency : "￦"}}원</p>
-	</div>
-	<script>
-		var app = angular.module('myApp', []);
-		app.controller('costCtrl', function($scope) {
-			$scope.salePrice;
-			$scope.mileage;
-		});
-	</script>
-<!------------------------------------------------------------------------------->	
+
 		</table>
 			</fieldset>
 			<fieldset>
