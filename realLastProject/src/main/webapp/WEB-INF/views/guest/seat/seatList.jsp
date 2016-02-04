@@ -29,11 +29,15 @@
 #blue {
 	background: #E4F7BA;
 }
+#well{
+width:250px;
+
+}
 </style>
 <body>
  <div class="container-fluid">
 		<div class="row">
- 		<div class="col-sm-2" ></div>
+ 		<div class="col-sm-1" ></div>
  		 <div class="col-sm-8" ><br>
 	<table align="center">
 		<tr>
@@ -65,7 +69,21 @@
 		</tr>
 	</table><br><br>
 </div>
-<div class="col-sm-2" ></div>
+<div class="col-sm-3" >
+<br><br>
+<br><br>
+<br><br>
+<table id="well" class="table table-striped table-bordered table-hover table-condensed ">
+<tr>
+<td><h4><span id="blue" class="label">색상</span>비점유좌석</h4>
+	<h4><span id="red" class="label">색상</span>점유좌석 <br></h4>
+	<span class="badge">1</span>커플석 : 16번~23번 좌석<br>
+	<span class="badge">2</span>룸 : 13번~15번, 24번 좌석<br></td>
+</tr>
+</table>
+
+
+</div>
 </div>
 </div>
 <jsp:include page="../../menu/guestFooter.jsp" flush="false" />
