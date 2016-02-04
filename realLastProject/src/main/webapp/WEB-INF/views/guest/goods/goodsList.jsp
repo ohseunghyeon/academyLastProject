@@ -8,6 +8,16 @@
 <c:if test="${sessionScope.id != 'nomember'}">
 	<jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 </c:if>
+
+<style>
+ #menu {
+  background:#FFA7A7;
+ }
+ #menu1{
+ background: #E4F7BA;
+ }
+</style>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +29,10 @@
 		<div class="row" ng-app="" ng-controller="CartForm">
 		
 			<div>
-				<input type="button" value="음료" ng-click="drink()"> <input
-					type="button" value="디저트" ng-click="dessert()">
+			<ul class="nav nav-tabs">
+			<li class="active"><a id="menu" ng-click="drink()"><b>음료</b></a></li>
+			<li ><a id="menu1" ng-click="dessert()"><b>디저트</b></a></li>
+			</ul>
 			</div>
 			
 			<div class="col-sm-8 text-center" ng-hide="drinkHide">
@@ -58,10 +70,10 @@
 			<div class="col-sm-4 text-center">
 				<form action="goodsListPro" name="bagform">
 					<table class="table table-hover" ng-hide="totalHide">
-						<tr>
+						<tr id="menu">
 							<th colspan="4">장바구니</th>
 						</tr>
-						<tr>
+						<tr id="menu1">
 							<th>메뉴</th>
 							<th>수량</th>
 							<th>가격</th> 
@@ -76,14 +88,15 @@
 							<td>[<a href ng-click="removeItem($index)">X</a>]
 							</td>
 						</tr>
-						<tr>
+						<tr id="menu">
 							<td></td>
+							<td><b>총 가격:</b></td>
+							<td><b><mark>{{total()}}</mark></b></td>
 							<td></td>
-							<td>총 가격:</td>
-							<td>{{total()}}</td>
 						</tr>
 						<tr>
-							<td><input type="submit" value="결제 화면"></td>
+							<td>
+							<button type="submit" class="btn btn-warning">결제화면</button>
 						</tr>
 					</table>
 
