@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <script src= /lastproject/resources/SJscript.js></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
+<style>
+ #info {
+  background:#FFBCB9;
+ }
+ #warning {
+  background:#F0FFF0;
+ }
+</style>
+
 <c:if test="${sessionScope.id == 'host'}">
 <jsp:include page="../menu/hostHeader.jsp" flush="false" />
 </c:if>
@@ -25,7 +35,7 @@
 		
 		<table class="table table-striped table-bordered table-hover table-condensed text-center">
 		
-			<tr class="info">
+			<tr id="info">
 				<th><p class="text-center">작성자</p></th>
 				<td><p class="text-center">${id}</p></td>
 			</tr>
@@ -53,7 +63,7 @@
 					 <input type="password" class="form-control" name="passwd" placeholder="Enter password">
 				</td>
 			</tr>
-			<tr class="info">
+			<tr id="info">
 				<th colspan="2">
 				<p class="text-center">
 				<button type="submit" class="btn btn-warning">작성

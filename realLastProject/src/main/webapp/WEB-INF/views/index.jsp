@@ -93,11 +93,11 @@
 							<strong>비회원!</strong>
 						</p>
 					</h3>
-					<br> <br>
+					<br>
 					<p class="text-center">
 						<a href="nomemberLoginPro" class="success"><img
-							src="/lastproject/resources/images/nomember.png"
-							class="img-rounded" alt="비회원" width="300" height="120"></a>
+							src="/lastproject/resources/images/index.png"
+							class="img-rounded" alt="비회원" width="180" height="180"></a>
 					</p>
 				</div>
 			</div>
