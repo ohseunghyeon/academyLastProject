@@ -13,8 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.first.lastproject.command.goods.GoodsCommand;
-import com.first.lastproject.command.goods.GoodsShoppingBagCommand;
 import com.first.lastproject.command.member.MemberCommand;
 import com.first.lastproject.command.member.MemberConfirmIdCommand;
 
@@ -41,16 +39,6 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
-	}
-	
-	@RequestMapping("shoppingBag")
-	public String shoppingBag(HttpServletRequest request, Model model) {
-		System.out.println("shoppingBag()");
-		model.addAttribute("request", request);
-		
-		GoodsCommand command = new GoodsShoppingBagCommand();
-		String viewName = command.execute(model);
-		return viewName;
 	}
 	
 	@RequestMapping("confirmId")
