@@ -23,8 +23,9 @@ function couponPage(){
 	window.open("coupon" ,"manubar=no,width= 500,height=200");
 }
 function sale(){
-	
-	
+var mileage = document.getElementsByName("mileage1")[0].value;
+
+document.paymentForm.discount.value = mileage;
 }
 
 
@@ -100,8 +101,8 @@ function sale(){
 					</tr>
 					<tr>	
 						<th id="tt" width="200" height="15"><p class="text-center">사용 마일리지</p></th>
-						<td><input type="text" name="mileage" size="20"/>원
-							<input type="button" value="적용" onclick=''>
+						<td><input type="text" name="mileage1" size="20"/> 원
+							<input type="button" value="적용" onclick="sale()">
 						</td>
 					
 					</tr>
