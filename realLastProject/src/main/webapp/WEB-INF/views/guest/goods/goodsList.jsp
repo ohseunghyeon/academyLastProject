@@ -16,6 +16,10 @@
  #menu1{
  background: #E4F7BA;
  }
+ #menu2 {
+ 
+ color:white;
+ }
 </style>
 
 <!DOCTYPE html>
@@ -30,8 +34,11 @@
 		
 			<div>
 			<ul class="nav nav-tabs">
+			<div class="row">
+			<li id="menu2">zzzzzz</li>
 			<li class="active"><a id="menu" ng-click="drink()"><b>음료</b></a></li>
 			<li ><a id="menu1" ng-click="dessert()"><b>디저트</b></a></li>
+			</div>
 			</ul>
 			</div>
 			
