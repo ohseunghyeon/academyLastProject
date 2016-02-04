@@ -57,6 +57,7 @@ public class FoodDao implements InterfaceFoodDao {
 				goods.setFood_name(rs.getString("food_name"));
 				goods.setPrice(rs.getInt("price"));
 				goods.setFood_num(rs.getInt("food_num"));
+				goods.setImage_name(rs.getString("image_name"));
 				goods.setSold_out(0); // 매진 아님
 				if (rs.getInt("food_num") < 0) { // 생산품의 경우
 					//음료만 지나오는 거 확인.

@@ -47,9 +47,8 @@
 					<table class="table table-hover">
 						<c:forEach var="goodslist" items="${goodslist}" begin="0" end="9">
 							<tr>
-								<td><a
-									ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"
-									ng-click="show()">${goodslist.food_name}</a></td>
+								<td><a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a><a
+									ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')">${goodslist.food_name}</a></td>
 								<td>${goodslist.price}</td>
 								<td>${goodslist.sold_out}</td>
 							</tr>
@@ -63,9 +62,8 @@
 						<c:forEach var="goodslist" items="${goodslist}" begin="10"
 							end="19">
 							<tr>
-								<td><a href
-									ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"
-									ng-click="show()">${goodslist.food_name}</a></td>
+								<td><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"><a
+									ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')">${goodslist.food_name}</a></td>
 								<td>${goodslist.price}</td>
 								<td>${goodslist.sold_out}</td>
 							</tr>
