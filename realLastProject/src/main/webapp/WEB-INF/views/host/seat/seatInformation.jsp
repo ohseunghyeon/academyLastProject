@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.sql.*"%>
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
 <html>
@@ -28,10 +29,10 @@
 				<td><h5><b>아이디</b></h5></td><td>${orderDto.id}</td>
 				</tr>
 				<tr>
-				<td><h5><b>주문시간</b></h5></td><td> ${orderDto.order_time }</td>
+				<td><h5><b>주문시간</b></h5></td><td><fmt:formatDate value="${orderDto.order_time}" type="time" pattern="(a)hh:mm:ss"/></td>
 				</tr>
 				<tr>
-				<td><h5><b>종료시간</b></h5></td><td>${orderDto.end_time}</td>
+				<td><h5><b>종료시간</b></h5></td><td><fmt:formatDate value="${orderDto.end_time}" type="time" pattern="(a)hh:mm:ss"/></td>
 				</tr>
 				</table><p class="text-center">
 				<button type="button" class="btn btn-warning" onclick="window.location='seatList'">확인</button>
