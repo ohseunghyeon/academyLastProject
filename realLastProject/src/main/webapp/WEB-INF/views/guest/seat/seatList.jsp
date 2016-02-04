@@ -51,12 +51,12 @@ backgrond:FFFFA2;
 				<!-- 14, 15번 앞에 9번 공백 있는 거 -->
 				<c:if test="${nineTd.indexOf(i.count) > -1}">
 					<c:forEach begin="0" end="8">
-						<td width="70" height="70"></td>
+						<td width="80" height="80"></td>
 					</c:forEach>
 				</c:if>
 				
 				<!-- 기본적으로 좌석 뿌려주는 로직 -->	
-				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="70"height="70">
+				<td id="${seat.occupied == 0 ? 'blue' : 'red'}" width="80"height="80">
 					<c:if test="${seat.occupied == 0}"><a href="seatConfirm?seat_num=${seat.seat_num}"></c:if>
 						<p class="text-center">
 							<button type="button" class="btn btn-default ${seat.occupied == 0 ? 'active' : 'disabled'}">${i.count}</button>
