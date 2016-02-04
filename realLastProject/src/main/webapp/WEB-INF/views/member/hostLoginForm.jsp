@@ -28,7 +28,7 @@
 				<tr>
 					<th><h3><p class="text-center">Password</p></h3></th>
 					<td><br>
-						<input class="form-control" type="password" name="passwd" placeholder="Enter password">
+						<input class="form-control" type="password" name="passwd" placeholder="Enter password" required />
 					</td>	
 				</tr>
 		</table>

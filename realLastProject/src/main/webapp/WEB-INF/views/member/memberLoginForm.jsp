@@ -30,12 +30,12 @@
 				<tr>
 					<th>ID</th>
 					<td>
-						<input class="input" type="text" name="id" maxlength="12">
+						<input class="input" type="text" name="id" maxlength="12" required />
 					</td>
 				<tr>
 					<th>Password</th>
 					<td>
-						<input class="input" type="password" name="passwd" maxlength="10">
+						<input class="input" type="password" name="passwd" maxlength="10" required />
 					</td>	
 				</tr>
 			</table>

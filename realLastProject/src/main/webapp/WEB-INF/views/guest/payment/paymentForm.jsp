@@ -126,7 +126,7 @@ function couponPage(){
 		<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
 					<tr>
 						<th id="tt" width="200" height="15"><p class="text-center">최종 결제 금액</p></th>
-						<td><mark></mark>원</td>
+						<td><mark>${price}</mark>원</td>
 					</tr>
 		</table>
 			</fieldset>

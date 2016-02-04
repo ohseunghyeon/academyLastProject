@@ -52,7 +52,7 @@
 										<!-- <form role="form"> -->
 										<div class="form-group">
 											<br> <input type="text" class="form-control" name="id"
-												placeholder="Enter id">
+												placeholder="Enter id" required />
 										</div> <!-- </form> -->
 									</th>
 								</tr>
@@ -68,7 +68,7 @@
 										<!-- <form role="form"> -->
 										<div class="form-group">
 											<br> <input type="password" class="form-control"
-												name="passwd" placeholder="Enter password">
+												name="passwd" placeholder="Enter password" required />
 										</div> <!-- </form> -->
 									</th>
 								</tr>

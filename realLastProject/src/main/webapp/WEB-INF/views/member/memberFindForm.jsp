@@ -28,7 +28,7 @@ background:#FAFAAA;
 			<tr>
 				<th><p class="text-center">Email</p></th>
 				<td><div class="form-group">
-				<input type="text" class="form-control" name="email" placeholder="Enter email"></div> 
+				<input type="text" class="form-control" name="email" placeholder="Enter email" required /></div> 
 			</tr>
 			</tr>
 		</table>
@@ -47,12 +47,12 @@ background:#FAFAAA;
 				<th><p class="text-center">ID</p></th>
 				<td>
 				<div class="form-group">
-				<input type="text" class="form-control" name="id"placeholder="Enter id"></div> 
+				<input type="text" class="form-control" name="id" placeholder="Enter id" required /></div> 
 			</tr>
 			<tr>
 				<th><p class="text-center">Email</p></th>
 				<td><div class="form-group">
-				<input type="text" class="form-control" name="email" placeholder="Enter email"></div> 
+				<input type="text" class="form-control" name="email" placeholder="Enter email" required /></div> 
 			</tr>
 		</table>
 		<button type="submit" class="btn btn-warning">비밀번호 찾기</button>
