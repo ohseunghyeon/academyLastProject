@@ -12,7 +12,7 @@
 <html>
 <head>
 <script src="/lastproject/resources/angular.min.js"></script>
-<link href="/lastproject/resources/bootstrap.min.css" rel="stylesheet"/>
+<!-- <link href="/lastproject/resources/bootstrap.min.css" rel="stylesheet"/> -->
 </head>
 <body>
 	<div class="container-fluid">
@@ -22,7 +22,7 @@
 					<table class="table table-hover">
 						<c:forEach var="goodslist" items="${goodslist}" begin="0" end="9">
 							<tr>
-								<td><a ng-click="addItem()">${goodslist.food_name}</a></td>
+								<td><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')" ng-click="show()">${goodslist.food_name}</a></td>
 								<td>${goodslist.price}</td>
 								<td>${goodslist.sold_out}</td>
 							</tr>
@@ -36,11 +36,10 @@
 						<c:forEach var="goodslist" items="${goodslist}" begin="10"
 							end="19">
 							<tr>
-								<td><a href ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')">${goodslist.food_name}</a></td>
+								<td><a href ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')" ng-click="show()">${goodslist.food_name}</a></td>
 								<td>${goodslist.price}</td>
 								<td>${goodslist.sold_out}</td>
 							</tr>
-
 						</c:forEach>
 					</table>
 				</form>
@@ -57,20 +56,20 @@
 				            <th></th>
 						</tr>
 						<tr ng-repeat="item in invoice.items">
-							<td><input type="hidden" ng-model="item.food_code"><span ng-model="item.food_name">{{item.food_name}}</span></td>
-							<td><input type="number" ng-model="item.qty" ng-required
-								class="input-mini"></td>
-							<td><input type="number" ng-model="item.price" ng-required
-								class="input-mini"></td>
-							<td>{{item.qty * item.price | currency}}</td>
+							<td><input type=text name="food_code" ng-model="item.food_code" ng-hide="true">{{item.food_name}}</td>
+							<td><input type="number" name="food_num" ng-model="item.qty" ng-required class="input-mini"></td>
+							<td>{{item.price}}원</td>
+							<td>{{item.qty * item.price}}원</td>
 							<td>[<a href ng-click="removeItem($index)">X</a>]
 							</td>
 						</tr>
-						<tr>
-							<td><a href class="btn btn-small">add item</a></td>
+						<tr ng-hide="total">
 							<td></td>
+							<td></td>
+							<c:if test="{{item.food_name}} != null">
 							<td>Total:</td>
-							<td>{{total() | currency}}</td>
+							<td>{{total()}}</td>
+							</c:if>
 						</tr>
 					</table>
 					<input type="submit" value="결제화면으로">
@@ -81,10 +80,10 @@
 	<script>
 	function CartForm($scope) {
  	    $scope.invoice = {
-	        items: [{
+	        items: [/* {
 	            qty: 10,
 	            food_name: 'item',
-	            price: 9.95}]
+	            price: 9.95} */]
 	    };
 
 	    $scope.addItem = function(code, name, pric) {
@@ -102,12 +101,17 @@
 
 	    $scope.total = function() {
 	        var total = 0;
+	        if(total != null) {
 	        angular.forEach($scope.invoice.items, function(item) {
-	            total += item.qty * item.cost;
+	            total += item.qty * item.price;
 	        })
-
+	        }
 	        return total;
 	    }
+	    
+	    /* $scope.show = function() {
+	    	$scope.
+	    } */
 	}
 	</script>
 </body>
