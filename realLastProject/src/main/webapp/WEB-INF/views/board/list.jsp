@@ -126,7 +126,7 @@
       <input type="radio" name="searchmethod" value="writer">작성자
     </label>
     <label class="radio-inline">
-      <input type="radio" name="searchmethod" value="subject">제목
+      <input type="radio" name="searchmethod" value="subject" checked>제목
     </label>
     <input class="input" type="text" name="searchinput" maxlength="12">
     <button type="submit" class="btn btn-info btn-sm">

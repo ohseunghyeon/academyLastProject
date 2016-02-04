@@ -393,7 +393,7 @@ public class BoardDao implements InterfaceBoardDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, writer);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				if (dtos == null) {
 					dtos = new ArrayList<BoardDto>();
 				}
@@ -441,7 +441,7 @@ public class BoardDao implements InterfaceBoardDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+ subject +"%");
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				if (dtos == null) {
 					dtos = new ArrayList<BoardDto>();
 				}
