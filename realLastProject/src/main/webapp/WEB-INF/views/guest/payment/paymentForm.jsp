@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
-<script src="/lastproject/resources/angular.js"></script>
+<script src="/lastproject/resources/angular.min.js"></script>
 
 <style>
 
@@ -27,15 +27,32 @@ var inputMileage = document.getElementsByName("mileage")[0].value;
 
 if(mileage < inputMileage){
 	alert("보유마일리지를 초과 입력 하셨습니다.");
+	document.paymentForm.finalamount.value =price;
 	return false;
 }else if(price < inputMileage) {
 	alert("결제금액 보다 많이 사용할수 없습니다.");
+	document.paymentForm.finalamount.value =price;
 	return false;
 }
 	
 document.paymentForm.finalamount.value = price-inputMileage;
 }
 
+function salePrice($scope) { //컨트롤러
+	$scope.couponHide = false;
+	$scope.mileageHide= true;
+	
+	$scope.coupon =function() { //쿠폰사용버튼
+		$scope.couponHide = false;
+		$scope.mileageHide = true;
+	},
+	
+	$scope.mileage = function(){ //마일리지사용 버튼
+		$scope.couponHide = true;
+		$scope.mileageHide = false;
+	}
+	
+};
 
 </script>
 
@@ -53,7 +70,7 @@ document.paymentForm.finalamount.value = price-inputMileage;
 <body>
 <h3><p class="text-center"><font color="orange" size="6"><b>Payment </b></font></p></h3>
 <div class="container-fluid text-center">    
-  <div class="row content">
+  <div class="row content" ng-app="" ng-controller="salePrice">
     <div class="col-sm-2 sidenav">
     </div>
     <div class="col-sm-8 text-left"> 
@@ -97,6 +114,12 @@ document.paymentForm.finalamount.value = price-inputMileage;
 
 				<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
 					<tr>
+					<th>
+						
+						<input type="button" name="selectsale" value="쿠폰 사용" ng-click="coupon()">
+						<input type="button" name="selectsale" value="마일리지 사용" ng-click="mileage()">
+					</th>
+					<tr ng-hide="milegeHide">
 						<th id="tt" width="200" height="15"><p class="text-center">보유 쿠폰 할인</p></th>
 						<td>
 						<input type="text" name="coupon" size="20" placeholder="Enter coupon number" />

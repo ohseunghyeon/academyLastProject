@@ -457,5 +457,34 @@ public class MemberDao implements InterfaceMemberDao {
 		return result;
 	}
 
-
+	public int useMileage(String id, int mileage){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			
+			con = dataSource.getConnection();
+			String sql = "UPDATE p_user SET mileage = mileage - ? WHERE id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, mileage);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+		
+	}
 }

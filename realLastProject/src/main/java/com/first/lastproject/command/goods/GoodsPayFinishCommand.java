@@ -41,11 +41,18 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 			String order_code = orderDao.getOrder_code(seat_num); //테이블 넘버로 주문 번호 가져오기
 
 			int insertOrderMenu = 1; // 각 메뉴가 실패했는지 확인하기 위함
+			int mileage = Integer.parseInt(request.getParameter("mileage"));
+			
+			MemberDao memberDao = MemberDao.getInstance();
+			int result = memberDao.useMileage(id, mileage);
+			System.out.println("마일리지 사용 됐나요" + result);
 			for (int i = 0; i < foodCodes.length; i++) {
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
 					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
 					MemberDao.getInstance().addMileage(food_code, id); //마일리지 추가
+					
+					
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문
 					if (insertOrderMenu == 1 && FoodDao.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
 						IngredientDao.getInstance().reduceIngredient(food_code);

@@ -9,6 +9,11 @@
 	<jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 </c:if>
 
+
+
+<!DOCTYPE html>
+<html>
+<head>
 <style>
  #menu {
   background:#FFA7A7;
@@ -24,10 +29,6 @@
  display:inline;
  }
 </style>
-
-<!DOCTYPE html>
-<html>
-<head>
 <script src="/lastproject/resources/angular.min.js"></script>
 <!-- <link href="/lastproject/resources/bootstrap.min.css" rel="stylesheet"/> -->
 </head>
@@ -159,8 +160,8 @@
 			};
 			
 			$scope.totalHide = true; /*클릭 전에 토탈 숨기기 위함*/
-			$scope.drinkHide = false; /*클릭 전에 토탈 숨기기 위함*/
-			$scope.dessertHide = true; /*클릭 전에 토탈 숨기기 위함*/
+			$scope.drinkHide = false; /*클릭 전에 음료 안 숨기기 위함*/
+			$scope.dessertHide = true; /*클릭 전에 디저트 숨기기 위함*/
 			
 			$scope.addItem = function(code, name, pric) {
 				for (var i = 0; i < $scope.invoice.items.length; i++) {
