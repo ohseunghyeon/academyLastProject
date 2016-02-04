@@ -9,23 +9,29 @@
 <c:if test="${sessionScope.id != 'nomember'}">
 <jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 </c:if>
-<html>
-<body>
+
+<div class="container-fluid">
+	<div class="row">
+ 		<div class="col-sm-4" ></div>
+ 		 <div class="col-sm-4" ><br>
 	<form action="seatSelectConfirmPro" method="post" name=seatConfirm>
 		<fieldset id="content">
 			<legend>
-				<font color="orange" size="3"><b>Confirm</b></font>
+				<font color="orange" size="5"><b>Confirm</b></font>
 			</legend>
 			
 
-			<br> 결제가 완료되었습니다. <br> <br>
+			<br><h4>결제가 완료되었습니다.</h4> <br> <br>
 		</fieldset>
 
 
 		<br> 
-		<input class="inputbutton" type="button" value="처음으로" onclick="window.location='index'" />
-
+		<button type="button" class="btn btn-warning" onclick="window.location='index'" >처음으로</button>
 	</form>
-</body>
-</html>
+</div>
+<div class="col-sm-4" ></div>
+</div>
+</div>
+<br>
+<br>
 <jsp:include page="../../menu/guestFooter.jsp" flush="false"/>
