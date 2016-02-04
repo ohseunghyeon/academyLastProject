@@ -247,6 +247,7 @@ public class BoardDao implements InterfaceBoardDao {
 			con = dataSource.getConnection();
 			String sql = "update mvc_board set readcount = readcount + 1 where num = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
