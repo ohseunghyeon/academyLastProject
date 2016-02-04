@@ -10,7 +10,6 @@ var msg_content ="내용을 입력하세요.";
 var msg_passwd = "비밀번호를 입력하세요.";
 var inserterror = "글작성에 실패했습니다. \n 잠시후 다시 시도하세요!";
 var deleteerror ="글 삭제에 실패 했습니다. \n 잠시후 다시 시도하세요.";
-var replyerror = "답글이 있는 글은 삭제할 수 없습니다.";
 var passwderror = "비밀번호가 다릅니다. \n 잠시후 다시 시도하세요.";
 var modifyerror="수정에 실패했습니다. \n 잠시후 다시 시도하세요. "
 

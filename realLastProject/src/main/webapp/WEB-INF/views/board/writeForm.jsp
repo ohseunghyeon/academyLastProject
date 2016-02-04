@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script src= /lastproject/resources/SJscript.js></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <c:if test="${sessionScope.id == 'host'}">
 <jsp:include page="../menu/hostHeader.jsp" flush="false" />
