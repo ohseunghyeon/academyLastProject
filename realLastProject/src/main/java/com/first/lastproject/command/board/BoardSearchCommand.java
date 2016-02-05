@@ -23,7 +23,7 @@ public class BoardSearchCommand implements BoardCommand {
 		
 		InterfaceBoardDao dao = BoardDao.getInstance();
 		
-		if(searchmethod.equals("writer")){
+		if(searchmethod.equals("id")){
 			int pageSize = 5;	//한 페이지당 출력할 글 수
 			int pageBlock = 3; 	//출력할 페이지 개수
 			

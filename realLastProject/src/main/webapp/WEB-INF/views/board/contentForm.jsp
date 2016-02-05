@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 		<th><input type="hidden" name="id" value="${sessionScope.id}"><p class="text-center bg-warning">작성자</p></th>
-		<td align="center"><p class="text-center">${dto.writer}</p></td>
+		<td align="center"><p class="text-center">${dto.id}</p></td>
 		<th><p class="text-center bg-warning">작성일</p></th>
 		<td align="center"><p class="text-center">
 		<fmt:formatDate value="${dto.reg_date}" type="both" pattern="yyyy-MM-dd HH:mm"/></p> </td>

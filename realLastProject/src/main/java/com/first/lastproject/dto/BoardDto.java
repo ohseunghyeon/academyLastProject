@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class BoardDto {
 	private int num; // 글번호
-	private String writer; // 작성자
+	private String id; // 작성자
 	private String passwd; // 비밀번호
 	private String subject; // 글제목
 	private String content; // 글내용
@@ -32,12 +32,14 @@ public class BoardDto {
 		this.num = num;
 	}
 
-	public String getWriter() {
-		return writer;
+
+
+	public String getId() {
+		return id;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getPasswd() {

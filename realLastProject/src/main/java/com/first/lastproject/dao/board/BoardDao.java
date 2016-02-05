@@ -73,8 +73,7 @@ public class BoardDao implements InterfaceBoardDao {
 			String sql = "select * from "
 					+ "(select num, id, email, subject, passwd, reg_date, ref, re_step,"
 					+ "re_level, content, ip, readcount, rownum rnum from "
-					+ "(select * from p_board order by ref desc, re_step asc)) where rnum >= ? and rnum <= ?"
-					+ "order by reg_date desc";
+					+ "(select * from p_board order by ref desc, re_step asc)) where rnum >= ? and rnum <= ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, start);
@@ -87,7 +86,7 @@ public class BoardDao implements InterfaceBoardDao {
 				do {
 					BoardDto dto = new BoardDto();
 					dto.setNum(rs.getInt("num"));
-					dto.setWriter(rs.getString("id"));
+					dto.setId(rs.getString("id"));
 					dto.setEmail(rs.getString("email"));
 					dto.setSubject(rs.getString("subject"));
 					dto.setPasswd(rs.getString("passwd"));
@@ -163,7 +162,7 @@ public class BoardDao implements InterfaceBoardDao {
 			pstmt.close();
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, dto.getWriter());
+			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getEmail());
 			pstmt.setString(3, dto.getSubject());
 			pstmt.setString(4, dto.getPasswd());
@@ -204,7 +203,7 @@ public class BoardDao implements InterfaceBoardDao {
 			if (rs.next()) {
 				dto = new BoardDto();
 				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("id"));
+				dto.setId(rs.getString("id"));
 				dto.setPasswd(rs.getString("passwd"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setContent(rs.getString("content"));
@@ -393,7 +392,7 @@ public class BoardDao implements InterfaceBoardDao {
 				}
 				BoardDto dto = new BoardDto();
 				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("id"));
+				dto.setId(rs.getString("id"));
 				dto.setEmail(rs.getString("email"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setPasswd(rs.getString("passwd"));
@@ -441,7 +440,7 @@ public class BoardDao implements InterfaceBoardDao {
 				}
 				BoardDto dto = new BoardDto();
 				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("id"));
+				dto.setId(rs.getString("id"));
 				dto.setEmail(rs.getString("email"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setPasswd(rs.getString("passwd"));

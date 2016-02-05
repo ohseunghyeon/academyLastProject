@@ -52,7 +52,7 @@
 				 ${number}
 				 	<c:set var="number" value="${number-1}"></c:set>
 				 </td>
-				 <td>
+				 <td><p class="text-left">
 				 <c:if test="${dto.re_level >1 }">
 				 	<c:set var="wid" value="${(dto.re_level -1) *10}" />
 				 	<img src="/lastproject/resources/images/level.gif" border="0" width="${wid}" height="15">
@@ -63,10 +63,10 @@
 				 	<a href="contentForm?num=${dto.num}&pageNum=${pageNum}&number=${number+1}">${dto.subject}</a>
 				 	<c:if test="${dto.readcount >20}">
 				 		<img src="/lastproject/resources/images/hot.gif" border="0" width="20" height="15">
-				 	</c:if>
+				 	</c:if></p>
 				 </td>
 				 <td align="center">
-				 	${dto.writer}
+				 	${dto.id}
 				 </td>
 				 <td align="center">
 				 	<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.reg_date}" />
@@ -123,7 +123,7 @@
 <div class="container">
   <form action="boardSearch"role="form" method="post">
     <label class="radio-inline">
-      <input type="radio" name="searchmethod" value="writer">작성자
+      <input type="radio" name="searchmethod" value="id">작성자
     </label>
     <label class="radio-inline">
       <input type="radio" name="searchmethod" value="subject" checked>제목

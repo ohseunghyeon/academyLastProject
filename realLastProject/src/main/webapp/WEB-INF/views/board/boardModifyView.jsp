@@ -48,7 +48,7 @@
 					</tr>
 					<tr>
 						<th id="info1"><p class="text-center">작성자</p></th>
-						<td class="warning"><p class="text-center">${dto.writer}</p></td>
+						<td class="warning"><p class="text-center">${dto.id}</p></td>
 					</tr>		
 					<tr>
 						<th id="info1"><p class="text-center">이메일</p></th>

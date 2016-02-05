@@ -31,7 +31,7 @@
 		<input type="hidden" name="ref" value="${ref}">
 		<input type="hidden" name="re_step" value="${re_step}">
 		<input type="hidden" name="re_level" value="${re_level}">
-		<input type="hidden" name="writer" value="${id}">
+		<input type="hidden" name="id" value="${id}">
 		
 		<table class="table table-striped table-bordered table-hover table-condensed text-center">
 		

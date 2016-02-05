@@ -30,7 +30,7 @@ public class BoardWriteProCommand implements BoardCommand {
 		}
 
 		BoardDto dto = new BoardDto();
-		dto.setWriter(request.getParameter("writer"));
+		dto.setId(request.getParameter("id"));
 		dto.setEmail(request.getParameter("email"));
 		dto.setSubject(request.getParameter("subject"));
 		dto.setContent(request.getParameter("content"));
