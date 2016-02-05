@@ -87,7 +87,7 @@ function salePrice($scope) { //컨트롤러
 				<legend>
 					<font color="orange"><b>ProductInfo</b></font>
 				</legend>
-				<table class="table table-striped table-bordered table-hover table-condensed text-center" id="payment" cellspacing="10" cellpadding="0">
+				<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="10" cellpadding="0">
 					<tr id="tt" >
 						<th width="200" height="15"><p class="text-center">상품정보</p></th>
 						<th width="200" height="15"><p class="text-center">수량</p></th>

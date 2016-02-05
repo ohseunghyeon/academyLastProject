@@ -40,10 +40,10 @@
       <li><a href="boardList">게시판</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a>마일리지:${mileage} 포인트</a></li>
+      <li><a>마일리지:${mileage} point</a></li>
       <li>
-      	  <c:if test="${coupon == 0}"><a>쿠폰 없어</a></c:if>
-      	  <c:if test="${coupon != 0}"><a href="couponmain">쿠폰 있어</a></c:if>
+      	  <c:if test="${coupon == 0}"><a>Coupon 없어</a></c:if>
+      	  <c:if test="${coupon != 0}"><a href="couponmain">Coupon 있어</a></c:if>
       </li>
       <li><a href="memberModifyForm">회원정보수정</a></li>
     </ul>

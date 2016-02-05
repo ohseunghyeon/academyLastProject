@@ -29,11 +29,11 @@ background:#D2D2FF;
 	<c:if test="${idorpass != 1}">
 	<c:set var="member" value="${dto}"/>
 	 <p class="text-center"> 당신의 아이디는 <mark>${member.id}</mark>입니다.
-	<button type="button" class="btn btn-warning" onclick="window.location='index'">확인</button>
+	<button type="button" class="btn btn-warning" onclick="window.location='index'">확인</button></p>
 	</c:if>
-	<c:if test="${idorpass == 1}">
-	${id}님의 비밀번호가 등록된 이메일(${email})로 전송되었습니다.
-	<button type="button" class="btn btn-warning" onclick="window.location='index'">확인</button>
+	<c:if test="${idorpass == 1}"><p class="text-center">
+	<mark>${id}님</mark>의 비밀번호가 등록된 이메일<br><mark>(${email})</mark>로 전송되었습니다.<br><br>
+	<button type="button" class="btn btn-warning" onclick="window.location='index'">확인</button></p>
 	</c:if>
 </c:if>
 <c:if test="${result == -1}">

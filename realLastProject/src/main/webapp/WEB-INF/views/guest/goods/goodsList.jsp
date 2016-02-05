@@ -19,7 +19,7 @@
   background:#FFA7A7;
  }
  #menu1{
- background: #E4F7BA;
+ background: #F0FFF0;
  }
  #menu2 {
  
@@ -27,6 +27,14 @@
  }
  #inline {
  display:inline;
+ }
+ #menu3{
+  background: #dcdcdc
+;
+ 
+ }
+ #menu4{
+ background:#FFEB5A;
  }
 </style>
 <script src="/lastproject/resources/angular.min.js"></script>
@@ -39,8 +47,8 @@
 			<div>
 			<ul class="nav nav-tabs">
 			<li id="menu2">zzzzzz</li>
-			<li class="active"><a id="menu" ng-click="drink()"><b>음료</b></a></li>
-			<li ><a id="menu1" ng-click="dessert()"><b>디저트</b></a></li>
+			<li class="active"><a id="menu" ng-click="drink()"><b>Drink</b></a></li>
+			<li ><a id="menu4" ng-click="dessert()"><b>Dessert</b></a></li>
 			</ul>
 			</div>
 			
@@ -115,7 +123,7 @@
 			<div class="col-sm-4 text-center">
 				<form action="goodsListPro" name="bagform">
 					<table id="inline" class="table table-hover" ng-hide="totalHide">
-						<tr id="menu">
+						<tr id="menu3">
 							<th colspan="4">장바구니</th>
 						</tr>
 						<tr id="menu1">
@@ -133,7 +141,7 @@
 							<td>[<a href ng-click="removeItem($index)">X</a>]
 							</td>
 						</tr>
-						<tr id="menu">
+						<tr id="menu3">
 							<td></td>
 							<td><b>총 가격:</b></td>
 							<td><b><mark>{{total()}}</mark></b></td>

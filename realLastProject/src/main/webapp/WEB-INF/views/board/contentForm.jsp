@@ -54,7 +54,7 @@
 			
 			<button type="button" class="btn btn-warning" onclick="window.location='boardList?pageNum=${pageNum}'">목록보기</button>
 			</p>
-				</th>
+			</th>
 		</tr>
 	</table>
 </div>
