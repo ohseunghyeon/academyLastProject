@@ -37,19 +37,19 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 
 			String[] foodCodes = request.getParameterValues("food_code");	//어떤 메뉴를
 			String[] foodNums = request.getParameterValues("food_num");	//얼마나 주문됐나
-			
+			int coupon_num = Integer.parseInt(request.getParameter("coupon")); //쿠폰 사용했을때 삭제하기 위해서 받아옴
 			String order_code = orderDao.getOrder_code(seat_num); //테이블 넘버로 주문 번호 가져오기
 
 			int insertOrderMenu = 1; // 각 메뉴가 실패했는지 확인하기 위함
-			int mileage = Integer.parseInt(request.getParameter("mileage"));
+			/*int mileage = Integer.parseInt(request.getParameter("mileage")); 쿠폰 실험하려고 막아놓음*/
 			
 			MemberDao memberDao = MemberDao.getInstance();
-			int result = memberDao.useMileage(id, mileage);
-			System.out.println("마일리지 사용 됐나요" + result);
+			/*int result = memberDao.useMileage(id, mileage); 쿠폰 실험하려고 막아놓음*/
+			
 			for (int i = 0; i < foodCodes.length; i++) {
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
-					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
+					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code ,coupon_num);
 					MemberDao.getInstance().addMileage(food_code, id); //마일리지 추가
 					
 					

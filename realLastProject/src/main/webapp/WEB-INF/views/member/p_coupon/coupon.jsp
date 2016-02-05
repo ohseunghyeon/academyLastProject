@@ -9,15 +9,15 @@ background:#FFE65A;
 }
 
 </style>
-
-
 <head>
 <script type="text/javascript">
 function setCoupon(coupon_code) {
-	opener.document.paymentForm.coupon.value =coupon_code;
+	opener.document.paymentForm.coupon.value = coupon_code;
+var price =	opener.document.paymentForm.finalamount.value;
+
+opener.document.paymentForm.finalamount.value = price-(price*0.3);
 	self.close();
 	}
-
 </script>
 
 
@@ -36,7 +36,7 @@ function setCoupon(coupon_code) {
 	<tr class="warning">
 	<td>
 	<img src="/lastproject/resources/images/coupon.png" width =400px height=200px>
-	${coupon_code}</td>
+	<input type="hidden" value="${coupon_code}"></td>
 	<td>
 	<br><br><br><br>
 	<h4><p class="text-center"> 2016.01.01 ~ 2016.08.30</p></h4>

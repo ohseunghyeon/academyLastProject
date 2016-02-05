@@ -61,9 +61,10 @@ public class OrderDao implements InterfaceOrderDao {
 		return count;
 	}
 
-	public int insertOrderMenu(String order_code, int food_code) {
+	public int insertOrderMenu(String order_code, int food_code, int coupon_num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		
 		int count = 0;
 
 		try {
@@ -73,7 +74,13 @@ public class OrderDao implements InterfaceOrderDao {
 			pstmt.setString(1, order_code);
 			pstmt.setInt(2, food_code);
 			count = pstmt.executeUpdate();
-
+			pstmt.close();
+			
+			sql="delete from p_coupon where coupon_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, coupon_num);
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

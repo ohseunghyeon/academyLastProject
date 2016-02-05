@@ -38,6 +38,8 @@ if(mileage < inputMileage){
 document.paymentForm.finalamount.value = price-inputMileage;
 }
 
+
+
 function salePrice($scope) { //컨트롤러
 	$scope.couponHide = false;
 	$scope.mileageHide= true;
@@ -104,6 +106,10 @@ function salePrice($scope) { //컨트롤러
 							<td>${foodDto.price * foodDto.food_num}원</td>
 						</tr>
 					</c:forEach>
+					<tr>
+						<td colspan="4">합계</td>
+						<td>${price}원</td>
+					</tr>
 				</table>
 			</fieldset>
 

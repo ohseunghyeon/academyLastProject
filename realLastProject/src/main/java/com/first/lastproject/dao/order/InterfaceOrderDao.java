@@ -7,7 +7,7 @@ import com.first.lastproject.dto.OrderDto;
 public interface InterfaceOrderDao {
 //주문
 	public int insertOrder(String id, int seat_num);
-	public int insertOrderMenu(String order_code, int food_code);
+	public int insertOrderMenu(String order_code, int food_code,int coupon_num);
 	public String getOrder_code(int seat_num);
 	public int updateOrderSeatEndTime(String order_id);
 	public int makeOrderDone(String order_id);
