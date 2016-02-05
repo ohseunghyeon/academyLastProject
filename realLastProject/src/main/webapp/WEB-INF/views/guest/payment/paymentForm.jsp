@@ -41,24 +41,17 @@ document.paymentForm.finalamount.value = price-inputMileage;
 
 
 function salePrice($scope) { //컨트롤러
-	$scope.couponHide = true;
+	$scope.couponHide = false;
 	$scope.mileageHide= true;
-	$scope.couponMileageUse = 0;
+	
 	$scope.coupon =function() { //쿠폰사용버튼
 		$scope.couponHide = false;
 		$scope.mileageHide = true;
-		$scope.couponMileageUse = 1;
 	},
 	
 	$scope.mileage = function(){ //마일리지사용 버튼
 		$scope.couponHide = true;
 		$scope.mileageHide = false;
-		$scope.couponMileageUse = 2;
-	},
-	$scope.nouse = function() {
-		$scope.couponHide = true;
-		$scope.mileageHide = true;
-		$scope.couponMileageUse = 0;
 	}
 	
 };
@@ -94,7 +87,7 @@ function salePrice($scope) { //컨트롤러
 				<legend>
 					<font color="orange"><b>ProductInfo</b></font>
 				</legend>
-				<table class="table table-striped table-bordered table-hover table-condensed text-center" id="payment" cellspacing="10" cellpadding="0">
+				<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="10" cellpadding="0">
 					<tr id="tt" >
 						<th width="200" height="15"><p class="text-center">상품정보</p></th>
 						<th width="200" height="15"><p class="text-center">수량</p></th>
@@ -114,7 +107,7 @@ function salePrice($scope) { //컨트롤러
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="4">합계</td>
+						<td colspan="4"><b>합계</b></td>
 						<td>${price}원</td>
 					</tr>
 				</table>
@@ -124,35 +117,23 @@ function salePrice($scope) { //컨트롤러
 				<legend>
 					<font color="orange"><b>Coupon/Discount</b></font>
 				</legend>
-				<input type="text" name="couponMileageUse" ng-model="couponMileageUse" value="0" ng-hide="true">
+
+
+				<button class="btn btn-warning" name="selectsale" ng-click="coupon()">쿠폰조회</button>
+				<button class="btn btn-warning" name="selectsale" ng-click="mileage()">마일리지사용</button>
 				<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
-					<tr>
-					<th>
-						<c:if test="${coupon == 0 && mileage == 0}">
-						<p>사용 가능한 마일리지나 쿠폰이 없습니다.</p>
-						</c:if>
-						<c:if test="${coupon != 0 || mileage != 0}">
-						<input type="button" name="selectsale" value="미사용" ng-click="nouse()">
-						</c:if>
-						<c:if test="${coupon != 0}">
-						<input type="button" name="selectsale" value="쿠폰 사용" ng-click="coupon()">
-						</c:if>
-						<c:if test="${mileage != 0}">
-						<input type="button" name="selectsale" value="마일리지 사용" ng-click="mileage()">
-						</c:if>
-					</th>
-					<tr ng-hide="couponHide">
+					<tr ng-hide="milegeHide">
 						<th id="tt" width="200" height="15"><p class="text-center">보유 쿠폰 할인</p></th>
 						<td>
 						<input type="text" name="coupon" size="20" placeholder="Enter coupon number" />
 						<button class="btn btn-warning" type="button" name="coupon1" onclick="couponPage()">쿠폰 조회</button>
 						</td>
 					</tr>
-					<tr ng-hide="mileageHide">
+					<tr>
 						<th id="tt" width="200" height="15"><p class="text-center">보유 마일리지</p></th>
 						<td><mark>${mileage}</mark>원</td>
 					</tr>
-					<tr ng-hide="mileageHide">	
+					<tr>	
 						<th id="tt" width="200" height="15"><p class="text-center">사용 마일리지</p></th>
 						<td><input type="text" name="mileage" size="10"/> 원
 							<input type="button" value="적용" onclick="sale(${mileage},${price})">
