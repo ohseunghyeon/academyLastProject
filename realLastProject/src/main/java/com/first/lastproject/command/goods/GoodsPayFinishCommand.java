@@ -53,9 +53,6 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 			} else if (couponMileageUse == 2) {	//마일리지 사용
 				int mileage = Integer.parseInt(request.getParameter("mileage"));
 				memberDao.useMileage(id, mileage);	//실제 마일리지 사용 메소드
-				//헤더에 리프레시
-				MemberDto memberDto = MemberDao.getInstance().getMember(id);
-				request.getSession().setAttribute("mileage", memberDto.getMileage());
 			}
 			
 			for (int i = 0; i < foodCodes.length; i++) {	//구매 시작
@@ -79,7 +76,11 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		}
 
 		model.addAttribute("orderInsertResult", orderInsertResult);
-
+		
+		//헤더에 리프레시
+		MemberDto memberDto = MemberDao.getInstance().getMember(id);
+		request.getSession().setAttribute("mileage", memberDto.getMileage());
+		
 		return "guest/payment/paymentFinish";
 	}
 
