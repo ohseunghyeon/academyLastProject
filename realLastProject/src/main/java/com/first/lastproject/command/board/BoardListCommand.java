@@ -17,7 +17,7 @@ public class BoardListCommand implements BoardCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		int pageSize = 10;	//한 페이지당 출력할 글 수
+		int pageSize = 5;	//한 페이지당 출력할 글 수
 		int pageBlock = 3; 	//출력할 페이지 개수
 		
 		int count = 0;	//글 개수
