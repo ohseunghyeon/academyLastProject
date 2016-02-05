@@ -22,13 +22,13 @@ public class BoardWriteProCommand implements BoardCommand {
 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
+
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
+
 		BoardDto dto = new BoardDto();
 		dto.setWriter(request.getParameter("writer"));
 		dto.setEmail(request.getParameter("email"));
@@ -41,20 +41,22 @@ public class BoardWriteProCommand implements BoardCommand {
 		dto.setRe_level(Integer.parseInt(request.getParameter("re_level")));
 		dto.setReg_date(new Timestamp(System.currentTimeMillis()));
 		dto.setIp(request.getRemoteAddr());
-		
+
 		InterfaceBoardDao dao = BoardDao.getInstance();
 		InterfaceMemberDao memberDao = MemberDao.getInstance();
 		int writeResult = dao.writeArticle(dto);
-		
+
 		String id = (String) request.getSession().getAttribute("id");
 		MemberDto memberDto = memberDao.getMember(id);
-		if(memberDto.getGet_coupon()== 0){
+		if (memberDto.getGet_coupon() == 0) {
 			int makeCouponResult = memberDao.makeCoupon(id);
-			model.addAttribute("makeCouponResult", makeCouponResult);
+			if (makeCouponResult == 1) {
+				model.addAttribute("makeCouponResult", makeCouponResult);
+				request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
+			}
 		}
 		model.addAttribute("writeResult", writeResult);
-		
+
 		return "board/writePro";
 	}
-
 }
