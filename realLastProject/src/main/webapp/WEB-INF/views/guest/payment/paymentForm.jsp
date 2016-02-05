@@ -123,6 +123,7 @@ function salePrice($scope) { //컨트롤러
 				<legend>
 					<font color="orange"><b>Coupon/Discount</b></font>
 				</legend>
+                <input type="text" name="couponMileageUse" ng-model="couponMileageUse" value="0" ng-hide="true">
 
 						<c:if test="${coupon == 0 && mileage == 0}">
 						<p>사용 가능한 마일리지나 쿠폰이 없습니다.</p>
