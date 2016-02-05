@@ -41,17 +41,24 @@ document.paymentForm.finalamount.value = price-inputMileage;
 
 
 function salePrice($scope) { //컨트롤러
-	$scope.couponHide = false;
+	$scope.couponHide = true;
 	$scope.mileageHide= true;
-	
+	$scope.couponMileageUse = 0;
 	$scope.coupon =function() { //쿠폰사용버튼
 		$scope.couponHide = false;
 		$scope.mileageHide = true;
+		$scope.couponMileageUse = 1;
 	},
 	
 	$scope.mileage = function(){ //마일리지사용 버튼
 		$scope.couponHide = true;
 		$scope.mileageHide = false;
+		$scope.couponMileageUse = 2;
+	},
+	$scope.nouse = function() {
+		$scope.couponHide = true;
+		$scope.mileageHide = true;
+		$scope.couponMileageUse = 0;
 	}
 	
 };
@@ -117,26 +124,35 @@ function salePrice($scope) { //컨트롤러
 				<legend>
 					<font color="orange"><b>Coupon/Discount</b></font>
 				</legend>
-
+				<input type="text" name="couponMileageUse" ng-model="couponMileageUse" value="0" ng-hide="true">
 				<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
 					<tr>
 					<th>
-						
+						<c:if test="${coupon == 0 && mileage == 0}">
+						<p>사용 가능한 마일리지나 쿠폰이 없습니다.</p>
+						</c:if>
+						<c:if test="${coupon != 0 || mileage != 0}">
+						<input type="button" name="selectsale" value="미사용" ng-click="nouse()">
+						</c:if>
+						<c:if test="${coupon != 0}">
 						<input type="button" name="selectsale" value="쿠폰 사용" ng-click="coupon()">
+						</c:if>
+						<c:if test="${mileage != 0}">
 						<input type="button" name="selectsale" value="마일리지 사용" ng-click="mileage()">
+						</c:if>
 					</th>
-					<tr ng-hide="milegeHide">
+					<tr ng-hide="couponHide">
 						<th id="tt" width="200" height="15"><p class="text-center">보유 쿠폰 할인</p></th>
 						<td>
 						<input type="text" name="coupon" size="20" placeholder="Enter coupon number" />
 						<button class="btn btn-warning" type="button" name="coupon1" onclick="couponPage()">쿠폰 조회</button>
 						</td>
 					</tr>
-					<tr>
+					<tr ng-hide="mileageHide">
 						<th id="tt" width="200" height="15"><p class="text-center">보유 마일리지</p></th>
 						<td><mark>${mileage}</mark>원</td>
 					</tr>
-					<tr>	
+					<tr ng-hide="mileageHide">	
 						<th id="tt" width="200" height="15"><p class="text-center">사용 마일리지</p></th>
 						<td><input type="text" name="mileage" size="10"/> 원
 							<input type="button" value="적용" onclick="sale(${mileage},${price})">

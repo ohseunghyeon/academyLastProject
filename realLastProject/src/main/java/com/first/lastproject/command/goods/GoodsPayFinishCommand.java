@@ -37,21 +37,32 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 
 			String[] foodCodes = request.getParameterValues("food_code");	//어떤 메뉴를
 			String[] foodNums = request.getParameterValues("food_num");	//얼마나 주문됐나
-			int coupon_num = Integer.parseInt(request.getParameter("coupon")); //쿠폰 사용했을때 삭제하기 위해서 받아옴
+			
 			String order_code = orderDao.getOrder_code(seat_num); //테이블 넘버로 주문 번호 가져오기
 
 			int insertOrderMenu = 1; // 각 메뉴가 실패했는지 확인하기 위함
-			/*int mileage = Integer.parseInt(request.getParameter("mileage")); 쿠폰 실험하려고 막아놓음*/
 			
 			MemberDao memberDao = MemberDao.getInstance();
-			/*int result = memberDao.useMileage(id, mileage); 쿠폰 실험하려고 막아놓음*/
 			
-			for (int i = 0; i < foodCodes.length; i++) {
+			int couponMileageUse = Integer.parseInt(request.getParameter("couponMileageUse"));
+			if (couponMileageUse == 1) {	//쿠폰 사용
+				int coupon_num = Integer.parseInt(request.getParameter("coupon")); //쿠폰 사용했을때 삭제하기 위해서 받아옴
+				orderDao.useCoupon(coupon_num);	//실제 쿠폰 사용 메소드
+				//헤더에 리프레시
+				request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
+			} else if (couponMileageUse == 2) {	//마일리지 사용
+				int mileage = Integer.parseInt(request.getParameter("mileage"));
+				memberDao.useMileage(id, mileage);	//실제 마일리지 사용 메소드
+				//헤더에 리프레시
+				MemberDto memberDto = MemberDao.getInstance().getMember(id);
+				request.getSession().setAttribute("mileage", memberDto.getMileage());
+			}
+			
+			for (int i = 0; i < foodCodes.length; i++) {	//구매 시작
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
-					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code ,coupon_num);
+					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
 					MemberDao.getInstance().addMileage(food_code, id); //마일리지 추가
-					
 					
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문
 					if (insertOrderMenu == 1 && FoodDao.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
@@ -66,10 +77,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		if (insertOrderMenuError == 0) { // 이거 뜨는 페이지에서 확인 해야할 텐데..실패라고.
 			System.out.println(insertOrderMenuError);
 		}
-		
-		MemberDto memberDto = MemberDao.getInstance().getMember(id);
-		request.getSession().setAttribute("mileage", memberDto.getMileage());
-		
+
 		model.addAttribute("orderInsertResult", orderInsertResult);
 
 		return "guest/payment/paymentFinish";

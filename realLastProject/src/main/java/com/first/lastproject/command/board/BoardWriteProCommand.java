@@ -48,8 +48,7 @@ public class BoardWriteProCommand implements BoardCommand {
 		
 		String id = (String) request.getSession().getAttribute("id");
 		MemberDto memberDto = memberDao.getMember(id);
-		
-		if(memberDto.getGet_coupon()==0){
+		if(memberDto.getGet_coupon()== 0){
 			int makeCouponResult = memberDao.makeCoupon(id);
 			model.addAttribute("makeCouponResult", makeCouponResult);
 		}

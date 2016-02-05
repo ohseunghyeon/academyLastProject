@@ -236,6 +236,7 @@ public class MemberDao implements InterfaceMemberDao {
 				dto.setPhone_number(rs.getString("phone_number"));
 				dto.setEmail(rs.getString("email"));
 				dto.setMileage(rs.getInt("mileage"));
+				dto.setGet_coupon(rs.getInt("get_coupon"));
 			}
 
 		} catch (SQLException e) {
