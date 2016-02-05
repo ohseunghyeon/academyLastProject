@@ -156,7 +156,7 @@ function salePrice($scope) { //컨트롤러
 					<tr ng-hide="mileageHide">	
 						<th id="tt" width="200" height="15"><p class="text-center">사용 마일리지</p></th>
 						<td><input type="text" name="mileage" size="10"/> 원
-							<input type="button" value="적용" onclick="sale(${mileage},${price})">
+							<button type="button" class="btn btn-warning" onclick="sale(${mileage},${price})" >적용</button>
 						</td>
 					</tr>
 					</table>
