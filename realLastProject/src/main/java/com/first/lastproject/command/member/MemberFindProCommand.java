@@ -19,6 +19,7 @@ public class MemberFindProCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String email = request.getParameter("email");
 		String id = request.getParameter("id");
+	      
 		int idorpass = Integer.parseInt(request.getParameter("idorpass"));
 		System.out.println(email);
 		System.out.println(id);
@@ -33,20 +34,25 @@ public class MemberFindProCommand implements MemberCommand {
 		}
 		System.out.println("result1 = " + result);
 		if(result == 1) {
-			if(idorpass == 0) {
+			if(idorpass == 0) 
 			dto = dao.getId(email);
 			model.addAttribute("result", result);
 			model.addAttribute("dto", dto);
 			model.addAttribute("idorpass", idorpass);
-			} else if(idorpass == 1) {
+			/*else if(idorpass == 1) {
 			dto = dao.getPasswd(id, email);
+			 emails.setContent("비밀번호는 "+dto.getPasswd()+" 입니다.");
+             emails.setReceiver(email);
+             emails.setSubject(id+"님 비밀번호 찾기 메일입니다.");
+             emailsender.SendEmail(emails);
+			
+			
 			model.addAttribute("result", result);
 			model.addAttribute("dto", dto);
 			model.addAttribute("idorpass", idorpass);
 			System.out.println("result2 = " + result);
 			System.out.println("dto = " + dto);
-			System.out.println("idorpass = " + idorpass);
-			}
+			System.out.println("idorpass = " + idorpass);*/
 			return "member/memberFindPro";
 		} else if(result == -1) {
 			model.addAttribute("result", result);

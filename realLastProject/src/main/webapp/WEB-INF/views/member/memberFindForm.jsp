@@ -39,7 +39,7 @@ background:#FAFAAA;
 </form>
 </div>
 <div class="col-sm-5 sidenav">
-<form method="post" action="memberFindPro">
+<form method="post" action="passwdMail">
 <input type="hidden" name="idorpass" value="1"> 
 		<h4><p class="text-center"><mark>비밀번호</mark><small>가 생각나지 않으신다면 이하의 정보를 입력하세요.</small></p></h4>
 		<table class="table table-striped table-bordered table-hover table-condensed text-center">

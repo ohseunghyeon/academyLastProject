@@ -24,14 +24,15 @@ background:#D2D2FF;
 <div class="col-sm-4"></div>
 <div class="col-sm-4">
  <div class="well well-lg" id="well">
-<c:set var="member" value="${dto}"/>
+
 <c:if test="${result == 1}">
 	<c:if test="${idorpass != 1}">
+	<c:set var="member" value="${dto}"/>
 	 <p class="text-center"> 당신의 아이디는 <mark>${member.id}</mark>입니다.
 	<button type="button" class="btn btn-warning" onclick="window.location='index'">확인</button>
 	</c:if>
 	<c:if test="${idorpass == 1}">
-	당신의 비밀번호는 ${member.passwd}입니다.
+	${id}님의 비밀번호가 등록된 이메일(${email})로 전송되었습니다.
 	<button type="button" class="btn btn-warning" onclick="window.location='index'">확인</button>
 	</c:if>
 </c:if>

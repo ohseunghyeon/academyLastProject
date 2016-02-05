@@ -110,7 +110,7 @@ th {
 						<th><h4>
 								<p class="text-center">Email</p>
 							</h4></th>
-						<td><input class="form-control" type="text" name="email"
+						<td><input class="form-control" type="email" name="email"
 							placeholder="Enter email"></td>
 					</tr>
 					<tr id="danger">
