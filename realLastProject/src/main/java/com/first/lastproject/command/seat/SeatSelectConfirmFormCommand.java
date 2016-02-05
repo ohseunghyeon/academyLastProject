@@ -14,7 +14,6 @@ public class SeatSelectConfirmFormCommand implements SeatCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		int seat_num = Integer.parseInt(request.getParameter("seat_num"));
-
 		model.addAttribute("seat_num", seat_num);
 
 		System.out.println(seat_num);
