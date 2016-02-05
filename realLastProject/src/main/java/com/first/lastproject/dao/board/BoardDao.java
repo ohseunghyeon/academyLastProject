@@ -40,7 +40,7 @@ public class BoardDao implements InterfaceBoardDao {
 		
 		try {
 			con = dataSource.getConnection();
-			String sql = "select count(*) from mvc_board";
+			String sql = "select count(*) from p_board";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -70,18 +70,18 @@ public class BoardDao implements InterfaceBoardDao {
 		
 		try {
 			con = dataSource.getConnection();
-			/*String sql = "select num, writer, email, subject, passwd,";
+			/*String sql = "select num, id, email, subject, passwd,";
 			sql += "reg_date, ref, re_step, re_level, content, ip, readcount, r ";
-			sql += "from (select num, writer, email, subject, passwd, reg_date, ref, re_step,";
+			sql += "from (select num, id, email, subject, passwd, reg_date, ref, re_step,";
 			sql += "re_level, content, ip, readcount, rownum r from ";
-			sql += "(select num, writer, email, subject, passwd, reg_date, ref, re_step,";
+			sql += "(select num, id, email, subject, passwd, reg_date, ref, re_step,";
 			sql += "re_level, content, ip, readcount from mvc_board order by ref desc, re_step asc) ";
 			sql += "order by ref desc, re_step asc) where r >= ? and r <= ?";*/
 			
 			String sql = "select * from "
-					+ "(select num, writer, email, subject, passwd, reg_date, ref, re_step,"
+					+ "(select num, id, email, subject, passwd, reg_date, ref, re_step,"
 					+ "re_level, content, ip, readcount, rownum rnum from "
-					+ "(select * from mvc_board order by ref desc, re_step asc)) where rnum >= ? and rnum <= ?";
+					+ "(select * from p_board order by ref desc, re_step asc)) where rnum >= ? and rnum <= ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, start);
@@ -94,7 +94,7 @@ public class BoardDao implements InterfaceBoardDao {
 				do {
 					BoardDto dto = new BoardDto();
 					dto.setNum(rs.getInt("num"));
-					dto.setWriter(rs.getString("writer"));
+					dto.setWriter(rs.getString("id"));
 					dto.setEmail(rs.getString("email"));
 					dto.setSubject(rs.getString("subject"));
 					dto.setPasswd(rs.getString("passwd"));
@@ -139,7 +139,7 @@ public class BoardDao implements InterfaceBoardDao {
 			int re_level = dto.getRe_level();
 			String sql = null;
 			if (num == 0) {	//제목글인 경우
-				sql = "select max(num) from mvc_board";
+				sql = "select max(num) from p_board";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
@@ -153,7 +153,7 @@ public class BoardDao implements InterfaceBoardDao {
 				re_level = 0;
 			} else {
 				//답변글인 경우
-				sql = "update mvc_board set re_step = re_step + 1 where ref=? and re_step>?";
+				sql = "update p_board set re_step = re_step + 1 where ref=? and re_step>?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, ref);
 				pstmt.setInt(2, re_step);
@@ -165,8 +165,8 @@ public class BoardDao implements InterfaceBoardDao {
 			
 			
 			
-			sql = "insert into mvc_board (num, writer, email, subject, passwd, reg_date, "
-					+ "ref, re_step, re_level, content, ip) values (mvc_board_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "insert into p_board (num, id, email, subject, passwd, reg_date, "
+					+ "ref, re_step, re_level, content, ip) values (p_board_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt.close();
 			pstmt = con.prepareStatement(sql);
 			
@@ -204,14 +204,14 @@ public class BoardDao implements InterfaceBoardDao {
 		BoardDto dto = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select * from mvc_board where num = ?";
+			String sql = "select * from p_board where num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				dto = new BoardDto();
 				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("writer"));
+				dto.setWriter(rs.getString("id"));
 				dto.setPasswd(rs.getString("passwd"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setContent(rs.getString("content"));
@@ -245,7 +245,7 @@ public class BoardDao implements InterfaceBoardDao {
 		int result = 0;
 		try {
 			con = dataSource.getConnection();
-			String sql = "update mvc_board set readcount = readcount + 1 where num = ?";
+			String sql = "update p_board set readcount = readcount + 1 where num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			result = pstmt.executeUpdate();
@@ -269,7 +269,7 @@ public class BoardDao implements InterfaceBoardDao {
 		
 		try {
 			con = dataSource.getConnection();
-			String sql ="select *from mvc_board where num=?";
+			String sql ="select *from p_board where num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,num);
 			rs= pstmt.executeQuery();
@@ -303,7 +303,7 @@ public class BoardDao implements InterfaceBoardDao {
 		
 		try {
 			con = dataSource.getConnection();
-			String sql ="select *from mvc_board where num=?";
+			String sql ="select *from p_board where num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,num);
 			rs= pstmt.executeQuery();
@@ -313,7 +313,7 @@ public class BoardDao implements InterfaceBoardDao {
 				int re_step = rs.getInt("re_step");
 				int re_level = rs.getInt("re_level");
 				
-				sql = "select * from mvc_board where ref=? and re_step=?+1 and re_level>?";
+				sql = "select * from p_board where ref=? and re_step=?+1 and re_level>?";
 				pstmt.close(); // 위에 썻으니깐
 				pstmt= con.prepareStatement(sql);
 				pstmt.setInt(1, ref);
@@ -328,7 +328,7 @@ public class BoardDao implements InterfaceBoardDao {
 				} else {
 					//답글이 없는 경우 
 					
-					sql = "delete from mvc_board where num=?";
+					sql = "delete from p_board where num=?";
 					pstmt.close(); // 위에 썻으니깐
 					pstmt= con.prepareStatement(sql);
 					pstmt.setInt(1, num);
@@ -358,7 +358,7 @@ public class BoardDao implements InterfaceBoardDao {
 			
 			try {
 				con = dataSource.getConnection();
-				String sql = "update mvc_board set email=?, subject=?, content=?, passwd=? where num=?";
+				String sql = "update p_board set email=?, subject=?, content=?, passwd=? where num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, dto.getEmail());
 				pstmt.setString(2, dto.getSubject());
@@ -383,16 +383,16 @@ public class BoardDao implements InterfaceBoardDao {
 		}
 
 	@Override
-	public ArrayList<BoardDto> searchWriter(String writer){
+	public ArrayList<BoardDto> searchWriter(String id){
 		ArrayList<BoardDto> dtos = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select * from mvc_board where writer = ?";
+			String sql = "select * from p_board where id = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, writer);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				if (dtos == null) {
@@ -400,7 +400,7 @@ public class BoardDao implements InterfaceBoardDao {
 				}
 				BoardDto dto = new BoardDto();
 				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("writer"));
+				dto.setWriter(rs.getString("id"));
 				dto.setEmail(rs.getString("email"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setPasswd(rs.getString("passwd"));
@@ -438,7 +438,7 @@ public class BoardDao implements InterfaceBoardDao {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select * from mvc_board where subject like ?";
+			String sql = "select * from p_board where subject like ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+ subject +"%");
 			rs = pstmt.executeQuery();
@@ -448,7 +448,7 @@ public class BoardDao implements InterfaceBoardDao {
 				}
 				BoardDto dto = new BoardDto();
 				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("writer"));
+				dto.setWriter(rs.getString("id"));
 				dto.setEmail(rs.getString("email"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setPasswd(rs.getString("passwd"));
@@ -477,7 +477,7 @@ public class BoardDao implements InterfaceBoardDao {
 	return dtos;
 	}
 	
-	public int getSeachWriterCount(String writer) {
+	public int getSeachWriterCount(String id) {
 		int count = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -485,9 +485,9 @@ public class BoardDao implements InterfaceBoardDao {
 		
 		try {
 			con = dataSource.getConnection();
-			String sql = "select count(*) from mvc_board where writer=?";
+			String sql = "select count(*) from p_board where id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, writer);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				count = rs.getInt(1);
@@ -515,7 +515,7 @@ public class BoardDao implements InterfaceBoardDao {
 		
 		try {
 			con = dataSource.getConnection();
-			String sql = "select count(*) from mvc_board where subject like ?";
+			String sql = "select count(*) from p_board where subject like ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+subject+"%");
 			rs = pstmt.executeQuery();
