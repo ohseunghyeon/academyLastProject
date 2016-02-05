@@ -81,7 +81,8 @@ public class BoardDao implements InterfaceBoardDao {
 			String sql = "select * from "
 					+ "(select num, id, email, subject, passwd, reg_date, ref, re_step,"
 					+ "re_level, content, ip, readcount, rownum rnum from "
-					+ "(select * from p_board order by ref desc, re_step asc)) where rnum >= ? and rnum <= ?";
+					+ "(select * from p_board order by ref desc, re_step asc)) where rnum >= ? and rnum <= ?"
+					+ "order by reg_date desc";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, start);
