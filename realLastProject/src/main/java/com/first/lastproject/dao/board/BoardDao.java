@@ -70,14 +70,6 @@ public class BoardDao implements InterfaceBoardDao {
 		
 		try {
 			con = dataSource.getConnection();
-			/*String sql = "select num, id, email, subject, passwd,";
-			sql += "reg_date, ref, re_step, re_level, content, ip, readcount, r ";
-			sql += "from (select num, id, email, subject, passwd, reg_date, ref, re_step,";
-			sql += "re_level, content, ip, readcount, rownum r from ";
-			sql += "(select num, id, email, subject, passwd, reg_date, ref, re_step,";
-			sql += "re_level, content, ip, readcount from mvc_board order by ref desc, re_step asc) ";
-			sql += "order by ref desc, re_step asc) where r >= ? and r <= ?";*/
-			
 			String sql = "select * from "
 					+ "(select num, id, email, subject, passwd, reg_date, ref, re_step,"
 					+ "re_level, content, ip, readcount, rownum rnum from "

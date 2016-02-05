@@ -6,7 +6,9 @@
 <script src="/lastproject/resources/angular.min.js"></script>
 
 <style>
-
+#badge{
+background:#66CDAA	;
+}
 #tt {
 
 background:#FFBC9B;
@@ -129,13 +131,13 @@ function salePrice($scope) { //컨트롤러
 						<p>사용 가능한 마일리지나 쿠폰이 없습니다.</p>
 						</c:if>
 						<c:if test="${coupon != 0 || mileage != 0}">
-						<button class="btn btn-warning" name="selectsale" ng-click="nouse()">미사용</button>
+						<span id="badge" class="badge" name="selectsale" ng-click="nouse()">미사용</span>
 						</c:if>
 						<c:if test="${coupon != 0}">
-						<button class="btn btn-warning" name="selectsale" ng-click="coupon()">쿠폰조회</button>
+						<span id="badge" class="badge" name="selectsale" ng-click="coupon()">쿠폰조회</span>
 						</c:if>
 						<c:if test="${mileage != 0}">
-						<button class="btn btn-warning" name="selectsale" ng-click="mileage()">마일리지사용</button>
+						<span id="badge" class="badge" name="selectsale" ng-click="mileage()">마일리지사용</span>
 						</c:if>
 					
 				<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
