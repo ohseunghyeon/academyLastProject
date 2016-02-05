@@ -107,7 +107,7 @@ function salePrice($scope) { //컨트롤러
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="4">합계</td>
+						<td colspan="4"><b>합계</b></td>
 						<td>${price}원</td>
 					</tr>
 				</table>
@@ -118,13 +118,10 @@ function salePrice($scope) { //컨트롤러
 					<font color="orange"><b>Coupon/Discount</b></font>
 				</legend>
 
+
+				<button class="btn btn-warning" name="selectsale" ng-click="coupon()">쿠폰조회</button>
+				<button class="btn btn-warning" name="selectsale" ng-click="mileage()">마일리지사용</button>
 				<table class="table table-bordered table-hover table-condensed text-center" id="payment" cellspacing="5">
-					<tr>
-					<th>
-						
-						<input type="button" name="selectsale" value="쿠폰 사용" ng-click="coupon()">
-						<input type="button" name="selectsale" value="마일리지 사용" ng-click="mileage()">
-					</th>
 					<tr ng-hide="milegeHide">
 						<th id="tt" width="200" height="15"><p class="text-center">보유 쿠폰 할인</p></th>
 						<td>
