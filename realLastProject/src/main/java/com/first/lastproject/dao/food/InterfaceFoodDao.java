@@ -11,4 +11,5 @@ public interface InterfaceFoodDao {
 	public List<FoodDto> getStockDessert();
 	public int modifyStockFood(int food_code, int food_num);
 	public FoodDto getFood(int food_code);
+	public int reduceFoodNum(int food_code);
 }

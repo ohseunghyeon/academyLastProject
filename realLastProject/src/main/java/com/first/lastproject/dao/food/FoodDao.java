@@ -212,4 +212,30 @@ public class FoodDao implements InterfaceFoodDao {
 		return dto;
 	}
 
+	@Override
+	public int reduceFoodNum(int food_code) {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE p_food SET food_num = food_num - 1 WHERE food_code = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, food_code);
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return count;
+	}
 }

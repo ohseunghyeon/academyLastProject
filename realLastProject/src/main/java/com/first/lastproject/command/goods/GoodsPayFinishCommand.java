@@ -64,6 +64,8 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문
 					if (insertOrderMenu == 1 && FoodDao.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
 						IngredientDao.getInstance().reduceIngredient(food_code);
+					} else if (insertOrderMenu == 1 && FoodDao.getInstance().getFood(food_code).getFood_num() > 0) {
+						FoodDao.getInstance().reduceFoodNum(food_code);
 					} else {
 						insertOrderMenuError = 0;
 					}
