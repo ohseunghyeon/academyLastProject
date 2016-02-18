@@ -141,10 +141,10 @@
 			labels : [<% for (int i = 0; i < mList.size(); i++) { %>"<%=mList.get(i).getDate().toString().substring(8, 10)%>일"<%=i< mList.size() - 1 ? "," : "" %> <% } %> ],
 			datasets : [
 					{
-						fillColor : "rgba(220,220,220,0.5)",
-						strokeColor : "rgba(220,220,220,0.8)",
-						highlightFill : "rgba(220,220,220,0.75)",
-						highlightStroke : "rgba(220,220,220,1)",
+						fillColor : "#EB3232",
+						strokeColor : "EB3232",
+						highlightFill : "EB3232",
+						highlightStroke : "EB3232",
 						data : [ <% for (int i = 0; i < mPrice.size(); i++) { %>"<%=mPrice.get(i).getPrice()%>"<%=i< mPrice.size() - 1 ? "," : "" %> <% } %> ]
 					}
 					]
