@@ -34,8 +34,8 @@
       <a class="navbar-brand"><span style="color:black">SASAEG<img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></span></a>
     </div>
     <ul class="nav navbar-nav">
-    <li><a href="index">Home</a></li>
-      <li class="active"><a href="seatList">좌석</a></li>
+    <li class="active"><a href="Home">이용안내</a></li>
+      <li><a href="seatList">좌석</a></li>
     	<li><a href="goodsList">메뉴</a></li>
       <li><a href="boardList">게시판</a></li>
     </ul>
