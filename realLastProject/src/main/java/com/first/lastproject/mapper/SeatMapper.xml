@@ -5,9 +5,17 @@
 
 <mapper namespace="com.first.lastproject.dao.SeatDao">
 <select id="getSeats" resultType="com.first.lastproject.dto.SeatDto">
-	select * from p_seat
+	SELECT * FROM p_seat
 </select>
+
 <select id="seatInformation" parameterType="int" resultType="com.first.lastproject.dto.OrderDto">
-select * from p_order where seat_num=#{seat_num} order by order_time desc
+SELECT * FROM p_order o WHERE seat_num=#{seat_num} 
+and order_time=(SELECT max(order_time) FROM p_order WHERE seat_num=o.seat_num)      
+<!-- select * from p_order where seat_num=#{seat_num} order by order_time desc -->
 </select>
+
+<update id="timeFinishedSeat" parameterType="int">
+UPDATE p_seat SET occupied=0 WHERE seat_num=#{seat_num}
+</update>
+
 </mapper>

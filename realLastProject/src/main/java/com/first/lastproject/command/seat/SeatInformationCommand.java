@@ -17,6 +17,8 @@ public class SeatInformationCommand implements SeatCommand {
 	@Autowired
 	SeatDao seatDao;
 	
+	
+	
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();

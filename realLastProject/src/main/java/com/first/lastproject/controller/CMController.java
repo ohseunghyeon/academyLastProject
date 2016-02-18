@@ -13,7 +13,7 @@ import com.first.lastproject.command.seat.*;
 @Controller
 public class CMController {
 	
-	//좌석 뿌려주기
+	
 	@Autowired
 	SeatListCommand seatListCommand;
 	
@@ -44,7 +44,7 @@ public class CMController {
 		return viewName;
 		
 	}
-	//host로 좌석 정보 보기
+	
 	@Autowired
 	SeatInformationCommand seatInformationCommand;
 	
@@ -65,13 +65,14 @@ public class CMController {
 		return viewName;
 	}
 	
+	@Autowired
+	SeatFinishCommand seatFinishCommand;
+	
 	@RequestMapping("/seatFinish")
 	public String guestSeatFinish(HttpServletRequest request, Model model){
 		System.out.println("seatFinish()");
 		model.addAttribute("request", request);
-		SeatCommand command = new SeatFinishCommand();
-		String viewName = command.execute(model);
-		
+		String viewName = seatFinishCommand.execute(model);
 		return viewName;
 	}
 	

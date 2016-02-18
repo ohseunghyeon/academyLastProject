@@ -38,44 +38,7 @@ public class SeatDaoImpl implements SeatDao {
 		orderDto = seatDao.seatInformation(seat_num);
 		return orderDto;
 	}
-		/*OrderDto orderDto = new OrderDto();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "select * from p_order where seat_num=? order by order_time desc";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, seat_num);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				orderDto.setOrder_id(rs.getString("order_id"));
-				orderDto.setSeat_num(rs.getInt("seat_num"));
-				orderDto.setId(rs.getString("id"));
-				orderDto.setOrder_time(rs.getTimestamp("order_time"));
-				orderDto.setEnd_time(rs.getTimestamp("end_time"));
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return orderDto;
-
-	}
-*/
+		
 	@Override
 	public int startSeat(int seat_num) { //결제 완료시 좌석을 점유됨으로 변경.
 		Connection con = null;
@@ -104,28 +67,10 @@ public class SeatDaoImpl implements SeatDao {
 
 	@Override
 	public int timeFinishedSeat(int seat_num) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
 		int count = 0;
-		try {
-			con = dataSource.getConnection();
-			String sql = "UPDATE p_seat SET occupied=0 WHERE seat_num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, seat_num);
-			count = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
+		SeatDao seatDao=this.sqlSession.getMapper(SeatDao.class);
+		count =seatDao.timeFinishedSeat(seat_num);
 		return count;
 	}
-
+	
 }
