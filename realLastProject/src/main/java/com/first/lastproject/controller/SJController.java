@@ -65,6 +65,11 @@ public class SJController {
 		System.out.println("foodModifyForm()");
 		return "host/stock/foodModifyForm";
 	}
+	@RequestMapping("/Home")
+	public String home(Model model) {
+		System.out.println("home()");
+		return "member/Home";
+	}
 
 	@RequestMapping("/foodModifyPro")
 	public String foodModifyPro(HttpServletRequest request, Model model) {
