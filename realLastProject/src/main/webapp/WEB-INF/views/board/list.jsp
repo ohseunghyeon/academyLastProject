@@ -2,10 +2,6 @@
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="com.first.lastproject.dao.board.BoardDao"%>
-<%@ page import="com.first.lastproject.dto.BoardDto" %>
 <script src= /lastproject/resources/SJscript.js></script>
 <style>
  #info {

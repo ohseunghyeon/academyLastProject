@@ -10,7 +10,6 @@ import com.first.lastproject.dao.OrderDao;
 import com.first.lastproject.dao.OrderDaoImpl;
 import com.first.lastproject.dao.SeatDao;
 import com.first.lastproject.dao.SeatDaoImpl;
-import com.first.lastproject.dao.seat.*;
 
 public class SeatFinishCommand implements SeatCommand {
 

@@ -21,8 +21,31 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.first.lastproject.controller" />
+	<context:component-scan base-package="com.first.lastproject" />
+	<!-- MyBatis 설정 시작 -->
+	<beans:bean name="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<beans:property name="jndiName" value="java:comp/env/jdbc/Oracle11g"/>
+		<beans:property name="resourceRef" value="true"/>
+	</beans:bean>
 	
+	<!-- SqlSessionFactoryBean : 스프링의 FactoryBean 인터페이스를 구현한다.
+		 SqlSessionFactoryBean을 생성하는 것이 아니라 Factory에서 getXXX() 메서드 호출결과를 반환하는 것
+		 스프링은 애플리케이션 시작 시점에 SqlSessionFactory를 생성하여 저장한다. -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="mapperLocations" value="classpath:spring/mvc/member/mapper/*.xml"/>
+	</beans:bean>
+	
+	<!-- SqlSessionTemplate : 마이바티스-스프링 연동 모듈의 핵심으로, SqlSession을 구현하고
+		 코드에서 SqlSession을 대체하는 역할을 한다.
+		 여러 개의 DAO나 매퍼에서 공유할 수 있다. SQL을 처리하는 마이바티스 메서드를 호출할 때
+		 SqlSessionTemplate은 SqlSession이 현재의 스프링 트랜젝션에서 사용될 수 있도록 보장하고,
+		 필요한 시점에 세션을 닫고, 커밋과 롤백, 그리고 세션의 생명주기를 관리한다. -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory"/>
+	</beans:bean>
+	
+	<!-- MyBatis 설정 종료 -->
 	
 	
 </beans:beans>
