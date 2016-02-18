@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.ingredient.IngredientDao;
-import com.first.lastproject.dao.ingredient.InterfaceIngredientDao;
+import com.first.lastproject.dao.IngredientDao;
+import com.first.lastproject.dao.IngredientDaoImpl;
 
 
 public class StockIngredientModifyProCommand implements StockCommand {
@@ -21,7 +21,7 @@ public class StockIngredientModifyProCommand implements StockCommand {
 		int ingredient_code = Integer.parseInt(request.getParameter("ingredient_code"));
 		int ingre_num = Integer.parseInt(request.getParameter("ingre_num"));
 		
-		InterfaceIngredientDao dao = IngredientDao.getInstance();
+		IngredientDao dao = IngredientDaoImpl.getInstance();
 		int result = dao.modifyIngredient(ingredient_code, ingre_num);
 		
 		model.addAttribute("ingredientModifyResult", result);

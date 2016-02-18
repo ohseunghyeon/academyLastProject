@@ -1,4 +1,4 @@
-package com.first.lastproject.dao.seat;
+package com.first.lastproject.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,19 +13,19 @@ import javax.sql.DataSource;
 import com.first.lastproject.dto.OrderDto;
 import com.first.lastproject.dto.SeatDto;
 
-public class SeatDao implements InterfaceSeatDao {
+public class SeatDaoImpl implements SeatDao {
 	DataSource dataSource;
 
-	private static SeatDao instance;
+	private static SeatDaoImpl instance;
 
-	public static SeatDao getInstance() {
+	public static SeatDaoImpl getInstance() {
 		if (instance == null) {
-			instance = new SeatDao();
+			instance = new SeatDaoImpl();
 		}
 		return instance;
 	}
 
-	private SeatDao() {
+	private SeatDaoImpl() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
 			Context context = new InitialContext();

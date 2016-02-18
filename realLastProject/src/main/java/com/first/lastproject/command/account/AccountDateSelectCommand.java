@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.account.AccountDao;
-import com.first.lastproject.dao.account.InterfaceAccountDao;
+import com.first.lastproject.dao.AccountDao;
+import com.first.lastproject.dao.AccountDaoImpl;
 import com.first.lastproject.dto.AccountDto;
 
 public class AccountDateSelectCommand implements AccountCommand {
@@ -19,7 +19,7 @@ public class AccountDateSelectCommand implements AccountCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		AccountDto selTotal = new AccountDto();
-		InterfaceAccountDao dao = AccountDao.getInstance();
+		AccountDao dao = AccountDaoImpl.getInstance();
 		List <AccountDto> selList = new ArrayList<AccountDto>();
 		List <AccountDto> selPrice = new ArrayList<AccountDto>();
 		String startday = request.getParameter("startday");

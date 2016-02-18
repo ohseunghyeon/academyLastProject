@@ -1,4 +1,4 @@
-package com.first.lastproject.dao.board;
+package com.first.lastproject.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,19 +10,19 @@ import javax.sql.DataSource;
 import com.first.lastproject.dto.BoardDto;
 
 
-public class BoardDao implements InterfaceBoardDao {
+public class BoardDaoImpl implements BoardDao {
 	DataSource dataSource;
 	
-	private static BoardDao instance;
+	private static BoardDaoImpl instance;
 	
-	public static BoardDao getInstance() {
+	public static BoardDaoImpl getInstance() {
 		if (instance == null) {
-			instance = new BoardDao();
+			instance = new BoardDaoImpl();
 		}
 		return instance;
 	}
 	
-	private BoardDao() {
+	private BoardDaoImpl() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
 			Context context = new InitialContext();

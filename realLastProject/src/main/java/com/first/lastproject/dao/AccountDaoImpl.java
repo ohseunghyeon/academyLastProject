@@ -1,4 +1,4 @@
-package com.first.lastproject.dao.account;
+package com.first.lastproject.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,20 +18,20 @@ import javax.sql.DataSource;
 import com.first.lastproject.dto.AccountDto;
 
 
-public class AccountDao implements InterfaceAccountDao {
+public class AccountDaoImpl implements AccountDao {
 
 	DataSource dataSource;
 	
-	private static AccountDao instance;
+	private static AccountDaoImpl instance;
 	
-	public static AccountDao getInstance() {
+	public static AccountDaoImpl getInstance() {
 		if (instance == null) {
-			instance = new AccountDao();
+			instance = new AccountDaoImpl();
 		}
 		return instance;
 	}
 	
-	private AccountDao() {
+	private AccountDaoImpl() {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");

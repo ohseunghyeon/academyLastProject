@@ -1,10 +1,10 @@
-package com.first.lastproject.dao.account;
+package com.first.lastproject.dao;
 
 import java.util.List;
 
 import com.first.lastproject.dto.AccountDto;
 
-public interface InterfaceAccountDao {
+public interface AccountDao {
 
 	public List<AccountDto> getDayAccount();
 	

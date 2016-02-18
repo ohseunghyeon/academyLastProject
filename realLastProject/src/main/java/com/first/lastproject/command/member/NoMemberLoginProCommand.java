@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 
 public class NoMemberLoginProCommand implements MemberCommand {
 
@@ -15,7 +15,7 @@ public class NoMemberLoginProCommand implements MemberCommand {
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		InterfaceMemberDao dao = MemberDao.getInstance();
+		MemberDao dao = MemberDaoImpl.getInstance();
 		int result = dao.checkMember("nomember", "nomember");
 		
 		System.out.println("비회원 로그인 결과 " + result);

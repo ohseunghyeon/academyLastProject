@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 
 
 public class MemberCouponFormCommand implements MemberCommand {
@@ -19,7 +19,7 @@ public class MemberCouponFormCommand implements MemberCommand {
 		
 		String id = (String) request.getSession().getAttribute("id");
 		
-		InterfaceMemberDao memberDao = MemberDao.getInstance();
+		MemberDao memberDao = MemberDaoImpl.getInstance();
 		int coupon_code = memberDao.getCoupon(id);
 		
 		

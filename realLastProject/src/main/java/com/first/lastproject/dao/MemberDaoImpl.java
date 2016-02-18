@@ -1,4 +1,4 @@
-package com.first.lastproject.dao.member;
+package com.first.lastproject.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,19 +11,19 @@ import javax.sql.DataSource;
 
 import com.first.lastproject.dto.MemberDto;
 
-public class MemberDao implements InterfaceMemberDao {
+public class MemberDaoImpl implements MemberDao {
 	DataSource dataSource;
 
-	private static MemberDao instance;
+	private static MemberDaoImpl instance;
 
-	public static MemberDao getInstance() {
+	public static MemberDaoImpl getInstance() {
 		if (instance == null) {
-			instance = new MemberDao();
+			instance = new MemberDaoImpl();
 		}
 		return instance;
 	}
 
-	private MemberDao() {
+	private MemberDaoImpl() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
 			Context context = new InitialContext();

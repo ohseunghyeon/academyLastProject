@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 
 
 public class MemberConfirmIdCommand implements MemberCommand {
@@ -18,7 +18,7 @@ public class MemberConfirmIdCommand implements MemberCommand {
 		
 		String id = request.getParameter("id");
 		
-		int result = MemberDao.getInstance().check(id);
+		int result = MemberDaoImpl.getInstance().check(id);
 		System.out.println("중복확인 결과" + result);
 		
 		//request.setAttribute("key값", value나 변수);

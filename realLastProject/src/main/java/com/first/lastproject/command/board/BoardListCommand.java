@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.board.BoardDao;
-import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dao.BoardDao;
+import com.first.lastproject.dao.BoardDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 
 public class BoardListCommand implements BoardCommand {
@@ -31,7 +31,7 @@ public class BoardListCommand implements BoardCommand {
 		int startPage = 0;	//시작 페이지
 		int endPage = 0;	//끝 페이지
 		
-		InterfaceBoardDao dao = BoardDao.getInstance();
+		BoardDao dao = BoardDaoImpl.getInstance();
 		//글개수 구하기
 		count = dao.getCount();
 		

@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.board.BoardDao;
-import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dao.BoardDao;
+import com.first.lastproject.dao.BoardDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 
 
@@ -28,7 +28,7 @@ public class BoardModifyProCommand implements BoardCommand {
 		dto.setPasswd(request.getParameter("passwd"));
 
 		
-		InterfaceBoardDao dao = BoardDao.getInstance();
+		BoardDao dao = BoardDaoImpl.getInstance();
 		int result = dao.updateArticle(dto);
 		
 		model.addAttribute("result",result);

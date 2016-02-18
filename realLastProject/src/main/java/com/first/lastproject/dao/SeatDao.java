@@ -1,11 +1,11 @@
-package com.first.lastproject.dao.seat;
+package com.first.lastproject.dao;
 
 import java.util.ArrayList;
 
 import com.first.lastproject.dto.OrderDto;
 import com.first.lastproject.dto.SeatDto;
 
-public interface InterfaceSeatDao {
+public interface SeatDao {
 
 //seat 좌석
 	public ArrayList<SeatDto> getSeats();

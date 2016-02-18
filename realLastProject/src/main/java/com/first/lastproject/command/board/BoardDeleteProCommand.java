@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.board.BoardDao;
-import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dao.BoardDao;
+import com.first.lastproject.dao.BoardDaoImpl;
 
 
 public class BoardDeleteProCommand implements BoardCommand {
@@ -21,7 +21,7 @@ public class BoardDeleteProCommand implements BoardCommand {
 		String pageNum = request.getParameter("pageNum");
 		String passwd = request.getParameter("passwd");
 		
-		InterfaceBoardDao boardDao = BoardDao.getInstance();
+		BoardDao boardDao = BoardDaoImpl.getInstance();
 		int resultPasswd = boardDao.check(num, passwd);
 		//resultPasswd 가 1 이면 비밀번호 일치, 0이면 비밀번호 불일치.
 		if(resultPasswd !=0) {

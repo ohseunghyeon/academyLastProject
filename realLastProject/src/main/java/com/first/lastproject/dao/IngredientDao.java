@@ -1,10 +1,10 @@
-package com.first.lastproject.dao.ingredient;
+package com.first.lastproject.dao;
 
 import java.util.List;
 
 import com.first.lastproject.dto.IngredientDto;
 
-public interface InterfaceIngredientDao {
+public interface IngredientDao {
 
 //ingredient 재료
 	public int getIngredient();

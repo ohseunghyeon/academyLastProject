@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.board.BoardDao;
-import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dao.BoardDao;
+import com.first.lastproject.dao.BoardDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 
 public class BoardSearchCommand implements BoardCommand {
@@ -21,7 +21,7 @@ public class BoardSearchCommand implements BoardCommand {
 		String searchmethod = request.getParameter("searchmethod");
 		String searchinput = request.getParameter("searchinput");
 		
-		InterfaceBoardDao dao = BoardDao.getInstance();
+		BoardDao dao = BoardDaoImpl.getInstance();
 		
 		if(searchmethod.equals("id")){
 			int pageSize = 5;	//한 페이지당 출력할 글 수

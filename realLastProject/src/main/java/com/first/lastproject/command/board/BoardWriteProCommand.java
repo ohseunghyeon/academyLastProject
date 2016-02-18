@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.board.BoardDao;
-import com.first.lastproject.dao.board.InterfaceBoardDao;
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.BoardDao;
+import com.first.lastproject.dao.BoardDaoImpl;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 import com.first.lastproject.dto.MemberDto;
 
@@ -42,8 +42,8 @@ public class BoardWriteProCommand implements BoardCommand {
 		dto.setReg_date(new Timestamp(System.currentTimeMillis()));
 		dto.setIp(request.getRemoteAddr());
 
-		InterfaceBoardDao dao = BoardDao.getInstance();
-		InterfaceMemberDao memberDao = MemberDao.getInstance();
+		BoardDao dao = BoardDaoImpl.getInstance();
+		MemberDao memberDao = MemberDaoImpl.getInstance();
 		int writeResult = dao.writeArticle(dto);
 
 		String id = (String) request.getSession().getAttribute("id");

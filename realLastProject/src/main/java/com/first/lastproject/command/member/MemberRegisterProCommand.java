@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
 public class MemberRegisterProCommand implements MemberCommand {
@@ -24,7 +24,7 @@ public class MemberRegisterProCommand implements MemberCommand {
 		dto.setPhone_number(request.getParameter("phone_number"));
 		dto.setEmail(request.getParameter("email"));
 		
-		InterfaceMemberDao dao = MemberDao.getInstance();
+		MemberDao dao = MemberDaoImpl.getInstance();
 		int result = dao.addMember(dto);
 		model.addAttribute("result", result);
 		

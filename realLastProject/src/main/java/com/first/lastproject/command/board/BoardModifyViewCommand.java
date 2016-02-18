@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.board.BoardDao;
-import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dao.BoardDao;
+import com.first.lastproject.dao.BoardDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 
 
@@ -24,7 +24,7 @@ public class BoardModifyViewCommand implements BoardCommand {
 		String pageNum = request.getParameter("pageNum");
 		String passwd = request.getParameter("passwd");
 		
-		InterfaceBoardDao dao = BoardDao.getInstance();
+		BoardDao dao = BoardDaoImpl.getInstance();
 		int result = dao.check(num, passwd);
 		
 		if(result !=0) {

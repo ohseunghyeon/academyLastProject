@@ -1,10 +1,10 @@
-package com.first.lastproject.dao.board;
+package com.first.lastproject.dao;
 
 import java.util.ArrayList;
 
 import com.first.lastproject.dto.BoardDto;
 
-public interface InterfaceBoardDao {
+public interface BoardDao {
 //board 게시판
 	public int getCount();
 	public int getSeachSubjectCount(String subject);

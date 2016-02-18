@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.account.AccountDao;
-import com.first.lastproject.dao.account.InterfaceAccountDao;
+import com.first.lastproject.dao.AccountDao;
+import com.first.lastproject.dao.AccountDaoImpl;
 import com.first.lastproject.dto.AccountDto;
 
 public class AccountMonthCommand implements AccountCommand {
@@ -21,7 +21,7 @@ public class AccountMonthCommand implements AccountCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		AccountDto mTotal = new AccountDto();
 		Calendar calendar = Calendar.getInstance();
-		InterfaceAccountDao dao = AccountDao.getInstance();
+		AccountDao dao = AccountDaoImpl.getInstance();
 		List <AccountDto> mList = new ArrayList<AccountDto>();
 		List <AccountDto> mPrice = new ArrayList<AccountDto>();
 		int monlist = Integer.parseInt(request.getParameter("monlist"));

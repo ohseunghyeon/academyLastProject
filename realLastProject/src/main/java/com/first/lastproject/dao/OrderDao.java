@@ -1,10 +1,10 @@
-package com.first.lastproject.dao.order;
+package com.first.lastproject.dao;
 
 import java.util.ArrayList;
 
 import com.first.lastproject.dto.OrderDto;
 
-public interface InterfaceOrderDao {
+public interface OrderDao {
 //주문
 	public int insertOrder(String id, int seat_num);
 	public int insertOrderMenu(String order_code, int food_code);

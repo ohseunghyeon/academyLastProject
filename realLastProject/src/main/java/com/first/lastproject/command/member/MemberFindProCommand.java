@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
 public class MemberFindProCommand implements MemberCommand {
@@ -25,7 +25,7 @@ public class MemberFindProCommand implements MemberCommand {
 		System.out.println(id);
 		System.out.println(idorpass);
 		int result = 0;
-		InterfaceMemberDao dao = MemberDao.getInstance();
+		MemberDao dao = MemberDaoImpl.getInstance();
 		MemberDto dto = new MemberDto();
 		if(idorpass == 0) {
 		result = dao.findId(email);

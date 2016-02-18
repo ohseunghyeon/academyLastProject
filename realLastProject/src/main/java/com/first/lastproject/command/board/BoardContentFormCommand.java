@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.board.BoardDao;
-import com.first.lastproject.dao.board.InterfaceBoardDao;
+import com.first.lastproject.dao.BoardDao;
+import com.first.lastproject.dao.BoardDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 
 
@@ -23,7 +23,7 @@ public class BoardContentFormCommand implements BoardCommand {
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		int number = Integer.parseInt(request.getParameter("number"));
 		
-		InterfaceBoardDao dao = BoardDao.getInstance();
+		BoardDao dao = BoardDaoImpl.getInstance();
 		BoardDto dto = dao.getArticle(num);
 		
 		// 내가 쓴 글이 아닌 것만 조회수 증가

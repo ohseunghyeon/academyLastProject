@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
 public class MemberLoginProCommand implements MemberCommand {
@@ -18,7 +18,7 @@ public class MemberLoginProCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
-		InterfaceMemberDao memberDao = MemberDao.getInstance();
+		MemberDao memberDao = MemberDaoImpl.getInstance();
 		int result = memberDao.checkMember(id, passwd);
 		if(result == 1) {
 			request.getSession().setAttribute("id", id);

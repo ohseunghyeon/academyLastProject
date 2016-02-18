@@ -1,4 +1,4 @@
-package com.first.lastproject.dao.order;
+package com.first.lastproject.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,19 +12,19 @@ import javax.sql.DataSource;
 
 import com.first.lastproject.dto.OrderDto;
 
-public class OrderDao implements InterfaceOrderDao {
+public class OrderDaoImpl implements OrderDao {
 	DataSource dataSource;
 
-	private static OrderDao instance;
+	private static OrderDaoImpl instance;
 
-	public static OrderDao getInstance() {
+	public static OrderDaoImpl getInstance() {
 		if (instance == null) {
-			instance = new OrderDao();
+			instance = new OrderDaoImpl();
 		}
 		return instance;
 	}
 
-	private OrderDao() {
+	private OrderDaoImpl() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
 			Context context = new InitialContext();

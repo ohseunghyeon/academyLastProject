@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
 
@@ -19,7 +19,7 @@ public class MemberModifyViewCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String id = (String)request.getSession().getAttribute("id");
 		String passwd = request.getParameter("passwd");
-		InterfaceMemberDao dao = MemberDao.getInstance();
+		MemberDao dao = MemberDaoImpl.getInstance();
 		MemberDto dto = new MemberDto();
 		int result = dao.checkMember(id, passwd);
 		if(result == 1) {

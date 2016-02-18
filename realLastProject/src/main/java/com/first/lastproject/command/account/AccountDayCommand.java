@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.account.AccountDao;
-import com.first.lastproject.dao.account.InterfaceAccountDao;
+import com.first.lastproject.dao.AccountDao;
+import com.first.lastproject.dao.AccountDaoImpl;
 import com.first.lastproject.dto.AccountDto;
 
 public class AccountDayCommand implements AccountCommand {
@@ -32,7 +32,7 @@ public class AccountDayCommand implements AccountCommand {
 			formattedDate = dayDate.substring(0, 10);
 		}
 		AccountDto dto = new AccountDto();
-		InterfaceAccountDao dao = AccountDao.getInstance();
+		AccountDao dao = AccountDaoImpl.getInstance();
 		List<AccountDto> list = new ArrayList<AccountDto>();
 		
 		if (dayDate == null) {

@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
 public class MemberModifyProCommand implements MemberCommand {
@@ -17,7 +17,7 @@ public class MemberModifyProCommand implements MemberCommand {
 	Map<String, Object> map = model.asMap();
 	HttpServletRequest request = (HttpServletRequest)map.get("request");
 	MemberDto dto = new MemberDto();
-	InterfaceMemberDao dao = MemberDao.getInstance();
+	MemberDao dao = MemberDaoImpl.getInstance();
 	dto.setId((String)request.getSession().getAttribute("id"));
 	dto.setPasswd(request.getParameter("passwd"));
 	dto.setPhone_number(request.getParameter("phone_number"));

@@ -28,8 +28,8 @@ import com.first.lastproject.command.member.MemberModifyProCommand;
 import com.first.lastproject.command.member.MemberModifyViewCommand;
 import com.first.lastproject.command.member.MemberRegisterProCommand;
 import com.first.lastproject.command.member.NoMemberLoginProCommand;
-import com.first.lastproject.dao.member.InterfaceMemberDao;
-import com.first.lastproject.dao.member.MemberDao;
+import com.first.lastproject.dao.MemberDao;
+import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
 @Controller
@@ -128,7 +128,7 @@ public class JNController {
            System.out.println(emails);
            
            //비밀번호 가져오기
-           InterfaceMemberDao dao = MemberDao.getInstance();
+           MemberDao dao = MemberDaoImpl.getInstance();
            MemberDto dto = dao.getPasswd(id,emails);
            String passwd = dto.getPasswd();
            

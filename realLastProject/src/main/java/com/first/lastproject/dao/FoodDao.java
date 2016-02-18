@@ -1,10 +1,10 @@
-package com.first.lastproject.dao.food;
+package com.first.lastproject.dao;
 
 import java.util.List;
 import com.first.lastproject.dto.FoodDto;
 
 
-public interface InterfaceFoodDao {
+public interface FoodDao {
 
 	//goods 음식
 	public List<FoodDto> listGoods();

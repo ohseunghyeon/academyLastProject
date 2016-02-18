@@ -1,8 +1,8 @@
-package com.first.lastproject.dao.member;
+package com.first.lastproject.dao;
 
 import com.first.lastproject.dto.MemberDto;
 
-public interface InterfaceMemberDao {
+public interface MemberDao {
 //member 회원
 	public int addMember(MemberDto dto);
 	public int modifyMember(MemberDto dto);

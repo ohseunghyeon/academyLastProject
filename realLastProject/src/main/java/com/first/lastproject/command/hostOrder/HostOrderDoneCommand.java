@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.order.InterfaceOrderDao;
-import com.first.lastproject.dao.order.OrderDao;
+import com.first.lastproject.dao.OrderDao;
+import com.first.lastproject.dao.OrderDaoImpl;
 
 public class HostOrderDoneCommand implements HostOrderCommand {
 
@@ -18,7 +18,7 @@ public class HostOrderDoneCommand implements HostOrderCommand {
 		
 		String order_id = request.getParameter("order_id");
 		
-		InterfaceOrderDao orderDao = OrderDao.getInstance();
+		OrderDao orderDao = OrderDaoImpl.getInstance();
 		int orderDoneResult = orderDao.makeOrderDone(order_id);
 		
 		model.addAttribute("orderDoneResult", orderDoneResult);

@@ -1,4 +1,4 @@
-package com.first.lastproject.dao.ingredient;
+package com.first.lastproject.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,19 +13,19 @@ import javax.sql.DataSource;
 
 import com.first.lastproject.dto.IngredientDto;
 
-public class IngredientDao implements InterfaceIngredientDao {
+public class IngredientDaoImpl implements IngredientDao {
 	DataSource dataSource;
 
-	private static IngredientDao instance;
+	private static IngredientDaoImpl instance;
 
-	public static IngredientDao getInstance() {
+	public static IngredientDaoImpl getInstance() {
 		if (instance == null) {
-			instance = new IngredientDao();
+			instance = new IngredientDaoImpl();
 		}
 		return instance;
 	}
 
-	private IngredientDao() {
+	private IngredientDaoImpl() {
 		try {
 			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
 			Context context = new InitialContext();

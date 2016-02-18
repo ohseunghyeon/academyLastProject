@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.seat.InterfaceSeatDao;
-import com.first.lastproject.dao.seat.SeatDao;
+import com.first.lastproject.dao.SeatDao;
+import com.first.lastproject.dao.SeatDaoImpl;
 import com.first.lastproject.dto.SeatDto;
 
 public class SeatListCommand implements SeatCommand {
@@ -19,7 +19,7 @@ public class SeatListCommand implements SeatCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
-		InterfaceSeatDao seatDao = SeatDao.getInstance();
+		SeatDao seatDao = SeatDaoImpl.getInstance();
 
 		ArrayList<SeatDto> seats = seatDao.getSeats();
 		model.addAttribute("seats", seats);

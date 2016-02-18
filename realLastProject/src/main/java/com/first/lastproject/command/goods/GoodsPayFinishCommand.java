@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.food.FoodDao;
-import com.first.lastproject.dao.ingredient.IngredientDao;
-import com.first.lastproject.dao.member.MemberDao;
-import com.first.lastproject.dao.order.InterfaceOrderDao;
-import com.first.lastproject.dao.order.OrderDao;
-import com.first.lastproject.dao.seat.InterfaceSeatDao;
-import com.first.lastproject.dao.seat.SeatDao;
+import com.first.lastproject.dao.FoodDaoImpl;
+import com.first.lastproject.dao.IngredientDaoImpl;
+import com.first.lastproject.dao.MemberDaoImpl;
+import com.first.lastproject.dao.OrderDao;
+import com.first.lastproject.dao.OrderDaoImpl;
+import com.first.lastproject.dao.SeatDao;
+import com.first.lastproject.dao.SeatDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
 public class GoodsPayFinishCommand implements GoodsCommand {
@@ -25,14 +25,14 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		String id = (String) request.getSession().getAttribute("id");
 		int seat_num = (Integer) request.getSession().getAttribute("seat_num");
 
-		InterfaceOrderDao orderDao = OrderDao.getInstance();
+		OrderDao orderDao = OrderDaoImpl.getInstance();
 		int orderInsertResult = orderDao.insertOrder(id, seat_num); // p_order에
 																	// 추가.
 
 		int insertOrderMenuError = 1; // 전체 메뉴 삽입 실패했는지 확인하기 위함
 		if (orderInsertResult == 1) { // 이제 주문 메뉴 추가 order_code와 food_code로 메뉴
 										// 하나씩 추가
-			InterfaceSeatDao seatDao = SeatDao.getInstance();
+			SeatDao seatDao = SeatDaoImpl.getInstance();
 			seatDao.startSeat(seat_num);
 
 			String[] foodCodes = request.getParameterValues("food_code");	//어떤 메뉴를
@@ -42,7 +42,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 
 			int insertOrderMenu = 1; // 각 메뉴가 실패했는지 확인하기 위함
 			
-			MemberDao memberDao = MemberDao.getInstance();
+			MemberDaoImpl memberDao = MemberDaoImpl.getInstance();
 			
 			int couponMileageUse = Integer.parseInt(request.getParameter("couponMileageUse"));
 			if (couponMileageUse == 1) {	//쿠폰 사용
@@ -59,13 +59,13 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
 					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
-					MemberDao.getInstance().addMileage(food_code, id); //마일리지 추가
+					MemberDaoImpl.getInstance().addMileage(food_code, id); //마일리지 추가
 					
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문
-					if (insertOrderMenu == 1 && FoodDao.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
-						IngredientDao.getInstance().reduceIngredient(food_code);
-					} else if (insertOrderMenu == 1 && FoodDao.getInstance().getFood(food_code).getFood_num() > 0) {
-						FoodDao.getInstance().reduceFoodNum(food_code);
+					if (insertOrderMenu == 1 && FoodDaoImpl.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
+						IngredientDaoImpl.getInstance().reduceIngredient(food_code);
+					} else if (insertOrderMenu == 1 && FoodDaoImpl.getInstance().getFood(food_code).getFood_num() > 0) {
+						FoodDaoImpl.getInstance().reduceFoodNum(food_code);
 					} else {
 						insertOrderMenuError = 0;
 					}
@@ -80,7 +80,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		model.addAttribute("orderInsertResult", orderInsertResult);
 		
 		//헤더에 리프레시
-		MemberDto memberDto = MemberDao.getInstance().getMember(id);
+		MemberDto memberDto = MemberDaoImpl.getInstance().getMember(id);
 		request.getSession().setAttribute("mileage", memberDto.getMileage());
 		
 		return "guest/payment/paymentFinish";
