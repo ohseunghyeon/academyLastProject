@@ -32,7 +32,7 @@
 		<br> <br> <br>
 		<div class="row">
 			<div class="col-sm-1"></div>
-			<div class="col-sm-7">
+			<div class="col-sm-5">
 				<form method="get" action="accountMonth" name="accountForm"
 					onsubmit="return accountMonCheck()">
 					<table
@@ -75,7 +75,7 @@
 				<form>
 					<table
 						class="table table-bordered table-hover table-condensed text-center "
-						id="list" border="1" style="width: 350px">
+						id="list" border="1" style="width: 300px">
 						<tr style="background-color: lavender;">
 							<th><p class="text-center">일자</p></th>
 						</tr>
@@ -88,7 +88,7 @@
 					</table>
 					<table
 						class="table table-bordered table-hover table-condensed text-center "
-						id="list" border="1" style="width: 210px">
+						id="list" border="1" style="width: 150px">
 						<tr style="background-color: lavender;">
 							<th><p class="text-center">일간 수익</p></th>
 						</tr>
@@ -108,11 +108,13 @@
 		</table> 현재 미 구현-->
 				</form>
 			</div>
-			<!-- 데이터 시각화 -->
-			<div style="width: 50%">
+		
+			<div class="col-sm-5">
+				<!-- 데이터 시각화 -->
+				<br><br><br><br><br><br>
+			<div style="width: 100%">
 				<canvas id="canvas" height="450" width="600"></canvas>
 			</div>
-			<div class="col-sm-3">
 				<br>
 				<table
 					class="table table-bordered table-hover table-condensed text-center ">
