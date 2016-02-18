@@ -30,44 +30,15 @@ public class SeatDaoImpl implements SeatDao {
 		seats = seatDao.getSeats();
 		return seats;
 	}
-		/*ArrayList<SeatDto> seats = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			con = dataSource.getConnection();
-			String sql = "select * from p_seat";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				if (seats == null) {
-					seats = new ArrayList<SeatDto>();
-				}
-				SeatDto seat = new SeatDto();
-				seat.setSeat_num(rs.getInt("seat_num"));
-				seat.setOccupied(rs.getInt("occupied"));
-				seats.add(seat);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return seats;
-	}*/
+		
 
 	public OrderDto seatInformation(int seat_num) {
 		OrderDto orderDto = new OrderDto();
+		SeatDao seatDao=this.sqlSession.getMapper(SeatDao.class);
+		orderDto = seatDao.seatInformation(seat_num);
+		return orderDto;
+	}
+		/*OrderDto orderDto = new OrderDto();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -104,7 +75,7 @@ public class SeatDaoImpl implements SeatDao {
 		return orderDto;
 
 	}
-
+*/
 	@Override
 	public int startSeat(int seat_num) { //결제 완료시 좌석을 점유됨으로 변경.
 		Connection con = null;

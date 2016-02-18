@@ -4,21 +4,25 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.SeatDao;
 import com.first.lastproject.dao.SeatDaoImpl;
 import com.first.lastproject.dto.OrderDto;
 
-
+@Service("seatInformationCommand")
 public class SeatInformationCommand implements SeatCommand {
-
+	@Autowired
+	SeatDao seatDao;
+	
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		SeatDao seatDao = SeatDaoImpl.getInstance();
+		
 		OrderDto orderDto = new OrderDto();
 		int seat_num = Integer.parseInt(request.getParameter("seat_num"));
 		orderDto = seatDao.seatInformation(seat_num);
@@ -26,6 +30,7 @@ public class SeatInformationCommand implements SeatCommand {
 		
 		model.addAttribute("seatDao", seatDao);
 		model.addAttribute("orderDto", orderDto);
+		
 		System.out.println(seat_num +"번");
 		System.out.println(orderDto.getSeat_num());
 		System.out.println(orderDto.getId());

@@ -13,6 +13,7 @@ import com.first.lastproject.command.seat.*;
 @Controller
 public class CMController {
 	
+	//좌석 뿌려주기
 	@Autowired
 	SeatListCommand seatListCommand;
 	
@@ -30,7 +31,6 @@ public class CMController {
 		model.addAttribute("request", request);
 		SeatCommand command = new SeatSelectConfirmFormCommand(); 
 		String viewName = command.execute(model);
-		
 		return viewName;
 		
 	}
@@ -44,13 +44,15 @@ public class CMController {
 		return viewName;
 		
 	}
+	//host로 좌석 정보 보기
+	@Autowired
+	SeatInformationCommand seatInformationCommand;
+	
 	@RequestMapping("/seatInformation")
 	public String seatInfomation(HttpServletRequest request, Model model){
 		System.out.println("seatInformation()");
 		model.addAttribute("request", request);
-		SeatCommand command = new SeatInformationCommand();
-		String viewName=command.execute(model);
-		
+		String viewName=seatInformationCommand.execute(model);
 		return viewName;
 	}
 	@RequestMapping("/hostOrderList")
