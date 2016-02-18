@@ -2,6 +2,7 @@ package com.first.lastproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +13,14 @@ import com.first.lastproject.command.seat.*;
 @Controller
 public class CMController {
 	
+	@Autowired
+	SeatListCommand seatListCommand;
+	
 	@RequestMapping("/seatList")
 	public String getSeats(HttpServletRequest request, Model model){
 		System.out.println("getSeats()");
 		model.addAttribute("request", request);
-		SeatCommand command = new SeatListCommand(); 
-		String viewName = command.execute(model);
-		
+		String viewName = seatListCommand.execute(model);
 		return viewName;
 		
 	}

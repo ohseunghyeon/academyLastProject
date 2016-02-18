@@ -3,6 +3,10 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="spring.mvc.member.dao.SeatDao">
+<mapper namespace="com.first.lastproject.dao.SeatDao">
+<select id="getSeats" resultType="com.first.lastproject.dto.SeatDto">
+	select * from p_seat
+</select>
+
 
 </mapper>

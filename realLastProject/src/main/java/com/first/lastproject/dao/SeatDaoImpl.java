@@ -10,34 +10,27 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.first.lastproject.dto.OrderDto;
 import com.first.lastproject.dto.SeatDto;
-
+@Repository
 public class SeatDaoImpl implements SeatDao {
 	DataSource dataSource;
 
-	private static SeatDaoImpl instance;
-
-	public static SeatDaoImpl getInstance() {
-		if (instance == null) {
-			instance = new SeatDaoImpl();
-		}
-		return instance;
-	}
-
-	private SeatDaoImpl() {
-		try {
-			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
-			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	@Autowired
+	private SqlSession sqlSession;
 
 	@Override
-	public ArrayList<SeatDto> getSeats() {
-		ArrayList<SeatDto> seats = null;
+	public ArrayList<SeatDto> getSeats(){
+		ArrayList<SeatDto> seats = new ArrayList<SeatDto>();
+		SeatDao seatDao=this.sqlSession.getMapper(SeatDao.class);
+		seats = seatDao.getSeats();
+		return seats;
+	}
+		/*ArrayList<SeatDto> seats = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -71,7 +64,7 @@ public class SeatDaoImpl implements SeatDao {
 		}
 
 		return seats;
-	}
+	}*/
 
 	public OrderDto seatInformation(int seat_num) {
 		OrderDto orderDto = new OrderDto();
