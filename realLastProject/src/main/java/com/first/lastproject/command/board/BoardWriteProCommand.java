@@ -21,6 +21,7 @@ public class BoardWriteProCommand implements BoardCommand {
 
 	@Autowired
 	BoardDao dao;
+	@Autowired
 	MemberDao memberDao;
 	@Override
 	public String execute(Model model) {
