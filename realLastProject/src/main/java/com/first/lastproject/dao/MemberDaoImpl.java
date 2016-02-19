@@ -306,6 +306,13 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 
+	public int getCoupons(String id) {
+		int count = 0;
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		count =dao.getCoupons(id);
+		return count;
+		
+	}
 	public int makeCoupon(String id) {
 		
 		//Connection con = null;
@@ -313,6 +320,9 @@ public class MemberDaoImpl implements MemberDao {
 		int count = 0;
 		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
 		count = dao.makeCoupon(id);
+		if(count ==1) {
+			count= dao.getCoupons(id);
+		}
 		return count;
 
 		/*

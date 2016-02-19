@@ -5,19 +5,28 @@
 
 <mapper namespace="com.first.lastproject.dao.MemberDao">
 
-<insert id="addMember" parameterType="int">
-INSERT INTO p_user VALUES (#{id},#{passwd},0,#{phone_number},#{email},0,0)
-</insert>
-
-<select id="checkMember" resultType="int" parameterType="Map">
-SELECT COUNT(*) FROM p_user WHERE id = #{id} AND passwd = #{passwd}
-</select>
-
-<select id="getMember" resultType="com.first.lastproject.dto.MemberDto" parameterType="String">
-SELECT * FROM p_user WHERE id = #{id}
-</select>
-
-<select id="check" resultType="int" parameterType="String">
-SELECT id FROM p_user WHERE id = #{id}
-</select>
+	<insert id="addMember" parameterType="int">
+	INSERT INTO p_user VALUES (#{id},#{passwd},0,#{phone_number},#{email},0,0)
+	</insert>
+	
+	<select id="checkMember" resultType="int" parameterType="Map">
+	SELECT COUNT(*) FROM p_user WHERE id = #{id} AND passwd = #{passwd}
+	</select>
+	
+	<select id="getMember" resultType="com.first.lastproject.dto.MemberDto" parameterType="String">
+	SELECT * FROM p_user WHERE id = #{id}
+	</select>
+	
+	<select id="check" resultType="int" parameterType="String">
+	SELECT id FROM p_user WHERE id = #{id}
+	</select>
+	<select id="getMember" parameterType="String" resultType="com.first.lastproject.dto.MemberDto">
+	SELECT * FROM p_user WHERE ID =#{id}
+	</select>
+	<insert id="makeCoupon"  parameterType="String">
+	INSERT INTO p_coupon VALUES (seq_coupon_num.nextval,#{id},sysdate+180)
+	</insert>
+	<update id="getCoupons" parameterType="String">
+	UPDATE p_user SET get_coupon = 1 WHERE id = #{id}
+	</update>
 </mapper>

@@ -13,6 +13,7 @@ public interface MemberDao {
 	public MemberDto getId(String email);
 	public MemberDto getPasswd(String id, String email);
 	public int makeCoupon(String id);
+	public int getCoupons(String id);
 	public int getCoupon(String id);
 	public int addMileage(int food_code, String id);
 	public int check(String id); //아이디 중복 체크
