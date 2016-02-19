@@ -5,14 +5,19 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.BoardDao;
 import com.first.lastproject.dao.BoardDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 
+@Service("boardSearchCommand")
 public class BoardSearchCommand implements BoardCommand {
 
+	@Autowired
+	BoardDao dao;
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -21,7 +26,7 @@ public class BoardSearchCommand implements BoardCommand {
 		String searchmethod = request.getParameter("searchmethod");
 		String searchinput = request.getParameter("searchinput");
 		
-		BoardDao dao = BoardDaoImpl.getInstance();
+		//BoardDao dao = BoardDaoImpl.getInstance();
 		
 		if(searchmethod.equals("id")){
 			int pageSize = 5;	//한 페이지당 출력할 글 수

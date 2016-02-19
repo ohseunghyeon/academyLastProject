@@ -6,17 +6,22 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.BoardDao;
-import com.first.lastproject.dao.BoardDaoImpl;
 import com.first.lastproject.dao.MemberDao;
-import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 import com.first.lastproject.dto.MemberDto;
 
+@Service("boardWriteProCommand")
 public class BoardWriteProCommand implements BoardCommand {
 
+
+	@Autowired
+	BoardDao dao;
+	MemberDao memberDao;
 	@Override
 	public String execute(Model model) {
 
@@ -42,8 +47,8 @@ public class BoardWriteProCommand implements BoardCommand {
 		dto.setReg_date(new Timestamp(System.currentTimeMillis()));
 		dto.setIp(request.getRemoteAddr());
 
-		BoardDao dao = BoardDaoImpl.getInstance();
-		MemberDao memberDao = MemberDaoImpl.getInstance();
+		//BoardDao dao = BoardDaoImpl.getInstance();
+		//MemberDao memberDao = MemberDaoImpl.getInstance();
 		int writeResult = dao.writeArticle(dto);
 
 		String id = (String) request.getSession().getAttribute("id");

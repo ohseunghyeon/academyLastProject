@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,111 +85,147 @@ public class SJController {
 
 	//여기부터 게시판 
 	
+	
+	@Autowired
+	BoardListCommand boardListCommand;
 	@RequestMapping("/boardList")
 	public String list(HttpServletRequest request, Model model) {
 		System.out.println("boardList()");
 
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardListCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardListCommand();
+		String viewname = boardListCommand.execute(model);
 
 		return viewname;
 	}
 
+	@Autowired
+	BoardWriteFormCommand boardWriteFormCommand;
 	@RequestMapping("/writeForm")
 	public String writeForm(HttpServletRequest request, Model model) {
 		System.out.println("writeForm()");
 
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardWriteFormCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardWriteFormCommand();
+		String viewname = boardWriteFormCommand.execute(model);
 
 		return viewname;
 	}
 
+	@Autowired
+	BoardWriteProCommand boardWriteProCommand;
 	@RequestMapping("/writePro")
 	public String writePro(HttpServletRequest request, Model model) {
 		System.out.println("writePro()");
 		
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardWriteProCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardWriteProCommand();
+		String viewname = boardWriteProCommand.execute(model);
 
 		return viewname;
 	}
-
+	
+	@Autowired
+	BoardContentFormCommand boardContentFormCommand;
 	@RequestMapping("/contentForm")
 	public String contentForm(HttpServletRequest request, Model model) {
 		System.out.println("contentForm()");
 
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardContentFormCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardContentFormCommand();
+		String viewname = boardContentFormCommand.execute(model);
 
 		return viewname;
 
 	}
-
+	@Autowired
+	BoardDeleteFormCommand boardDeleteFormCommand;
 	@RequestMapping("/deleteForm")
 	public String deleteForm(HttpServletRequest request, Model model) {
 		System.out.println("deleteForm()");
 
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardDeleteFormCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardDeleteFormCommand();
+		String viewname = boardDeleteFormCommand.execute(model);
 
 		return viewname;
 
 	}
 
+	@Autowired
+	BoardDeleteProCommand boardDeleteProCommand;
 	@RequestMapping("/deletePro")
 	public String deletePro(HttpServletRequest request, Model model) {
 		System.out.println("deletePro()");
 
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardDeleteProCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardDeleteProCommand();
+		String viewname = boardDeleteProCommand.execute(model);
 
 		return viewname;
 
 	}
 
+	@Autowired
+	BoardModifyFormCommand boardModifyFormCommand;
 	@RequestMapping("/boardModifyForm")
 	public String boardModifyForm(HttpServletRequest request, Model model) {
 		System.out.println("boardModifyForm()");
 
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardModifyFormCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardModifyFormCommand();
+		String viewname = boardModifyFormCommand.execute(model);
 
 		return viewname;
 
 	}
 
+	@Autowired
+	BoardModifyViewCommand boardModifyViewCommand;
 	@RequestMapping("/boardModifyView")
 	public String boardModifyView(HttpServletRequest request, Model model) {
 		System.out.println("modifyView()");
 
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardModifyViewCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardModifyViewCommand();
+		String viewname = boardModifyViewCommand.execute(model);
 
 		return viewname;
 
 	}
-
+	@Autowired
+	BoardModifyProCommand boardModifyProCommand;
 	@RequestMapping("/boardModifyPro")
 	public String boardModifyPro(HttpServletRequest request, Model model) {
 		System.out.println("modifyPro()");
 
 		model.addAttribute("request", request);
-		BoardCommand command = new BoardModifyProCommand();
-		String viewname = command.execute(model);
+		//BoardCommand command = new BoardModifyProCommand();
+		String viewname = boardModifyProCommand.execute(model);
 
 		return viewname;
 
 	}
 	
+	@Autowired
+	BoardSearchCommand boardSearchCommand;
+	@RequestMapping("/boardSearch")
+	public String boardSerch(HttpServletRequest request,Model model) {
+		System.out.println("boardSerch()");
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("request", request);
+		//BoardCommand command = new BoardSearchCommand();
+		String viewname = boardSearchCommand.execute(model);
+		
+		
+		return viewname;
+	}
+	
+	//여기부터 쿠폰
 	@RequestMapping("/coupon")
 	public String coupon(HttpServletRequest request, Model model) {
 		System.out.println("coupon()");
@@ -230,21 +267,7 @@ public class SJController {
 		System.out.println("hostFooter()");
 		return "/menu/hostFooter";
 	}
-	@RequestMapping("/boardSearch")
-	public String boardSerch(HttpServletRequest request,Model model) {
-		System.out.println("boardSerch()");
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("request", request);
-		BoardCommand command = new BoardSearchCommand();
-		String viewname = command.execute(model);
-		
-		
-		return viewname;
-	}
+
 	@RequestMapping("/couponmain")
 	public String couponmain(Model model) {
 		System.out.println("couponmain()");

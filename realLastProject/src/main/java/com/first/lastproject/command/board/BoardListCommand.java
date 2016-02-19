@@ -1,17 +1,26 @@
 package com.first.lastproject.command.board;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.BoardDao;
-import com.first.lastproject.dao.BoardDaoImpl;
+
 import com.first.lastproject.dto.BoardDto;
 
+
+@Service("boardListCommand")
 public class BoardListCommand implements BoardCommand {
+	
+	@Autowired
+	BoardDao dao;
+	
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -31,7 +40,7 @@ public class BoardListCommand implements BoardCommand {
 		int startPage = 0;	//시작 페이지
 		int endPage = 0;	//끝 페이지
 		
-		BoardDao dao = BoardDaoImpl.getInstance();
+		//BoardDao dao = BoardDaoImpl.getInstance();
 		//글개수 구하기
 		count = dao.getCount();
 		
@@ -52,7 +61,12 @@ public class BoardListCommand implements BoardCommand {
 		
 		number = count - (currentPage - 1) * pageSize;
 		if (count > 0) {
-			ArrayList<BoardDto> dtos = dao.getArticles(start, end);
+			
+			//ArrayList<BoardDto> dtos = dao.getArticles(start, end);
+			Map<String, Integer> map2 = new HashMap<String, Integer>();
+			map2.put("start", start);
+			map2.put("end", end);
+			ArrayList<BoardDto> dtos = dao.getArticles(map2);
 			model.addAttribute("list", dtos);
 		}
 		

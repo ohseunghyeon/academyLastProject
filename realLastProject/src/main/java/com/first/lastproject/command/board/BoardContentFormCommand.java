@@ -4,15 +4,19 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.BoardDao;
-import com.first.lastproject.dao.BoardDaoImpl;
+
 import com.first.lastproject.dto.BoardDto;
 
-
+@Service("boardContentFormCommand")
 public class BoardContentFormCommand implements BoardCommand {
-
+	
+	@Autowired
+	BoardDao dao;
 	@Override
 	public String execute(Model model) {
 
@@ -23,7 +27,7 @@ public class BoardContentFormCommand implements BoardCommand {
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		int number = Integer.parseInt(request.getParameter("number"));
 		
-		BoardDao dao = BoardDaoImpl.getInstance();
+		//BoardDao dao = BoardDaoImpl.getInstance();
 		BoardDto dto = dao.getArticle(num);
 		
 		// 내가 쓴 글이 아닌 것만 조회수 증가

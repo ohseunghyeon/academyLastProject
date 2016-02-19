@@ -4,16 +4,19 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.BoardDao;
-import com.first.lastproject.dao.BoardDaoImpl;
 import com.first.lastproject.dto.BoardDto;
 
 
-
+@Service("boardModifyProCommand")
 public class BoardModifyProCommand implements BoardCommand {
 
+	@Autowired
+	BoardDao dao;
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap(); 
@@ -28,7 +31,7 @@ public class BoardModifyProCommand implements BoardCommand {
 		dto.setPasswd(request.getParameter("passwd"));
 
 		
-		BoardDao dao = BoardDaoImpl.getInstance();
+		//BoardDao dao = BoardDaoImpl.getInstance();
 		int result = dao.updateArticle(dto);
 		
 		model.addAttribute("result",result);

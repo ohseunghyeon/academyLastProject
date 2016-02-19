@@ -5,4 +5,56 @@
 
 <mapper namespace="com.first.lastproject.dao.BoardDao">
 
+	<select id="getCount" resultType="int">
+	SELECT count(*) FROM p_board
+	</select>
+	<select id="getArticles" parameterType="Map" resultType="com.first.lastproject.dto.BoardDto">
+	SELECT * 
+		FROM (SELECT num, writer, email, subject, passwd, reg_date, ref, re_step,
+			re_level, content, ip, readcount, rownum rnum 
+			FROM (SELECT * FROM p_board ORDER BY ref desc, re_step ASC)
+			) 
+		WHERE rnum &gt;= #{start} AND rnum &lt;= #{end} 
+	</select>
+	<select id="getMaxNum" resultType="int">
+		SELECT max(num) FROM p_board
+	</select>
+	<update id="updateReply" parameterType="com.first.lastproject.dto.BoardDto">
+		UPDATE p_board SET re_step = re_step + 1 WHERE ref=#{ref} AND re_step &gt; #{re_step}
+	</update>
+	<insert id="writeArticle" parameterType="com.first.lastproject.dto.BoardDto">
+		INSERT INTO p_board (num, writer, email, subject, passwd, reg_date, ref, re_step, re_level, content, ip) VALUES (p_board_seq.nextval, #{writer}, #{email}, #{subject}, #{passwd}, #{reg_date}, #{ref}, #{re_step}, #{re_level},#{content}, #{ip})
+	
+	</insert>
+	<select id="getArticle" resultType="com.first.lastproject.dto.BoardDto" parameterType="int">
+		SELECT * FROM p_board WHERE NUM = #{num}
+	</select>
+	<update id="addCount" parameterType="int">
+		UPDATE p_board SET READCOUNT = READCOUNT + 1 WHERE NUM = #{num}
+	</update>
+	<select id="check" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM p_board WHERE NUM = #{num} AND PASSWD=#{passwd}
+	</select>
+	<select id="checkReply" parameterType="com.first.lastproject.dto.BoardDto" resultType="int">
+		SELECT COUNT(*) FROM p_board WHERE REF=#{ref} AND RE_STEP=#{re_step}+1 AND RE_LEVEL &gt; #{re_level} 
+	</select>
+	<delete id="deleteArticle" parameterType="int">
+		DELETE FROM p_board WHERE NUM = #{num}
+	</delete>
+	<update id="updateArticle" parameterType="com.first.lastproject.dto.BoardDto">
+		UPDATE p_board SET EMAIL=#{email}, SUBJECT=#{subject}, CONTENT=#{content}, PASSWD=#{passwd} WHERE NUM=#{num}
+	</update>
+	<select id="searchWriter" parameterType="String" resultType="com.first.lastproject.dto.BoardDto">
+	select * from p_board where id = #{id}
+	</select>
+	<select id="searchSubject" parameterType="String" resultType="com.first.lastproject.dto.BoardDto">
+	select * from p_board where subject like %#{subject}%
+	</select>
+	<select id="getSeachWriterCount" parameterType="String" resultType="int">
+	select count(*) from p_board where id=#{id}
+	</select>
+	<select id="getSeachSubjectCount" parameterType="String" resultType="int">
+	select count(*) from p_board where subject like %#{subject}%
+	</select>
+	
 </mapper>

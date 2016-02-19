@@ -4,13 +4,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.BoardDao;
-import com.first.lastproject.dao.BoardDaoImpl;
 
+@Service("boardDeleteFormCommand")
 public class BoardDeleteFormCommand implements BoardCommand {
 
+	@Autowired
+	BoardDao dao;
 	@Override
 	public String execute(Model model) {
 	
@@ -24,8 +28,8 @@ public class BoardDeleteFormCommand implements BoardCommand {
 		model.addAttribute("pageNum",pageNum);
 		System.out.println(request.getSession().getAttribute("id"));
 		if (request.getSession().getAttribute("id").equals("host")) { // 호스트에게 삭제 무소불위 권력을 주겠노라
-			BoardDao boardDao = BoardDaoImpl.getInstance();
-			boardDao.deleteArticle(num);
+			//BoardDao boardDao = BoardDaoImpl.getInstance();
+			dao.deleteArticle(num);
 			return "redirect:/boardList";
 		}
 		

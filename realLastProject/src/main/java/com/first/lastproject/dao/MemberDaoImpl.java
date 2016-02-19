@@ -5,15 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.first.lastproject.dto.MemberDto;
 
 public class MemberDaoImpl implements MemberDao {
 	DataSource dataSource;
-
+	@Autowired
+	private SqlSession sqlSession;
+	/*
 	private static MemberDaoImpl instance;
 
 	public static MemberDaoImpl getInstance() {
@@ -31,7 +34,7 @@ public class MemberDaoImpl implements MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	@Override
 	public int addMember(MemberDto dto) {
@@ -221,6 +224,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemberDto getMember(String id) {//회원의 정보를 가져옴.
 		MemberDto dto = new MemberDto();
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		dto=dao.getMember(id);
+		return dto;
+		/*
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -254,7 +261,7 @@ public class MemberDaoImpl implements MemberDao {
 			}
 
 		}
-		return dto;
+		return dto; */
 	}
 	
 	public MemberDto getId(String email) {
@@ -357,10 +364,15 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	public int makeCoupon(String id) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		
+		//Connection con = null;
+		//PreparedStatement pstmt = null;
 		int count = 0;
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		count = dao.makeCoupon(id);
+		return count;
 
+		/*
 		try {
 			con = dataSource.getConnection();
 			String sql = "INSERT INTO p_coupon VALUES (seq_coupon_num.nextval,?,sysdate+180)";
@@ -386,15 +398,19 @@ public class MemberDaoImpl implements MemberDao {
 				e.printStackTrace();
 			}
 		}
-		return count;
+		return count; */
 	}
 
 	public int getCoupon(String id) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		//Connection con = null;
+		//PreparedStatement pstmt = null;
+		//ResultSet rs = null;
 		int coupon_code = 0;
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		coupon_code = dao.getCoupon(id);
 
+		return coupon_code;
+		/*
 		try {
 			con = dataSource.getConnection();
 			String sql = "SELECT coupon_num FROM p_coupon WHERE id=?";
@@ -416,7 +432,7 @@ public class MemberDaoImpl implements MemberDao {
 				e.printStackTrace();
 			}
 		}
-		return coupon_code;
+		return coupon_code;*/
 	}
 
 	@Override
