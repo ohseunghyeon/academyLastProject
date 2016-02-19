@@ -20,13 +20,13 @@
 	<select id="check" resultType="int" parameterType="String">
 	SELECT id FROM p_user WHERE id = #{id}
 	</select>
-	<select id="getMember" parameterType="String" resultType="com.first.lastproject.dto.MemberDto">
-	SELECT * FROM p_user WHERE ID =#{id}
-	</select>
 	<insert id="makeCoupon"  parameterType="String">
 	INSERT INTO p_coupon VALUES (seq_coupon_num.nextval,#{id},sysdate+180)
 	</insert>
 	<update id="getCoupons" parameterType="String">
 	UPDATE p_user SET get_coupon = 1 WHERE id = #{id}
 	</update>
+	<select id="getCoupon" parameterType="String" resultType="int">
+	SELECT coupon_num FROM p_coupon WHERE id=#{id}
+	</select>
 </mapper>
