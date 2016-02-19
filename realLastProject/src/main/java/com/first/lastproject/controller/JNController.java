@@ -1,5 +1,6 @@
 package com.first.lastproject.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -109,11 +110,12 @@ public class JNController {
 		String viewname = hostLoginProCommand.execute(model);
 		return viewname;
 	}
+	@Autowired
+	MemberLogoutCommand memberLogoutCommand;
 	@RequestMapping("/memberLogout")	
 	public String memberLogout(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new MemberLogoutCommand();
-		String viewname = command.execute(model);
+		String viewname = memberLogoutCommand.execute(model);
 		return viewname;
 	}
 	
@@ -121,12 +123,12 @@ public class JNController {
 	public String memberFindForm(Model model) {
 		return "/member/memberFindForm";
 	}
-	
+	@Autowired
+	MemberFindProCommand memberFindProCommand;
 	@RequestMapping("/memberFindPro")
 	public String memberFindPro(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new MemberFindProCommand();
-		String viewname = command.execute(model);
+		String viewname = memberFindProCommand.execute(model);
 		return viewname;
 	}
 	
@@ -141,11 +143,14 @@ public class JNController {
            ModelAndView mv;
            String id=(String)map.get("id");
            String emails=(String) map.get("email");
+           Map <String, String> map2 = new HashMap<String, String>();
+           map2.put("id", id);
+           map2.put("email", emails);
            System.out.println(id);
            System.out.println(emails);
            
            //비밀번호 가져오기
-           MemberDto dto = dao.getPasswd(id,emails);
+           MemberDto dto = dao.getPasswd(map2);
            String passwd = dto.getPasswd();
            
            if(passwd!=null) {
@@ -160,7 +165,7 @@ public class JNController {
                model.addAttribute("idorpass", idorpass);
                mv= new ModelAndView("member/memberFindPro");
                return mv;
-           }else {
+           } else {
                model.addAttribute("result", 0);
                mv=new ModelAndView("member/memberFindPro");
                return mv;

@@ -1,17 +1,22 @@
 package com.first.lastproject.command.member;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.MemberDao;
 import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
+@Service("memberFindProCommand")
 public class MemberFindProCommand implements MemberCommand {
-
+	@Autowired
+	MemberDao dao;
 	@Override
 	public String execute(Model model) {
 		
@@ -22,43 +27,17 @@ public class MemberFindProCommand implements MemberCommand {
 	      
 		int idorpass = Integer.parseInt(request.getParameter("idorpass"));
 		System.out.println(email);
-		System.out.println(id);
 		System.out.println(idorpass);
 		int result = 0;
-		MemberDao dao = MemberDaoImpl.getInstance();
 		MemberDto dto = new MemberDto();
-		if(idorpass == 0) {
-		result = dao.findId(email);
-		} else {
-		result = dao.findPasswd(id,email);
-		}
-		System.out.println("result1 = " + result);
-		if(result == 1) {
-			if(idorpass == 0) 
-			dto = dao.getId(email);
-			model.addAttribute("result", result);
+		dto = dao.getId(email);
+		if(dto != null) {
+			model.addAttribute("result", 1);
 			model.addAttribute("dto", dto);
 			model.addAttribute("idorpass", idorpass);
-			/*else if(idorpass == 1) {
-			dto = dao.getPasswd(id, email);
-			 emails.setContent("비밀번호는 "+dto.getPasswd()+" 입니다.");
-             emails.setReceiver(email);
-             emails.setSubject(id+"님 비밀번호 찾기 메일입니다.");
-             emailsender.SendEmail(emails);
-			
-			
-			model.addAttribute("result", result);
-			model.addAttribute("dto", dto);
-			model.addAttribute("idorpass", idorpass);
-			System.out.println("result2 = " + result);
-			System.out.println("dto = " + dto);
-			System.out.println("idorpass = " + idorpass);*/
-			return "member/memberFindPro";
-		} else if(result == -1) {
-			model.addAttribute("result", result);
 			return "member/memberFindPro";
 		} else {
-			model.addAttribute("result", result);
+			model.addAttribute("result", 0);
 			return "member/memberFindPro";
 		}
 		

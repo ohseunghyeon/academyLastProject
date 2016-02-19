@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.MemberDao;
-import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dto.MemberDto;
 
 @Service("memberRegisterProCommand")

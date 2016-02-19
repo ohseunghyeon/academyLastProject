@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.MemberDao;
-import com.first.lastproject.dao.MemberDaoImpl;
 
 @Service("memberConfirmIdCommand")
 public class MemberConfirmIdCommand implements MemberCommand {
+	
 	@Autowired
 	MemberDao memberDao;
 	
@@ -22,7 +22,6 @@ public class MemberConfirmIdCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
 		String id = request.getParameter("id");
-		
 		int result = memberDao.check(id);
 		System.out.println("중복확인 결과" + result);
 		

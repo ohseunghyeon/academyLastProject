@@ -32,6 +32,8 @@ public class MemberLoginProCommand implements MemberCommand {
 			request.getSession().setAttribute("id", id);
 			MemberDto memberDto = memberDao.getMember(id);
 			System.out.println(memberDto);
+			int CouponResult = memberDao.checkCoupon(id);
+			if(CouponResult != 0) 
 			request.getSession().setAttribute("mileage", memberDto.getMileage());
 			request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
 			return "redirect:/seatList";

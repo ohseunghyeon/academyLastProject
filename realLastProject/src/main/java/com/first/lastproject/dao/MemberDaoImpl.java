@@ -65,6 +65,7 @@ public class MemberDaoImpl implements MemberDao {
 		int result = 0;
 		MemberDao memberDao = this.sqlSession.getMapper(MemberDao.class);
 		result = memberDao.check(id);
+		System.out.println(result);
 			//String sql = "SELECT id FROM p_user WHERE id=?";
 			
 		return result;
@@ -72,79 +73,16 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public int findId(String email) {
-		
 		int result = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT email FROM p_user WHERE email= ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, email);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				if (email.equals(rs.getString("email"))) {
-					result = 1;
-				} else {
-					result = -1;
-				}
-			} else {
-				result = 0;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		int idfind = this.sqlSession.selectOne("com.first.lastproject.dao.MemberDao.findId", email);
+		if(idfind == 1) {
+			result = 1;
+		} else {
+			result = 0;
 		}
 		return result;
 	}
 	
-	public int findPasswd(String id, String email) {
-		int result = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT id,email FROM p_user WHERE id = ? AND email = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, email);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				if (id.equals(rs.getString("id")) && email.equals(rs.getString("email"))) {
-					result = 1;
-				} else {
-					result = -1;
-				}
-			} 
-			System.out.println("resulta = " + result);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	}
 
 	@Override
 	public int checkMember(Map<String, String> map2) { //아이디/비밀번호 일치 여부 판단
@@ -209,68 +147,17 @@ public class MemberDaoImpl implements MemberDao {
 	
 	public MemberDto getId(String email) {
 		MemberDto dto = new MemberDto();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT id FROM p_user WHERE email = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, email);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				dto.setId(rs.getString("id"));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		dto = dao.getId(email);
+			//String sql = "SELECT id FROM p_user WHERE email = ?";
 		return dto;
 	}
 	
-	public MemberDto getPasswd(String id, String email) {
+	public MemberDto getPasswd(Map<String, String> map2) {
 		MemberDto dto = new MemberDto();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT passwd FROM p_user WHERE id = ? AND email = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, email);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				dto.setPasswd(rs.getString("passwd"));	
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		dto = dao.getPasswd(map2);
+			//String sql = "SELECT passwd FROM p_user WHERE id = ? AND email = ?";
 		return dto;
 	}
 
@@ -353,7 +240,6 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return count; */
 	}
-
 	public int getCoupon(String id) {
 		//Connection con = null;
 		//PreparedStatement pstmt = null;
@@ -363,6 +249,17 @@ public class MemberDaoImpl implements MemberDao {
 		coupon_code = dao.getCoupon(id);
 
 		return coupon_code;
+	}
+	
+	public int checkCoupon(String id) {
+		//Connection con = null;
+		//PreparedStatement pstmt = null;
+		//ResultSet rs = null;
+		int result = 0;
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		result = dao.getCoupon(id);
+
+		return result;
 		/*
 		try {
 			con = dataSource.getConnection();
