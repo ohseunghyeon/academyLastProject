@@ -33,7 +33,7 @@
 		 스프링은 애플리케이션 시작 시점에 SqlSessionFactory를 생성하여 저장한다. -->
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
-		<beans:property name="mapperLocations" value="classpath:spring/mvc/member/mapper/*.xml"/>
+		<beans:property name="mapperLocations" value="classpath:com/first/lastproject/mapper/*.xml"/>
 	</beans:bean>
 	
 	<!-- SqlSessionTemplate : 마이바티스-스프링 연동 모듈의 핵심으로, SqlSession을 구현하고

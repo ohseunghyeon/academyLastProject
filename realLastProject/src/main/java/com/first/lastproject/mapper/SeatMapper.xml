@@ -3,6 +3,19 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="spring.mvc.member.dao.SeatDao">
+<mapper namespace="com.first.lastproject.dao.SeatDao">
+<select id="getSeats" resultType="com.first.lastproject.dto.SeatDto">
+	SELECT * FROM p_seat
+</select>
+
+<select id="seatInformation" parameterType="int" resultType="com.first.lastproject.dto.OrderDto">
+SELECT * FROM p_order o WHERE seat_num=#{seat_num} 
+and order_time=(SELECT max(order_time) FROM p_order WHERE seat_num=o.seat_num)      
+<!-- select * from p_order where seat_num=#{seat_num} order by order_time desc -->
+</select>
+
+<update id="timeFinishedSeat" parameterType="int">
+UPDATE p_seat SET occupied=0 WHERE seat_num=#{seat_num}
+</update>
 
 </mapper>
