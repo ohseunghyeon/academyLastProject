@@ -5,4 +5,10 @@
 
 <mapper namespace="com.first.lastproject.dao.FoodDao">
 
+	<select id="getStockDessert" resultType="com.first.lastproject.dto.FoodDto">
+	SELECT * FROM p_food WHERE food_num &gt;= 0
+	</select>
+	<update id="modifyStockFood" parameterType="Map">
+	UPDATE p_food SET food_num=#{food_num} WHERE food_code=#{food_code}
+	</update>
 </mapper>

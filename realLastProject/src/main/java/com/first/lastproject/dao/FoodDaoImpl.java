@@ -6,16 +6,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.first.lastproject.dto.FoodDto;
 
+@Repository
 public class FoodDaoImpl implements FoodDao {
 	DataSource dataSource;
 
+	@Autowired
+	private SqlSession sqlSession;
+	/*
 	private static FoodDaoImpl instance;
 
 	public static FoodDaoImpl getInstance() {
@@ -33,7 +40,7 @@ public class FoodDaoImpl implements FoodDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	@Override
 	public List<FoodDto> listGoods() {
@@ -97,11 +104,15 @@ public class FoodDaoImpl implements FoodDao {
 	}
 
 	@Override
-	public List<FoodDto> getStockDessert() {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	public ArrayList<FoodDto> getStockDessert() {
+		//Connection con = null;
+		//PreparedStatement pstmt = null;
+		//ResultSet rs = null;
 		ArrayList<FoodDto> goodsList = null;
+		FoodDao dao = this.sqlSession.getMapper(FoodDao.class);
+		goodsList= dao.getStockDessert();
+		return goodsList;
+	/*	
 
 		try {
 
@@ -138,14 +149,17 @@ public class FoodDaoImpl implements FoodDao {
 				e2.printStackTrace();
 			}
 		}
-		return goodsList;
+		return goodsList; */
 	}
 
-	public int modifyStockFood(int food_code, int food_num) {
+	public int modifyStockFood(Map<String, Integer> map) {
 		int count = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
+		//Connection con = null;
+		//PreparedStatement pstmt = null;
+		FoodDao dao = this.sqlSession.getMapper(FoodDao.class);
+		count= dao.modifyStockFood(map);
+		return count;
+/*		
 		try {
 			con = dataSource.getConnection();
 			String sql = "UPDATE p_food SET food_num=? WHERE food_code=?";
@@ -167,7 +181,7 @@ public class FoodDaoImpl implements FoodDao {
 				ex.printStackTrace();
 			}
 		}
-		return count;
+		return count;*/
 
 	}
 

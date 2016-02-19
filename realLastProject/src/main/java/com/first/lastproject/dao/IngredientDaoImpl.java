@@ -6,16 +6,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.first.lastproject.dto.IngredientDto;
 
+@Repository
 public class IngredientDaoImpl implements IngredientDao {
 	DataSource dataSource;
-
+	@Autowired
+	private SqlSession sqlSession;
+/*
 	private static IngredientDaoImpl instance;
 
 	public static IngredientDaoImpl getInstance() {
@@ -34,18 +42,26 @@ public class IngredientDaoImpl implements IngredientDao {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	@Override
 	public int getIngredient() {
-		return 0;
+		int result =0;
+		IngredientDao dao = this.sqlSession.getMapper(IngredientDao.class);
+		result=dao.getIngredient();
+		return result;
 	}
 
 	@Override
 	public List<IngredientDto> listIngredient() {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		//Connection con = null;
+		//PreparedStatement pstmt = null;
+		//ResultSet rs = null;
 		List<IngredientDto> ingredientList = null;
+		IngredientDao dao = this.sqlSession.getMapper(IngredientDao.class);
+		ingredientList= dao.listIngredient();
+		
+		return ingredientList;
+		/*
 		try {
 			con = dataSource.getConnection();
 			String sql = "SELECT ingredient_code, ingredient, ingre_num FROM p_ingredient";
@@ -76,15 +92,18 @@ public class IngredientDaoImpl implements IngredientDao {
 				ex.printStackTrace();
 			}
 		}
-		return ingredientList;
+		return ingredientList;*/
 	}
 
 	@Override
-	public int modifyIngredient(int ingredient_code, int ingre_num) {
+	public int modifyIngredient(Map<String, Integer> map) {
 		int count = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		
+		//Connection con = null;
+		//PreparedStatement pstmt = null;
+		IngredientDao dao = this.sqlSession.getMapper(IngredientDao.class);
+		count =dao.modifyIngredient(map);
+		return count;
+		/*
 		try {
 			con = dataSource.getConnection();
 			String sql = "UPDATE p_ingredient SET ingre_num=? WHERE ingredient_code=?";
@@ -105,7 +124,7 @@ public class IngredientDaoImpl implements IngredientDao {
 				ex.printStackTrace();
 			}
 		}
-		return count;
+		return count;*/
 	}
 
 	@Override

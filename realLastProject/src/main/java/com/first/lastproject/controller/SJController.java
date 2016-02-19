@@ -33,30 +33,35 @@ import com.first.lastproject.command.stock.StockIngredientModifyProCommand;
 @Controller
 public class SJController {
 
+	
+	@Autowired
+	StockListCommand stockListCommand;
 	@RequestMapping("/ingredient")
 	public String ingredient(HttpServletRequest request, Model model) {
 		System.out.println("ingredient()");
 
 		model.addAttribute("request", request);
-		StockCommand command = new StockListCommand();
-		String viewname = command.execute(model);
+		//StockCommand command = new StockListCommand();
+		String viewname = stockListCommand.execute(model);
 
 		return viewname;
 	}
-
+	
 	@RequestMapping("/ingredientModifyForm")
 	public String modifyForm(Model model) {
 		System.out.println("ingredientModifyForm()");
 		return "host/stock/ingredientModifyForm";
 	}
 
+	@Autowired
+	StockIngredientModifyProCommand stockIngredientModifyProCommand;
 	@RequestMapping("/ingredientModifyPro")
 	public String stockIngredientModifyPro(HttpServletRequest request, Model model) {
 		System.out.println("ingredientModifyPro()");
 
 		model.addAttribute("request", request);
-		StockCommand command = new StockIngredientModifyProCommand();
-		String viewname = command.execute(model);
+		//StockCommand command = new StockIngredientModifyProCommand();
+		String viewname = stockIngredientModifyProCommand.execute(model);
 
 		return viewname;
 	}
@@ -72,13 +77,15 @@ public class SJController {
 		return "member/Home";
 	}
 
+	@Autowired
+	StockFoodModifyProCommand stockFoodModifyProCommand;
 	@RequestMapping("/foodModifyPro")
 	public String foodModifyPro(HttpServletRequest request, Model model) {
 		System.out.println("foodmodifyPro()");
 
 		model.addAttribute("request", request);
-		StockCommand command = new StockFoodModifyProCommand();
-		String viewname = command.execute(model);
+		//StockCommand command = new StockFoodModifyProCommand();
+		String viewname =stockFoodModifyProCommand.execute(model);
 
 		return viewname;
 	}
@@ -224,19 +231,22 @@ public class SJController {
 		
 		return viewname;
 	}
-	
 	//여기부터 쿠폰
+	@Autowired
+	MemberCouponFormCommand memberCouponFormCommand;
 	@RequestMapping("/coupon")
 	public String coupon(HttpServletRequest request, Model model) {
 		System.out.println("coupon()");
 
 		model.addAttribute("request", request);
-		MemberCommand command = new MemberCouponFormCommand();
-		String viewname = command.execute(model);
+		//MemberCommand command = new MemberCouponFormCommand();
+		String viewname = memberCouponFormCommand.execute(model);
 
 		return viewname;
 
 	}
+	
+	//header,footer
 	@RequestMapping("/guestHeader")
 	public String guestHeader(Model model) {
 		System.out.println("guestHeader()");

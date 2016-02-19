@@ -5,4 +5,10 @@
 
 <mapper namespace="com.first.lastproject.dao.IngredientDao">
 
+	<select id="listIngredient" resultType="com.first.lastproject.dto.IngredientDto">
+	SELECT ingredient_code, ingredient, ingre_num FROM p_ingredient
+	</select>
+	<update id="modifyIngredient" parameterType="Map">
+	UPDATE p_ingredient SET ingre_num=#{ingre_num} WHERE ingredient_code=#{ingredient_code}
+	</update>
 </mapper>
