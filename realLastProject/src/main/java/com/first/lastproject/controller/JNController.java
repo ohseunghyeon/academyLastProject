@@ -177,20 +177,20 @@ public class JNController {
 	public String memberModifyForm(Model model) {
 		return "/member/memberModifyForm";
 	}
-	
+	@Autowired
+	MemberModifyViewCommand memberModifyViewCommand;
 	@RequestMapping("/memberModifyView")
 	public String memberModifyView(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new MemberModifyViewCommand();
-		String viewname = command.execute(model);
+		String viewname = memberModifyViewCommand.execute(model);
 		return viewname;
 	}
-
+	@Autowired
+	MemberModifyProCommand memberModifyProCommand;
 	@RequestMapping("/memberModifyPro")	
 	public String memberModifyPro(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new MemberModifyProCommand();
-		String viewname = command.execute(model);
+		String viewname = memberModifyProCommand.execute(model);
 		return viewname;
 	}
 	

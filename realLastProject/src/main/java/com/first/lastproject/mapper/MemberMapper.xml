@@ -44,4 +44,8 @@
 	<select id="getPasswd" parameterType="Map" resultType="com.first.lastproject.dto.MemberDto">
 	SELECT passwd FROM p_user WHERE id = #{id} AND email = #{email}
 	</select>
+	
+	<update id="modifyMember" parameterType="com.first.lastproject.dto.MemberDto">
+	UPDATE p_user SET passwd = #{passwd}, phone_number = #{phone_number}, email= #{email} WHERE id = #{id} 
+	</update>
 </mapper>

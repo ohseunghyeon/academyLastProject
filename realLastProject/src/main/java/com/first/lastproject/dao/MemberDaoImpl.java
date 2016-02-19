@@ -163,33 +163,10 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int modifyMember(MemberDto dto) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
 		int result = 0;
-		try {
-			con = dataSource.getConnection();
-			String sql = "UPDATE p_user SET passwd = ?, phone_number = ?, email= ? WHERE id = ? ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getPasswd());
-			pstmt.setString(2, dto.getPhone_number());
-			pstmt.setString(3, dto.getEmail());
-			pstmt.setString(4, dto.getId());
-			result = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		result = dao.modifyMember(dto);
+			//String sql = "UPDATE p_user SET passwd = ?, phone_number = ?, email= ? WHERE id = ? ";
 		return result;
 	}
 
