@@ -4,16 +4,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Repository;
+
+
 import com.first.lastproject.dto.MemberDto;
 
+@Repository
 public class MemberDaoImpl implements MemberDao {
 	DataSource dataSource;
+
 	@Autowired
 	private SqlSession sqlSession;
 	/*
@@ -36,70 +42,31 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}*/
 
+
 	@Override
 	public int addMember(MemberDto dto) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		
 		int result = 0;
-
-		try {
-			con = dataSource.getConnection();
-			String sql = "INSERT INTO p_user VALUES (?,?,0,?,?,0,0)"; // 아이디,
+		MemberDao memberDao = this.sqlSession.getMapper(MemberDao.class);
+		result = memberDao.addMember(dto);
+		
+			/*String sql = "INSERT INTO p_user VALUES (?,?,0,?,?,0,0)"; // 아이디,
 																		// 비밀번호,
 																		// 마일리지,
 																		// 전번,
 																		// 이메일,
 																		// 게스트,
 																		// 쿠폰
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPasswd());
-			pstmt.setString(3, dto.getPhone_number());
-			pstmt.setString(4, dto.getEmail());
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+*/		
 		return result;
 	}
 
 	public int check(String id) {
 		int result = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT id FROM p_user WHERE id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				result = 1;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
+		MemberDao memberDao = this.sqlSession.getMapper(MemberDao.class);
+		result = memberDao.check(id);
+			//String sql = "SELECT id FROM p_user WHERE id=?";
+			
 		return result;
 	}
 	
@@ -180,43 +147,17 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int checkMember(String id, String passwd) { //아이디/비밀번호 일치 여부 판단
+	public int checkMember(Map<String, String> map2) { //아이디/비밀번호 일치 여부 판단
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		int result = 0;
-
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT * FROM p_user WHERE id = ?";//p_user 테이블에서 id에 일치하는 데이터 찾음.
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);//로그인 창에서 입력받아 넘어온 id값을 받음.
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				if (passwd.equals(rs.getString("passwd"))) {//비밀번호 일치 시에 result 변수 1.
-					result = 1;
-				} else {//불일치시에는 -1.
-					result = -1;
-				}
-			} else {// 기타 오류 발생시에는 0. 
-				result = 0;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		int idCheck = this.sqlSession.selectOne("com.first.lastproject.dao.MemberDao.checkMember", map2);
+		if(idCheck == 1) {
+			result = 1;
+		} else {
+			result = 0;
 		}
+			//String sql = "SELECT * FROM p_user WHERE id = ?";//p_user 테이블에서 id에 일치하는 데이터 찾음.
+		
 		return result;
 	}
 	
@@ -262,6 +203,8 @@ public class MemberDaoImpl implements MemberDao {
 
 		}
 		return dto; */
+	
+			//String sql = "SELECT * FROM p_user WHERE ID = ?";//p_user 테이블에서 id와 일치하는 데이터 찾음.
 	}
 	
 	public MemberDto getId(String email) {

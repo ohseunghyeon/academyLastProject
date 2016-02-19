@@ -20,6 +20,7 @@ import com.first.lastproject.command.email.Email;
 import com.first.lastproject.command.email.EmailSender;
 import com.first.lastproject.command.member.HostLoginProCommand;
 import com.first.lastproject.command.member.MemberCommand;
+import com.first.lastproject.command.member.MemberConfirmIdCommand;
 import com.first.lastproject.command.member.MemberFindProCommand;
 import com.first.lastproject.command.member.MemberLoginFormCommand;
 import com.first.lastproject.command.member.MemberLoginProCommand;
@@ -49,36 +50,49 @@ public class JNController {
 	public String memberRegister(Model model) {
 		return "/member/memberRegister";
 	}	
-		
+	
+	@Autowired
+	MemberConfirmIdCommand memberConfirmIdCommand;
+	@RequestMapping("/memberConfirmId")	
+	public String memberConfirmId(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		String viewname = memberConfirmIdCommand.execute(model);
+		return viewname;
+	}
+	
+	@Autowired
+	MemberRegisterProCommand memberRegisterProCommand;
 	@RequestMapping("/memberRegisterPro")	
 	public String memberRegisterPro(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new MemberRegisterProCommand();
-		String viewname = command.execute(model);
+		String viewname = memberRegisterProCommand.execute(model);
 		return viewname;
 	}
 	
+	@Autowired
+	MemberLoginFormCommand memberLoginFormCommand;
 	@RequestMapping("/memberLoginForm")	
 	public String memberLoginForm(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new MemberLoginFormCommand();
-		String viewname = command.execute(model);
+		String viewname = memberLoginFormCommand.execute(model);
 		return viewname;
 	}
 	
+	@Autowired
+	MemberLoginProCommand memberLoginProCommand;
 	@RequestMapping("/memberLoginPro")	
 	public String memberLoginPro(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new MemberLoginProCommand();
-		String viewname = command.execute(model);
+		String viewname = memberLoginProCommand.execute(model);
 		return viewname;
 	}
 	
+	@Autowired
+	NoMemberLoginProCommand noMemberLoginProCommand;
 	@RequestMapping("/nomemberLoginPro")	
 	public String nomemberLoginPro(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new NoMemberLoginProCommand();
-		String viewname = command.execute(model);
+		String viewname = noMemberLoginProCommand.execute(model);
 		return viewname;
 	}
 	
@@ -87,11 +101,12 @@ public class JNController {
 		return "/member/hostLoginForm";
 	}
 	
+	@Autowired
+	HostLoginProCommand hostLoginProCommand;
 	@RequestMapping("/hostLoginPro")	
 	public String hostLoginPro(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		MemberCommand command = new HostLoginProCommand();
-		String viewname = command.execute(model);
+		String viewname = hostLoginProCommand.execute(model);
 		return viewname;
 	}
 	@RequestMapping("/memberLogout")	
@@ -119,6 +134,8 @@ public class JNController {
       private EmailSender emailSender;
       @Autowired
       private Email email;
+      @Autowired
+      MemberDao dao;
        @RequestMapping("/passwdMail")
        public ModelAndView sendEmailAction (@RequestParam Map<String, Object> map, ModelMap model) throws Exception {
            ModelAndView mv;
@@ -128,7 +145,6 @@ public class JNController {
            System.out.println(emails);
            
            //비밀번호 가져오기
-           MemberDao dao = MemberDaoImpl.getInstance();
            MemberDto dto = dao.getPasswd(id,emails);
            String passwd = dto.getPasswd();
            

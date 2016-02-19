@@ -5,4 +5,19 @@
 
 <mapper namespace="com.first.lastproject.dao.MemberDao">
 
+<insert id="addMember" parameterType="int">
+INSERT INTO p_user VALUES (#{id},#{passwd},0,#{phone_number},#{email},0,0)
+</insert>
+
+<select id="checkMember" resultType="int" parameterType="Map">
+SELECT COUNT(*) FROM p_user WHERE id = #{id} AND passwd = #{passwd}
+</select>
+
+<select id="getMember" resultType="com.first.lastproject.dto.MemberDto" parameterType="String">
+SELECT * FROM p_user WHERE id = #{id}
+</select>
+
+<select id="check" resultType="int" parameterType="String">
+SELECT id FROM p_user WHERE id = #{id}
+</select>
 </mapper>
