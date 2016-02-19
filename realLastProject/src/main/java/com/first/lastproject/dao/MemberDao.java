@@ -1,12 +1,14 @@
 package com.first.lastproject.dao;
 
+import java.util.Map;
+
 import com.first.lastproject.dto.MemberDto;
 
 public interface MemberDao {
 //member 회원
 	public int addMember(MemberDto dto);
 	public int modifyMember(MemberDto dto);
-	public int checkMember(String id, String passwd);
+	public int checkMember(Map<String, String> map2);
 	public MemberDto getMember(String id);
 	public MemberDto getId(String email);
 	public MemberDto getPasswd(String id, String email);
@@ -16,5 +18,6 @@ public interface MemberDao {
 	public int check(String id); //아이디 중복 체크
 	public int findId(String email);
 	public int findPasswd(String id, String email);
+	
 	
 }
