@@ -194,19 +194,21 @@ public class JNController {
 		return viewname;
 	}
 	
+	@Autowired
+	AccountDayCommand accountDayCommand;
 	@RequestMapping("/accountDay")
 	public String accountDay(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		AccountCommand command = new AccountDayCommand();
-		String viewname = command.execute(model);
+		String viewname = accountDayCommand.execute(model);
 		return viewname;
 	}
 	
+	@Autowired
+	AccountMonthCommand accountMonthCommand;
 	@RequestMapping("/accountMonth")
 	public String accountMonth(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		AccountCommand command = new AccountMonthCommand();
-		String viewname = command.execute(model);
+		String viewname = accountMonthCommand.execute(model);
 		return viewname;
 	}
 	

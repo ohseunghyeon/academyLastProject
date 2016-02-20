@@ -1,22 +1,26 @@
 package com.first.lastproject.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.first.lastproject.dto.AccountDto;
 
 public interface AccountDao {
 
-	public List<AccountDto> getDayAccount();
+	public ArrayList<AccountDto> getDayAccount();
 	
 	public List<AccountDto> getDayAccount(String dayDate);
 
 	public AccountDto getDayTotalAccount();
 	
 	public AccountDto getDayTotalAccount(String dayDate);
-
-	public List<AccountDto> getMonthAccountDays(int monlist);
 	
-	public List<AccountDto> getMonthAccountPrice(int monlist);
+	public ArrayList<AccountDto> getMonthAccountDays(Map<String, String> map2);
+
+	//public Map<String, Object> getMonthAccountDays(int monlist);
+	
+	public List<AccountDto> getMonthAccountPrice(Map<String, String> map2);
 
 	public AccountDto getMonthTotalAccount(int monlist);
 

@@ -5,4 +5,24 @@
 
 <mapper namespace="com.first.lastproject.dao.AccountDao">
 
+<select id="getDayAccount" parameterType="com.first.lastproject.dto.AccountDto" resultType="com.first.lastproject.dto.AccountDto">
+SELECT * FROM day_calculate_view WHERE order_time &lt;= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') AND order_time &gt; to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd') ORDER BY order_id ASC
+</select>
+
+<select id="getDayTotalAccount" parameterType="com.first.lastproject.dto.AccountDto" resultType="com.first.lastproject.dto.AccountDto">
+SELECT SUM(price) total_price FROM day_calculate_view WHERE order_time &lt;= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') AND order_time &gt; to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd')
+</select>
+
+<select id="getMonthAccountDays" parameterType="Map" resultType="com.first.lastproject.dto.AccountDto">
+SELECT (TO_DATE (#{mapMonth}, 'YYYY-MM-DD') + LEVEL - 1) AS "date"
+            FROM DUAL 
+            CONNECT BY (TO_DATE (#{mapMonth}, 'YYYY-MM-DD') + LEVEL - 1) &lt; TO_DATE (#{mapNextMonth}, 'YYYY-MM-DD')
+</select>
+
+<select id="getMonthAccountPrice" parameterType="Map" resultType="com.first.lastproject.dto.AccountDto">
+SELECT SUM(price) AS price 
+					FROM day_calculate_view WHERE order_time
+					BETWEEN to_date(#{mapPriceStart}, 'yyyy-mm-dd hh24:mi:ss')
+					AND to_date(#{mapPriceEnd}, 'yyyy-mm-dd hh24:mi:ss')
+</select>
 </mapper>
