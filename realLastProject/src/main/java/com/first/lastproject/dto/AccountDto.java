@@ -13,6 +13,8 @@ public class AccountDto {
 	private Timestamp total_time;
 	private int total_price;
 	private Timestamp date;
+	private String mapMonth;
+	private String mapNextMonth;
 	
 	public String getOrder_id() {
 		return order_id;
@@ -67,5 +69,20 @@ public class AccountDto {
 	}
 	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+	public String getMapMonth() {
+		return mapMonth;
+	}
+	
+	public void setMapMonth(String mapMonth) {
+		this.mapMonth = mapMonth;
+	}
+	
+	public String getMapNextMonth() {
+		return mapNextMonth;
+	}
+	
+	public void setMapNextMonth(String mapNextMonth) {
+		this.mapNextMonth = mapNextMonth;
 	}
 }

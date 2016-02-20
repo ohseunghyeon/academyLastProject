@@ -8,14 +8,19 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.AccountDao;
 import com.first.lastproject.dao.AccountDaoImpl;
 import com.first.lastproject.dto.AccountDto;
 
+@Service("accountDayCommand")
 public class AccountDayCommand implements AccountCommand {
 
+	@Autowired
+	AccountDao dao;
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -32,7 +37,6 @@ public class AccountDayCommand implements AccountCommand {
 			formattedDate = dayDate.substring(0, 10);
 		}
 		AccountDto dto = new AccountDto();
-		AccountDao dao = AccountDaoImpl.getInstance();
 		List<AccountDto> list = new ArrayList<AccountDto>();
 		
 		if (dayDate == null) {
