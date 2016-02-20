@@ -18,4 +18,5 @@ and order_time=(SELECT max(order_time) FROM p_order WHERE seat_num=o.seat_num)
 UPDATE p_seat SET occupied=0 WHERE seat_num=#{seat_num}
 </update>
 
+
 </mapper>
