@@ -1,6 +1,7 @@
 package com.first.lastproject.command.goods;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,10 @@ import org.springframework.ui.Model;
 import com.first.lastproject.dao.FoodDao;
 import com.first.lastproject.dao.IngredientDao;
 import com.first.lastproject.dao.MemberDao;
-import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dao.OrderDao;
 import com.first.lastproject.dao.SeatDao;
+import com.first.lastproject.dto.FoodDto;
+import com.first.lastproject.dto.IngredientDto;
 import com.first.lastproject.dto.MemberDto;
 
 @Service("goodsPayFinishCommand")
@@ -30,6 +32,8 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 	FoodDao foodDao;
 	@Autowired
 	IngredientDao ingredientDao;
+	//다비치 두시 .명동에 있는 회사. 전산실 매장 관리 프로그램 2013년 프로그램 팀. 과장 주임 대리 직원 4~5명.
+	//아이온텍 이력서만 넣었대
 	
 	
 	
@@ -81,14 +85,18 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
 					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
-					Map<Object, String> addMileage = new HashMap<Object, String>();
+					Map<String, Object> mileageMap = new HashMap<String, Object>();
 					map2.put("id", id);
-					map2.put("food_code", food_code);
-					memberDao.addMileage(addMileage); //마일리지 추가
+					FoodDto foodDto = foodDao.getFood(food_code);
+					map2.put("mileage", (int) Math.round((foodDto.getPrice() * 0.05))); //가격 불러와서 마일리지로 변경
+					memberDao.addMileage(mileageMap); //마일리지 추가
 					
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문 질문---------------
 					if (insertOrderMenu == 1 && foodDao.getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
-						ingredientDao.reduceIngredient(food_code);
+						List<IngredientDto> ingreDtoList = ingredientDao.getIngredientForFood(food_code);
+						for (IngredientDto iDto : ingreDtoList) {
+							ingredientDao.reduceIngredient(iDto.getIngredient_code());
+						}
 					} else if (insertOrderMenu == 1 && foodDao.getFood(food_code).getFood_num() > 0) {
 						foodDao.reduceFoodNum(food_code);
 					} else {

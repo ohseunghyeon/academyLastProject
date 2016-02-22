@@ -54,6 +54,6 @@
 	</update>
 	
 	<select id="addMileage" parameterType="Map" resultType="int">
-	SELECT price FROM p_food WHERE food_code = #{food_code}
+	UPDATE p_user SET mileage = mileage + #{mileage} WHERE id = #{id}
 	</select>
 </mapper>

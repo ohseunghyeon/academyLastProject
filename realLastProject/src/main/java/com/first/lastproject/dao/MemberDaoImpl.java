@@ -1,9 +1,5 @@
 package com.first.lastproject.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -263,48 +259,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int addMileage(Map<Object, String> addMileage) {
+	public int addMileage(Map<String, Object> map) {
 		int result = 0;
 		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
-		result = dao.addMileage(addMileage);
+		result = dao.addMileage(map);
 		return result;
 	}
-		/*Connection con = null;
-		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
-		ResultSet rs = null;
-		int result = 0;
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT price FROM p_food WHERE food_code = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, food_code);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				sql = "UPDATE p_user SET mileage = mileage + ? WHERE id = ?";
-				pstmt2 = con.prepareStatement(sql);
-				pstmt2.setInt(1, (int) Math.round((rs.getInt("price") * 0.05)));
-				pstmt2.setString(2, id);
-				result = pstmt2.executeUpdate();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (pstmt2 != null)
-					pstmt2.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	}*/
 
 	public int useMileage(Map<String, Object> useMileagemap){
 		int result = 0;
