@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.OrderDao;
-import com.first.lastproject.dao.OrderDaoImpl;
 import com.first.lastproject.dto.HostOrderListDto;
 import com.first.lastproject.dto.OrderDto;
-@Service("hostOrderDoneCommand")
+@Service("hostOrderListCommand")
 public class HostOrderListCommand implements HostOrderCommand {
 
 	@Autowired

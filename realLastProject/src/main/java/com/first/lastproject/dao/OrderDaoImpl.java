@@ -262,33 +262,8 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public int makeOrderDone(String order_id) {
 		int count=0;
-		OrderDao orderDao=this.sqlSession.getMapper(OrderDao.class);
+		OrderDao orderDao = this.sqlSession.getMapper(OrderDao.class);
 		count = orderDao.makeOrderDone(order_id);
 		return count;
 	}
-		/*Connection con = null;
-		PreparedStatement pstmt = null;
-		int count = 0;
-		try {
-			con = dataSource.getConnection();
-			String sql = "UPDATE p_order SET order_done=1 WHERE order_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, order_id);
-			count = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return count;
-	}
-	*/
 }

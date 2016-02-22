@@ -14,7 +14,7 @@
 	</update>
 
 	<insert id="insertOrder" parameterType="com.first.lastproject.dto.OrderDto">
-		INSERT INTO p_order VALUES (seq_order_code.nextval,#{seat_num},#{id},sysdate,sysdate+3/24, 0)
+		INSERT INTO p_order VALUES (seq_order_code.nextval,#{seat_num},#{id}, sysdate, sysdate+3/24, 0)
 	</insert>
 	
 	<select id="getOrder_code" parameterType="int" resultType="com.first.lastproject.dto.OrderDto">

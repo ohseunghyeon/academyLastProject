@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.OrderDao;
-import com.first.lastproject.dao.OrderDaoImpl;
-import com.first.lastproject.dao.SeatDao;
 
 @Service("hostOrderDoneCommand")
-
 public class HostOrderDoneCommand implements HostOrderCommand {
+	
 	@Autowired
 	OrderDao orderDao;
 	
