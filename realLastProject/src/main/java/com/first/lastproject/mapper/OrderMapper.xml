@@ -5,4 +5,12 @@
 
 <mapper namespace="com.first.lastproject.dao.OrderDao">
 
+<update id="updateOrderSeatEndTime" parameterType="String">
+UPDATE p_order SET end_time=sysdate WHERE order_id=#{order_id}
+</update>
+
+<update id="makeOrderDone" parameterType="String">
+UPDATE p_order SET order_done=1 WHERE order_id=#{order_id}
+</update>
+
 </mapper>

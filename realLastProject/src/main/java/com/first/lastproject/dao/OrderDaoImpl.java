@@ -6,34 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.first.lastproject.dto.OrderDto;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import com.first.lastproject.dto.OrderDto;
+@Repository
 public class OrderDaoImpl implements OrderDao {
 	DataSource dataSource;
+	
+	@Autowired
+	private SqlSession sqlSession;
 
-	private static OrderDaoImpl instance;
-
-	public static OrderDaoImpl getInstance() {
-		if (instance == null) {
-			instance = new OrderDaoImpl();
-		}
-		return instance;
-	}
-
-	private OrderDaoImpl() {
-		try {
-			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
-			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	public int insertOrder(String id, int seat_num) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -226,7 +213,12 @@ public class OrderDaoImpl implements OrderDao {
 
 	@Override
 	public int updateOrderSeatEndTime(String order_id) {
-		Connection con = null;
+		int count = 0;
+		OrderDao orderDao = this.sqlSession.getMapper(OrderDao.class);
+		count = orderDao.updateOrderSeatEndTime(order_id);
+		return count;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		int count = 0;
 		try {
@@ -249,11 +241,16 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		}
 		return count;
-	}
+	}*/
 
 	@Override
 	public int makeOrderDone(String order_id) {
-		Connection con = null;
+		int count=0;
+		OrderDao orderDao=this.sqlSession.getMapper(OrderDao.class);
+		count = orderDao.makeOrderDone(order_id);
+		return count;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		int count = 0;
 		try {
@@ -277,5 +274,5 @@ public class OrderDaoImpl implements OrderDao {
 		}
 		return count;
 	}
-	
+	*/
 }

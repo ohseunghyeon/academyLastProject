@@ -75,14 +75,13 @@ public class CMController {
 		String viewName = seatFinishCommand.execute(model);
 		return viewName;
 	}
-	
+	@Autowired
+	HostOrderDoneCommand hostOrderDoneCommand;
 	@RequestMapping("/makeOrderDone")
 	public String makeOrderDone(HttpServletRequest request, Model model){
 		System.out.println("makeOrderDone()");
 		model.addAttribute("request", request);
-		HostOrderCommand command = new HostOrderDoneCommand();
-		String viewName = command.execute(model);
-		
+		String viewName = hostOrderDoneCommand.execute(model);
 		return viewName;
 	}
 }
