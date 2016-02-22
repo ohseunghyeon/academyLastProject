@@ -8,9 +8,6 @@
 <c:if test="${sessionScope.id != 'nomember'}">
 	<jsp:include page="../../menu/guestHeader.jsp" flush="false" />
 </c:if>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,122 +40,164 @@
 <body>
 	<div class="container">
 		<div class="row" ng-app="" ng-controller="CartForm">
-		
+
 			<div>
-			<ul class="nav nav-tabs">
-			<li id="menu2">zzzzzz</li>
-			<li class="active"><a id="menu" ng-click="drink()"><b>Drink</b></a></li>
-			<li ><a id="menu4" ng-click="dessert()"><b>Dessert</b></a></li>
-			</ul>
+				<ul class="nav nav-tabs">
+					<li id="menu2">zzzzzz</li>
+					<li class="active"><a id="menu" ng-click="drink()"><b>Drink</b></a></li>
+					<li><a id="menu4" ng-click="dessert()"><b>Dessert</b></a></li>
+				</ul>
 			</div>
-			
-			
+
+
 			<!-- 음료 -->
 			<div id="inline" class="col-sm-8 text-center" ng-hide="drinkHide">
-			<div class="container">
-			 <div class="col-sm-4">
-			 <div class="panel panel-default">
-			 <div class="panel-body">
-			 <c:forEach var="goodslist" items="${goodslist}" begin="0" end="4">
-				 <c:if test="${goodslist.sold_out == 1}">
-				 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
-				 <p>${goodslist.food_name}</p>
-	   			 <p>가격 : <b>${goodslist.price}</b></p>
-	   			 </c:if>
-	   			 <c:if test="${goodslist.sold_out == 0}">
-				 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
-				 <p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a></p>
-	   			 <p>가격 : <b>${goodslist.price}</b></p>
-	   			 <p>&nbsp</p>
-	   			 </c:if>
-	   			 <c:if test="${goodslist.sold_out == 1}">
-	   			 <p>현재 매진되었습니다.</p>
-	   			 </c:if>
-   			 </c:forEach>
-   			 </div>
-   			 </div>
-   			 
-   			 </div>
-   			<div class="col-sm-4">
-   			<div class="panel panel-default">
-			 <div class="panel-body">
-   			 <c:forEach var="goodslist" items="${goodslist}" begin="5" end="9">
-			 <c:if test="${goodslist.sold_out == 1}">
-				 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
-				 <p>${goodslist.food_name}</p>
-	   			 <p>가격 : <b>${goodslist.price}</b></p>
-	   			 </c:if>
-	   			 <c:if test="${goodslist.sold_out == 0}">
-				 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
-				 <p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a></p>
-	   			 <p>가격 : <b>${goodslist.price}</b></p>
-	   			 <p>&nbsp</p>
-	   			 </c:if>
-	   			 <c:if test="${goodslist.sold_out == 1}">
-	   			 <p>현재 매진되었습니다.</p>
-	   			 </c:if>
-   			 </c:forEach>
-   			</div>
-   			<div class="col-sm-4"></div>
-   			 </div>
-   			 </div>
-   			 </div>
-   			 </div>
-			
-			
-			
-<!-- 디저트 -->
+				<div class="container">
+					<div class="col-sm-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<c:forEach var="goodslist" items="${goodslist}" begin="0"
+									end="4">
+									<c:if test="${goodslist.sold_out == 1}">
+										<a><img
+											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
+										<p>${goodslist.food_name}</p>
+										<p>
+											가격 : <b>${goodslist.price}</b>
+										</p>
+									</c:if>
+									<c:if test="${goodslist.sold_out == 0}">
+										<a><img
+											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"
+											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+										<p>
+											<a
+												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a>
+										</p>
+										<p>
+											가격 : <b>${goodslist.price}</b>
+										</p>
+										<p>&nbsp</p>
+									</c:if>
+									<c:if test="${goodslist.sold_out == 1}">
+										<p>현재 매진되었습니다.</p>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-sm-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<c:forEach var="goodslist" items="${goodslist}" begin="5"
+									end="9">
+									<c:if test="${goodslist.sold_out == 1}">
+										<a><img
+											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
+										<p>${goodslist.food_name}</p>
+										<p>
+											가격 : <b>${goodslist.price}</b>
+										</p>
+									</c:if>
+									<c:if test="${goodslist.sold_out == 0}">
+										<a><img
+											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"
+											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+										<p>
+											<a
+												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a>
+										</p>
+										<p>
+											가격 : <b>${goodslist.price}</b>
+										</p>
+										<p>&nbsp</p>
+									</c:if>
+									<c:if test="${goodslist.sold_out == 1}">
+										<p>현재 매진되었습니다.</p>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="col-sm-4"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 디저트 -->
 			<div id="inline" class="col-sm-8 text-center" ng-hide="dessertHide">
-			<div class="container">
-			 <div class="col-md-4">
-			 <div class="panel panel-default">
-			 <div class="panel-body">
-				<c:forEach var="goodslist" items="${goodslist}" begin="10" end="14">
-				<c:if test="${goodslist.sold_out == 1}">
-				 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
-				 <p>${goodslist.food_name}</p>
-	   			 <p>가격 : <b>${goodslist.price}</b></p>
-	   			 </c:if>
-	   			 <c:if test="${goodslist.sold_out == 0}">
-				 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
-				 <p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a></p>
-	   			 <p>가격 : <b>${goodslist.price}</b></p>
-	   			 <p>&nbsp</p>
-	   			 </c:if>
-	   			 <c:if test="${goodslist.sold_out == 1}">
-	   			 <p>현재 매진되었습니다.</p>
-	   			 </c:if>
-				</c:forEach>
+				<div class="container">
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<c:forEach var="goodslist" items="${goodslist}" begin="10"
+									end="14">
+									<c:if test="${goodslist.sold_out == 1}">
+										<a><img
+											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
+										<p>${goodslist.food_name}</p>
+										<p>
+											가격 : <b>${goodslist.price}</b>
+										</p>
+									</c:if>
+									<c:if test="${goodslist.sold_out == 0}">
+										<a><img
+											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"
+											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+										<p>
+											<a
+												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a>
+										</p>
+										<p>
+											가격 : <b>${goodslist.price}</b>
+										</p>
+										<p>&nbsp</p>
+									</c:if>
+									<c:if test="${goodslist.sold_out == 1}">
+										<p>현재 매진되었습니다.</p>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<c:forEach var="goodslist" items="${goodslist}" begin="15"
+									end="19">
+									<c:if test="${goodslist.sold_out == 1}">
+										<a><img
+											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
+										<p>${goodslist.food_name}</p>
+										<p>
+											가격 : <b>${goodslist.price}</b>
+										</p>
+									</c:if>
+									<c:if test="${goodslist.sold_out == 0}">
+										<a><img
+											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"
+											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+										<p>
+											<a
+												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a>
+										</p>
+										<p>
+											가격 : <b>${goodslist.price}</b>
+										</p>
+										<p>&nbsp</p>
+									</c:if>
+									<c:if test="${goodslist.sold_out == 1}">
+										<p>현재 매진되었습니다.</p>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="col-md-4"></div>
+				</div>
 			</div>
-			</div>
-			 </div>
-   			<div class="col-md-4">
-   			<div class="panel panel-default">
-			 <div class="panel-body">
-				<c:forEach var="goodslist" items="${goodslist}" begin="15" end="19">
-				<c:if test="${goodslist.sold_out == 1}">
-				 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"></a>
-				 <p>${goodslist.food_name}</p>
-	   			 <p>가격 : <b>${goodslist.price}</b></p>
-	   			 </c:if>
-	   			 <c:if test="${goodslist.sold_out == 0}">
-				 <a><img src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg" ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
-				 <p><a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a></p>
-	   			 <p>가격 : <b>${goodslist.price}</b></p>
-	   			 <p>&nbsp</p>
-	   			 </c:if>
-	   			 <c:if test="${goodslist.sold_out == 1}">
-	   			 <p>현재 매진되었습니다.</p>
-	   			 </c:if>
-				</c:forEach>
-			</div>
-			</div>
-   			
-   			
-   			</div>
-			<div class="col-md-4"></div>
-   			 </div>
-</div>
 			<!-- 장바구니 -->
 			<div class="col-sm-4 text-center">
 				<form action="goodsListPro" name="bagform">
@@ -169,7 +208,7 @@
 						<tr id="menu1">
 							<th>메뉴</th>
 							<th>수량</th>
-							<th>가격</th> 
+							<th>가격</th>
 							<th></th>
 						</tr>
 						<tr ng-repeat="item in invoice.items">
@@ -189,14 +228,14 @@
 						</tr>
 						<tr>
 							<td>
-							<button type="submit" class="btn btn-warning">결제화면</button>
+								<button type="submit" class="btn btn-warning">결제화면</button>
 						</tr>
 					</table>
 
 				</form>
 			</div>
-	</div>	
-</div>
+		</div>
+	</div>
 
 	<script>
 		function CartForm($scope) {
