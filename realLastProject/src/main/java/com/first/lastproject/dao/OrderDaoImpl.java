@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.first.lastproject.dto.FoodDto;
 import com.first.lastproject.dto.OrderDto;
 @Repository
 public class OrderDaoImpl implements OrderDao {
@@ -149,9 +150,13 @@ public class OrderDaoImpl implements OrderDao {
 		return order_code;
 	}*/
 
-	public String concatFoodName(String order_id) {
+	public ArrayList<FoodDto> concatFoodName(String order_id) {
+		OrderDao orderDao = this.sqlSession.getMapper(OrderDao.class);
+		ArrayList<FoodDto> foodList = orderDao.concatFoodName(order_id);
+		return foodList;
+	}
 
-		Connection con = null;
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String food_name = null;
@@ -185,10 +190,16 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		}
 		return food_name;
-	}
+	}*/
 
 	public ArrayList<OrderDto> getUndoneOrder() {
-
+	ArrayList<OrderDto> orderUndoneList =  new ArrayList<OrderDto>();
+	OrderDao orderDao = this.sqlSession.getMapper(OrderDao.class);
+	orderUndoneList=orderDao.getUndoneOrder();
+	return orderUndoneList;
+	
+	}
+		/*
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -226,7 +237,7 @@ public class OrderDaoImpl implements OrderDao {
 
 		return orderUndoneList;
 	}
-
+*/
 	@Override
 	public int updateOrderSeatEndTime(String order_id) {
 		int count = 0;
