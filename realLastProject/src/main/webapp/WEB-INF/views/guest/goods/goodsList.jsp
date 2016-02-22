@@ -211,13 +211,8 @@
 							<th>가격</th>
 							<th></th>
 						</tr>
-<<<<<<< HEAD
 						<tr ng-repeat="item in invoice.items"> <!--하나씩 보여주는것  -->
 							<td><input type=text name="food_code"
-=======
-						<tr ng-repeat="item in invoice.items">
-							<td><input type="text" name="food_code"
->>>>>>> 6f7f23f16180d32f8bf7affadb1f690c44b5fc87
 								ng-model="item.food_code" ng-hide="true">{{item.food_name}}</td>
 							<td><input type="number" name="food_num" ng-model="item.qty"
 								ng-required class="input-mini"></td>
