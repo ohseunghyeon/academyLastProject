@@ -3,6 +3,7 @@ package com.first.lastproject.dao;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.first.lastproject.dto.FoodDto;
 import com.first.lastproject.dto.OrderDto;
 
 public interface OrderDao {
@@ -14,6 +15,6 @@ public interface OrderDao {
 	public int updateOrderSeatEndTime(String order_id);
 	public int makeOrderDone(String order_id);
 //host 접속시 orderList 보기
-	public String concatFoodName(String order_id);
+	public ArrayList<FoodDto> concatFoodName(String order_id);
 	public ArrayList<OrderDto> getUndoneOrder();
 }

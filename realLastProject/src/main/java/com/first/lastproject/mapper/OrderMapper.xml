@@ -24,4 +24,10 @@
 	<delete id="useCoupon"  parameterType="int">
 		delete from p_coupon where coupon_num=#{coupon_num}
 	</delete>
+	<select id="concatFoodName" parameterType="String" resultType="com.first.lastproject.dto.FoodDto">
+	select f.food_name, count(f.food_name) food_num from p_order_menu o join p_food f on(o.food_code=f.food_code) where order_id = #{order_id} group by f.food_name
+	</select>
+	<select id="getUndoneOrder" resultType="com.first.lastproject.dto.OrderDto">
+	select * from p_order where order_done=0"
+	</select>
 </mapper>

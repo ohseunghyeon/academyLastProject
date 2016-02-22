@@ -55,13 +55,14 @@ public class CMController {
 		String viewName=seatInformationCommand.execute(model);
 		return viewName;
 	}
+	@Autowired
+	HostOrderListCommand hostOrderListCommand;
+	
 	@RequestMapping("/hostOrderList")
 	public String hostOrderList(HttpServletRequest request, Model model){
 		System.out.println("HostOrderList()");
 		model.addAttribute("request", request);
-		HostOrderCommand command = new HostOrderListCommand();
-		String viewName = command.execute(model);
-		
+		String viewName = hostOrderListCommand.execute(model);
 		return viewName;
 	}
 	

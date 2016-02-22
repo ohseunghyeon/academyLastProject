@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.OrderDao;
+import com.first.lastproject.dto.FoodDto;
 import com.first.lastproject.dto.HostOrderListDto;
 import com.first.lastproject.dto.OrderDto;
 @Service("hostOrderListCommand")
@@ -25,7 +26,11 @@ public class HostOrderListCommand implements HostOrderCommand {
 			ArrayList<String> foodNameArray = new ArrayList<String>();
 			
 			for (int i = 0; i < order_done.size(); i++) { //출력할 주문메뉴 합치기 작업
-				String food_name = orderDao.concatFoodName(order_done.get(i).getOrder_id());
+				String food_name = "";
+				ArrayList<FoodDto> foodList = orderDao.concatFoodName(order_done.get(i).getOrder_id());
+				for(FoodDto foodDto : foodList) {
+					food_name += foodDto.getFood_name() + "(" + foodDto.getFood_num() + ") ";
+				}
 				foodNameArray.add(food_name);
 			}
 			
