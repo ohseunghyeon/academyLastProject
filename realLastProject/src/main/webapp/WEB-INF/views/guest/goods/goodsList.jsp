@@ -212,7 +212,7 @@
 							<th></th>
 						</tr>
 						<tr ng-repeat="item in invoice.items">
-							<td><input type=text name="food_code"
+							<td><input type="text" name="food_code"
 								ng-model="item.food_code" ng-hide="true">{{item.food_name}}</td>
 							<td><input type="number" name="food_num" ng-model="item.qty"
 								ng-required class="input-mini"></td>
