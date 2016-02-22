@@ -37,8 +37,8 @@ public class AccountMonthCommand implements AccountCommand {
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		String mapMonth = year +"-"+monlist+"-01";
 		String mapNextMonth = year +"-"+(monlist+1)+"-01";
-		System.out.println("mapMonth : " + mapMonth);
-		System.out.println("mapNextMonth : " + mapNextMonth);
+		//System.out.println("mapMonth : " + mapMonth);
+		//System.out.println("mapNextMonth : " + mapNextMonth);
 		Map <String, String> map2 = new HashMap <String, String>();
 		map2.put("mapMonth", mapMonth);
 		map2.put("mapNextMonth", mapNextMonth);

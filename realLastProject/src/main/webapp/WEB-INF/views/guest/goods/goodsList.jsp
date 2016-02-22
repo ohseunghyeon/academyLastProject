@@ -211,7 +211,7 @@
 							<th>가격</th>
 							<th></th>
 						</tr>
-						<tr ng-repeat="item in invoice.items">
+						<tr ng-repeat="item in invoice.items"> <!--하나씩 보여주는것  -->
 							<td><input type=text name="food_code"
 								ng-model="item.food_code" ng-hide="true">{{item.food_name}}</td>
 							<td><input type="number" name="food_num" ng-model="item.qty"
@@ -279,7 +279,7 @@
 			},
 			
 			$scope.removeItem = function(index) {	//아이템 제거하는 함수
-				$scope.invoice.items.splice(index, 1);
+				$scope.invoice.items.splice(index, 1); //splice 배열 하나씩 꺼내는것
 				if ($scope.invoice.items.length == 0) {
 					$scope.totalHide = true;
 				}

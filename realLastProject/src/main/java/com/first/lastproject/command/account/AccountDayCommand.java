@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.AccountDao;
-import com.first.lastproject.dao.AccountDaoImpl;
 import com.first.lastproject.dto.AccountDto;
 
 @Service("accountDayCommand")
@@ -34,7 +33,7 @@ public class AccountDayCommand implements AccountCommand {
 			dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT);
 			formattedDate = dateFormat.format(date);
 		} else {
-			formattedDate = dayDate.substring(0, 10);
+			formattedDate = dayDate.substring(0, 10);// 시작값:0, 끝값:10
 		}
 		AccountDto dto = new AccountDto();
 		List<AccountDto> list = new ArrayList<AccountDto>();
