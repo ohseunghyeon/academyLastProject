@@ -48,13 +48,13 @@
 	select * from p_board where id = #{id}
 	</select>
 	<select id="searchSubject" parameterType="String" resultType="com.first.lastproject.dto.BoardDto">
-	select * from p_board where subject like %#{subject}%
+	select * from p_board where subject like '%'||#{subject}||'%'
 	</select>
 	<select id="getSeachWriterCount" parameterType="String" resultType="int">
 	select count(*) from p_board where id=#{id}
 	</select>
 	<select id="getSeachSubjectCount" parameterType="String" resultType="int">
-	select count(*) from p_board where subject like %#{subject}%
+	select count(*) from p_board where subject like '%'||#{subject}||'%'
 	</select>
 	
 </mapper>
