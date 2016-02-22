@@ -1,13 +1,7 @@
 package com.first.lastproject.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSession;
@@ -42,7 +36,8 @@ public class SeatDaoImpl implements SeatDao {
 	@Override
 	public int startSeat(int seat_num) { //결제 완료시 좌석을 점유됨으로 변경.
 		int result = 0;
-		
+		SeatDao seatDao=this.sqlSession.getMapper(SeatDao.class);
+		result =seatDao.startSeat(seat_num);
 		return result;
 	}
 		/*Connection con = null;

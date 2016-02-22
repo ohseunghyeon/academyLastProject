@@ -239,6 +239,11 @@ public class FoodDaoImpl implements FoodDao {
 	@Override
 	public int reduceFoodNum(int food_code) {
 		int count = 0;
+		FoodDao foodDao = this.sqlSession.getMapper(FoodDao.class);
+		count = foodDao.reduceFoodNum(food_code);
+		return count;
+	}
+		/*int count = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -261,5 +266,5 @@ public class FoodDaoImpl implements FoodDao {
 			}
 		}
 		return count;
-	}
+	}*/
 }

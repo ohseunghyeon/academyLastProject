@@ -16,7 +16,8 @@ public interface MemberDao {
 	public int getCoupons(String id);
 	public int getCoupon(String id);
 	public int checkCoupon(String id);
-	public int addMileage(int food_code, String id);
+	public int addMileage(Map<Object, String> addMileage);
+	public int useMileage(Map<String, Object> useMileagemap);
 	public int check(String id); //아이디 중복 체크
 	public int findId(String email);
 	

@@ -263,8 +263,13 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int addMileage(int food_code, String id) {
-		Connection con = null;
+	public int addMileage(Map<Object, String> addMileage) {
+		int result = 0;
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		result = dao.addMileage(addMileage);
+		return result;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
@@ -299,10 +304,15 @@ public class MemberDaoImpl implements MemberDao {
 			}
 		}
 		return result;
-	}
+	}*/
 
-	public int useMileage(String id, int mileage){
-		Connection con = null;
+	public int useMileage(Map<String, Object> useMileagemap){
+		int result = 0;
+		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
+		result= dao.useMileage(useMileagemap);
+		return result;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
@@ -330,5 +340,5 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return result;
 		
-	}
+	}*/
 }

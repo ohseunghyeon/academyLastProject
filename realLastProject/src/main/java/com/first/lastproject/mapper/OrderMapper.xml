@@ -14,6 +14,14 @@
 	</update>
 
 	<insert id="insertOrder" parameterType="com.first.lastproject.dto.OrderDto">
-		INSERT INTO p_order VALUES (seq_order_code.nextval,?,?,#{sysdate},#{sysdate+3/24, 0})
+		INSERT INTO p_order VALUES (seq_order_code.nextval,#{seat_num},#{id},sysdate,sysdate+3/24, 0)
 	</insert>
+	
+	<select id="getOrder_code" parameterType="int" resultType="com.first.lastproject.dto.OrderDto">
+		select * from p_order where seat_num=#{seat_num} order by order_time DESC
+	</select>
+	
+	<delete id="useCoupon"  parameterType="int">
+		delete from p_coupon where coupon_num=#{coupon_num}
+	</delete>
 </mapper>

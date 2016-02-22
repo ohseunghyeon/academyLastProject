@@ -55,7 +55,12 @@ public class OrderDaoImpl implements OrderDao {
 	}*/
 	
 	public int useCoupon(int coupon_num) {
-		Connection con = null;
+		int count = 0;
+		OrderDao orderDao = this.sqlSession.getMapper(OrderDao.class);
+		count = orderDao.useCoupon(coupon_num);
+		return count;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		int count = 0;
 		try {
@@ -78,7 +83,7 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		}
 		return count;
-	}
+	}*/
 	public int insertOrderMenu(String order_code, int food_code) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -109,7 +114,12 @@ public class OrderDaoImpl implements OrderDao {
 
 	@Override
 	public String getOrder_code(int seat_num) {
-		Connection con = null;
+		String order_code = null;
+		OrderDao orderDao = this.sqlSession.getMapper(OrderDao.class);
+		order_code = orderDao.getOrder_code(seat_num);
+		return order_code;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String order_code = null;
@@ -137,7 +147,7 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		}
 		return order_code;
-	}
+	}*/
 
 	public String concatFoodName(String order_id) {
 

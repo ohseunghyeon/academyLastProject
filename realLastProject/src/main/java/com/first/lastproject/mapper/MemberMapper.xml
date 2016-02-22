@@ -48,4 +48,12 @@
 	<update id="modifyMember" parameterType="com.first.lastproject.dto.MemberDto">
 	UPDATE p_user SET passwd = #{passwd}, phone_number = #{phone_number}, email= #{email} WHERE id = #{id} 
 	</update>
+	
+	<update id="useMileage" parameterType="Map">
+	UPDATE p_user SET mileage = mileage - #{mileage} WHERE id = #{id}
+	</update>
+	
+	<select id="addMileage" parameterType="Map" resultType="int">
+	SELECT price FROM p_food WHERE food_code = #{food_code}
+	</select>
 </mapper>

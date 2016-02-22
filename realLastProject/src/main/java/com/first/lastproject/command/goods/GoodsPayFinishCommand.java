@@ -1,5 +1,6 @@
 package com.first.lastproject.command.goods;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,18 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.first.lastproject.dao.FoodDao;
+import com.first.lastproject.dao.IngredientDao;
 import com.first.lastproject.dao.MemberDao;
 import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dao.OrderDao;
 import com.first.lastproject.dao.SeatDao;
+import com.first.lastproject.dto.MemberDto;
 
 @Service("goodsPayFinishCommand")
 public class GoodsPayFinishCommand implements GoodsCommand {
 
 	@Autowired
 	OrderDao orderDao;
+	@Autowired
 	SeatDao seatDao;
+	@Autowired
 	MemberDao memberDao;
+	@Autowired
+	FoodDao foodDao;
+	@Autowired
+	IngredientDao ingredientDao;
+	
+	
 	
 	@Override
 	public String execute(Model model) {
@@ -59,23 +71,29 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
 			} else if (couponMileageUse == 2) {	//마일리지 사용
 				int mileage = Integer.parseInt(request.getParameter("mileage"));
-				((MemberDaoImpl) memberDao).useMileage(id, mileage);	//실제 마일리지 사용 메소드
+				Map<String, Object> useMileagemap = new HashMap<String, Object>();
+				map2.put("id", id);
+				map2.put("mileage", mileage);
+				memberDao.useMileage(useMileagemap);	//실제 마일리지 사용 메소드
 			}
 			
 			for (int i = 0; i < foodCodes.length; i++) {	//구매 시작
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
 					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
-					//MemberDaoImpl.getInstance().addMileage(food_code, id); //마일리지 추가
+					Map<Object, String> addMileage = new HashMap<Object, String>();
+					map2.put("id", id);
+					map2.put("food_code", food_code);
+					memberDao.addMileage(addMileage); //마일리지 추가
 					
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문 질문---------------
-					/*if (insertOrderMenu == 1 && FoodDaoImpl.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
-						//IngredientDaoImpl.getInstance().reduceIngredient(food_code);
-					} else if (insertOrderMenu == 1 && FoodDaoImpl.getInstance().getFood(food_code).getFood_num() > 0) {
-						FoodDaoImpl.getInstance().reduceFoodNum(food_code);
+					if (insertOrderMenu == 1 && foodDao.getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
+						ingredientDao.reduceIngredient(food_code);
+					} else if (insertOrderMenu == 1 && foodDao.getFood(food_code).getFood_num() > 0) {
+						foodDao.reduceFoodNum(food_code);
 					} else {
 						insertOrderMenuError = 0;
-					}*/
+					}
 				}
 			}
 		}
@@ -87,8 +105,8 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		model.addAttribute("orderInsertResult", orderInsertResult);
 		
 		//헤더에 리프레시  질문--------------------------------------
-		/*MemberDto memberDto = MemberDaoImpl.getInstance().getMember(id);
-		request.getSession().setAttribute("mileage", memberDto.getMileage());*/
+		MemberDto memberDto = memberDao.getMember(id);
+		request.getSession().setAttribute("mileage", memberDto.getMileage());
 		
 		return "guest/payment/paymentFinish";
 	}
