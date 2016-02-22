@@ -41,7 +41,11 @@ public class SeatDaoImpl implements SeatDao {
 		
 	@Override
 	public int startSeat(int seat_num) { //결제 완료시 좌석을 점유됨으로 변경.
-		Connection con = null;
+		int result = 0;
+		
+		return result;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
@@ -63,7 +67,7 @@ public class SeatDaoImpl implements SeatDao {
 			
 		}
 		return result;
-	}
+	}*/
 
 	@Override
 	public int timeFinishedSeat(int seat_num) {

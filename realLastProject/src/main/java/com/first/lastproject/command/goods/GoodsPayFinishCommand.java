@@ -4,19 +4,23 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.first.lastproject.dao.FoodDaoImpl;
-import com.first.lastproject.dao.IngredientDaoImpl;
+import com.first.lastproject.dao.MemberDao;
 import com.first.lastproject.dao.MemberDaoImpl;
 import com.first.lastproject.dao.OrderDao;
-import com.first.lastproject.dao.OrderDaoImpl;
 import com.first.lastproject.dao.SeatDao;
-import com.first.lastproject.dao.SeatDaoImpl;
-import com.first.lastproject.dto.MemberDto;
 
+@Service("goodsPayFinishCommand")
 public class GoodsPayFinishCommand implements GoodsCommand {
 
+	@Autowired
+	OrderDao orderDao;
+	SeatDao seatDao;
+	MemberDao memberDao;
+	
 	@Override
 	public String execute(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -25,14 +29,17 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		String id = (String) request.getSession().getAttribute("id");
 		int seat_num = (Integer) request.getSession().getAttribute("seat_num");
 
-		OrderDao orderDao = OrderDaoImpl.getInstance();
-		int orderInsertResult = orderDao.insertOrder(id, seat_num); // p_order에
+		//OrderDao orderDao = OrderDaoImpl.getInstance();
+		Map<String, Object> map2 = model.asMap();
+		map2.put("id", id);
+		map2.put("seat_num", seat_num);
+		int orderInsertResult = orderDao.insertOrder(map2); // p_order에
 																	// 추가.
 
 		int insertOrderMenuError = 1; // 전체 메뉴 삽입 실패했는지 확인하기 위함
 		if (orderInsertResult == 1) { // 이제 주문 메뉴 추가 order_code와 food_code로 메뉴
 										// 하나씩 추가
-			SeatDao seatDao = SeatDaoImpl.getInstance();
+			//SeatDao seatDao = SeatDaoImpl.getInstance();
 			seatDao.startSeat(seat_num);
 
 			String[] foodCodes = request.getParameterValues("food_code");	//어떤 메뉴를
@@ -42,7 +49,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 
 			int insertOrderMenu = 1; // 각 메뉴가 실패했는지 확인하기 위함
 			
-			MemberDaoImpl memberDao = MemberDaoImpl.getInstance();
+			//MemberDaoImpl memberDao = MemberDaoImpl.getInstance();
 			
 			int couponMileageUse = Integer.parseInt(request.getParameter("couponMileageUse"));
 			if (couponMileageUse == 1) {	//쿠폰 사용
@@ -52,23 +59,23 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
 			} else if (couponMileageUse == 2) {	//마일리지 사용
 				int mileage = Integer.parseInt(request.getParameter("mileage"));
-				memberDao.useMileage(id, mileage);	//실제 마일리지 사용 메소드
+				((MemberDaoImpl) memberDao).useMileage(id, mileage);	//실제 마일리지 사용 메소드
 			}
 			
 			for (int i = 0; i < foodCodes.length; i++) {	//구매 시작
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
 					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
-					MemberDaoImpl.getInstance().addMileage(food_code, id); //마일리지 추가
+					//MemberDaoImpl.getInstance().addMileage(food_code, id); //마일리지 추가
 					
-					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문
-					if (insertOrderMenu == 1 && FoodDaoImpl.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
-						IngredientDaoImpl.getInstance().reduceIngredient(food_code);
+					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문 질문---------------
+					/*if (insertOrderMenu == 1 && FoodDaoImpl.getInstance().getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소
+						//IngredientDaoImpl.getInstance().reduceIngredient(food_code);
 					} else if (insertOrderMenu == 1 && FoodDaoImpl.getInstance().getFood(food_code).getFood_num() > 0) {
 						FoodDaoImpl.getInstance().reduceFoodNum(food_code);
 					} else {
 						insertOrderMenuError = 0;
-					}
+					}*/
 				}
 			}
 		}
@@ -79,9 +86,9 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 
 		model.addAttribute("orderInsertResult", orderInsertResult);
 		
-		//헤더에 리프레시
-		MemberDto memberDto = MemberDaoImpl.getInstance().getMember(id);
-		request.getSession().setAttribute("mileage", memberDto.getMileage());
+		//헤더에 리프레시  질문--------------------------------------
+		/*MemberDto memberDto = MemberDaoImpl.getInstance().getMember(id);
+		request.getSession().setAttribute("mileage", memberDto.getMileage());*/
 		
 		return "guest/payment/paymentFinish";
 	}

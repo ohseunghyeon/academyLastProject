@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -21,8 +22,13 @@ public class OrderDaoImpl implements OrderDao {
 	private SqlSession sqlSession;
 
 	
-	public int insertOrder(String id, int seat_num) {
-		Connection con = null;
+	public int insertOrder(Map<String, Object> map) {
+		int count = 0;
+		OrderDao orderDao = this.sqlSession.getMapper(OrderDao.class);
+		count = orderDao.insertOrder(map);
+		return count;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		int count = 0;
 
@@ -46,7 +52,7 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		}
 		return count;
-	}
+	}*/
 	
 	public int useCoupon(int coupon_num) {
 		Connection con = null;

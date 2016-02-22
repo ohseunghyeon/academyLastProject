@@ -44,7 +44,12 @@ public class FoodDaoImpl implements FoodDao {
 
 	@Override
 	public List<FoodDto> listGoods() {
-		Connection con = null;
+		 ArrayList<FoodDto> goodsList = null;
+		 FoodDao foodDao = this.sqlSession.getMapper(FoodDao.class);
+		 goodsList = (ArrayList<FoodDto>) foodDao.listGoods();
+		 return goodsList;
+	}
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
@@ -73,7 +78,7 @@ public class FoodDaoImpl implements FoodDao {
 					pstmt.setInt(1, goods.getFood_code());
 					rs2 = pstmt.executeQuery();
 					while (rs2.next()) {						
-						/* if (rs2.getInt("ingre_num") == 1) { 주의 !!! 원래는 == 0이 와야한다. 재료가 0개 미만이 될 수 없으니까. 근데 매진된 상품의 구매를 막는 로직이 아직 없어 임시로 도입한다! */
+						 if (rs2.getInt("ingre_num") == 1) { 주의 !!! 원래는 == 0이 와야한다. 재료가 0개 미만이 될 수 없으니까. 근데 매진된 상품의 구매를 막는 로직이 아직 없어 임시로 도입한다! 
 						if (rs2.getInt("ingre_num") < 1) {
 							goods.setSold_out(1);
 						}
@@ -101,7 +106,7 @@ public class FoodDaoImpl implements FoodDao {
 			}
 		}
 		return goodsList;
-	}
+	}*/
 
 	@Override
 	public ArrayList<FoodDto> getStockDessert() {
@@ -188,6 +193,11 @@ public class FoodDaoImpl implements FoodDao {
 	@Override
 	public FoodDto getFood(int food_code) {
 		FoodDto dto = null;
+		FoodDao foodDao = this.sqlSession.getMapper(FoodDao.class);
+		dto = foodDao.getFood(food_code);
+		return dto;
+	}
+		/*FoodDto dto = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -224,7 +234,7 @@ public class FoodDaoImpl implements FoodDao {
 			}
 		}
 		return dto;
-	}
+	}*/
 
 	@Override
 	public int reduceFoodNum(int food_code) {

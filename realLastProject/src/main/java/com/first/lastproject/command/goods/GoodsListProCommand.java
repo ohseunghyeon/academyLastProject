@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.FoodDao;
-import com.first.lastproject.dao.FoodDaoImpl;
 import com.first.lastproject.dto.FoodDto;
 
+@Service("goodsListProCommand")
 public class GoodsListProCommand implements GoodsCommand {
 
+	@Autowired
+	FoodDao foodDao;
+	
 	@Override
 	public String execute(Model model) {
 
@@ -28,7 +34,7 @@ public class GoodsListProCommand implements GoodsCommand {
 			shoppingBag.put(food_code[i], food_num[i]);
 		}
 		int price=0;//총 가격
-		FoodDao foodDao = FoodDaoImpl.getInstance();
+		//FoodDao foodDao = FoodDaoImpl.getInstance();
 		ArrayList<FoodDto> shoppingBagForPayment = new ArrayList<FoodDto>(); //결제창에서 뿌릴, 고객이 선택해서 넘어온 메뉴
 		for (int i = 0; i < food_code.length; i++) {
 			FoodDto foodDto = foodDao.getFood(Integer.parseInt(food_code[i]));	//고객이 선택한 메뉴

@@ -1,19 +1,24 @@
 package com.first.lastproject.command.hostOrder;
 
 import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.OrderDao;
 import com.first.lastproject.dao.OrderDaoImpl;
 import com.first.lastproject.dto.HostOrderListDto;
 import com.first.lastproject.dto.OrderDto;
-
+@Service("hostOrderDoneCommand")
 public class HostOrderListCommand implements HostOrderCommand {
 
+	@Autowired
+	OrderDao orderDao;
 	@Override
 	public String execute(Model model) {
 
-		OrderDao orderDao = OrderDaoImpl.getInstance();
+		
 		ArrayList<OrderDto> order_done = orderDao.getUndoneOrder();
 
 		if (order_done != null) { //메뉴가 안 나간 주문이 존재할 경우.

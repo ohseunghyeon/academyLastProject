@@ -11,4 +11,10 @@
 	<update id="modifyStockFood" parameterType="Map">
 	UPDATE p_food SET food_num=#{food_num} WHERE food_code=#{food_code}
 	</update>
+	<select id="listGoods" resultType="com.first.lastproject.dto.FoodDto">
+	SELECT * FROM p_food
+	</select>
+	<select id="getFood" parameterType="int" resultType="com.first.lastproject.dto.FoodDto">
+	SELECT * FROM p_food WHERE food_code=#{food_code}
+	</select>
 </mapper>
