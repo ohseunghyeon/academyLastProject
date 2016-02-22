@@ -11,4 +11,10 @@
 	<update id="modifyIngredient" parameterType="Map">
 	UPDATE p_ingredient SET ingre_num=#{ingre_num} WHERE ingredient_code=#{ingredient_code}
 	</update>
+	<select id="getIngredientForFood" resultType="com.first.lastproject.dto.IngredientDto">
+	SELECT i.ingredient_code FROM p_food f, p_recipe r , p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code=#{food_code}
+	</select>
+	<update id="reduceIngredient" parameterType="com.first.lastproject.dto.IngredientDto">
+	UPDATE p_ingredient SET ingre_num = ingre_num - 1 WHERE ingredient_code = #{ingredient_code}
+	</update>
 </mapper>

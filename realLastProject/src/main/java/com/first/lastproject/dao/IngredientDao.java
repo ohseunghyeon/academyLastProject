@@ -11,5 +11,8 @@ public interface IngredientDao {
 	public int getIngredient();
 	public List<IngredientDto> listIngredient();
 	public int modifyIngredient(Map<String, Integer> map);
-	public int reduceIngredient(int food_code);
+	
+	//결제 부분에서 재료를 가져와서 삭제하는 부분
+	public List<IngredientDto> getIngredientForFood(int food_code);
+	public int reduceIngredient(int ingredient_code);
 }
