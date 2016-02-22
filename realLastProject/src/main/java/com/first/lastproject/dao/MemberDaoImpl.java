@@ -214,9 +214,6 @@ public class MemberDaoImpl implements MemberDao {
 		return count; */
 	}
 	public int getCoupon(String id) {
-		//Connection con = null;
-		//PreparedStatement pstmt = null;
-		//ResultSet rs = null;
 		int coupon_code = 0;
 		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
 		coupon_code = dao.getCoupon(id);
@@ -225,37 +222,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	public int checkCoupon(String id) {
-		//Connection con = null;
-		//PreparedStatement pstmt = null;
-		//ResultSet rs = null;
 		int result = 0;
 		MemberDao dao = this.sqlSession.getMapper(MemberDao.class);
-		result = dao.getCoupon(id);
-
+		result = dao.checkCoupon(id);
 		return result;
-		/*
-		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT coupon_num FROM p_coupon WHERE id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				coupon_code = rs.getInt("coupon_num");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return coupon_code;*/
 	}
 
 	@Override

@@ -32,10 +32,6 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 	FoodDao foodDao;
 	@Autowired
 	IngredientDao ingredientDao;
-	//다비치 두시 .명동에 있는 회사. 전산실 매장 관리 프로그램 2013년 프로그램 팀. 과장 주임 대리 직원 4~5명.
-	//아이온텍 이력서만 넣었대
-	
-	
 	
 	@Override
 	public String execute(Model model) {
@@ -45,12 +41,9 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 		String id = (String) request.getSession().getAttribute("id");
 		int seat_num = (Integer) request.getSession().getAttribute("seat_num");
 
-		//OrderDao orderDao = OrderDaoImpl.getInstance();
-		Map<String, Object> map2 = model.asMap();
-		map2.put("id", id);
-		map2.put("seat_num", seat_num);
-		int orderInsertResult = orderDao.insertOrder(map2); // p_order에
-																	// 추가.
+		map.put("id", id);
+		map.put("seat_num", seat_num);
+		int orderInsertResult = orderDao.insertOrder(map); // p_order에 추가.
 
 		int insertOrderMenuError = 1; // 전체 메뉴 삽입 실패했는지 확인하기 위함
 		if (orderInsertResult == 1) { // 이제 주문 메뉴 추가 order_code와 food_code로 메뉴
@@ -73,23 +66,30 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				orderDao.useCoupon(coupon_num);	//실제 쿠폰 사용 메소드
 				//헤더에 리프레시
 				request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
+				
 			} else if (couponMileageUse == 2) {	//마일리지 사용
 				int mileage = Integer.parseInt(request.getParameter("mileage"));
 				Map<String, Object> useMileagemap = new HashMap<String, Object>();
-				map2.put("id", id);
-				map2.put("mileage", mileage);
+				useMileagemap.put("id", id);
+				useMileagemap.put("mileage", mileage);
 				memberDao.useMileage(useMileagemap);	//실제 마일리지 사용 메소드
 			}
 			
 			for (int i = 0; i < foodCodes.length; i++) {	//구매 시작
 				int food_code = Integer.parseInt(foodCodes[i]);
 				for (int j = 0; j < Integer.parseInt(foodNums[i]); j++) {
-					insertOrderMenu = orderDao.insertOrderMenu(order_code, food_code);
+					//각 주문당 주문 메뉴 추가 부분
+					Map<String, Object> orderMenuMap = new HashMap<String, Object>();
+					orderMenuMap.put("order_code", order_code);
+					orderMenuMap.put("food_code", food_code);
+					insertOrderMenu = orderDao.insertOrderMenu(orderMenuMap);
+					
+					//마일리지 추가 부분
 					Map<String, Object> mileageMap = new HashMap<String, Object>();
-					map2.put("id", id);
+					mileageMap.put("id", id);
 					FoodDto foodDto = foodDao.getFood(food_code);
-					map2.put("mileage", (int) Math.round((foodDto.getPrice() * 0.05))); //가격 불러와서 마일리지로 변경
-					memberDao.addMileage(mileageMap); //마일리지 추가
+					mileageMap.put("mileage", (int) Math.round(foodDto.getPrice() * 0.05)); //가격 불러와서 마일리지로 변경
+					memberDao.addMileage(mileageMap);
 					
 					// 이제 오더메뉴 삽입 성공 시 재료 감소, 실패 시 전체메뉴삽입실패로 else문 질문---------------
 					if (insertOrderMenu == 1 && foodDao.getFood(food_code).getFood_num() < 0) { // 구매시 재료 감소

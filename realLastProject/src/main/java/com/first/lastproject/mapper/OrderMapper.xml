@@ -17,17 +17,23 @@
 		INSERT INTO p_order VALUES (seq_order_code.nextval, #{seat_num}, #{id}, sysdate, sysdate+3/24, 0)
 	</insert>
 	
-	<select id="getOrder_code" parameterType="int" resultType="com.first.lastproject.dto.OrderDto">
-		SELECT * FROM p_order WHERE order_time = (SELECT max(order_time) FROM p_order WHERE seat_num = #{seat_num}
+	<select id="getOrder_code" parameterType="int" resultType="String">
+		SELECT order_id FROM p_order WHERE order_time = (SELECT max(order_time) FROM p_order WHERE seat_num = #{seat_num})
 	</select>
 	
 	<delete id="useCoupon"  parameterType="int">
 		delete from p_coupon where coupon_num=#{coupon_num}
 	</delete>
+	
 	<select id="concatFoodName" parameterType="String" resultType="com.first.lastproject.dto.FoodDto">
 	select f.food_name, count(f.food_name) food_num from p_order_menu o join p_food f on(o.food_code=f.food_code) where order_id = #{order_id} group by f.food_name
 	</select>
+	
 	<select id="getUndoneOrder" resultType="com.first.lastproject.dto.OrderDto">
 	select * from p_order where order_done=0
 	</select>
+	
+	<insert id="insertOrderMenu" parameterType="Map">
+	INSERT INTO p_order_menu VALUES (#{order_code}, #{food_code})
+	</insert>
 </mapper>

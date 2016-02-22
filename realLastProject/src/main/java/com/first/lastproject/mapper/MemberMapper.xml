@@ -32,10 +32,10 @@
 	<select id="getCoupon" parameterType="String" resultType="int">
 	SELECT coupon_num FROM p_coupon WHERE id= #{id}
 	</select>
+	
 	<select id="checkCoupon" parameterType="String" resultType="int">
 	SELECT COUNT(*) FROM p_coupon WHERE id= #{id}
 	</select>
-	
 	
 	<select id="getId" parameterType="String" resultType="com.first.lastproject.dto.MemberDto">
 	SELECT id FROM p_user WHERE email = #{email} 
@@ -53,7 +53,7 @@
 	UPDATE p_user SET mileage = mileage - #{mileage} WHERE id = #{id}
 	</update>
 	
-	<select id="addMileage" parameterType="Map" resultType="int">
+	<update id="addMileage" parameterType="Map">
 	UPDATE p_user SET mileage = mileage + #{mileage} WHERE id = #{id}
-	</select>
+	</update>
 </mapper>

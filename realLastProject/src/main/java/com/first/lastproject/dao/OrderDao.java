@@ -9,7 +9,7 @@ import com.first.lastproject.dto.OrderDto;
 public interface OrderDao {
 //주문
 	public int insertOrder(Map<String, Object> map);
-	public int insertOrderMenu(String order_code, int food_code);
+	public int insertOrderMenu(Map<String, Object> map);
 	public int useCoupon(int coupon_num); // 쿠폰 사용
 	public String getOrder_code(int seat_num);
 	public int updateOrderSeatEndTime(String order_id);
