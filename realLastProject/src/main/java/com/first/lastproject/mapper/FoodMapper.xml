@@ -17,7 +17,7 @@
 	<select id="getFood" parameterType="int" resultType="com.first.lastproject.dto.FoodDto">
 	SELECT * FROM p_food WHERE food_code=#{food_code}
 	</select>
-	<select id="reduceFoodNum" parameterType="int">
+	<update id="reduceFoodNum" parameterType="int">
 	UPDATE p_food SET food_num = food_num - 1 WHERE food_code = #{food_code}
-	</select>
+	</update>
 </mapper>

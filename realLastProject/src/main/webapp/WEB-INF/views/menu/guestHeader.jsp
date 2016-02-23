@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>회원 로그인</title>
+  <title>사색카페</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -35,8 +35,7 @@
     </div>
     <ul class="nav navbar-nav">
     <li class="active"><a href="Home">이용안내</a></li>
-      <li><a href="seatList">좌석</a></li>
-    	<li><a href="goodsList">메뉴</a></li>
+      <li><a href="seatList">주문하기</a></li>
       <li><a href="boardList">게시판</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

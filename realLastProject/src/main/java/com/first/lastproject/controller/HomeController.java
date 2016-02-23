@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.first.lastproject.command.member.MemberCommand;
 import com.first.lastproject.command.member.MemberConfirmIdCommand;
 
 /**
@@ -40,14 +40,14 @@ public class HomeController {
 		
 		return "home";
 	}
-	
+	@Autowired
+	MemberConfirmIdCommand memberConfirmIdCommand;
 	@RequestMapping("confirmId")
 	public String confirmId(HttpServletRequest request, Model model) {
 		System.out.println("confirmId()");
 		model.addAttribute("request", request);
 		
-		MemberCommand command = new MemberConfirmIdCommand();
-		String viewName = command.execute(model);
+		String viewName = memberConfirmIdCommand.execute(model);
 		return viewName;
 	}
 	

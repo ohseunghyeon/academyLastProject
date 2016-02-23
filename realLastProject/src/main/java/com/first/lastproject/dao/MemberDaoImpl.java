@@ -41,19 +41,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int addMember(MemberDto dto) {
-		
 		int result = 0;
 		MemberDao memberDao = this.sqlSession.getMapper(MemberDao.class);
 		result = memberDao.addMember(dto);
-		
-			/*String sql = "INSERT INTO p_user VALUES (?,?,0,?,?,0,0)"; // 아이디,
-																		// 비밀번호,
-																		// 마일리지,
-																		// 전번,
-																		// 이메일,
-																		// 게스트,
-																		// 쿠폰
-*/		
 		return result;
 	}
 
@@ -61,9 +51,7 @@ public class MemberDaoImpl implements MemberDao {
 		int result = 0;
 		MemberDao memberDao = this.sqlSession.getMapper(MemberDao.class);
 		result = memberDao.check(id);
-		System.out.println(result);
 			//String sql = "SELECT id FROM p_user WHERE id=?";
-			
 		return result;
 	}
 	

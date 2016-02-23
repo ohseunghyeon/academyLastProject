@@ -12,27 +12,35 @@
 <html>
 <head>
 <style>
- #menu {
-  background:#FFA7A7;
- }
- #menu1{
- background: #F0FFF0;
- }
- #menu2 {
- 
- color:white;
- }
- #inline {
- display:inline;
- }
- #menu3{
-  background: #dcdcdc
-;
- 
- }
- #menu4{
- background:#FFEB5A;
- }
+#menu {
+	background: #FFA7A7;
+}
+
+#menu1 {
+	background: #F0FFF0;
+}
+
+#menu2 {
+	color: white;
+}
+
+#inline {
+	display: inline;
+}
+
+#menu3 {
+	background: #dcdcdc;
+}
+
+#menu4 {
+	background: #FFEB5A;
+}
+
+#cart {
+   position:fixed; _position:absolute; _z-index:-1;
+    overflow:hidden;
+    right:0px;
+}
 </style>
 <script src="/lastproject/resources/angular.min.js"></script>
 <!-- <link href="/lastproject/resources/bootstrap.min.css" rel="stylesheet"/> -->
@@ -199,7 +207,7 @@
 				</div>
 			</div>
 			<!-- 장바구니 -->
-			<div class="col-sm-4 text-center">
+			<div class="col-sm-4 text-center" id="cart">
 				<form action="goodsListPro" name="bagform">
 					<table id="inline" class="table table-hover" ng-hide="totalHide">
 						<tr id="menu3">
@@ -211,7 +219,8 @@
 							<th>가격</th>
 							<th></th>
 						</tr>
-						<tr ng-repeat="item in invoice.items"> <!--하나씩 보여주는것  -->
+						<tr ng-repeat="item in invoice.items">
+							<!--하나씩 보여주는것  -->
 							<td><input type=text name="food_code"
 								ng-model="item.food_code" ng-hide="true">{{item.food_name}}</td>
 							<td><input type="number" name="food_num" ng-model="item.qty"
@@ -229,11 +238,12 @@
 						<tr>
 							<td>
 								<button type="submit" class="btn btn-warning">결제화면</button>
+							</td>
 						</tr>
 					</table>
-
 				</form>
 			</div>
+
 		</div>
 	</div>
 
@@ -241,15 +251,15 @@
 		function CartForm($scope) {
 			$scope.invoice = {
 				items : [/* {
-					            qty: 10,
-					            food_name: 'item',
-					            price: 9.95} */]
+									            qty: 10,
+									            food_name: 'item',
+									            price: 9.95} */]
 			};
-			
+
 			$scope.totalHide = true; /*클릭 전에 토탈 숨기기 위함*/
 			$scope.drinkHide = false; /*클릭 전에 음료 안 숨기기 위함*/
 			$scope.dessertHide = true; /*클릭 전에 디저트 숨기기 위함*/
-			
+
 			$scope.addItem = function(code, name, pric) {
 				for (var i = 0; i < $scope.invoice.items.length; i++) {
 					if ($scope.invoice.items[i].food_code == code) {
@@ -263,29 +273,28 @@
 					food_name : name,
 					price : pric
 				});
-			    
+
 				$scope.totalHide = false;
 			},
-			
-			
-			$scope.drink = function() {	//음료 버튼
+
+			$scope.drink = function() { //음료 버튼
 				$scope.drinkHide = false;
 				$scope.dessertHide = true;
 			},
-			
-			$scope.dessert = function() {	//디저트 버튼
+
+			$scope.dessert = function() { //디저트 버튼
 				$scope.drinkHide = true;
 				$scope.dessertHide = false;
 			},
-			
-			$scope.removeItem = function(index) {	//아이템 제거하는 함수
+
+			$scope.removeItem = function(index) { //아이템 제거하는 함수
 				$scope.invoice.items.splice(index, 1); //splice 배열 하나씩 꺼내는것
 				if ($scope.invoice.items.length == 0) {
 					$scope.totalHide = true;
 				}
 			},
 
-			$scope.total = function() {	//총 가격 구하는 함수
+			$scope.total = function() { //총 가격 구하는 함수
 				var total = 0;
 				if (total != null) {
 					angular.forEach($scope.invoice.items, function(item) {

@@ -1,9 +1,5 @@
 package com.first.lastproject.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -243,28 +239,4 @@ public class FoodDaoImpl implements FoodDao {
 		count = foodDao.reduceFoodNum(food_code);
 		return count;
 	}
-		/*int count = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			con = dataSource.getConnection();
-			String sql = "UPDATE p_food SET food_num = food_num - 1 WHERE food_code = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, food_code);
-			count = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-		}
-		return count;
-	}*/
 }

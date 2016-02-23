@@ -23,13 +23,10 @@ public class MemberConfirmIdCommand implements MemberCommand {
 		
 		String id = request.getParameter("id");
 		int result = memberDao.check(id);
-		System.out.println("중복확인 결과" + result);
 		
 		//request.setAttribute("key값", value나 변수);
 		model.addAttribute("id", id);
 		model.addAttribute("result", result);
-		
 		return "member/confirmId";
 	}
-
 }

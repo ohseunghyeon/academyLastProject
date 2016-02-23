@@ -165,7 +165,7 @@ public class JNController {
 		if (passwd != null) {
 			email.setContent("비밀번호는 " + passwd + " 입니다.");
 			email.setReceiver(emails);
-			email.setSubject(id + "님 비밀번호 찾기 메일입니다.");
+			email.setSubject(id + "님. 사색카페 비밀번호입니다.");
 			emailSender.SendEmail(email);
 			int idorpass = 1;
 			model.addAttribute("id", id);
