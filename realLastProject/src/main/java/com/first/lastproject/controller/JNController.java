@@ -226,11 +226,13 @@ public class JNController {
 		return viewname;
 	}
 
+	@Autowired
+	AccountDateSelectCommand accountDateSelectCommand;
+	
 	@RequestMapping("/accountDateSelect")
 	public String accountDateSelect(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		AccountCommand command = new AccountDateSelectCommand();
-		String viewname = command.execute(model);
+		String viewname = accountDateSelectCommand.execute(model);
 		return viewname;
 	}
 }

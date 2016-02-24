@@ -11,7 +11,7 @@
 <jsp:include page="../../menu/hostHeader.jsp" flush="false" />
 
 <div class="container-fluid">
-<h3><p class="text-center">정산<mark><small>${startday} ~ ${endday}</small></mark></p></h3>
+<h3><p class="text-center">정산<mark><small>${startDay} ~ ${endDay}</small></mark></p></h3>
 <br><br><br>
 <div class="row">
 <div class="col-sm-1"></div>
@@ -47,8 +47,8 @@
 			<td>
 			<button type="submit" class="btn btn-info btn-sm">기간선택</button>
 			 <input
-				type="date" value="dateselect" name="startday" required /> ~ <input
-				type="date" value="dateselect" name="endday" required /></td>
+				type="date" value="dateselect" name="startDay" required /> ~ <input
+				type="date" value="dateselect" name="endDay" required /></td>
 		</tr>
 	</table>
 </form>

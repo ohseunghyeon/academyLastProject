@@ -1,6 +1,5 @@
 package com.first.lastproject.command.account;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.first.lastproject.dao.AccountDao;
-import com.first.lastproject.dao.AccountDaoImpl;
 import com.first.lastproject.dto.AccountDto;
 
 @Service("accountMonthCommand")
@@ -28,6 +26,7 @@ public class AccountMonthCommand implements AccountCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		AccountDto mTotal = new AccountDto();
+		AccountDto mPriceDto = new AccountDto();
 		Calendar calendar = Calendar.getInstance();
 		//Map <String, Object> mList = new HashMap<String, Object>();
 		ArrayList<AccountDto> mList = new ArrayList<AccountDto>();
@@ -39,28 +38,36 @@ public class AccountMonthCommand implements AccountCommand {
 		String mapNextMonth = year +"-"+(monlist+1)+"-01";
 		//System.out.println("mapMonth : " + mapMonth);
 		//System.out.println("mapNextMonth : " + mapNextMonth);
-		Map <String, String> map2 = new HashMap <String, String>();
-		map2.put("mapMonth", mapMonth);
-		map2.put("mapNextMonth", mapNextMonth);
+		Map <String, String> mapDate = new HashMap <String, String>();
+		mapDate.put("mapMonth", mapMonth);
+		mapDate.put("mapNextMonth", mapNextMonth);
 		
 		
 		String time = (calendar.get(Calendar.YEAR) +"년 " + monlist + "월");
 		System.out.println("monlist : " + monlist);
 		
-		mList = dao.getMonthAccountDays(map2);  //월간 일자 호출
-		for(int i = 1; i <= Calendar.getInstance().getActualMaximum(Calendar.DATE); i++) {
-			Calendar today = Calendar.getInstance();
-			today.set(today.get(Calendar.YEAR), monlist-1, 1);
+		mList = dao.getMonthAccountDays(mapDate);  //월간 일자 호출
+		Calendar today = Calendar.getInstance();
+		today.set(today.get(Calendar.YEAR), monlist-1, 1);
+		for(int i = 1; i <= today.getActualMaximum(Calendar.DATE); i++) {
+			
 			String mapPriceStart = year + "-"+monlist+"-"+i+" 00:00:00"; 
 			String mapPriceEnd = year + "-"+monlist+"-"+i+" 23:59:59";
-			Map <String, String> map3 = new HashMap <String, String>();
-			map2.put("mapPriceStart", mapPriceStart);
-			map2.put("mapPriceEnd", mapPriceEnd);
+			Map <String, String> monthDate = new HashMap <String, String>();
+			monthDate.put("mapPriceStart", mapPriceStart);
+			monthDate.put("mapPriceEnd", mapPriceEnd);
 			System.out.println(mapPriceStart + "+" + mapPriceEnd);
-			mPrice = dao.getMonthAccountPrice(map2); //월간 일자 총액 호출
+			mPriceDto = dao.getMonthAccountPrice(monthDate); //월간 일자 총액 호출
+			mPrice.add(mPriceDto);
 			}
 		
-		//mTotal = dao.getMonthTotalAccount(monlist); //월간 총액 호출
+		String mapTotalPriceStart = year +"-"+monlist+"-"+"01 00:00:00"; 
+		String mapTotalPriceEnd = year +"-"+(monlist+1)+"-"+"01 00:00:00";
+		System.out.println( "start : " + mapTotalPriceStart + " end : " + mapTotalPriceEnd);
+		Map <String, String> monthTotal = new HashMap <String, String>();
+		monthTotal.put("mapTotalPriceStart", mapTotalPriceStart);
+		monthTotal.put("mapTotalPriceEnd", mapTotalPriceEnd);
+		mTotal = dao.getMonthTotalAccount(monthTotal); //월간 총액 호출
 		
 		model.addAttribute("time", time);
 		model.addAttribute("mList", mList);

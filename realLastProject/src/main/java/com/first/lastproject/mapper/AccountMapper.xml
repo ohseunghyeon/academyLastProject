@@ -5,12 +5,26 @@
 
 <mapper namespace="com.first.lastproject.dao.AccountDao">
 
-<select id="getDayAccount" parameterType="com.first.lastproject.dto.AccountDto" resultType="com.first.lastproject.dto.AccountDto">
+<select id="getDayAccount" resultType="com.first.lastproject.dto.AccountDto">
 SELECT * FROM day_calculate_view WHERE order_time &lt;= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') AND order_time &gt; to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd') ORDER BY order_id ASC
 </select>
 
-<select id="getDayTotalAccount" parameterType="com.first.lastproject.dto.AccountDto" resultType="com.first.lastproject.dto.AccountDto">
-SELECT SUM(price) total_price FROM day_calculate_view WHERE order_time &lt;= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') AND order_time &gt; to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd')
+<select id="getDayPrice" resultType="int">
+SELECT NVL(SUM(price),0) AS price FROM day_calculate_view WHERE order_time &lt;= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') AND order_time &gt; to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd')
+</select>
+
+<select id="getDaySelectPrice" parameterType="Map" resultType="int">
+SELECT NVL(SUM(price),0) AS price 
+					FROM day_calculate_view WHERE order_time
+					BETWEEN to_date(#{dayStart}, 'yyyy-mm-dd hh24:mi:ss')
+					AND to_date(#{dayEnd}, 'yyyy-mm-dd hh24:mi:ss')
+</select>
+
+<select id="getDayAccounts" parameterType="Map" resultType="com.first.lastproject.dto.AccountDto">
+SELECT * FROM day_calculate_view
+					WHERE order_time BETWEEN to_date(#{dayStart}, 'yyyy-mm-dd hh24:mi:ss')
+					AND to_date(#{dayEnd}, 'yyyy-mm-dd hh24:mi:ss')
+					ORDER BY order_id ASC	
 </select>
 
 <select id="getMonthAccountDays" parameterType="Map" resultType="com.first.lastproject.dto.AccountDto">
@@ -19,10 +33,57 @@ SELECT (TO_DATE (#{mapMonth}, 'YYYY-MM-DD') + LEVEL - 1) AS "date"
             CONNECT BY (TO_DATE (#{mapMonth}, 'YYYY-MM-DD') + LEVEL - 1) &lt; TO_DATE (#{mapNextMonth}, 'YYYY-MM-DD')
 </select>
 
-<select id="getMonthAccountPrice" parameterType="Map" resultType="com.first.lastproject.dto.AccountDto">
-SELECT SUM(price) AS price 
+<select id="getMonthAccountCount" parameterType="Map" resultType="int">
+SELECT COUNT(*) AS count 
 					FROM day_calculate_view WHERE order_time
 					BETWEEN to_date(#{mapPriceStart}, 'yyyy-mm-dd hh24:mi:ss')
 					AND to_date(#{mapPriceEnd}, 'yyyy-mm-dd hh24:mi:ss')
 </select>
+
+<select id="getMonthPrice" parameterType="Map" resultType="int">
+SELECT NVL(SUM(price),0) AS price 
+					FROM day_calculate_view WHERE order_time
+					BETWEEN to_date(#{mapPriceStart}, 'yyyy-mm-dd hh24:mi:ss')
+					AND to_date(#{mapPriceEnd}, 'yyyy-mm-dd hh24:mi:ss')
+</select>
+
+<select id="getMonthTotalPrice" parameterType="Map" resultType="int">
+SELECT NVL(SUM(price),0) AS price FROM day_calculate_view
+					WHERE order_time BETWEEN to_date(#{mapTotalPriceStart}, 'yyyy-mm-dd hh24:mi:ss')
+					AND to_date(#{mapTotalPriceEnd}, 'yyyy-mm-dd hh24:mi:ss')
+</select>	
+
+<select id="getDayCount" parameterType="Map" resultType="int">
+SELECT COUNT(*) FROM day_calculate_view
+					WHERE order_time BETWEEN to_date(#{dayStart}, 'yyyy-mm-dd hh24:mi:ss')
+					AND to_date(#{dayEnd}, 'yyyy-mm-dd hh24:mi:ss')
+					ORDER BY order_id ASC
+</select>
+
+<select id="getSelectAccountDays" parameterType="Map" resultType="com.first.lastproject.dto.AccountDto">
+SELECT (TO_DATE (#{startDay}, 'YYYY-MM-DD') + LEVEL - 1) AS "date"
+            FROM DUAL 
+            CONNECT BY (TO_DATE (#{startDay}, 'YYYY-MM-DD') + LEVEL - 1) &lt;= TO_DATE (#{endDay}, 'YYYY-MM-DD')
+</select>
+
+<select id="getSelectAccountCount" parameterType="Map" resultType="int">
+SELECT COUNT(*) AS count FROM day_calculate_view 
+					WHERE order_time
+					BETWEEN to_date(#{selectPriceStart}, 'yyyy-mm-dd hh24:mi:ss')
+					AND to_date(#{selectPriceEnd}, 'yyyy-mm-dd hh24:mi:ss')
+</select>
+			
+<select id="getSelectPrice" parameterType="Map" resultType="int">
+SELECT SUM(price) AS price 
+					FROM day_calculate_view WHERE order_time
+					BETWEEN to_date(#{selectPriceStart}, 'yyyy-mm-dd hh24:mi:ss')
+					AND to_date(#{selectPriceEnd}, 'yyyy-mm-dd hh24:mi:ss')
+</select>
+
+<select id="getSelectTotalPrice" parameterType="Map" resultType="int">
+SELECT NVL(SUM(price),0) AS price FROM day_calculate_view
+					WHERE order_time BETWEEN to_date(#{startDay}, 'yyyy-mm-dd')
+					AND to_date(#{endDay}, 'yyyy-mm-dd')
+</select>
+	
 </mapper>
