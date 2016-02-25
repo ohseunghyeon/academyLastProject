@@ -308,9 +308,7 @@ CREATE view day_calculate_view as select o.order_id, o.seat_num, o.order_time , 
 
 
 
---JOB
-
-
+--잡 스케쥴
 DECLARE
 	V_JOB NUMBER(5);
 BEGIN

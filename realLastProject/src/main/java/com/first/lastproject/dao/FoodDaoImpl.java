@@ -14,65 +14,46 @@ import com.first.lastproject.dto.FoodDto;
 
 @Repository
 public class FoodDaoImpl implements FoodDao {
-	DataSource dataSource;
 
 	@Autowired
 	private SqlSession sqlSession;
-	/*
-	private static FoodDaoImpl instance;
-
-	public static FoodDaoImpl getInstance() {
-		if (instance == null) {
-			instance = new FoodDaoImpl();
-		}
-		return instance;
-	}
-
-	private FoodDaoImpl() {
-		try {
-			// Servers/context.xml에 정의한 커넥션 풀을 가져와서 쓰겠다.
-			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
 
 	@Override
+	public List<Integer> getIngreNum(int food_code) {
+		List<Integer> ingreNumList = null;
+		FoodDao foodDao = this.sqlSession.getMapper(FoodDao.class);
+		ingreNumList = foodDao.getIngreNum(food_code);
+		return ingreNumList;
+	}
+	
+	@Override
 	public List<FoodDto> listGoods() {
-		 ArrayList<FoodDto> goodsList = null;
+		List<FoodDto> goodsList = null;
 		 FoodDao foodDao = this.sqlSession.getMapper(FoodDao.class);
-		 goodsList = (ArrayList<FoodDto>) foodDao.listGoods();
+		 goodsList = foodDao.listGoods();
+		 for (FoodDto dto : goodsList) {
+			 dto.setSold_out(0);// 매진 아님
+			 if (dto.getFood_num() < 0) { // 음료의 경우
+				//음료만 지나오는	 거 확인.
+				List<Integer> ingreNumList = getIngreNum(dto.getFood_code());
+				for (Integer ingreNum : ingreNumList) {
+					if (ingreNum < 1) {
+						dto.setSold_out(1);
+					}
+				} 
+			 } else { // 이미 생산된 디저트 종류의 경우
+					if (dto.getFood_num() < 1) { // 수량이 없는 경우
+						dto.setSold_out(1); // 매진
+					}
+				}
+		 }
 		 return goodsList;
 	}
 		/*Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ResultSet rs2 = null;
-		ArrayList<FoodDto> goodsList = null;
-
-		try {
-			con = dataSource.getConnection(); // 컨넥션풀에서 connection객체 가져온다.
 			String sql = "SELECT * FROM p_food";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if (goodsList == null) {
-					goodsList = new ArrayList<FoodDto>();
-				}
-				FoodDto goods = new FoodDto();
-				goods.setFood_code(rs.getInt("food_code"));
-				goods.setFood_name(rs.getString("food_name"));
-				goods.setPrice(rs.getInt("price"));
-				goods.setFood_num(rs.getInt("food_num"));
-				goods.setImage_name(rs.getString("image_name"));
-				goods.setSold_out(0); // 매진 아님
 				if (rs.getInt("food_num") < 0) { // 생산품의 경우
 					//음료만 지나오는 거 확인.
-					sql = "SELECT ingre_num FROM p_food f, p_recipe r, p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code = ? order by f.food_code";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setInt(1, goods.getFood_code());
-					rs2 = pstmt.executeQuery();
 					while (rs2.next()) {						
 						 if (rs2.getInt("ingre_num") == 1) { 주의 !!! 원래는 == 0이 와야한다. 재료가 0개 미만이 될 수 없으니까. 근데 매진된 상품의 구매를 막는 로직이 아직 없어 임시로 도입한다! 
 						if (rs2.getInt("ingre_num") < 1) {
@@ -239,4 +220,6 @@ public class FoodDaoImpl implements FoodDao {
 		count = foodDao.reduceFoodNum(food_code);
 		return count;
 	}
+
+	
 }

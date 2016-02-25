@@ -6,18 +6,22 @@
 <mapper namespace="com.first.lastproject.dao.FoodDao">
 
 	<select id="getStockDessert" resultType="com.first.lastproject.dto.FoodDto">
-	SELECT * FROM p_food WHERE food_num &gt;= 0
+		SELECT * FROM p_food WHERE food_num &gt;= 0
 	</select>
 	<update id="modifyStockFood" parameterType="Map">
-	UPDATE p_food SET food_num=#{food_num} WHERE food_code=#{food_code}
+		UPDATE p_food SET food_num=#{food_num} WHERE food_code=#{food_code}
 	</update>
 	<select id="listGoods" resultType="com.first.lastproject.dto.FoodDto">
-	SELECT * FROM p_food
+		SELECT * FROM p_food
 	</select>
-	<select id="getFood" parameterType="int" resultType="com.first.lastproject.dto.FoodDto">
-	SELECT * FROM p_food WHERE food_code=#{food_code}
+	<select id="getIngreNum" parameterType="int" resultType="Integer">
+		SELECT ingre_num FROM p_food f, p_recipe r, p_ingredient i where f.FOOD_CODE = r.FOOD_CODE and r.INGREDIENT_CODE = i.INGREDIENT_CODE and f.food_code = #{food_code} order by f.food_code
+	</select>
+	<select id="getFood" parameterType="int"
+		resultType="com.first.lastproject.dto.FoodDto">
+		SELECT * FROM p_food WHERE food_code=#{food_code}
 	</select>
 	<update id="reduceFoodNum" parameterType="int">
-	UPDATE p_food SET food_num = food_num - 1 WHERE food_code = #{food_code}
+		UPDATE p_food SET food_num = food_num - 1 WHERE food_code = #{food_code}
 	</update>
 </mapper>

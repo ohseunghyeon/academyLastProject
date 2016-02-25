@@ -27,7 +27,6 @@ public class GoodsListCommand implements GoodsCommand {
 		
 		//FoodDao foodDao = FoodDaoImpl.getInstance();
 		List<FoodDto> goodslist = foodDao.listGoods();	//메뉴 불러옴
-		
 		model.addAttribute("goodslist", goodslist);
 		
 		return "guest/goods/goodsList";
