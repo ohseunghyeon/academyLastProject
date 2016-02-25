@@ -18,7 +18,11 @@
 	</select>
 	
 	<select id="check" resultType="int" parameterType="String">
-	SELECT count(*) FROM p_user WHERE id = #{id}
+	SELECT COUNT(*) FROM p_user WHERE id = #{id}
+	</select>
+	
+	<select id="checkEmail" resultType="int" parameterType="String">
+	SELECT COUNT(*) FROM p_user WHERE email = #{email}
 	</select>
 	
 	<insert id="makeCoupon"  parameterType="String">

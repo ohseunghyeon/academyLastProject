@@ -55,6 +55,13 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 	
+	public int checkEmail(String email) {
+		int result = 0;
+		MemberDao memberDao = this.sqlSession.getMapper(MemberDao.class);
+		result = memberDao.checkEmail(email);
+		return result;
+	}
+	
 	@Override
 	public int findId(String email) {
 		int result = 0;

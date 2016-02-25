@@ -18,6 +18,10 @@ public interface AccountDao {
 	
 	public AccountDto getDayTotalAccount(Map<String, String> map);
 	
+	public int getDayPrice();
+
+	public int getDaySelectPrice(Map<String, String> map);
+	
 	public ArrayList<AccountDto> getMonthAccountDays(Map<String, String> map2);
 
 	//public Map<String, Object> getMonthAccountDays(int monlist);
@@ -48,9 +52,7 @@ public interface AccountDao {
 
 	public int getSelectTotalPrice(Map<String, String> map);
 
-	public int getDayPrice();
 
-	public int getDaySelectPrice(Map<String, String> map);
 
 	
  

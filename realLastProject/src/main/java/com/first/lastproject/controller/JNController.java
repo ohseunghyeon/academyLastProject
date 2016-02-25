@@ -20,6 +20,7 @@ import com.first.lastproject.command.account.AccountMonthCommand;
 import com.first.lastproject.command.email.Email;
 import com.first.lastproject.command.email.EmailSender;
 import com.first.lastproject.command.member.HostLoginProCommand;
+import com.first.lastproject.command.member.MemberConfirmEmailCommand;
 import com.first.lastproject.command.member.MemberConfirmIdCommand;
 import com.first.lastproject.command.member.MemberFindProCommand;
 import com.first.lastproject.command.member.MemberLoginFormCommand;
@@ -57,6 +58,16 @@ public class JNController {
 	public String memberConfirmId(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		String viewname = memberConfirmIdCommand.execute(model);
+		return viewname;
+	}
+	
+	@Autowired
+	MemberConfirmEmailCommand memberConfirmEmailCommand;
+
+	@RequestMapping("/memberConfirmEmail")
+	public String memberConfirmEmail(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		String viewname = memberConfirmEmailCommand.execute(model);
 		return viewname;
 	}
 

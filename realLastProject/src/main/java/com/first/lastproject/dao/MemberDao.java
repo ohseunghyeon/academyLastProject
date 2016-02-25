@@ -20,6 +20,7 @@ public interface MemberDao {
 	public int useMileage(Map<String, Object> useMileagemap);
 	public int check(String id); //아이디 중복 체크
 	public int findId(String email);
+	public int checkEmail(String email);
 	
 
 	
