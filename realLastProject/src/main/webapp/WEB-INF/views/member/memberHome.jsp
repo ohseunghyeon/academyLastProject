@@ -1,55 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>회원 로그인</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6" style="background-color:lavender;"></div>
-    <div class="col-sm-4" style="background-color:lavenderblush;"><mark>${id}</mark>님 안녕하세요.</div>
-   	<div class="col-sm-2" style="background-color:lavenderblush;">
-    <a href="memberLogout"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
-    </div>
-  </div>
-  <blockquote>
-   <h1>Sasaeg cafe</h1>
-  <p> 커피 한잔, 책 한권 북카페</p>
-  </blockquote>
-</div>
-
-<nav class="navbar navbar-default"">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand"><span style="color:black">SASAEG<img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></span></a>
-    </div>
-    <ul class="nav navbar-nav">
-    <li class="active"><a href="Home">이용안내</a></li>
-      <li><a href="seatList">좌석</a></li>
-    	<li><a href="goodsList">메뉴</a></li>
-      <li><a href="boardList">게시판</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a>마일리지:${mileage} point</a></li>
-      <li>
-      	  <c:if test="${coupon == 0}"><a>Coupon 없어</a></c:if>
-      	  <c:if test="${coupon != 0}"><a href="couponmain">Coupon 있어</a></c:if>
-      </li>
-      <li><a href="memberModifyForm">회원정보수정</a></li>
-    </ul>
-  </div>
-</nav>
-
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
+<script src= /lastproject/resources/SJscript.js></script>
+<c:if test="${sessionScope.id == 'host'}">
+<jsp:include page="../menu/hostHeader.jsp" flush="false" />
+</c:if>
+<c:if test="${sessionScope.id != 'host'}">
+<jsp:include page="../menu/guestHeader.jsp" flush="false" />
+</c:if>
 <html> 
 <head> 
 <title>게시판 > Block _ 강남점 1 페이지</title> 
@@ -120,4 +79,4 @@ document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "mayisland.
 </body> 
 </html> 
 
-	<jsp:include page="../menu/guestFooter.jsp" flush="false"/>
+	<jsp:include page="../menu/noMemberFooter.jsp" flush="false" />

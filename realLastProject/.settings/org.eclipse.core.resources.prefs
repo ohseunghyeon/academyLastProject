@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/guest/payment/paymentFinish.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/index.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/member/Home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/member/memberHome.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/menu/guestHeader.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/menu/hostHeader.jsp=UTF-8

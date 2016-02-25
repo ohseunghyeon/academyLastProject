@@ -71,12 +71,17 @@ public class SJController {
 		System.out.println("foodModifyForm()");
 		return "host/stock/foodModifyForm";
 	}
-	@RequestMapping("/Home")
-	public String home(Model model) {
-		System.out.println("home()");
-		return "member/Home";
+	@RequestMapping("/memberHome")
+	public String memberHome(Model model) {
+		System.out.println("memberHome()");
+		return "member/memberHome";
 	}
 
+	@RequestMapping("/nomemberHome")
+	public String nomemberHome(Model model) {
+		System.out.println("memberHome()");
+		return "member/nomemberHome";
+	}
 	@Autowired
 	StockFoodModifyProCommand stockFoodModifyProCommand;
 	@RequestMapping("/foodModifyPro")
