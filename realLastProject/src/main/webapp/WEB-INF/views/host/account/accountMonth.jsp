@@ -67,8 +67,8 @@
 						class="table table-bordered table-hover table-condensed text-center ">
 						<tr style="background-color: lavender;">
 							<td><button type="submit" class="btn btn-info btn-sm">기간선택</button>
-								<input type="date" value="dateselect" name="startday" required />
-								~ <input type="date" value="dateselect" name="endday" required /></td>
+								<input type="date" value="dateselect" name="startDay" required />
+								~ <input type="date" value="dateselect" name="endDay" required /></td>
 						</tr>
 					</table>
 				</form>

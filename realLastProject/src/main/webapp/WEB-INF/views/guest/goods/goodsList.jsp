@@ -59,7 +59,7 @@
 
 
 			<!-- 음료 -->
-			<div id="inline" class="col-sm-8 text-center" ng-hide="drinkHide">
+			<div id="inline" class="col-sm-8 text-center" ng-hide="drinkHide"><!-- hide: 숨김. 초기값.false:보임 -->
 				<div class="container">
 					<div class="col-sm-4">
 						<div class="panel panel-default">
@@ -209,7 +209,7 @@
 			<!-- 장바구니 -->
 			<div class="col-sm-4 text-center" id="cart">
 				<form action="goodsListPro" name="bagform">
-					<table id="inline" class="table table-hover" ng-hide="totalHide">
+					<table id="inline" class="table table-hover" ng-hide="totalHide"><!-- 기본 true. 메뉴 선택시 false -->
 						<tr id="menu3">
 							<th colspan="4">장바구니</th>
 						</tr>

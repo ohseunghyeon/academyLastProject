@@ -42,8 +42,8 @@
 			<td>
 			<button type="submit" class="btn btn-info btn-sm">기간선택</button>
 			 <input
-				type="date" value="dateselect" name="startday" required /> ~ <input
-				type="date" value="dateselect" name="endday" required /></td>
+				type="date" value="dateselect" name="startDay" required /> ~ <input
+				type="date" value="dateselect" name="endDay" required /></td>
 		</tr>
 	</table>
 </form>
@@ -69,11 +69,11 @@
 	</table >
 </form>
 </div>
-<div class="col-sm-3"><c:set var="dto" value="${dto}" />
+<div class="col-sm-3"><c:set var="price" value="${price}" />
 	<table class="table table-bordered table-hover table-condensed text-center ">
 		<tr>
 			<th style=" background-color:lavender; width : 100px"><h4><p class="text-danger">Total Price</p></h4></th>
-			<td><h4><mark>${dto.total_price}원</mark></h4></td>
+			<td><h4><mark>${price.total_price}원</mark></h4></td>
 		</tr>
 	</table></div>
 <div class="col-sm-1"></div>

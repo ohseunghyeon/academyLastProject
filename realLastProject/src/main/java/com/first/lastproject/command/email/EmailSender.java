@@ -28,7 +28,7 @@ package com.first.lastproject.command.email;
 	            }
 	            try {
 	                mailSender.send(msg);
-	            }catch(MailException e) {
+	            } catch(MailException e) {
 	                System.out.println("MailException발생");
 	                e.printStackTrace();
 	            }

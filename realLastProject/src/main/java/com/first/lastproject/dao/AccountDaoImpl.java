@@ -34,7 +34,8 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public ArrayList<AccountDto> getDayAccount() {//일간 정산표
 		
-		ArrayList <AccountDto> dayList = null;
+		ArrayList <AccountDto> dayList = new ArrayList<AccountDto>();
+		AccountDto dto = new AccountDto();
 		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
 		dayList = dao.getDayAccount();
 			/*String sql = "SELECT * FROM day_calculate_view "
@@ -44,13 +45,26 @@ public class AccountDaoImpl implements AccountDao {
 		return dayList;
 	}
 	
-public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간/기간 정산에서 일자 누를 시에
+	public int getDayCount(Map<String, String> map2) {
+		System.out.println("count-Day");
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int cnt = dao.getDayCount(map2);
 		
-		ArrayList <AccountDto> dayList = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
+		return cnt;
+	}
+	
+public List<AccountDto> getDayAccounts(Map<String, String> map2) {//일간 정산표-월간/기간 정산에서 일자 누를 시에
+		
+		List <AccountDto> daySelList = new ArrayList<AccountDto>();
+		AccountDto dto = new AccountDto();
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int cnt = getDayCount(map2);
+		if(cnt > 0) {
+			daySelList = dao.getDayAccounts(map2);
+			
+		}
+		
+		/*try {
 			con = dataSource.getConnection();
 			String sql = "SELECT * FROM day_calculate_view "
 					+ "WHERE order_time BETWEEN to_date(?, 'yyyy-mm-dd hh24:mi:ss')"
@@ -87,30 +101,47 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 				e.printStackTrace();
 			}
 		
-		}
-		return dayList;
+		}*/
+		return daySelList;
+	}
+
+	public int getDayPrice() {
+		System.out.println("getDayPrice");
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int price = dao.getDayPrice();
+		
+	
+		return price;
 	}
 
 	@Override
 	public AccountDto getDayTotalAccount() {//일간 총 금액 및 시간표
 		AccountDto dto = new AccountDto();
-		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
-		dto = dao.getDayTotalAccount();
+		int price = getDayPrice();
+		System.out.println("일간 : " + price);
+		dto.setTotal_price(price);
 			/*String sql = "SELECT SUM(price) total_price FROM day_calculate_view "
 					+ "WHERE order_time >= to_char(trunc(sysdate,'dd'),'yyyy/mm/dd') "
 					+ "AND order_time < to_char(trunc(sysdate,'dd')+1,'yyyy/mm/dd')";*/
 		return dto;
 	}
 	
+	public int getDaySelectPrice(Map<String, String> map) {
+		System.out.println("getDayPrice");
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int price = dao.getDaySelectPrice(map);
+		System.out.println("일간2 : " + price);
+	
+		return price;
+	}
 	@Override
-	public AccountDto getDayTotalAccount(String dayDate) {//일간 총 금액 및 시간표-월간 및 기간에서 일자 누를 시에
+	public AccountDto getDayTotalAccount(Map<String, String> map) {//일간 총 금액 및 시간표-월간 및 기간에서 일자 누를 시에
 		
 		AccountDto dto = new AccountDto();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		System.out.println("dayDate2 ="+ dayDate);
-		try {
+		int price = getDaySelectPrice(map);
+		dto.setTotal_price(price);
+		
+		/*try {
 			con = dataSource.getConnection();
 			String sql = "SELECT SUM(price) total_price FROM day_calculate_view "
 					+ "WHERE order_time BETWEEN to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
@@ -133,7 +164,7 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 				e.printStackTrace();
 			}
 		
-		}
+		}*/
 		return dto;
 	}
 
@@ -155,11 +186,33 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 			pstmt.setString(3, Calendar.getInstance().get(Calendar.YEAR)+"-"+(monlist+1)+"-01");*/
 		return monthList;
 	}
-
-	public List<AccountDto> getMonthAccountPrice(Map<String, String> map2) {//월간 일자별 총 수익 금액
-		List <AccountDto> monthPrice =  new ArrayList<AccountDto>();
+	
+	public int getMonthAccountCount(Map<String, String> map) {
+		System.out.println("getMonthAccountCount");
 		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
-		monthPrice = dao.getMonthAccountPrice(map2);
+		int cnt = dao.getMonthAccountCount(map);
+		
+		return cnt;
+	}
+
+	public int getMonthPrice(Map<String, String> map) {
+		System.out.println("getMonthPrice");
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int price = dao.getMonthPrice(map);
+		
+		return price;
+	}
+	
+	public AccountDto getMonthAccountPrice(Map<String, String> map) {//월간 일자별 총 수익 금액
+		System.out.println("getMonthAccountPrice");
+		AccountDto dto = new AccountDto();
+		//AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int cnt = getMonthAccountCount(map);
+		if(cnt > 0) {
+			//monthPrice = dto.setPrice(getMonthPrice(map2));
+			int price = getMonthPrice(map);
+			dto.setPrice(price);
+		}
 		/*try {
 			con = dataSource.getConnection();
 			String sql = "SELECT SUM(price) price "
@@ -198,20 +251,24 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 			}
 		
 		}*/
-		return monthPrice;
+		return dto;
 	}
 	
-	public AccountDto getMonthTotalAccount(int monlist) {//월간 총 수익 금액
+	public int getMonthTotalPrice(Map<String, String> map) {
+		System.out.println("getMonthPrice");
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int price = dao.getMonthTotalPrice(map);
+		
+		return price;
+	}
+	
+	public AccountDto getMonthTotalAccount(Map<String, String> map) {//월간 총 수익 금액
 		
 		AccountDto monPriceDto = new AccountDto();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Calendar today = Calendar.getInstance();
-		System.out.println(monlist);
-		System.out.println(today.get(Calendar.YEAR)+"-"+monlist+"-01 00:00:00");
-		System.out.println(today.get(Calendar.YEAR)+"-"+(monlist+1)+"-01 00:00:00");
-		try {
+		int price = getMonthTotalPrice(map);
+		monPriceDto.setTotal_price(price);
+		
+		/*try {
 			con = dataSource.getConnection();
 			String sql = "SELECT SUM(price) FROM day_calculate_view "
 					+ "WHERE order_time between to_date(?, 'yyyy-mm-dd hh24:mi:ss') "
@@ -235,17 +292,18 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 				e.printStackTrace();
 			}
 		
-		}
+		}*/
 		return monPriceDto;
 	}
 	
 	@Override
-	public List<AccountDto> getSelectAccountDays(String startday, String endday) {//기간 일자
-		ArrayList <AccountDto> selectList = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
+	public List<AccountDto> getSelectAccountDays(Map<String, String> map) {//기간 일자
+		List <AccountDto> selectList = new ArrayList<AccountDto>();
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		AccountDto dto = null;
+		selectList = dao.getSelectAccountDays(map);
+
+		/*try {
 			con = dataSource.getConnection();
 			String sql = "SELECT * FROM "
 					+ "(SELECT(TO_DATE (?, 'YYYY-MM-DD') + LEVEL - 1) "
@@ -279,16 +337,34 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 				e.printStackTrace();
 			}
 		
-		}
+		}*/
 		return selectList;
 	}
 	
-	public List<AccountDto> getSelectAccountPrice(String startday, String endday) {//기간 일자별 총 수익 금액
-		ArrayList <AccountDto> selectPrice = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Calendar today = Calendar.getInstance();
+	public int getSelectAccountCount(Map<String, String> map) {
+		System.out.println("getSelectAccountCount");
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int cnt = dao.getSelectAccountCount(map);
+		return cnt;
+	}
+	
+	public int getSelectPrice(Map<String, String> map) {
+		System.out.println("getSelectPrice");
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int price = dao.getSelectPrice(map);
+		
+		return price;
+	}
+	
+	public AccountDto getSelectAccountPrice(Map<String, String> map) {//기간 일자별 총 수익 금액
+		System.out.println("getSelectAccountPrice");
+		AccountDto dto = new AccountDto();
+		int cnt = getSelectAccountCount(map);
+		if(cnt > 0) {
+			int price = getSelectPrice(map);
+			dto.setPrice(price);
+		}
+		/*Calendar today = Calendar.getInstance();
 		String[] startL = startday.split("-");
 		int year = Integer.parseInt(startL[0]);
 		int month = Integer.parseInt(startL[1]);
@@ -360,13 +436,23 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 				e.printStackTrace();
 			}
 		
-		}
-		return selectPrice;
+		}*/
+		return dto;
 	}
-	@Override
-	public AccountDto getSelectTotalAccount(String startday, String endday) {//기간 총 수익 금액
+	
+	public int getSelectTotalPrice(Map<String, String> map) {
+		System.out.println("getSelectTotalPrice");
+		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
+		int price = dao.getSelectTotalPrice(map);
+		
+		return price;
+	}
+	
+	public AccountDto getSelectTotalAccount(Map<String, String> map) {//기간 총 수익 금액
 		AccountDto selPriceDto = new AccountDto();
-		Connection con = null;
+		int price = getSelectTotalPrice(map);
+		selPriceDto.setTotal_price(price);
+		/*Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		System.out.println(startday);
@@ -395,7 +481,7 @@ public List<AccountDto> getDayAccount(String dayDate) {//일간 정산표-월간
 				e.printStackTrace();
 			}
 		
-		}
+		}*/
 		
 		return selPriceDto;
 	}
