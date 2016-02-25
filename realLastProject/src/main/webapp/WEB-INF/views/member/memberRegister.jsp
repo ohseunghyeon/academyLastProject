@@ -36,12 +36,22 @@ background:#FAFAD2 ;
 <script type="text/javascript">
 	function confirmId() {
 		if (!document.registerform.id.value) {
-			alert("아이디는 넣고 중복체크 버튼을 눌러-_-");
+			alert("아이디가 입력되지 않았네요.(^^;)");
 			return false;
 		}
 		var url = "confirmId?id=" + document.registerform.id.value;
 		window.open(url, "confirm", "manubar=no, width=500, height=300");
 	}
+	
+	function confirmEmail() {
+		if (!document.registerform.email.value) {
+			alert("이메일이 입력되지 않았네요.(^^;)");
+			return false;
+		}
+		var url = "confirmEmail?email=" + document.registerform.email.value;
+		window.open(url, "confirm", "manubar=no, width=500, height=300");
+	}
+	
 	function inputCheck(form) {
 		if (!form.id.value) {
 			alert("아이디를 입력하세요.");
@@ -54,6 +64,10 @@ background:#FAFAD2 ;
 		} else if (form.confirmid.value == 2) { //중복확인을 하지 않은 경우 경고..
 			alert("아이디 중복확인을 해주세요.");
 			form.id.focus();
+			return false;
+		} else if (form.confirmemail.value == 2) { //중복확인을 하지 않은 경우 경고..
+			alert("이메일 중복확인을 해주세요.");
+			form.email.focus();
 			return false;
 		}
 	}
@@ -76,6 +90,7 @@ th {
 
 			<form method="post" action="memberRegisterPro" name="registerform" onsubmit="return inputCheck(this)">
 					<input type="hidden" name="confirmid" value="2"><!-- 중복확인 했는지 알기 위함 -->
+					<input type="hidden" name="confirmemail" value="2">
 				<table
 					class="table table-striped table-bordered table-hover table-condensed text-center">
 					<tr id="danger">
@@ -111,7 +126,9 @@ th {
 								<p class="text-center">Email</p>
 							</h4></th>
 						<td><input class="form-control" type="email" name="email"
-							placeholder="Enter email"></td>
+							placeholder="Enter email">
+							<button id="check" type="button" class="btn btn-warning" onclick="confirmEmail()">중복체크</button>
+						</td>
 					</tr>
 					<tr id="danger">
 						<th colspan="3"><p class="text-center">

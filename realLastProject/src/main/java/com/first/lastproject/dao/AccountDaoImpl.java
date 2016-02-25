@@ -1,20 +1,10 @@
 package com.first.lastproject.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,7 +25,6 @@ public class AccountDaoImpl implements AccountDao {
 	public ArrayList<AccountDto> getDayAccount() {//일간 정산표
 		
 		ArrayList <AccountDto> dayList = new ArrayList<AccountDto>();
-		AccountDto dto = new AccountDto();
 		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
 		dayList = dao.getDayAccount();
 			/*String sql = "SELECT * FROM day_calculate_view "
@@ -56,7 +45,6 @@ public class AccountDaoImpl implements AccountDao {
 public List<AccountDto> getDayAccounts(Map<String, String> map2) {//일간 정산표-월간/기간 정산에서 일자 누를 시에
 		
 		List <AccountDto> daySelList = new ArrayList<AccountDto>();
-		AccountDto dto = new AccountDto();
 		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
 		int cnt = getDayCount(map2);
 		if(cnt > 0) {
@@ -300,7 +288,6 @@ public List<AccountDto> getDayAccounts(Map<String, String> map2) {//일간 정�
 	public List<AccountDto> getSelectAccountDays(Map<String, String> map) {//기간 일자
 		List <AccountDto> selectList = new ArrayList<AccountDto>();
 		AccountDao dao = this.sqlSession.getMapper(AccountDao.class);
-		AccountDto dto = null;
 		selectList = dao.getSelectAccountDays(map);
 
 		/*try {
