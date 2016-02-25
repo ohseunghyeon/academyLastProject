@@ -126,7 +126,7 @@ th {
 								<p class="text-center">Email</p>
 							</h4></th>
 						<td><input id="check" class="form-control" type="email" name="email"
-							placeholder="Enter email">
+							placeholder="Enter email" style="width:500px;">
 							<button id="check" type="button" class="btn btn-warning" onclick="confirmEmail()">중복체크</button>
 						</td>
 					</tr>
