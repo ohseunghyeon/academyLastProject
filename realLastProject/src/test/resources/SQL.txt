@@ -1,0 +1,338 @@
+drop table p_order_menu;
+drop table p_recipe;
+drop table p_board;
+drop table p_coupon;
+drop table p_food;
+drop table p_ingredient;
+drop table p_order;
+drop table p_seat;
+drop table p_user;
+--sequence
+CREATE SEQUENCE p_board_seq START WITH 1;
+CREATE SEQUENCE seq_food_code START WITH 1;
+CREATE SEQUENCE seq_order_code START WITH 1;
+CREATE SEQUENCE seq_coupon_num START WITH 1;
+/* order */
+CREATE TABLE p_order (
+	order_id VARCHAR2(20) NOT NULL, /* 주문번호 */
+	seat_num NUMBER(2) NOT NULL, /* 좌석번호 */
+	id VARCHAR2(20) NOT NULL, /* 아이디 */
+	order_time TIMESTAMP NOT NULL, /* 시간 */
+    end_time timestamp not null,
+  order_done number(1)
+);
+ALTER TABLE p_order
+	ADD
+		CONSTRAINT PK_p_order
+		PRIMARY KEY (
+			order_id
+		);
+
+/* user */
+CREATE TABLE p_user (
+	id VARCHAR2(20) NOT NULL, /* 아이디 */
+	passwd VARCHAR2(20) NOT NULL, /* 비밀번호 */
+	mileage NUMBER(6) NOT NULL, /* 마일리지 */
+	phone_number VARCHAR2(30), /* 전화번호 */
+	email VARCHAR2(40), /* 이메일 */
+	is_guest NUMBER(1) NOT NULL, /* 비회원여부 */
+	get_coupon NUMBER(1) NOT NULL /* 쿠폰발행여부 */
+);
+select * from p_user;
+ALTER TABLE p_user
+	ADD
+		CONSTRAINT PK_p_user
+		PRIMARY KEY (
+			id
+		);
+    
+--유저 insert 문
+insert into p_user values ('host','host',500,'010-0000-1111','guest@naver.com',0,0);
+insert into p_user values ('nomember','nomember',500,'010-0000-1111','guest@naver.com',1,0);
+
+/* coupon */
+CREATE TABLE p_coupon (
+	coupon_num NUMBER NOT NULL, /* 쿠폰번호 */
+	id VARCHAR2(20) NOT NULL, /* 아이디 */
+	due_date TIMESTAMP NOT NULL /* 사용기한 */
+);
+
+ALTER TABLE p_coupon
+	ADD
+		CONSTRAINT PK_p_coupon
+		PRIMARY KEY (
+			coupon_num
+		);
+
+/* seat */
+CREATE TABLE p_seat (
+	seat_num NUMBER(2) NOT NULL, /* 좌석번호 */
+	occupied NUMBER(1) NOT NULL /* 점유여부 */
+);
+
+ALTER TABLE p_seat
+	ADD
+		CONSTRAINT PK_p_seat
+		PRIMARY KEY (
+			seat_num
+		); 
+INSERT INTO p_seat VALUES(1,0);
+INSERT INTO p_seat VALUES(2,0);
+INSERT INTO p_seat VALUES(3,0);
+INSERT INTO p_seat VALUES(4,0);
+INSERT INTO p_seat VALUES(5,0);
+INSERT INTO p_seat VALUES(6,0);
+INSERT INTO p_seat VALUES(7,0);
+INSERT INTO p_seat VALUES(8,0);
+INSERT INTO p_seat VALUES(9,0);
+INSERT INTO p_seat VALUES(10,0);
+INSERT INTO p_seat VALUES(11,0);
+INSERT INTO p_seat VALUES(12,0);
+INSERT INTO p_seat VALUES(13,0);
+INSERT INTO p_seat VALUES(14,0);
+INSERT INTO p_seat VALUES(15,0);
+INSERT INTO p_seat VALUES(16,0);
+INSERT INTO p_seat VALUES(17,0);
+INSERT INTO p_seat VALUES(18,0);
+INSERT INTO p_seat VALUES(19,0);
+INSERT INTO p_seat VALUES(20,0);
+INSERT INTO p_seat VALUES(21,0);
+INSERT INTO p_seat VALUES(22,0);
+INSERT INTO p_seat VALUES(23,0);
+INSERT INTO p_seat VALUES(24,0);
+/* food */
+CREATE TABLE p_food (
+	food_code NUMBER(3) NOT NULL, /* 메뉴코드 */
+	food_name VARCHAR2(50) NOT NULL, /* 메뉴이름 */
+	price NUMBER(10) NOT NULL, /* 가격 */
+	food_num NUMBER(3) NOT NULL, /* 수량 */
+   image_name VARCHAR2(30) NOT NULL
+);
+
+
+ALTER TABLE p_food
+	ADD
+		CONSTRAINT PK_p_food
+		PRIMARY KEY (
+			food_code
+		);
+
+INSERT INTO p_food VALUES(1,'에스프레소', 4500, -1,'espreso');
+INSERT INTO p_food VALUES(2,'아메리카노', 4500, -1,'americano');
+INSERT INTO p_food VALUES(3,'아이스아메리카노', 4500, -1,'iceAmericano');
+INSERT INTO p_food VALUES(4,'카페모카', 4500, -1,'caffeMocha');
+INSERT INTO p_food VALUES(5,'카푸치노', 4500, -1,'cappuccino');
+INSERT INTO p_food VALUES(6,'아이스티', 6000, -1,'iceTea');
+INSERT INTO p_food VALUES(7,'그린티라떼', 6500, -1,'greenTeaLatte');
+INSERT INTO p_food VALUES(8,'바닐라라떼', 6500, -1,'greenTeaLatte');
+INSERT INTO p_food VALUES(9,'망고프라페', 7000, -1,'mangoFrappe');
+INSERT INTO p_food VALUES(10,'밀크티', 6000, -1,'milkTea');
+INSERT INTO p_food VALUES(11,'스트로베리 타르트', 5000, 10,'strawberryTarte');
+INSERT INTO p_food VALUES(12,'블루베리치즈 타르트', 5000, 10,'blueBerryCheeseTarte');
+INSERT INTO p_food VALUES(13,'바나나초코 타르트', 5000, 10,'BananaChocolateTarte');
+INSERT INTO p_food VALUES(14,'티라미슈', 4000, 10,'Tiramisu');
+INSERT INTO p_food VALUES(15,'얼그레이 티라미수', 5000, 10,'earlGreyTiramisu');
+INSERT INTO p_food VALUES(16,'그릭요거트 생크림케익', 10000, 10,'greekYogurtFreshCreamCake');
+INSERT INTO p_food VALUES(17,'마카롱 오렌지', 2000, 10,'macaronOrange');
+INSERT INTO p_food VALUES(18,'마카롱 산딸기', 2000, 10,'macaronRaspberry');
+INSERT INTO p_food VALUES(19,'그릭 요거트 아이스크림', 5000, 10,'greekYogurtIceCream');
+INSERT INTO p_food VALUES(20,'초콜릿 머핀', 3000, 10,'chocolateMuffin');
+/* ingredient */
+CREATE TABLE p_ingredient (
+	ingredient_code NUMBER(3) NOT NULL, /* 재료코드 */
+	ingredient VARCHAR2(50) NOT NULL, /* 재료 */
+	ingre_num NUMBER(5) NOT NULL /* 재료수량 */
+);
+
+ALTER TABLE p_ingredient
+	ADD
+		CONSTRAINT PK_p_ingredient
+		PRIMARY KEY (
+			ingredient_code
+		);
+insert into p_ingredient VALUES(21,'딸기',10);
+insert into p_ingredient VALUES(22,'호두',10);
+insert into p_ingredient VALUES(23,'녹차',10);
+insert into p_ingredient VALUES(24,'원두',10);
+insert into p_ingredient VALUES(25,'우유',10);
+insert into p_ingredient VALUES(26,'망고',10);
+insert into p_ingredient VALUES(27,'찻잎',10);
+insert into p_ingredient VALUES(28,'바닐라파우더',10);
+insert into p_ingredient VALUES(29,'복숭아티파우더',10);
+insert into p_ingredient VALUES(30,'코코아파우더',10);
+
+/* recipe */
+CREATE TABLE p_recipe (
+	ingredient_code NUMBER(3) NOT NULL, /* 재료코드 */
+	food_code NUMBER(3) NOT NULL /* 메뉴코드 */
+);
+
+ALTER TABLE p_recipe
+	ADD
+		CONSTRAINT PK_p_recipe
+		PRIMARY KEY (
+			ingredient_code,
+			food_code
+		);
+-- 음료 레시피 insert 문
+insert into p_recipe values (24,1); --에스프레소
+insert into p_recipe values (24,2); --아메리카노
+insert into p_recipe values (24,3); --아이스아메리
+insert into p_recipe values (24,4); --카페모카
+insert into p_recipe values (25,4); --카페모카
+insert into p_recipe values (30,4); --카페모카
+insert into p_recipe values (24,5); --카푸치노
+insert into p_recipe values (25,5); --카푸치노
+insert into p_recipe values (27,6); --아이스티
+insert into p_recipe values (25,7); --그린티라떼
+insert into p_recipe values (23,7); --그린티라떼
+insert into p_recipe values (28,8); --바닐라라떼
+insert into p_recipe values (25,8); --바닐라라떼
+insert into p_recipe values (26,9); --망고프라페
+insert into p_recipe values (27,10); --밀크티
+insert into p_recipe values (25,10); --밀크티
+-- 재료 넣어야겠다. 
+--21딸기 22 호두 23 녹차 24 원두 25 우유 26 망고 27 찻잎 28 파닐라파우더 29 복숭아티파우더 30 코코아파우더
+--1에스프레소 2아메리카노 3아이스아메리 4카페모카 5카푸치노 6아이스티 7 그린티라떼 8 바닐라라떼 9 망고프라페 10밀크티 
+/* order_menu */
+CREATE TABLE p_order_menu (
+	order_id VARCHAR2(20) NOT NULL, /* 주문번호 */
+	food_code NUMBER(3) NOT NULL /* 메뉴코드 */
+);
+
+/* board */
+CREATE TABLE p_board (
+	num VARCHAR2(8) NOT NULL, /* 게시글번호 */
+	id VARCHAR2(20) NOT NULL, /* 작성자 */
+	passwd VARCHAR2(20) NOT NULL, /* 비밀번호 */
+	subject VARCHAR2(100) NOT NULL, /* 글제목 */
+	content VARCHAR2(300) NOT NULL, /* 글내용 */
+	readcount VARCHAR2(4) DEFAULT 0 NOT NULL, /* 조회수 */
+	ref NUMBER(4) DEFAULT 0 NOT NULL, /* 그룹화아이디 */
+	re_step NUMBER(4) DEFAULT 0 NOT NULL, /* 글순서 */
+	re_level NUMBER(4) DEFAULT 0 NOT NULL, /* 글레벨 */
+	email VARCHAR2(50), /* 이메일 */
+	reg_date TIMESTAMP NOT NULL, /* 작성일자 */
+	ip VARCHAR(15) NOT NULL /* ip */
+);
+
+ALTER TABLE p_board
+	ADD
+		CONSTRAINT PK_p_board
+		PRIMARY KEY (
+			num
+		);
+
+ALTER TABLE p_order
+	ADD
+		CONSTRAINT FK_p_seat_TO_p_order
+		FOREIGN KEY (
+			seat_num
+		)
+		REFERENCES p_seat (
+			seat_num
+		);
+
+ALTER TABLE p_order
+	ADD
+		CONSTRAINT FK_p_user_TO_p_order
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES p_user (
+			id
+		);
+
+ALTER TABLE p_coupon
+	ADD
+		CONSTRAINT FK_p_user_TO_p_coupon
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES p_user (
+			id
+		);
+
+ALTER TABLE p_recipe
+	ADD
+		CONSTRAINT FK_p_food_TO_p_recipe
+		FOREIGN KEY (
+			food_code
+		)
+		REFERENCES p_food (
+			food_code
+		);
+
+ALTER TABLE p_recipe
+	ADD
+		CONSTRAINT FK_p_ingredient_TO_p_recipe
+		FOREIGN KEY (
+			ingredient_code
+		)
+		REFERENCES p_ingredient (
+			ingredient_code
+		);
+
+ALTER TABLE p_order_menu
+	ADD
+		CONSTRAINT FK_p_food_TO_p_order_menu
+		FOREIGN KEY (
+			food_code
+		)
+		REFERENCES p_food (
+			food_code
+		);
+
+ALTER TABLE p_order_menu
+	ADD
+		CONSTRAINT FK_p_order_TO_p_order_menu
+		FOREIGN KEY (
+			order_id
+		)
+		REFERENCES p_order (
+			order_id
+		);
+
+ALTER TABLE p_board
+	ADD
+		CONSTRAINT FK_p_user_TO_p_board
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES p_user (
+			id
+		);
+    select * from p_food;
+--뷰
+CREATE view day_calculate_view as select o.order_id, o.seat_num, o.order_time , o.end_time - o.order_time  as used_time, sum(f.price) as price from p_order o, p_order_menu om, p_food f where o.ORDER_ID=om.ORDER_ID and om.FOOD_CODE=f.FOOD_CODE group by o.order_id, o.seat_num, o.order_time , o.end_time - o.order_time;
+
+
+
+--JOB
+
+
+DECLARE
+	V_JOB NUMBER(5);
+BEGIN
+   DBMS_JOB.SUBMIT
+                  (   V_JOB,
+                      'UPDATE p_seat SET occupied = 0 WHERE seat_num = (SELECT s.seat_num FROM p_order o, p_seat s WHERE o.seat_num = s.seat_num AND end_time < sysdate AND end_time > sysdate - 5/24/60 AND occupied = 1);',
+                       sysdate + 1/24/60,
+                      'sysdate + 1/24/60',
+                      FALSE
+                  );
+END;
+/
+
+/* DBMS_JOB 삭제
+BEGIN 
+ DBMS_JOB.REMOVE(5);
+ COMMIT; 
+END;
+	 DBMS_JOB 실행 
+BEGIN 
+ DBMS_JOB.RUN(4);
+ COMMIT;
+END;
+SELECT * from user_jobs;
+*/
