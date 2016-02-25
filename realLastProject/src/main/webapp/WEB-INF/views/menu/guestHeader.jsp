@@ -28,7 +28,7 @@
   </blockquote>
 </div>
 
-<nav class="navbar navbar-default"">
+<nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand"><span style="color:black">SASAEG<img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></span></a>

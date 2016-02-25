@@ -14,9 +14,9 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6" style="background-color:lavender;"></div>
-    <div class="col-sm-4" style="background-color:lavenderblush;"></div>
+    <div class="col-sm-4" style="background-color:lavenderblush;"><mark>고객</mark>님 안녕하세요.</div>
    	<div class="col-sm-2" style="background-color:lavenderblush;">
-   	<mark>고객</mark>님 안녕하세요.
+    <a href="memberLogout"><span class="glyphicon glyphicon-log-out"></span>나가기</a>
     </div>
   </div>
   <blockquote>

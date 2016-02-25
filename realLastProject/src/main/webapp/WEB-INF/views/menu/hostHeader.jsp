@@ -25,10 +25,9 @@
 <nav class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand"><h4>SASAEG <img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></h4></a>
+      <h4><a class="navbar-brand">SASAEG<img src="/lastproject/resources/images/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-20-heart-empty.png"></a></h4>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#"><h4>Home</h4></a></li>
       <li><a href="seatList"><h4>좌석</h4></a></li>
       <li><a href="hostOrderList"><h4>주문</h4></a></li>
       <li><a href="ingredient"><h4>재고</h4></a></li>
