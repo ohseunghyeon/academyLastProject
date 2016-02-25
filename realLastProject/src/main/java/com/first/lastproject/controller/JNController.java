@@ -64,7 +64,7 @@ public class JNController {
 	@Autowired
 	MemberConfirmEmailCommand memberConfirmEmailCommand;
 
-	@RequestMapping("/memberConfirmEmail")
+	@RequestMapping("/confirmEmail")
 	public String memberConfirmEmail(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		String viewname = memberConfirmEmailCommand.execute(model);

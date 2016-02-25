@@ -51,8 +51,8 @@
 				</tr>
 				<br>
 				<tr>
-					<th><p class="text-center">ID</p></th>
-					<td><input type="text" class="input" name="id" maxlength="12">
+					<th><p class="text-center">Email</p></th>
+					<td><input type="email" class="input" name="email" maxlength="30">
 					</td>
 				</tr>
 				<tr>

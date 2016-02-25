@@ -40,7 +40,7 @@ background:#FAFAD2 ;
 			return false;
 		}
 		var url = "confirmId?id=" + document.registerform.id.value;
-		window.open(url, "confirm", "manubar=no, width=500, height=300");
+		window.open(url, "confirm", "menubar=no, width=500, height=300");
 	}
 	
 	function confirmEmail() {
@@ -49,7 +49,7 @@ background:#FAFAD2 ;
 			return false;
 		}
 		var url = "confirmEmail?email=" + document.registerform.email.value;
-		window.open(url, "confirm", "manubar=no, width=500, height=300");
+		window.open(url, "confirm", "menubar=no, width=500, height=300");
 	}
 	
 	function inputCheck(form) {
@@ -125,7 +125,7 @@ th {
 						<th><h4>
 								<p class="text-center">Email</p>
 							</h4></th>
-						<td><input class="form-control" type="email" name="email"
+						<td><input id="check" class="form-control" type="email" name="email"
 							placeholder="Enter email">
 							<button id="check" type="button" class="btn btn-warning" onclick="confirmEmail()">중복체크</button>
 						</td>
