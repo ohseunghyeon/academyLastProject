@@ -34,7 +34,7 @@
 	</select>
 	
 	<select id="checkCoupon" parameterType="String" resultType="int">
-	SELECT COUNT(*) FROM p_coupon WHERE id= #{id}
+	SELECT count(*) FROM p_coupon WHERE id= #{id}
 	</select>
 	
 	<select id="getId" parameterType="String" resultType="com.first.lastproject.dto.MemberDto">

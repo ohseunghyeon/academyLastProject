@@ -41,8 +41,8 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a>마일리지:${mileage} point</a></li>
       <li>
-      	  <c:if test="${coupon == 0}"><a>Coupon 없어</a></c:if>
-      	  <c:if test="${coupon != 0}"><a href="couponmain">Coupon 있어</a></c:if>
+      	  <c:if test="${coupon == 0}"><a>쿠폰이 없습니다.</a></c:if>
+      	  <c:if test="${coupon != 0}"><a href="couponmain">쿠폰 보기</a></c:if>
       </li>
       <li><a href="memberModifyForm">회원정보수정</a></li>
     </ul>

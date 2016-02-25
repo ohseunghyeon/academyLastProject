@@ -32,8 +32,6 @@ public class BoardDto {
 		this.num = num;
 	}
 
-
-
 	public String getId() {
 		return id;
 	}

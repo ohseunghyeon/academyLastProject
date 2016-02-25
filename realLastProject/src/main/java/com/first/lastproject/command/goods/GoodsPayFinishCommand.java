@@ -65,7 +65,7 @@ public class GoodsPayFinishCommand implements GoodsCommand {
 				int coupon_num = Integer.parseInt(request.getParameter("coupon")); //쿠폰 사용했을때 삭제하기 위해서 받아옴
 				orderDao.useCoupon(coupon_num);	//실제 쿠폰 사용 메소드
 				//헤더에 리프레시
-				request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
+				request.getSession().setAttribute("coupon", 0);
 				
 			} else if (couponMileageUse == 2) {	//마일리지 사용
 				int mileage = Integer.parseInt(request.getParameter("mileage"));

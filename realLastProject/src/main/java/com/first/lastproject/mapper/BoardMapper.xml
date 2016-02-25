@@ -23,7 +23,7 @@
 		UPDATE p_board SET re_step = re_step + 1 WHERE ref=#{ref} AND re_step &gt; #{re_step}
 	</update>
 	<insert id="writeArticle" parameterType="com.first.lastproject.dto.BoardDto">
-		INSERT INTO p_board (num, writer, email, subject, passwd, reg_date, ref, re_step, re_level, content, ip) VALUES (p_board_seq.nextval, #{writer}, #{email}, #{subject}, #{passwd}, #{reg_date}, #{ref}, #{re_step}, #{re_level},#{content}, #{ip})
+		INSERT INTO p_board (num, id, email, subject, passwd, reg_date, ref, re_step, re_level, content, ip) VALUES (p_board_seq.nextval, #{id}, #{email}, #{subject}, #{passwd}, #{reg_date}, #{ref}, #{re_step}, #{re_level},#{content}, #{ip})
 	
 	</insert>
 	<select id="getArticle" resultType="com.first.lastproject.dto.BoardDto" parameterType="int">

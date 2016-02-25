@@ -142,8 +142,7 @@ public class BoardDaoImpl implements BoardDao {
 		int re_level = dto.getRe_level();
 		int re_step = dto.getRe_step();
 		
-		BoardDao dao = this.sqlSession.getMapper(BoardDao.class);
-		count = dao.writeArticle(dto);
+		BoardDao boardDao = this.sqlSession.getMapper(BoardDao.class);
 		//제목글인 경우
 		if (num == 0) {
 			count = getCount(); //글개수
@@ -168,7 +167,7 @@ public class BoardDaoImpl implements BoardDao {
 		dto.setRe_step(re_step);
 		dto.setRe_level(re_level);
 		
-		count = dao.writeArticle(dto);
+		count = boardDao.writeArticle(dto);
 		return count;
 		/*
 		Connection con = null;

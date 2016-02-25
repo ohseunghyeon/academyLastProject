@@ -42,7 +42,6 @@ public class AccountDayCommand implements AccountCommand {
 		map2.put("dayEnd", dayEnd);
 		map2.put("dayDate", dayDateOne);
 		
-		
 		if(dayDateOne == null) {
 			dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT);
 			formattedDate = dateFormat.format(date);
@@ -50,12 +49,10 @@ public class AccountDayCommand implements AccountCommand {
 			formattedDate = dayDate.substring(0, 10);// 시작값:0, 끝값:10
 
 			formattedDate = dayDateOne;
-
 		}
 		AccountDto dto = new AccountDto();
 		AccountDto price = new AccountDto();
 		List<AccountDto> list = new ArrayList<AccountDto>();
-		
 		
 		if (dayDateOne == null) {
 			list = dao.getDayAccount();

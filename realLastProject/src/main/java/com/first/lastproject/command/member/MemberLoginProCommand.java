@@ -24,10 +24,10 @@ public class MemberLoginProCommand implements MemberCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
-		Map<String, String> map2 = new HashMap<String, String>();
-		map2.put("id", id);
-		map2.put("passwd", passwd);
-		int result = memberDao.checkMember(map2);
+		Map<String, String> chkMemberMap = new HashMap<String, String>();
+		chkMemberMap.put("id", id);
+		chkMemberMap.put("passwd", passwd);
+		int result = memberDao.checkMember(chkMemberMap);
 
 		if (result == 1) {
 			request.getSession().setAttribute("id", id);
@@ -35,6 +35,8 @@ public class MemberLoginProCommand implements MemberCommand {
 			int couponResult = memberDao.checkCoupon(id);
 			if (couponResult != 0) {
 				request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
+			} else {
+				request.getSession().setAttribute("coupon", 0);
 			}
 			request.getSession().setAttribute("mileage", memberDto.getMileage());
 			return "redirect:/seatList";

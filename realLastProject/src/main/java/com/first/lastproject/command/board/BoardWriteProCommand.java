@@ -20,7 +20,7 @@ public class BoardWriteProCommand implements BoardCommand {
 
 
 	@Autowired
-	BoardDao dao;
+	BoardDao boardDao;
 	@Autowired
 	MemberDao memberDao;
 	@Override
@@ -50,14 +50,13 @@ public class BoardWriteProCommand implements BoardCommand {
 
 		//BoardDao dao = BoardDaoImpl.getInstance();
 		//MemberDao memberDao = MemberDaoImpl.getInstance();
-		int writeResult = dao.writeArticle(dto);
+		int writeResult = boardDao.writeArticle(dto);
 
 		String id = (String) request.getSession().getAttribute("id");
 		MemberDto memberDto = memberDao.getMember(id);
 		if (memberDto.getGet_coupon() == 0) {
 			int makeCouponResult = memberDao.makeCoupon(id);
 			if (makeCouponResult == 1) {
-				model.addAttribute("makeCouponResult", makeCouponResult);
 				request.getSession().setAttribute("coupon", memberDao.getCoupon(id));
 			}
 		}

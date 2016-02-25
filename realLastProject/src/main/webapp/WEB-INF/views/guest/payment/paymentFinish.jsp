@@ -26,7 +26,7 @@
 
 
 		<br> 
-		<button type="button" class="btn btn-warning" onclick="window.location='index'" >처음으로</button>
+		<button type="button" class="btn btn-warning" onclick="window.location='seatList'" >처음으로</button>
 	</form>
 </div>
 <div class="col-sm-4" ></div>

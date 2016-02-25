@@ -76,7 +76,7 @@ function salePrice($scope) { //컨트롤러
 			<div class="col-sm-2 sidenav"></div>
 			<div class="col-sm-8 text-left">
 
-				<form action="paymentFinish" method="post" name="paymentForm">
+				<form action="paymentFinish" method="post" name="paymentForm" onsubmit="return confirm('구매내역을 확인해주십시오 \n이대로 주문하시겠습니까?')">
 					<fieldset id="content">
 						<legend>
 							<font color="orange"><b><small>Payment</small> </b></font>
@@ -159,9 +159,9 @@ function salePrice($scope) { //컨트롤러
 								<tr ng-hide="mileageHide">
 									<th id="tt" width="200" height="15"><p class="text-center">사용
 											마일리지</p></th>
-									<td><input type="text" name="mileage" size="10" /> 원
-										<button type="button" class="btn btn-warning"
-											onclick="sale(${mileage},${price})">적용</button></td>
+									<td><input type="number" name="mileage" size="10" value="0" min="0" max="${mileage}"/> 
+									포인트
+										<button type="button" class="btn btn-warning" onclick="sale(${mileage},${price})">적용</button></td>
 								</tr>
 							</table>
 						</fieldset>
