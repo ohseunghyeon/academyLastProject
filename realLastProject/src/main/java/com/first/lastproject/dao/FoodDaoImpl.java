@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -36,9 +34,15 @@ public class FoodDaoImpl implements FoodDao {
 			 if (dto.getFood_num() < 0) { // 음료의 경우
 				//음료만 지나오는	 거 확인.
 				List<Integer> ingreNumList = getIngreNum(dto.getFood_code());
+				
+				dto.setFood_num(ingreNumList.get(0));
 				for (Integer ingreNum : ingreNumList) {
+					if (dto.getFood_num() > ingreNum) {
+						dto.setFood_num(ingreNum);
+					}
 					if (ingreNum < 1) {
 						dto.setSold_out(1);
+						break;
 					}
 				} 
 			 } else { // 이미 생산된 디저트 종류의 경우

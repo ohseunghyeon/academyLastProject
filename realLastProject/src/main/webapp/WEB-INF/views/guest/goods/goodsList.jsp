@@ -77,10 +77,9 @@
 									<c:if test="${goodslist.sold_out == 0}">
 										<a><img
 											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"
-											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}', '${goodslist.food_num}')"></a>
 										<p>
-											<a
-												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a>
+											<a ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}', '${goodslist.food_num}')"><b>${goodslist.food_name}</b></a>
 										</p>
 										<p>
 											가격 : <b>${goodslist.price}</b>
@@ -111,10 +110,10 @@
 									<c:if test="${goodslist.sold_out == 0}">
 										<a><img
 											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"
-											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}', '${goodslist.food_num}')"></a>
 										<p>
 											<a
-												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a>
+												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}', '${goodslist.food_num}')"><b>${goodslist.food_name}</b></a>
 										</p>
 										<p>
 											가격 : <b>${goodslist.price}</b>
@@ -151,10 +150,10 @@
 									<c:if test="${goodslist.sold_out == 0}">
 										<a><img
 											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"
-											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}', '${goodslist.food_num}')"></a>
 										<p>
 											<a
-												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a>
+												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}', '${goodslist.food_num}')"><b>${goodslist.food_name}</b></a>
 										</p>
 										<p>
 											가격 : <b>${goodslist.price}</b>
@@ -184,10 +183,10 @@
 									<c:if test="${goodslist.sold_out == 0}">
 										<a><img
 											src="/lastproject/resources/images/menu/${goodslist.image_name}.jpg"
-											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"></a>
+											ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}', '${goodslist.food_num}')"></a>
 										<p>
 											<a
-												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}')"><b>${goodslist.food_name}</b></a>
+												ng-click="addItem('${goodslist.food_code}', '${goodslist.food_name}', '${goodslist.price}', '${goodslist.food_num}')"><b>${goodslist.food_name}</b></a>
 										</p>
 										<p>
 											가격 : <b>${goodslist.price}</b>
@@ -223,8 +222,7 @@
 							<!--하나씩 보여주는것  -->
 							<td><input type=text name="food_code"
 								ng-model="item.food_code" ng-hide="true">{{item.food_name}}</td>
-							<td><input type="number" name="food_num" ng-model="item.qty"
-								ng-required class="input-mini"></td>
+							<td><input type="number" name="food_num" ng-model="item.qty" max="{{item.maxNo}}" ng-required class="input-mini"></td>
 							<td>{{item.price}}원</td>
 							<td>[<a href ng-click="removeItem($index)">X</a>]
 							</td>
@@ -260,9 +258,12 @@
 			$scope.drinkHide = false; /*클릭 전에 음료 안 숨기기 위함*/
 			$scope.dessertHide = true; /*클릭 전에 디저트 숨기기 위함*/
 
-			$scope.addItem = function(code, name, pric) {
+			$scope.addItem = function(code, name, pric, maxNum) {
 				for (var i = 0; i < $scope.invoice.items.length; i++) {
 					if ($scope.invoice.items[i].food_code == code) {
+						if ($scope.invoice.items[i].qty == maxNum) {
+							return;
+						}
 						$scope.invoice.items[i].qty += 1;
 						return;
 					}
@@ -271,7 +272,8 @@
 					qty : 1,
 					food_code : code,
 					food_name : name,
-					price : pric
+					price : pric,
+					maxNo : maxNum
 				});
 
 				$scope.totalHide = false;

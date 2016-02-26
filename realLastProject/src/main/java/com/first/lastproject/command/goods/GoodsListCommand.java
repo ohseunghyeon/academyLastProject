@@ -17,13 +17,6 @@ public class GoodsListCommand implements GoodsCommand {
 	
 	@Override
 	public String execute(Model model) {
-		/*Map<String, Object> map = model.asMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");*/
-		
-/*		if (request.getSession().getAttribute("shoppingBag") != null) {
-			String[] shoppingBag = (String[]) request.getSession().getAttribute("shoppingBag");
-			model.addAttribute("shoppingBag", shoppingBag);
-		} 다른 페이지 갔다가 세션에서 장바구니 받아오는 로직 */
 		
 		//FoodDao foodDao = FoodDaoImpl.getInstance();
 		List<FoodDto> goodslist = foodDao.listGoods();	//메뉴 불러옴
